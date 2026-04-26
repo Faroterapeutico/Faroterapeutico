@@ -326,21 +326,37 @@ body.boutique #hero > .container {
 .cta-eval-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 7px;
     margin-top: 14px;
-    font-size: 0.82rem;
-    color: rgba(255,255,255,0.75);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 2px;
-    transition: all 0.2s ease;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.8rem;
     font-family: var(--sans);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1.5px solid rgba(26,26,26,0.3);
+    border-radius: 50px;
+    background: rgba(26,26,26,0.05);
+    transition: all 0.25s ease;
 }
 .cta-eval-link:hover {
-    color: #fff;
-    border-bottom-color: rgba(255,255,255,0.8);
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
 }
 .cta-eval-link i { font-size: 0.8rem; }
+@media (max-width: 600px) {
+    .cta-eval-link {
+        display: flex;
+        width: 100%;
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.78rem;
+    }
+}
 
 .cta-arrow {
     display: inline-block;
