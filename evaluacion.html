@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>¿Necesito un psicólogo? Evaluación gratuita | Faro Terapéutico</title>
+  <meta name="description" content="Evaluación gratuita y confidencial. Responde 5 preguntas y descubre qué psicólogo de Faro Terapéutico es el más adecuado para ti.">
+  <link rel="canonical" href="https://faroterapeutico.com/evaluacion" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #9A5F28;
+      --accent-light: rgba(154,95,40,0.1);
+      --green: #25D366;
+      --ink: #1a1a1a;
+      --muted: #666;
+      --bg: #faf9f5;
+      --white: #fff;
+      --radius: 14px;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* HEADER */
+    .app-header {
+      background: var(--white);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    .logo-link img { height: 30px; }
+
+    /* PROGRESS */
+    .progress-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 20px 20px 0;
+    }
+    .progress-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-bar {
+      height: 5px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.4s ease;
+    }
+
+    /* CONTAINER */
+    .eval-container {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 20px 20px 60px;
+    }
+
+    /* STEPS */
+    .step { display: none; animation: fadeUp 0.35s ease; }
+    .step.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LEAD CAPTURE STEP */
+    .lead-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .lead-card .badge {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .lead-card h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      line-height: 1.25;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .lead-card h1 em { color: var(--accent); font-style: italic; }
+    .lead-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .trust-pills {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .trust-pill {
+      font-size: 0.75rem;
+      color: var(--muted);
+      background: #f4f4f0;
+      padding: 4px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .trust-pill i { color: var(--accent); font-size: 0.7rem; }
+
+    /* FORM */
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fdfdfd;
+      transition: border-color 0.2s;
+      color: var(--ink);
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(154,95,40,0.1);
+    }
+    .form-group input.error { border-color: #e53935; }
+
+    /* QUESTION STEP */
+    .question-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow);
+    }
+    .q-number {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .q-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      color: var(--ink);
+    }
+    .q-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* ANSWER CARDS */
+    .answers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .answers-grid.single-col { grid-template-columns: 1fr; }
+
+    .answer-card {
+      cursor: pointer;
+      border: 1.5px solid #e8e8e4;
+      border-radius: 12px;
+      padding: 14px 12px;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .answer-card:hover { border-color: var(--accent); background: var(--accent-light); }
+    .answer-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      box-shadow: 0 0 0 2px rgba(154,95,40,0.2);
+    }
+    .answer-card.selected .answer-check { opacity: 1; }
+    .answer-emoji { font-size: 1.3rem; flex-shrink: 0; }
+    .answer-text { font-size: 0.88rem; font-weight: 500; color: var(--ink); line-height: 1.3; flex: 1; }
+    .answer-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .answer-check i { color: white; font-size: 0.6rem; }
+
+    /* BUTTONS */
+    .btn-primary {
+      width: 100%;
+      padding: 15px;
+      background: var(--ink);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .btn-primary:hover { background: #000; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* RESULT */
+    .result-step { text-align: center; }
+    .result-label {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .result-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .result-intro em { color: var(--accent); font-style: italic; }
+    .result-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .therapist-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 2px solid var(--accent);
+    }
+    .therapist-photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+    .therapist-info { padding: 20px; }
+    .therapist-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .therapist-role { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+    .therapist-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+    }
+    .therapist-match {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: #166534;
+      margin-bottom: 16px;
+      text-align: left;
+      line-height: 1.5;
+    }
+    .therapist-match i { margin-right: 5px; }
+
+    .contact-buttons { display: flex; gap: 10px; }
+    .btn-whatsapp {
+      flex: 1;
+      padding: 14px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+    .btn-email {
+      padding: 14px 18px;
+      background: none;
+      border: 1.5px solid #ddd;
+      border-radius: 50px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      cursor: pointer;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .btn-email:hover { border-color: var(--accent); color: var(--accent); }
+
+    .other-therapists {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .other-therapists p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .other-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .other-link {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .other-link:hover { border-color: var(--accent); }
+
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.78rem;
+      color: #aaa;
+    }
+
+    @media (max-width: 420px) {
+      .answers-grid { grid-template-columns: 1fr; }
+      .lead-card { padding: 24px 20px; }
+      .question-card { padding: 22px 18px; }
+      .contact-buttons { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="app-header">
+    <a href="/" class="logo-link">
+      <img src="images/favicon-32x32.webp" alt="Faro Terapéutico">
+      <span>Faro Terapéutico</span>
+    </a>
+  </header>
+
+  <!-- PROGRESS BAR (oculta en step 0 y resultado) -->
+  <div class="progress-wrap" id="progressWrap" style="display:none;">
+    <div class="progress-label">
+      <span>Pregunta <span id="qNum">1</span> de 5</span>
+      <span id="qPct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="eval-container">
+
+    <!-- STEP 0: CAPTURA DE LEADS -->
+    <div class="step active" id="step-0">
+      <div class="lead-card">
+        <span class="badge"><i class="fas fa-lock"></i> &nbsp;Gratuito y confidencial</span>
+        <h1>¿Necesito un <em>psicólogo</em>?</h1>
+        <p>Responde 5 preguntas rápidas y te diremos qué terapeuta de nuestro equipo puede ayudarte mejor.</p>
+        <div class="trust-pills">
+          <span class="trust-pill"><i class="fas fa-clock"></i> 2 minutos</span>
+          <span class="trust-pill"><i class="fas fa-shield-alt"></i> 100% privado</span>
+          <span class="trust-pill"><i class="fas fa-star"></i> +500 pacientes</span>
+        </div>
+
+        <div class="form-group">
+          <label for="lead-nombre">Tu nombre</label>
+          <input type="text" id="lead-nombre" placeholder="¿Cómo te llamas?" autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label for="lead-email">Tu correo electrónico</label>
+          <input type="email" id="lead-email" placeholder="nombre@correo.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="lead-prevision">Previsión de salud</label>
+          <select id="lead-prevision">
+            <option value="">Selecciona...</option>
+            <option value="Fonasa">FONASA</option>
+            <option value="Isapre">Isapre</option>
+            <option value="Particular">Particular / Sin previsión</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" id="btnStart">
+          Comenzar evaluación <i class="fas fa-arrow-right"></i>
+        </button>
+        <p style="font-size:0.72rem;color:#bbb;margin-top:12px;">No enviamos spam. Tus datos son confidenciales.</p>
+      </div>
+    </div>
+
+    <!-- STEP 1: MOTIVO PRINCIPAL -->
+    <div class="step" id="step-1">
+      <div class="question-card">
+        <div class="q-number">Pregunta 1 de 5</div>
+        <div class="q-title">¿Qué te trae hoy?</div>
+        <div class="q-hint">Puedes elegir hasta 2 opciones.</div>
+        <div class="answers-grid" id="q1-grid">
+          <div class="answer-card" data-value="tristeza" data-scores='{"david":3,"isidora":2}'>
+            <span class="answer-emoji">😔</span>
+            <span class="answer-text">Tristeza o bajo ánimo</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="ansiedad" data-scores='{"david":2,"isidora":3}'>
+            <span class="answer-emoji">😰</span>
+            <span class="answer-text">Ansiedad o nerviosismo</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="pareja" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">💔</span>
+            <span class="answer-text">Pareja o familia</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="duelo" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">🕊️</span>
+            <span class="answer-text">Duelo o pérdida</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="consumo" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">🍷</span>
+            <span class="answer-text">Consumo de sustancias</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="autoestima" data-scores='{"isidora":3}'>
+            <span class="answer-emoji">🪞</span>
+            <span class="answer-text">Autoestima o inseguridad</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="estres" data-scores='{"david":3}'>
+            <span class="answer-emoji">😤</span>
+            <span class="answer-text">Estrés o agotamiento</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="emociones" data-scores='{"isidora":3}'>
+            <span class="answer-emoji">🌊</span>
+            <span class="answer-text">Emociones difíciles de manejar</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="rendimiento" data-scores='{"david":2,"isidora":2}'>
+            <span class="answer-emoji">🏆</span>
+            <span class="answer-text">Rendimiento deportivo o académico</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+        </div>
+        <button class="btn-primary" id="btnQ1">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: ESTADO DE ÁNIMO -->
+    <div class="step" id="step-2">
+      <div class="question-card">
+        <div class="q-number">Pregunta 2 de 5</div>
+        <div class="q-title">¿Cómo está tu estado de ánimo esta semana?</div>
+        <div class="q-hint">Elige la opción que más te represente.</div>
+        <div class="answers-grid single-col" id="q2-grid">
+          <div class="answer-card" data-value="triste" data-scores='{"david":3,"isidora":1}'>
+            <span class="answer-emoji">😞</span>
+            <span class="answer-text">Triste, sin energía o apagado/a</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="ansioso" data-scores='{"david":2,"isidora":3}'>
+            <span class="answer-emoji">😬</span>
+            <span class="answer-text">Ansioso/a, tenso/a o con miedo</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="irritable" data-scores='{"isidora":3,"aaron":1}'>
+            <span class="answer-emoji">😠</span>
+            <span class="answer-text">Irritable o que exploto fácil</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="vacio" data-scores='{"david":3}'>
+            <span class="answer-emoji">🌫️</span>
+            <span class="answer-text">Vacío/a o sin motivación</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="confundido" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">🌀</span>
+            <span class="answer-text">Confundido/a sobre mi vida o identidad</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="bien" data-scores='{"aaron":2,"david":1}'>
+            <span class="answer-emoji">🤔</span>
+            <span class="answer-text">Bien en general, pero algo no cierra</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+        </div>
+        <button class="btn-primary" id="btnQ2">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 3: DURACIÓN -->
+    <div class="step" id="step-3">
+      <div class="question-card">
+        <div class="q-number">Pregunta 3 de 5</div>
+        <div class="q-title">¿Cuánto tiempo llevas sintiéndote así?</div>
+        <div class="q-hint">Elige una opción.</div>
+        <div class="answers-grid single-col" id="q3-grid">
+          <div class="answer-card" data-value="reciente" data-scores='{"isidora":2}'>
+            <span class="answer-emoji">⚡</span>
+            <span class="answer-text">Menos de un mes — comenzó de pronto</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="meses" data-scores='{"david":2,"isidora":1}'>
+            <span class="answer-emoji">📅</span>
+            <span class="answer-text">Entre 1 y 6 meses</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="largo" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">🗓️</span>
+            <span class="answer-text">Más de 6 meses</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="siempre" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">♾️</span>
+            <span class="answer-text">Siempre ha sido así — es parte de mí</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+        </div>
+        <button class="btn-primary" id="btnQ3">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 4: ÁREAS AFECTADAS -->
+    <div class="step" id="step-4">
+      <div class="question-card">
+        <div class="q-number">Pregunta 4 de 5</div>
+        <div class="q-title">¿Qué áreas de tu vida está afectando?</div>
+        <div class="q-hint">Puedes elegir varias.</div>
+        <div class="answers-grid" id="q4-grid">
+          <div class="answer-card" data-value="trabajo" data-scores='{"david":2}'>
+            <span class="answer-emoji">💼</span>
+            <span class="answer-text">Trabajo o estudios</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="relaciones" data-scores='{"aaron":2}'>
+            <span class="answer-emoji">👥</span>
+            <span class="answer-text">Relaciones personales</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="familia" data-scores='{"aaron":2}'>
+            <span class="answer-emoji">🏠</span>
+            <span class="answer-text">Pareja o familia</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="sueno" data-scores='{"david":1,"isidora":1}'>
+            <span class="answer-emoji">😴</span>
+            <span class="answer-text">Sueño o descanso</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="cuerpo" data-scores='{"david":1}'>
+            <span class="answer-emoji">🫀</span>
+            <span class="answer-text">Cuerpo (tensión, dolores)</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="autoimg" data-scores='{"isidora":2}'>
+            <span class="answer-emoji">💭</span>
+            <span class="answer-text">Cómo me veo a mí mismo/a</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="deporte" data-scores='{"isidora":2,"david":1}'>
+            <span class="answer-emoji">🏅</span>
+            <span class="answer-text">Rendimiento deportivo</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="todo" data-scores='{"aaron":1,"david":1,"isidora":1}'>
+            <span class="answer-emoji">🌐</span>
+            <span class="answer-text">Todas las anteriores</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+        </div>
+        <button class="btn-primary" id="btnQ4">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 5: TERAPIA PREVIA -->
+    <div class="step" id="step-5">
+      <div class="question-card">
+        <div class="q-number">Pregunta 5 de 5</div>
+        <div class="q-title">¿Has tenido terapia psicológica antes?</div>
+        <div class="q-hint">Elige una opción.</div>
+        <div class="answers-grid single-col" id="q5-grid">
+          <div class="answer-card" data-value="primera" data-scores='{"david":2}'>
+            <span class="answer-emoji">🌱</span>
+            <span class="answer-text">No, es mi primera vez</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="util" data-scores='{"isidora":2}'>
+            <span class="answer-emoji">✅</span>
+            <span class="answer-text">Sí, y me fue útil — quiero continuar</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="nofunciono" data-scores='{"aaron":3}'>
+            <span class="answer-emoji">🔁</span>
+            <span class="answer-text">Sí, pero no funcionó — quiero algo diferente</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+          <div class="answer-card" data-value="crisis" data-scores='{"isidora":3}'>
+            <span class="answer-emoji">🆘</span>
+            <span class="answer-text">Estoy en un momento de crisis o urgencia</span>
+            <div class="answer-check"><i class="fas fa-check"></i></div>
+          </div>
+        </div>
+        <button class="btn-primary" id="btnQ5">Ver mi resultado <i class="fas fa-sparkles"></i></button>
+      </div>
+    </div>
+
+    <!-- STEP 6: RESULTADO -->
+    <div class="step result-step" id="step-result">
+      <div class="result-label"><i class="fas fa-check-circle"></i> &nbsp;Evaluación completada</div>
+      <div class="result-intro">Tu terapeuta ideal es <em id="result-name">—</em></div>
+      <div class="result-sub" id="result-sub">Basado en tus respuestas, este profesional se ajusta mejor a lo que necesitas.</div>
+
+      <div class="therapist-card">
+        <img class="therapist-photo" id="result-photo" src="" alt="">
+        <div class="therapist-info">
+          <div class="therapist-name" id="result-fullname">—</div>
+          <div class="therapist-role">Psicólogo/a · Faro Terapéutico</div>
+          <div class="therapist-tags" id="result-tags"></div>
+          <div class="therapist-match" id="result-match"></div>
+          <div class="contact-buttons">
+            <a class="btn-whatsapp" id="result-wa" href="#" target="_blank" rel="noopener noreferrer">
+              <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+            </a>
+            <a class="btn-email" id="result-email" href="#" target="_blank">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="other-therapists">
+        <p>¿Quieres conocer al equipo completo?</p>
+        <div class="other-links">
+          <a href="aaron" class="other-link">Ps. Aaron →</a>
+          <a href="david" class="other-link">Ps. David →</a>
+          <a href="isidora" class="other-link">Ps. Isidora →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Faro Terapéutico · Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    const THERAPISTS = {
+      aaron: {
+        name: 'Aaron',
+        fullname: 'Ps. Aaron Millán',
+        photo: 'images/aaron.webp',
+        phone: '56945593808',
+        email: 'psicologo.aams@gmail.com',
+        tags: ['Psicodinámica', 'Duelo', 'Adicciones', 'Pareja', 'Personalidad'],
+        match: {
+          tristeza:    'Su enfoque psicodinámico profundiza en el origen del malestar, no solo en los síntomas.',
+          ansiedad:    'Trabaja la ansiedad explorando sus raíces, ideal cuando llevas tiempo sintiéndote así.',
+          pareja:      'Con experiencia en terapia de pareja y conflictos familiares.',
+          duelo:       'Especialista en acompañamiento en procesos de pérdida y duelo.',
+          consumo:     'Atiende regularmente pacientes con adicciones y consumo problemático.',
+          emociones:   'Explora el trasfondo de los patrones emocionales que se repiten.',
+          nofunciono:  'Su enfoque profundo es ideal cuando otras terapias no han dado resultado.',
+          siempre:     'Para patrones que llevan toda la vida, la mirada psicodinámica es especialmente efectiva.',
+          largo:       'Cuando el malestar es crónico, un trabajo de profundidad marca la diferencia.',
+          default:     'Su mirada psicodinámica aborda la raíz del malestar para un cambio duradero.'
+        }
+      },
+      david: {
+        name: 'David',
+        fullname: 'Ps. David Walter',
+        photo: 'images/david.webp',
+        phone: '56927751595',
+        email: 'ps.waltersalinas@gmail.com',
+        tags: ['Trastornos del ánimo', 'Ansiedad', 'Estrés', 'Desarrollo personal', 'Deportiva'],
+        match: {
+          tristeza:   'Especialista en trastornos del ánimo con enfoque clínico y estructurado.',
+          ansiedad:   'Con formación en abordaje de ansiedad y estrategias de intervención efectivas.',
+          estres:     'Especialista en manejo del estrés laboral y agotamiento profesional.',
+          vacio:      'Su enfoque estructurado es muy efectivo para la falta de motivación y vacío.',
+          primera:    'Perfecto para una primera experiencia terapéutica: claro, cercano y estructurado.',
+          rendimiento:'Tiene formación en psicología deportiva y rendimiento.',
+          default:    'Su enfoque en trastornos del ánimo y ansiedad se ajusta bien a tu situación.'
+        }
+      },
+      isidora: {
+        name: 'Isidora',
+        fullname: 'Ps. Isidora Sanhueza',
+        photo: 'images/isidora.webp',
+        phone: '56932013137',
+        email: 'Psi.isidorasanhueza@gmail.com',
+        tags: ['Terapia DBT', 'Cognitivo-Conductual', 'Autoestima', 'Depresión', 'Deportiva'],
+        match: {
+          ansiedad:   'Con terapia DBT y cognitivo-conductual, altamente efectiva para la ansiedad.',
+          autoestima: 'Especialista en fortalecimiento de la autoestima e identidad.',
+          emociones:  'La terapia DBT está específicamente diseñada para regular emociones intensas.',
+          crisis:     'Con habilidades DBT de manejo de crisis, ideal para momentos de urgencia.',
+          autoimg:    'Trabaja en profundidad la imagen personal y la autoestima.',
+          deporte:    'Especializada en psicología deportiva y rendimiento.',
+          default:    'Su formación en DBT y terapia cognitivo-conductual se adapta muy bien a tu perfil.'
+        }
+      }
+    };
+
+    // Estado
+    const scores = { aaron: 0, david: 0, isidora: 0 };
+    const answers = {};
+    let leadData = {};
+    let currentStep = 0;
+
+    // Utilidades
+    function getSelected(gridId) {
+      return Array.from(document.querySelectorAll(`#${gridId} .answer-card.selected`));
+    }
+
+    function addScores(cards) {
+      cards.forEach(card => {
+        const s = JSON.parse(card.dataset.scores || '{}');
+        Object.entries(s).forEach(([k, v]) => { scores[k] = (scores[k] || 0) + v; });
+      });
+    }
+
+    function showStep(n) {
+      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+      document.getElementById(`step-${n}`).classList.add('active');
+      currentStep = n;
+      const pw = document.getElementById('progressWrap');
+      if (n === 0 || n === 'result') {
+        pw.style.display = 'none';
+      } else {
+        pw.style.display = 'block';
+        const pct = Math.round(((n - 1) / 5) * 100);
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('qNum').textContent = n;
+        document.getElementById('qPct').textContent = pct + '%';
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Multi-select con límite
+    function setupGrid(gridId, maxSelect) {
+      const grid = document.getElementById(gridId);
+      grid.querySelectorAll('.answer-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const selected = grid.querySelectorAll('.answer-card.selected');
+          if (card.classList.contains('selected')) {
+            card.classList.remove('selected');
+          } else {
+            if (maxSelect === 1) {
+              selected.forEach(c => c.classList.remove('selected'));
+            } else if (selected.length >= maxSelect) {
+              return;
+            }
+            card.classList.add('selected');
+          }
+        });
+      });
+    }
+
+    // Inicializar grids
+    setupGrid('q1-grid', 2);
+    setupGrid('q2-grid', 1);
+    setupGrid('q3-grid', 1);
+    setupGrid('q4-grid', 6);
+    setupGrid('q5-grid', 1);
+
+    // STEP 0: Lead capture
+    document.getElementById('btnStart').addEventListener('click', () => {
+      const nombre = document.getElementById('lead-nombre').value.trim();
+      const email  = document.getElementById('lead-email').value.trim();
+      const prev   = document.getElementById('lead-prevision').value;
+
+      let ok = true;
+      ['lead-nombre','lead-email','lead-prevision'].forEach(id => {
+        document.getElementById(id).classList.remove('error');
+      });
+
+      if (!nombre) { document.getElementById('lead-nombre').classList.add('error'); ok = false; }
+      if (!email || !email.includes('@')) { document.getElementById('lead-email').classList.add('error'); ok = false; }
+      if (!prev) { document.getElementById('lead-prevision').classList.add('error'); ok = false; }
+
+      if (!ok) return;
+
+      leadData = { nombre, email, prevision: prev };
+      showStep(1);
+    });
+
+    // STEP 1
+    document.getElementById('btnQ1').addEventListener('click', () => {
+      const sel = getSelected('q1-grid');
+      if (!sel.length) { alert('Elige al menos una opción.'); return; }
+      addScores(sel);
+      answers.q1 = sel.map(c => c.dataset.value);
+      showStep(2);
+    });
+
+    // STEP 2
+    document.getElementById('btnQ2').addEventListener('click', () => {
+      const sel = getSelected('q2-grid');
+      if (!sel.length) { alert('Elige una opción.'); return; }
+      addScores(sel);
+      answers.q2 = sel[0].dataset.value;
+      showStep(3);
+    });
+
+    // STEP 3
+    document.getElementById('btnQ3').addEventListener('click', () => {
+      const sel = getSelected('q3-grid');
+      if (!sel.length) { alert('Elige una opción.'); return; }
+      addScores(sel);
+      answers.q3 = sel[0].dataset.value;
+      showStep(4);
+    });
+
+    // STEP 4
+    document.getElementById('btnQ4').addEventListener('click', () => {
+      const sel = getSelected('q4-grid');
+      if (!sel.length) { alert('Elige al menos una opción.'); return; }
+      addScores(sel);
+      answers.q4 = sel.map(c => c.dataset.value);
+      showStep(5);
+    });
+
+    // STEP 5 → RESULTADO
+    document.getElementById('btnQ5').addEventListener('click', () => {
+      const sel = getSelected('q5-grid');
+      if (!sel.length) { alert('Elige una opción.'); return; }
+      addScores(sel);
+      answers.q5 = sel[0].dataset.value;
+      showResult();
+    });
+
+    function showResult() {
+      // Determinar ganador
+      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const t = THERAPISTS[winner];
+
+      // Buscar mensaje de match más relevante
+      const allAnswers = [
+        ...(answers.q1 || []),
+        answers.q2,
+        answers.q3,
+        answers.q5
+      ].filter(Boolean);
+
+      let matchMsg = t.match.default;
+      for (const key of allAnswers) {
+        if (t.match[key]) { matchMsg = t.match[key]; break; }
+      }
+
+      // Rellenar resultado
+      document.getElementById('result-name').textContent = t.name;
+      document.getElementById('result-fullname').textContent = t.fullname;
+      document.getElementById('result-photo').src = t.photo;
+      document.getElementById('result-photo').alt = t.fullname;
+      document.getElementById('result-match').innerHTML = `<i class="fas fa-lightbulb"></i> ${matchMsg}`;
+
+      const tagsEl = document.getElementById('result-tags');
+      tagsEl.innerHTML = t.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+      // WhatsApp message
+      const motivos = (answers.q1 || []).join(', ');
+      const waText = `Hola ${t.name}, hice la evaluación en tu web y me recomendaron contigo.\n\n` +
+        `👤 *Mi nombre:* ${leadData.nombre}\n` +
+        `✉️ *Correo:* ${leadData.email}\n` +
+        `🏥 *Previsión:* ${leadData.prevision}\n\n` +
+        `💬 *Motivo:* ${motivos}\n\n` +
+        `Me gustaría agendar una primera sesión. ¿Tienes disponibilidad?`;
+
+      document.getElementById('result-wa').href = `https://wa.me/${t.phone}?text=${encodeURIComponent(waText)}`;
+
+      const emailSubject = `Consulta - ${leadData.nombre} (evaluación web)`;
+      const emailBody = `Hola ${t.name},\n\nHice la evaluación en el sitio web y me recomendaron contigo.\n\nNombre: ${leadData.nombre}\nCorreo: ${leadData.email}\nPrevisión: ${leadData.prevision}\nMotivo: ${motivos}\n\nMe gustaría agendar una primera sesión.`;
+      document.getElementById('result-email').href = `mailto:${t.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+      showStep('result');
+    }
+  </script>
+</body>
+</html>

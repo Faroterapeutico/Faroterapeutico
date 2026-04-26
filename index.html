@@ -169,6 +169,28 @@
             font-size: 0.9rem;
             margin-left: auto;
         }
+        .hero-eval-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50px;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            backdrop-filter: blur(4px);
+            transition: all 0.25s ease;
+        }
+        .hero-eval-btn:hover {
+            background: rgba(255,255,255,0.22);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .hero-eval-btn i { font-size: 0.9rem; }
 
         /* Proceso terapéutico timeline */
         .proceso-timeline {
@@ -519,6 +541,11 @@
                             <span class="hero-path-arrow">→</span>
                         </a>
                     </div>
+
+                    <a href="evaluacion" class="hero-eval-btn">
+                        <i class="fas fa-brain"></i>
+                        ¿No sabes por dónde empezar? → Evalúate gratis en 2 min
+                    </a>
 
                     <div class="hero-meta">
                         <span><span class="dot"></span>Lunes a sábado</span>
