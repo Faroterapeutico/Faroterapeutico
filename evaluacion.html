@@ -861,7 +861,7 @@
     setupGrid('q5-grid', 1);
 
     // STEP 0: Lead capture
-    document.getElementById('btnStart').addEventListener('click', () => {
+    document.getElementById('btnStart').addEventListener('click', async () => {
       const nombre = document.getElementById('lead-nombre').value.trim();
       const email  = document.getElementById('lead-email').value.trim();
       const prev   = document.getElementById('lead-prevision').value;
@@ -878,6 +878,20 @@
       if (!ok) return;
 
       leadData = { nombre, email, prevision: prev };
+
+      // Enviar lead a Formspree en segundo plano
+      fetch('https://formspree.io/f/xovpkvwk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `Nuevo lead evaluación — ${nombre}`,
+          nombre,
+          email,
+          prevision: prev,
+          origen: 'Evaluador de síntomas'
+        })
+      }).catch(() => {}); // silencioso si falla
+
       showStep(1);
     });
 
