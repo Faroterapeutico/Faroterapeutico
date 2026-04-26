@@ -304,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
             deferInit(this.initTherapistCarousel); // Carrusel de Terapeutas
             deferInit(this.initIsapreAccordion); // Lista Acordeón de ISAPREs
             deferInit(this.initCardTracking); // Seguimiento de clics en tarjetas
+            deferInit(this.initContactForms); // Formularios de contacto interactivos
         },
 
         // Nuevo método para seguir clics en tarjetas de terapeutas y temas de ayuda
@@ -706,6 +707,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Initial call
                 setTimeout(updateCarousel, 100);
+            });
+        },
+
+        initContactForms() {
+            // Tarjetas de motivo
+            document.querySelectorAll('.cf-cards').forEach(grid => {
+                const targetInput = document.getElementById(grid.id + '-val');
+                grid.querySelectorAll('.cf-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        grid.querySelectorAll('.cf-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        if (targetInput) targetInput.value = card.dataset.value;
+                    });
+                });
+            });
+            // Pills (modalidad, previsión)
+            document.querySelectorAll('.cf-pills[data-target]').forEach(group => {
+                const targetInput = document.getElementById(group.dataset.target);
+                group.querySelectorAll('.cf-pill').forEach(pill => {
+                    pill.addEventListener('click', () => {
+                        group.querySelectorAll('.cf-pill').forEach(p => p.classList.remove('selected'));
+                        pill.classList.add('selected');
+                        if (targetInput) targetInput.value = pill.dataset.value;
+                    });
+                });
             });
         },
 

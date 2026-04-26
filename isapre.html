@@ -755,50 +755,47 @@
                 </div>
 
                 <div class="contact-form-wrap reveal-up delay-1">
-                    <form action="https://formspree.io/f/xovpkvwk" method="POST">
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                            <div class="form-group">
-                                <label for="email">Correo electrónico</label>
-                                <input type="email" id="email" name="email" placeholder="tu.correo@ejemplo.com" required autocomplete="email">
+                    <form action="https://formspree.io/f/xovpkvwk" method="POST" class="cf-form">
+                        <div class="cf-row">
+                            <div class="cf-field">
+                                <label for="cf-nombre">Tu nombre</label>
+                                <input type="text" id="cf-nombre" name="nombre" placeholder="¿Cómo te llamas?" autocomplete="given-name">
                             </div>
-                            <div class="form-group">
-                                <label for="phone">Número de celular</label>
-                                <input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" autocomplete="tel">
-                            </div>
-                        </div>
-                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
-                            <div class="form-group">
-                                <label for="motivo">¿Qué te trae a consulta?</label>
-                                <select id="motivo" name="motivo" required>
-                                    <option value="" disabled selected>Selecciona un motivo</option>
-                                    <option value="ansiedad">Ansiedad o estrés</option>
-                                    <option value="animo">Trastorno del ánimo / depresión</option>
-                                    <option value="duelo">Duelo o pérdida</option>
-                                    <option value="relaciones">Relaciones / pareja</option>
-                                    <option value="autoestima">Autoestima o identidad</option>
-                                    <option value="rendimiento">Rendimiento o deporte</option>
-                                    <option value="otro">Otro</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="prevision">Previsión de salud</label>
-                                <select id="prevision" name="prevision" required>
-                                    <option value="isapre" selected>Isapre</option>
-                                    <option value="fonasa">FONASA</option>
-                                    <option value="particular">Particular</option>
-                                </select>
+                            <div class="cf-field">
+                                <label for="cf-email">Correo electrónico <span class="cf-req">*</span></label>
+                                <input type="email" id="cf-email" name="email" placeholder="tu@correo.com" required autocomplete="email">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="cf-field">
+                            <label for="cf-phone">Celular <span class="cf-opt">(opcional)</span></label>
+                            <input type="tel" id="cf-phone" name="phone" placeholder="+56 9 1234 5678" autocomplete="tel">
+                        </div>
+                        <div class="cf-field">
+                            <label>¿Qué te trae a consulta?</label>
+                            <div class="cf-cards" id="cf-motivo">
+                                <div class="cf-card" data-value="Ansiedad o estrés"><span>😰</span>Ansiedad</div>
+                                <div class="cf-card" data-value="Tristeza o depresión"><span>😔</span>Ánimo bajo</div>
+                                <div class="cf-card" data-value="Duelo o pérdida"><span>🕊️</span>Duelo</div>
+                                <div class="cf-card" data-value="Pareja o familia"><span>💔</span>Relaciones</div>
+                                <div class="cf-card" data-value="Autoestima"><span>🪞</span>Autoestima</div>
+                                <div class="cf-card" data-value="Estrés laboral"><span>💼</span>Trabajo</div>
+                                <div class="cf-card" data-value="Rendimiento"><span>🏆</span>Rendimiento</div>
+                                <div class="cf-card" data-value="Otro motivo"><span>🤔</span>Otro</div>
+                            </div>
+                            <input type="hidden" name="motivo" id="cf-motivo-val">
+                        </div>
+                        <div class="cf-field">
                             <label>Modalidad preferida</label>
-                            <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:0.5rem;">
-                                <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--ink-soft);cursor:pointer;"><input type="radio" name="modalidad" value="presencial" style="accent-color:var(--gold);"> Presencial (Providencia)</label>
-                                <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--ink-soft);cursor:pointer;"><input type="radio" name="modalidad" value="online" style="accent-color:var(--gold);"> Online</label>
-                                <label style="display:flex;align-items:center;gap:0.5rem;font-size:0.9rem;color:var(--ink-soft);cursor:pointer;"><input type="radio" name="modalidad" value="indistinto" checked style="accent-color:var(--gold);"> Indistinto</label>
+                            <div class="cf-pills" data-target="cf-modalidad-val">
+                                <button type="button" class="cf-pill selected" data-value="Indistinto">🔄 Indistinto</button>
+                                <button type="button" class="cf-pill" data-value="Presencial">🏢 Presencial</button>
+                                <button type="button" class="cf-pill" data-value="Online">💻 Online</button>
                             </div>
+                            <input type="hidden" name="modalidad" id="cf-modalidad-val" value="Indistinto">
                         </div>
+                        <input type="hidden" name="prevision" value="Isapre">
                         <input type="hidden" name="origen_formulario" value="Página Isapre">
-                        <button type="submit" class="cta">Solicitar contacto <span class="cta-arrow"></span></button>
+                        <button type="submit" class="cta cf-submit">Solicitar contacto <span class="cta-arrow"></span></button>
                     </form>
                 </div>
             </div>
