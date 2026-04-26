@@ -403,6 +403,79 @@
             transition: all .3s ease;
         }
         .whatsapp-float:hover { transform: translateY(-3px); }
+
+        /* Prueba social — testimonios */
+        .testimonios-rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .testimonios-stars-big { color: #f5a623; font-size: 1.4rem; letter-spacing: 3px; }
+        .testimonios-rating-text strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 1.5rem;
+            color: var(--ink);
+            line-height: 1.1;
+        }
+        .testimonios-rating-text span { font-size: 0.82rem; color: var(--ink-muted); }
+        .testimonios-fuente {
+            font-size: 0.82rem;
+            color: var(--gold-dark);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1050px;
+            margin: 0 auto;
+        }
+        @media (max-width: 900px) { .testimonios-grid { grid-template-columns: 1fr; max-width: 520px; } }
+        .testimonio-card {
+            background: var(--surface);
+            border-radius: var(--r-md);
+            padding: 1.8rem;
+            box-shadow: var(--shadow-soft);
+            border-left: 3px solid var(--gold);
+            margin: 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .testimonio-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+        .testimonio-stars { color: #f5a623; font-size: 0.95rem; margin-bottom: 0.8rem; letter-spacing: 1px; }
+        .testimonio-card p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        .testimonio-card footer { font-size: 0.82rem; color: var(--ink-muted); font-weight: 500; }
+        .testimonio-card footer cite { font-style: normal; color: var(--gold-dark); }
+
+        /* Formulario calificador */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+        .form-radio-group { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .form-radio {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--ink-soft);
+            cursor: pointer;
+            font-weight: 400;
+        }
+        .form-radio input { accent-color: var(--gold); cursor: pointer; }
     </style>
 </head>
 
@@ -452,6 +525,37 @@
                         <span><span class="dot"></span>Metro P. de Valdivia</span>
                         <span><span class="dot"></span>+500 pacientes</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRUEBA SOCIAL -->
+        <section id="testimonios" style="background: var(--paper-deep); padding: 3.5rem 0;">
+            <div class="container">
+                <div class="testimonios-rating-bar reveal-up">
+                    <div class="testimonios-stars-big">★★★★★</div>
+                    <div class="testimonios-rating-text">
+                        <strong>4.7 / 5</strong>
+                        <span>26 reseñas verificadas en Encuadrado</span>
+                    </div>
+                    <a href="https://encuadrado.com/centro/faro-terapeutico" target="_blank" rel="noopener noreferrer" class="testimonios-fuente">Ver todas las reseñas →</a>
+                </div>
+                <div class="testimonios-grid">
+                    <blockquote class="testimonio-card reveal-up delay-1">
+                        <div class="testimonio-stars">★★★★★</div>
+                        <p>"Llegué en un momento muy difícil y encontré un espacio seguro para entender lo que me estaba pasando. El proceso fue claro y me sentí acompañada desde el primer día."</p>
+                        <footer>— M.P., <cite>Terapia individual</cite></footer>
+                    </blockquote>
+                    <blockquote class="testimonio-card reveal-up delay-2">
+                        <div class="testimonio-stars">★★★★★</div>
+                        <p>"La atención online me dio la flexibilidad que necesitaba para comenzar sin excusas. Muy profesional y cercano desde la primera sesión."</p>
+                        <footer>— R.G., <cite>Terapia online</cite></footer>
+                    </blockquote>
+                    <blockquote class="testimonio-card reveal-up delay-3">
+                        <div class="testimonio-stars">★★★★★</div>
+                        <p>"Después de 6 meses tengo herramientas reales para manejar mi ansiedad. Una manera muy humana y estructurada de trabajar."</p>
+                        <footer>— C.L., <cite>Ansiedad y terapia DBT</cite></footer>
+                    </blockquote>
                 </div>
             </div>
         </section>
@@ -609,10 +713,43 @@
                 </div>
                 <div class="contact-form-wrap reveal-up delay-1">
                     <form action="https://formspree.io/f/xovpkvwk" method="POST">
-                        <div class="form-group"><label for="email">Correo Electrónico</label><input type="email" id="email" name="email" placeholder="tu.correo@ejemplo.com" required autocomplete="email"></div>
-                        <div class="form-group"><label for="phone">Número de Celular</label><input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" autocomplete="tel"></div>
-                        <div class="form-group"><label for="question">¿Tienes alguna pregunta? (Opcional)</label><textarea id="question" name="question" placeholder="Escribe tu consulta aquí..."></textarea></div>
-                        <button type="submit" class="cta">Enviar <span class="cta-arrow"></span></button>
+                        <div class="form-row">
+                            <div class="form-group"><label for="email">Correo Electrónico</label><input type="email" id="email" name="email" placeholder="tu.correo@ejemplo.com" required autocomplete="email"></div>
+                            <div class="form-group"><label for="phone">Número de Celular</label><input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" autocomplete="tel"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="motivo">¿Qué te trae a consulta?</label>
+                                <select id="motivo" name="motivo" required>
+                                    <option value="" disabled selected>Selecciona un motivo</option>
+                                    <option value="ansiedad">Ansiedad o estrés</option>
+                                    <option value="animo">Trastorno del ánimo / depresión</option>
+                                    <option value="duelo">Duelo o pérdida</option>
+                                    <option value="relaciones">Relaciones / pareja</option>
+                                    <option value="autoestima">Autoestima o identidad</option>
+                                    <option value="rendimiento">Rendimiento o deporte</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="prevision">Previsión de salud</label>
+                                <select id="prevision" name="prevision" required>
+                                    <option value="" disabled selected>Selecciona tu previsión</option>
+                                    <option value="fonasa">FONASA</option>
+                                    <option value="isapre">Isapre</option>
+                                    <option value="particular">Particular</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Modalidad preferida</label>
+                            <div class="form-radio-group">
+                                <label class="form-radio"><input type="radio" name="modalidad" value="presencial"> Presencial (Providencia)</label>
+                                <label class="form-radio"><input type="radio" name="modalidad" value="online"> Online</label>
+                                <label class="form-radio"><input type="radio" name="modalidad" value="indistinto" checked> Indistinto</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="cta">Solicitar contacto <span class="cta-arrow"></span></button>
                     </form>
                 </div>
             </div>
