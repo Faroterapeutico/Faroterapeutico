@@ -1907,3 +1907,32 @@ body.boutique .main-nav .header-agendar-btn:hover {
         color: var(--gold-dark) !important;
     }
 }
+
+/* ========== Testimonios grid (fonasa / isapre) ========== */
+.testimonios-rating-bar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    text-align: center;
+}
+.testimonios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+@media (max-width: 768px) {
+    .testimonios-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    .testimonios-rating-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+}
