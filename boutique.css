@@ -327,34 +327,34 @@ body.boutique #hero > .container {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    margin-top: 14px;
-    padding: 0.75rem 1.6rem;
-    font-size: 0.8rem;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.78rem;
     font-family: var(--sans);
     font-weight: 500;
-    letter-spacing: 0.5px;
-    color: var(--ink);
+    color: var(--ink-soft);
     text-decoration: none;
-    border: 1.5px solid rgba(26,26,26,0.3);
+    border: 1px solid rgba(26,26,26,0.25);
     border-radius: 50px;
-    background: rgba(26,26,26,0.05);
+    background: rgba(26,26,26,0.04);
     transition: all 0.25s ease;
+    white-space: nowrap;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 .cta-eval-link:hover {
     background: var(--ink);
     color: var(--paper);
     border-color: var(--ink);
 }
-.cta-eval-link i { font-size: 0.8rem; }
+.cta-eval-link i { font-size: 0.75rem; flex-shrink: 0; }
 @media (max-width: 600px) {
     .cta-eval-link {
-        display: flex;
-        width: 100%;
-        max-width: 340px;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 0.78rem;
+        font-size: 0.72rem;
+        padding: 0.55rem 1rem;
+        white-space: normal;
+        text-align: center;
     }
 }
 
