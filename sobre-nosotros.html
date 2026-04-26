@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo de Psicólogos Clínicos en Providencia | Faro Terapéutico</title>
+    <meta name="description" content="Equipo de psicólogos clínicos en Providencia. Nuestra misión, visión y valores. Cómo trabajamos en Faro Terapéutico.">
+    <link rel="canonical" href="https://faroterapeutico.com/sobre-nosotros" />
+    <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faroterapeutico.com/sobre-nosotros">
+    <meta property="og:title" content="Equipo de Psicólogos Clínicos | Faro Terapéutico">
+    <meta property="og:description" content="Nuestra misión, visión y valores.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="boutique.css">
+    <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+
+    <style>
+        .mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto}
+        @media(max-width:800px){.mv-grid{grid-template-columns:1fr}}
+        .mv-card{background:var(--surface);padding:2.5rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);border-top:3px solid var(--gold);transition:all .4s ease}
+        .mv-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift)}
+        .mv-card .mv-icon{width:56px;height:56px;border-radius:var(--r-md);background:var(--gold-tint);color:var(--gold-dark);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.3rem}
+        .mv-card h3{font-family:var(--serif);font-size:1.6rem;color:var(--ink);font-weight:500;margin-bottom:.9rem;letter-spacing:-.3px}
+        .mv-card p{font-size:.98rem;color:var(--ink-soft);line-height:1.75;font-weight:300}
+        .mv-card p strong{color:var(--ink);font-weight:500;font-family:var(--serif);font-style:italic;font-size:1.06em}
+
+        .valores-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;max-width:1050px;margin:0 auto}
+        @media(max-width:900px){.valores-grid{grid-template-columns:repeat(2,1fr);max-width:600px}}
+        @media(max-width:500px){.valores-grid{grid-template-columns:1fr;max-width:340px}}
+        .valor-card{text-align:center;padding:2rem 1.5rem;background:var(--surface);border-radius:var(--r-md);box-shadow:var(--shadow-soft);transition:all .35s ease}
+        .valor-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+        .valor-card .valor-icon{width:58px;height:58px;border-radius:50%;background:var(--gold-tint);color:var(--gold-dark);display:inline-flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem}
+        .valor-card h4{font-family:var(--serif);font-size:1.25rem;color:var(--ink);font-weight:500;margin-bottom:.6rem;letter-spacing:-.2px}
+        .valor-card p{font-size:.9rem;color:var(--ink-soft);line-height:1.65;font-weight:300}
+
+        .proceso-grid-b{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:960px;margin:0 auto}
+        @media(max-width:800px){.proceso-grid-b{grid-template-columns:1fr;max-width:440px}}
+        .proceso-item{background:var(--surface);padding:2.2rem 1.8rem;border-radius:var(--r-md);box-shadow:var(--shadow-soft);position:relative;transition:all .35s ease}
+        .proceso-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+        .proceso-item .p-num{position:absolute;top:-15px;left:1.8rem;width:36px;height:36px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-size:1.05rem;font-weight:500;box-shadow:0 4px 12px rgba(154,95,40,.3)}
+        .proceso-item h4{font-family:var(--serif);font-size:1.35rem;color:var(--ink);font-weight:500;margin-top:1rem;margin-bottom:.7rem}
+        .proceso-item p{font-size:.93rem;color:var(--ink-soft);line-height:1.65;font-weight:300}
+
+        .help-topics-b{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;margin-top:1.5rem}
+        @media(max-width:600px){.help-topics-b{grid-template-columns:repeat(2,1fr)}}
+        .help-topic-b{padding:1rem .8rem;background:var(--surface);border:.5px solid var(--line);border-radius:var(--r-sm);text-align:center;transition:all .3s ease;cursor:default}
+        .help-topic-b:hover{border-color:var(--gold);background:var(--gold-tint)}
+        .help-topic-b i{color:var(--gold);font-size:1.1rem;margin-bottom:.4rem;display:block}
+        .help-topic-b span{font-family:var(--serif);font-size:.95rem;color:var(--ink);font-weight:500}
+
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
+        .whatsapp-float:hover{transform:translateY(-3px)}
+    </style>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://faroterapeutico.com/sobre-nosotros">
+    <meta property="twitter:title" content="Equipo Clínico | Faro Terapéutico">
+    <meta property="twitter:description" content="Conoce a nuestros psicólogos clínicos en Providencia.">
+    <meta property="twitter:image" content="https://faroterapeutico.com/images/hero-index.escritorio.webp">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="author" content="Faro Terapéutico">
+    <meta name="language" content="es-CL">
+</head>
+
+<body class="boutique page-about">
+    <header id="main-header" class="main-header">
+        <div class="container">
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
+            <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section style="padding: calc(var(--header-height) + 3rem) 0 3rem; text-align: center;">
+            <div class="container">
+                <div class="reveal-up">
+                    <div class="ornament">✦</div>
+                    <span class="eyebrow eyebrow-framed">Equipo clínico · Providencia</span>
+                    <h1 style="font-size: clamp(2.4rem, 5vw, 3.6rem);">Psicólogos clínicos <em>en Providencia</em>.</h1>
+                </div>
+            </div>
+        </section>
+
+        <section id="terapeutas-home">
+            <div class="container">
+                <div class="therapist-grid">
+                    <article class="therapist reveal-up delay-1">
+                        <div class="therapist-photo"><img src="images/aaron.webp" alt="Psicólogo Aaron Millán" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 870794</span>
+                            <h3 class="therapist-name">Aaron Millán</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Atiende pacientes con duelos, trastornos de personalidad y adicciones. <strong>Psicodinámica freudiana.</strong></p>
+                            <div class="therapist-actions"><a href="aaron" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                    <article class="therapist reveal-up delay-2">
+                        <div class="therapist-photo"><img src="images/david.webp" alt="Psicólogo David Walter" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 870946</span>
+                            <h3 class="therapist-name">David Walter</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Atiende trastornos del ánimo, ansiedad y estrés. <strong>Desarrollo personal.</strong></p>
+                            <div class="therapist-actions"><a href="david" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                    <article class="therapist reveal-up delay-3">
+                        <div class="therapist-photo"><img src="images/isidora.webp" alt="Psicóloga Isidora Sanhueza" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 866414</span>
+                            <h3 class="therapist-name">Isidora Sanhueza</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Atiende ansiedad, depresión y trastornos anímicos. <strong>Terapia DBT y psicología deportiva.</strong></p>
+                            <div class="therapist-actions"><a href="isidora" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="mision-vision" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Lo que nos define</span>
+                    <h2>Lo que nos <em>define</em>.</h2>
+                    <p class="section-lead">Nuestro trabajo se sostiene sobre principios claros y una convicción profunda.</p>
+                </div>
+
+                <div class="mv-grid">
+                    <div class="mv-card reveal-up delay-1">
+                        <div class="mv-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h3>Nuestra misión</h3>
+                        <p>Democratizar el acceso a una salud mental de calidad mediante una <strong>transparencia radical</strong> sobre el oficio de ser psicólogo. Utilizamos todos los medios posibles para facilitar el financiamiento y que nuestros pacientes puedan acceder a la atención que necesitan.</p>
+                    </div>
+                    <div class="mv-card reveal-up delay-2">
+                        <div class="mv-icon"><i class="fas fa-eye"></i></div>
+                        <h3>Nuestra visión</h3>
+                        <p>Aspiramos a ser un espacio donde el paciente sepa exactamente cómo funciona su proceso desde antes de agendar, <strong>sin sorpresas</strong>. Valoramos la responsabilidad: si algo inesperado ocurre, nuestro compromiso es asumirlo y resolverlo con honestidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="valores">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <div class="ornament">✦</div>
+                    <span class="eyebrow">— Principios</span>
+                    <h2>Nuestros <em>valores</em>.</h2>
+                    <p class="section-lead">Estos principios guían cada sesión, cada conversación y cada decisión clínica.</p>
+                </div>
+
+                <div class="valores-grid">
+                    <div class="valor-card reveal-up delay-1">
+                        <div class="valor-icon"><i class="fas fa-lock-open"></i></div>
+                        <h4>Transparencia</h4>
+                        <p>Te explicamos todo: diagnóstico, plan de trabajo, costos y duración estimada. Sin letras chicas.</p>
+                    </div>
+                    <div class="valor-card reveal-up delay-1">
+                        <div class="valor-icon"><i class="fas fa-user-shield"></i></div>
+                        <h4>Ética profesional</h4>
+                        <p>Cada intervención está respaldada por evidencia científica y supervisión clínica constante.</p>
+                    </div>
+                    <div class="valor-card reveal-up delay-2">
+                        <div class="valor-icon"><i class="fas fa-hands-helping"></i></div>
+                        <h4>Accesibilidad</h4>
+                        <p>Trabajamos con FONASA, Isapre y seguros complementarios para que el costo no sea una barrera.</p>
+                    </div>
+                    <div class="valor-card reveal-up delay-3">
+                        <div class="valor-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h4>Calidez humana</h4>
+                        <p>No te tratamos como un número. Cada persona es única y merece ser escuchada con respeto y sin juicio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-trabajamos" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— El proceso</span>
+                    <h2>Cómo <em>trabajamos</em>.</h2>
+                    <p class="section-lead">Un proceso claro, estructurado y diseñado para que sepas exactamente qué esperar.</p>
+                </div>
+
+                <div class="proceso-grid-b">
+                    <div class="proceso-item reveal-up delay-1">
+                        <div class="p-num">i</div>
+                        <h4>Match terapéutico</h4>
+                        <p>Una videollamada gratuita de 25 minutos para conocernos, resolver tus dudas y evaluar si somos el equipo adecuado para ti.</p>
+                    </div>
+                    <div class="proceso-item reveal-up delay-2">
+                        <div class="p-num">ii</div>
+                        <h4>Psicodiagnóstico</h4>
+                        <p>Durante 4 sesiones (1 mes) evaluamos tu situación en profundidad para diseñar un plan de trabajo personalizado con diagnóstico claro.</p>
+                    </div>
+                    <div class="proceso-item reveal-up delay-3">
+                        <div class="p-num">iii</div>
+                        <h4>Proceso terapéutico</h4>
+                        <p>Sesiones semanales de 50 minutos enfocadas en lograr los cambios reales y profundos que buscas. Tú decides el ritmo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre-nosotros-content">
+            <div class="container">
+                <div class="split-wrap">
+                    <div class="reveal-up" style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-soft);aspect-ratio:4/5;max-width:400px;margin:0 auto;">
+                        <img src="images/terapeutas-sisifo.webp" alt="Psicólogos clínicos de Faro Terapéutico" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="split-content reveal-up delay-1">
+                        <span class="eyebrow">— Áreas de especialización</span>
+                        <h2>¿Cómo podemos <em>ayudarte</em>?</h2>
+                        <p class="section-lead">Abordamos diversas dificultades para que encuentres bienestar. Algunas de las áreas en las que nos especializamos son:</p>
+
+                        <div class="help-topics-b">
+                            <div class="help-topic-b"><i class="fas fa-cloud-sun"></i><span>Ánimo</span></div>
+                            <div class="help-topic-b"><i class="fas fa-shield-alt"></i><span>Miedos</span></div>
+                            <div class="help-topic-b"><i class="fas fa-users"></i><span>Relaciones</span></div>
+                            <div class="help-topic-b"><i class="fas fa-bolt"></i><span>Estrés</span></div>
+                            <div class="help-topic-b"><i class="fas fa-low-vision"></i><span>Autoestima</span></div>
+                            <div class="help-topic-b"><i class="fas fa-heart-broken"></i><span>Duelo</span></div>
+                        </div>
+
+                        <div style="margin-top:2rem;">
+                            <a href="servicios-clinicos" class="cta">Ver nuestros servicios <span class="cta-arrow"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Equipo de psicólogos clínicos en Providencia. Acompañamiento profesional, cálido y efectivo.</p></div>
+                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="servicios-clinicos">Servicios</a></li><li><a href="blog">Blog</a></li></ul></div>
+                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico.</p></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/56945593808" class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
+
+    <script src="script.js" defer></script>
+    <script>(function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}})();</script>
+</body>
+</html>

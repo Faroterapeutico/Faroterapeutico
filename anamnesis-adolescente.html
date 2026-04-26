@@ -1,0 +1,1018 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Ficha de Anamnesis Adolescente | Faro Terapéutico</title>
+  <link rel="canonical" href="https://faroterapeutico.com/anamnesis-adolescente" />
+
+  <!-- Librería PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js" defer></script>
+  <!-- Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print"
+    onload="this.media='all'" />
+  <!-- Fuente Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    <link rel="stylesheet" href="boutique.css">
+    <script>
+        WebFontConfig = {
+            google: { families: ['Poppins:300,400,500,600&display=swap'] }
+        };
+        (function(d) {
+            var wf = d.createElement('script'), s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+            wf.async = true;
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+
+  <style>
+    :root {
+      --primary-color: #222;
+      --accent-color: #9A5F28;
+      --bg-color: #faf9f5;
+      --white: #ffffff;
+      --text-color: #333;
+      --border-radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .app-header {
+      background: var(--white);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .logo-container img {
+      height: 32px;
+      width: auto;
+    }
+
+    .app-container {
+      max-width: 650px;
+      margin: 20px auto;
+      padding: 0 20px 40px 20px;
+      overflow: hidden;
+    }
+
+    .progress-container {
+      margin-bottom: 25px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent-color);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .step-indicator {
+      text-align: right;
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .wizard-step {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .wizard-step.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 15px;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #555;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .section-intro {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-col {
+      flex: 1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--primary-color);
+      font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fdfdfd;
+      transition: var(--transition);
+      box-sizing: border-box;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.1);
+      background: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 10px;
+    }
+
+    .milestone-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .radio-card-label {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .radio-card-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      text-align: center;
+      transition: var(--transition);
+      font-weight: 500;
+      color: #555;
+      height: 100%;
+      box-sizing: border-box;
+      font-size: 0.9rem;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    input[type="radio"]:checked+.radio-card-content,
+    input[type="checkbox"]:checked+.radio-card-content {
+      background: var(--accent-color);
+      color: #222;
+      border-color: #bfa530;
+      box-shadow: 0 4px 10px rgba(184, 115, 51, 0.3);
+      font-weight: 600;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+      gap: 15px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-prev {
+      background: #e0e0e0;
+      color: #666;
+    }
+
+    .btn-prev:hover {
+      background: #d5d5d5;
+    }
+
+    .btn-next,
+    .btn-submit {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-next:hover,
+    .btn-submit:hover {
+      background: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 40px;
+    }
+
+    .loader {
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top: 3px solid #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .app-container {
+        padding: 0 15px 30px 15px;
+      }
+
+      .section-card {
+        padding: 20px;
+      }
+
+      .nav-buttons {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        padding: 15px 20px;
+        box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding-bottom: 80px;
+      }
+    }
+
+    /* Estilo para el mensaje final */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 30px;
+      background: #e8f5e9;
+      border-radius: 12px;
+      border: 1px solid #c8e6c9;
+      margin-top: 20px;
+    }
+
+    .success-message h3 {
+      color: #2e7d32;
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body class="boutique page-anamnesis">
+
+  <header class="app-header">
+    <a href="/" class="logo-container">
+      <img src="images/favicon-32x32.webp" alt="Logo">
+      <span>Faro Terapéutico</span>
+    </a>
+  </header>
+
+  <div class="app-container">
+    <h1 style="text-align: center; color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px;">Ficha de
+      Anamnesis Psicológica</h1>
+
+
+    <div class="progress-container">
+      <div class="step-indicator" style="text-align: center; margin-bottom: 8px; font-weight: 500;">Paso <span
+          id="currentStepNum">1</span> de <span id="totalStepsNum">6</span></div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <form id="anamnesisForm">
+
+      <!-- STEP 1: Datos Personales, Familiar y Adopción -->
+      <div class="wizard-step active" data-step="1">
+        <div class="section-card">
+          <h2><i class="fas fa-user-circle"></i> Datos del Paciente</h2>
+          <div class="form-group">
+            <label>Nombre Completo</label>
+            <input type="text" name="nombre_adolescente" required>
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label>Edad</label>
+              <input type="number" name="edad" required>
+            </div>
+            <div class="form-col">
+              <label>Fecha Nac.</label>
+              <input type="date" name="fecha_nacimiento" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>RUT (Opcional)</label>
+            <input type="text" name="rut">
+          </div>
+
+          <h3>Contexto Familiar</h3>
+          <div class="form-group">
+            <label>Estado Civil de los Padres</label>
+            <select name="estado_civil_padres">
+              <option value="">Seleccione...</option>
+              <option value="Casados/Conviviendo">Casados / Conviviendo</option>
+              <option value="Separados">Separados / Divorciados</option>
+              <option value="Viudez">Viudez</option>
+              <option value="Madre_Soltera">Madre Soltera</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>El adolescente es:</label>
+            <div class="options-grid">
+              <label class="radio-card-label">
+                <input type="radio" name="origen" value="Biologico" checked>
+                <div class="radio-card-content">Hijo/a Biológico</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="origen" value="Adoptado">
+                <div class="radio-card-content">Hijo/a Adoptivo</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="origen" value="Acogida">
+                <div class="radio-card-content">Familia Acogida</div>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Si es adoptado o vive con otros cuidadores, detallar circunstancias:</label>
+            <textarea name="detalle_adopcion" placeholder="Ej: Adoptado a los 3 años..."></textarea>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-id-card-alt"></i> Datos Apoderado</h2>
+          <div class="form-group">
+            <label>Nombre Apoderado/a</label>
+            <input type="text" name="nombre_apoderado" required>
+          </div>
+          <div class="form-row">
+            <div class="form-col">
+              <label>Parentesco</label>
+              <input type="text" name="relacion_apoderado" required>
+            </div>
+            <div class="form-col">
+              <label>Teléfono</label>
+              <input type="tel" name="telefono" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico</label>
+            <input type="email" name="email_apoderado" required>
+          </div>
+          <div class="form-group">
+            <label>Previsión</label>
+            <select name="prevision">
+              <option value="Fonasa">Fonasa</option>
+              <option value="Isapre">Isapre</option>
+              <option value="Particular">Particular / Otro</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Motivo y Embarazo -->
+      <div class="wizard-step" data-step="2">
+        <div class="section-card">
+          <h2><i class="fas fa-comment-medical"></i> Motivo de Consulta</h2>
+          <div class="form-group">
+            <label>¿Cuál es el problema o preocupación principal?</label>
+            <textarea name="motivo_consulta"
+              placeholder="Describa síntomas, desde cuándo ocurren y qué gatillantes identifica..." rows="6"
+              required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Expectativas de la terapia:</label>
+            <textarea name="expectativas" placeholder="¿Qué esperan lograr?"></textarea>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-baby"></i> Historia Temprana</h2>
+
+          <h3>Embarazo</h3>
+          <div class="form-group">
+            <label>¿Cómo fue el embarazo? (Emocional y Físicamente)</label>
+            <textarea name="resumen_embarazo"
+              placeholder="Deseado/No deseado, estado de ánimo madre, estrés, duelo durante gestación, etc."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Complicaciones Médicas</label>
+            <div class="options-grid">
+              <label class="radio-card-label">
+                <input type="checkbox" name="emb_complicaciones[]" value="Preeclampsia">
+                <div class="radio-card-content">Preeclampsia</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="checkbox" name="emb_complicaciones[]" value="Diabetes G.">
+                <div class="radio-card-content">Diabetes G.</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="checkbox" name="emb_complicaciones[]" value="Amenaza Aborto">
+                <div class="radio-card-content">Amenaza Aborto</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="checkbox" name="emb_complicaciones[]" value="Consumo Sustancias">
+                <div class="radio-card-content">Consumo Sust.</div>
+              </label>
+            </div>
+          </div>
+
+          <h3>Parto</h3>
+          <div class="form-row">
+            <div class="form-col">
+              <label>Tipo</label>
+              <select name="tipo_parto">
+                <option value="Normal">Natural / Normal</option>
+                <option value="Cesarea">Cesárea</option>
+                <option value="Forceps">Fórceps</option>
+              </select>
+            </div>
+            <div class="form-col">
+              <label>Término</label>
+              <select name="termino_embarazo">
+                <option value="Termino">A Término (37-40 sem)</option>
+                <option value="Prematuro">Prematuro</option>
+                <option value="Postermino">Postérmino</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>¿Requirió incubadora u hospitalización al nacer?</label>
+            <input type="text" name="incubadora_detalle" placeholder="No / Si (detalle)">
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: Desarrollo Evolutivo -->
+      <div class="wizard-step" data-step="3">
+        <div class="section-card">
+          <h2><i class="fas fa-chart-line"></i> Desarrollo Psicomotor</h2>
+          <p class="section-intro">Indique la edad aproximada (en meses o años) de los hitos.</p>
+
+          <div class="milestone-grid">
+            <div class="form-group">
+              <label>Edad Gateo</label>
+              <input type="text" name="edad_gateo" placeholder="Ej: 8 meses">
+            </div>
+            <div class="form-group">
+              <label>Edad Marcha</label>
+              <input type="text" name="edad_caminar" placeholder="Ej: 1 ao 2 meses">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tuvo dificultades motoras?</label>
+            <input type="text" name="dificultas_motoras" placeholder="No / Si (detalle)">
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-comments"></i> Lenguaje y Sensorial</h2>
+          <div class="milestone-grid">
+            <div class="form-group">
+              <label>Primeras Palabras</label>
+              <input type="text" name="edad_primeras_palabras" placeholder="Ej: 1 ao">
+            </div>
+            <div class="form-group">
+              <label>Frases Completas</label>
+              <input type="text" name="edad_frases" placeholder="Ej: 2 años">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Dificultades (Trastornos, Pronunciación)</label>
+            <textarea name="problemas_lenguaje" rows="2" placeholder="Fonoaudiólogo, tartamudez..."></textarea>
+          </div>
+
+          <h3 style="margin-top:20px;">Procesamiento Sensorial</h3>
+          <div class="form-group">
+            <label>Molestias con ruidos, texturas, luces o etiquetas?</label>
+            <textarea name="sensorial" placeholder="Ej: Se tapa los oídos, no tolera cierta ropa..."></textarea>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-toilet"></i> Control de Esfínter</h2>
+          <div class="form-group">
+            <label>A qué edad dejó los pañales?</label>
+            <input type="text" name="control_esfinter" placeholder="Ej: 3 años de día...">
+          </div>
+          <div class="form-group">
+            <label>Enuresis (Orinarse tras haber controlado)</label>
+            <input type="text" name="enuresis" placeholder="No / Sí (detalle)">
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: Salud Física y Mental Completa -->
+      <div class="wizard-step" data-step="4">
+        <div class="section-card">
+          <h2><i class="fas fa-pills"></i> Historial Médico y Eventos</h2>
+
+          <div class="form-group">
+            <label>Eventos Traumáticos o Significativos</label>
+            <textarea name="traumas_eventos" rows="3"
+              placeholder="Muertes cercanas, Accidentes, Separaciones conflictivas, Cambios drásticos..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Enfermedades Relevantes / Cirugías</label>
+            <textarea name="historial_medico" rows="2" placeholder="Asma, Epilepsia, Operaciones..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label style="color: #d32f2f;">Alergias (Alimentos/Medicamentos)</label>
+            <textarea name="alergias" placeholder="Detalle..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Medicamentos ACTUALES</label>
+            <textarea name="meds_actuales" placeholder="Nombre y Dosis"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Medicamentos PASADOS (Psiquéatricos)</label>
+            <textarea name="meds_pasados" placeholder="Tratamientos anteriores"></textarea>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-users-cog"></i> Salud Mental Familiar</h2>
+          <p class="section-intro">Marque diagnósticos en la familia (padres, abuelos, tíos):</p>
+
+          <div class="options-grid">
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="Depresion">
+              <div class="radio-card-content">Depresión</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="Ansiedad">
+              <div class="radio-card-content">Ansiedad</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="Bipolaridad">
+              <div class="radio-card-content">Bipolaridad</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="Esquizofrenia">
+              <div class="radio-card-content">Esquizofrenia</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="TEA">
+              <div class="radio-card-content">TEA / Autismo</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="TDAH">
+              <div class="radio-card-content">TDAH</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="Adicciones">
+              <div class="radio-card-content">Adicciones</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="antecedentes_fam[]" value="Suicidio">
+              <div class="radio-card-content">Suicidio</div>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top:15px;">
+            <label>Detalle quiénes tienen los diagnósticos:</label>
+            <textarea name="detalle_antecedentes_fam"
+              placeholder="Ej: Madre (Depresión), Abuelo Paterno (Alcoholismo)..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5: Área Escolar y Social -->
+      <div class="wizard-step" data-step="5">
+        <div class="section-card">
+          <h2><i class="fas fa-school"></i> Vida Escolar</h2>
+          <div class="form-group">
+            <label>Colegio Actual</label>
+            <input type="text" name="colegio_actual">
+          </div>
+          <div class="form-group">
+            <label>Curso</label>
+            <input type="text" name="curso_actual">
+          </div>
+          <div class="form-group">
+            <label>Repitencias</label>
+            <input type="text" name="repitencias" placeholder="No / Sí (ao/curso)">
+          </div>
+          <div class="form-group">
+            <label>Rendimiento Académico</label>
+            <select name="rendimiento">
+              <option value="Bueno">Bueno / Alto</option>
+              <option value="Promedio">Promedio</option>
+              <option value="Bajo">Bajo / Dificultades</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Conducta / Relación Profesores</label>
+            <textarea name="conducta_escolar"></textarea>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-user-friends"></i> Vida Social</h2>
+          <div class="form-group">
+            <label>Amigos</label>
+            <select name="amigos">
+              <option value="Muchos">Muchos / Grupo</option>
+              <option value="Pocos">Pocos (1-2)</option>
+              <option value="Ninguno">Ninguno</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Bullying / Ciberacoso</label>
+            <textarea name="bullying" placeholder="Detalle si existe..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6: Síntomas y Hábitos (Final) -->
+      <div class="wizard-step" data-step="6">
+        <div class="section-card">
+          <h2><i class="fas fa-bed"></i> Hábitos</h2>
+          <div class="form-group">
+            <label>Sueño</label>
+            <div class="options-grid">
+              <label class="radio-card-label">
+                <input type="radio" name="sueno" value="Normal" checked>
+                <div class="radio-card-content">Normal</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="sueno" value="Insomnio">
+                <div class="radio-card-content">Insomnio</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="sueno" value="Pesadillas">
+                <div class="radio-card-content">Pesadillas</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="sueno" value="Mucho Sueño">
+                <div class="radio-card-content">Hofersomnia</div>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Apetito</label>
+            <div class="options-grid">
+              <label class="radio-card-label">
+                <input type="radio" name="apetito" value="Normal" checked>
+                <div class="radio-card-content">Normal</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="apetito" value="Bajo">
+                <div class="radio-card-content">Inapetencia</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="apetito" value="Ansioso">
+                <div class="radio-card-content">Atracones</div>
+              </label>
+              <label class="radio-card-label">
+                <input type="radio" name="apetito" value="Selectivo">
+                <div class="radio-card-content">Selectividad</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2><i class="fas fa-exclamation-triangle"></i> Síntomas al día de hoy</h2>
+          <p class="section-intro">Marque lo observado:</p>
+          <div class="options-grid">
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Tristeza">
+              <div class="radio-card-content">Tristeza</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Irritabilidad">
+              <div class="radio-card-content">Irritabilidad</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Miedos">
+              <div class="radio-card-content">Miedos</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Ansiedad">
+              <div class="radio-card-content">Ansiedad</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Autoagresion">
+              <div class="radio-card-content">Autolesin</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Ideas Suicidas">
+              <div class="radio-card-content">Ideas Muerte</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Aislamiento">
+              <div class="radio-card-content">Aislamiento</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Agresividad">
+              <div class="radio-card-content">Agresividad</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Consumo">
+              <div class="radio-card-content">Consumo</div>
+            </label>
+            <label class="radio-card-label">
+              <input type="checkbox" name="sintomas[]" value="Pantallas">
+              <div class="radio-card-content">Pantallas</div>
+            </label>
+          </div>
+          <div class="form-group" style="margin-top:20px;">
+            <label>Observaciones Finales</label>
+            <textarea name="observaciones_finales" placeholder="Algo ms que debamos saber..."></textarea>
+          </div>
+        </div>
+
+        <div class="section-card text-center" style="padding: 40px 20px;">
+          <h2>Informacin Completa!</h2>
+          <p style="color: #666; width: 90%; margin: 10px auto;">
+            Al presionar el botn, se <strong>descargar automticamente un archivo PDF</strong>.
+          </p>
+          <p style="background-color: #e3f2fd; padding:15px; border-radius:12px; color: #0d47a1; font-weight:500;">
+            <i class="fas fa-info-circle"></i> Importante: Debes enviar este archivo PDF descargado a tu psiclogo
+            tratante (por Correo o WhatsApp).
+          </p>
+        </div>
+
+        <!-- Mensaje de xito oculto -->
+        <div id="successMsg" class="success-message">
+          <h3><i class="fas fa-check-circle"></i> Ficha Descargada!</h3>
+          <p>Busca el archivo en tu carpeta de <strong>"Descargas"</strong>.</p>
+          <p style="font-weight:600; margin-top:15px;">No olvides envirselo a tu psiclogo para que pueda revisarlo.
+          </p>
+        </div>
+
+        <button type="button" class="btn btn-submit" id="btnGuardar">
+          <i class="fas fa-file-pdf"></i> Guardar Ficha (PDF)
+        </button>
+      </div>
+
+      <!-- Navigation Controls -->
+      <div class="nav-buttons">
+        <button type="button" class="btn btn-prev" id="btnPrev" style="visibility: hidden;">Atrs</button>
+        <button type="button" class="btn btn-next" id="btnNext">Siguiente <i class="fas fa-arrow-right"></i></button>
+      </div>
+
+    </form>
+  </div>
+
+  <footer>
+    <p> 2026 Faro Terapéutico - Ficha Clnica Digital</p>
+  </footer>
+
+  <!-- Logic Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- WIZARD LOGIC ---
+      let currentStep = 1;
+      const totalSteps = 6;
+
+      const steps = document.querySelectorAll('.wizard-step');
+      const progressFill = document.getElementById('progressFill');
+      const currentStepNum = document.getElementById('currentStepNum');
+      const btnNext = document.getElementById('btnNext');
+      const btnPrev = document.getElementById('btnPrev');
+
+      function updateUI() {
+        steps.forEach(s => s.classList.remove('active'));
+        const activeStep = document.querySelector(`.wizard-step[data-step="${currentStep}"]`);
+        if (activeStep) activeStep.classList.add('active');
+
+        const percent = ((currentStep - 1) / (totalSteps - 1)) * 100;
+        progressFill.style.width = `${percent}%`;
+        currentStepNum.textContent = currentStep;
+
+        btnPrev.style.visibility = currentStep === 1 ? 'hidden' : 'visible';
+
+        if (currentStep === totalSteps) {
+          btnNext.style.display = 'none';
+          document.querySelector('.nav-buttons').style.justifyContent = 'center';
+        } else {
+          btnNext.style.display = 'flex';
+          document.querySelector('.nav-buttons').style.justifyContent = 'space-between';
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      btnNext.addEventListener('click', () => {
+        const currentStepEl = document.querySelector(`.wizard-step[data-step="${currentStep}"]`);
+        const requiredInputs = currentStepEl.querySelectorAll('input[required], select[required], textarea[required]');
+        let valid = true;
+
+        requiredInputs.forEach(input => {
+          if (!input.value) {
+            valid = false;
+            input.style.borderColor = '#ff6b6b';
+            input.addEventListener('input', () => input.style.borderColor = '#ddd', { once: true });
+          }
+        });
+
+        if (!valid) {
+          alert("Por favor completa los campos obligatorios.");
+          return;
+        }
+
+        if (currentStep < totalSteps) {
+          currentStep++;
+          updateUI();
+        }
+      });
+
+      btnPrev.addEventListener('click', () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateUI();
+        }
+      });
+
+      updateUI();
+
+      // --- SAVE PDF LOGIC ---
+      document.getElementById('btnGuardar').addEventListener('click', async function () {
+        const btn = this;
+        const originalText = btn.innerHTML;
+
+        btn.disabled = true;
+        btn.innerHTML = '<div class="loader"></div> Generando PDF...';
+
+        // Recopilar datos para nombre de archivo
+        const nombre = document.querySelector('input[name="nombre_adolescente"]').value || 'Paciente';
+
+        // Ocultar controles botn
+        document.querySelector('.nav-buttons').style.display = 'none';
+        document.getElementById('btnGuardar').style.display = 'none';
+
+        // Mostrar todos los pasos para capturar
+        steps.forEach(s => s.classList.add('active'));
+
+        const element = document.getElementById('anamnesisForm');
+        const opt = {
+          margin: [0.3, 0.3, 0.3, 0.3],
+          filename: `Ficha_Anamnesis_${nombre.replace(/\s+/g, '_')}.pdf`,
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true },
+          jsPDF: { unit: 'in', format: 'legal', orientation: 'portrait' }
+        };
+
+        try {
+          await html2pdf().from(element).set(opt).save();
+
+          // Rastrear evento de guardado
+          gtag('event', 'conversion', { 'send_to': 'AW-17584631597/tu_label_aqui' });
+
+          // Mostrar mensaje xito
+          document.getElementById('successMsg').style.display = 'block';
+
+        } catch (e) {
+          console.error("Error PDF:", e);
+          alert("Hubo un error al generar el PDF. Por favor intente nuevamente.");
+          // Restaurar botn si falla
+          document.getElementById('btnGuardar').style.display = 'flex';
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        }
+
+        // Restaurar vista wizard (opcional, aunque con el mensaje de xito ya queda claro)
+        steps.forEach(s => s.classList.remove('active'));
+        document.querySelector(`.wizard-step[data-step="${currentStep}"]`).classList.add('active');
+
+      });
+    });
+  </script>
+</body>
+
+</html>

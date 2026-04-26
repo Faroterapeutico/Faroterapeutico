@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicólogo Online en Chile | Faro Terapéutico</title>
+    <meta name="description" content="Psicólogos clínicos por videollamada. Atendemos las 16 regiones de Chile. Horarios extendidos hasta las 22:00 hrs. FONASA e ISAPRE.">
+    <link rel="canonical" href="https://faroterapeutico.com/terapia-online" />
+    <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faroterapeutico.com/terapia-online">
+    <meta property="og:title" content="Psicólogo Online en Chile | Faro Terapéutico">
+    <meta property="og:description" content="Psicólogos clínicos por videollamada. 16 regiones de Chile.">
+    <meta property="og:image" content="https://faroterapeutico.com/images/Oficina/hero-online-escritorio.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/Oficina/hero-online-escritorio.webp" fetchpriority="high">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="boutique.css">
+    <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+
+    <style>
+        .benefits-boutique{display:grid;grid-template-columns:repeat(2,1fr);gap:0;max-width:900px;margin:0 auto;border-top:.5px solid var(--line);border-left:.5px solid var(--line)}
+        .benefits-boutique .benefit{padding:2.5rem 2rem;border-right:.5px solid var(--line);border-bottom:.5px solid var(--line);text-align:center}
+        .benefits-boutique .benefit-icon{font-size:1.6rem;color:var(--gold);margin-bottom:1rem}
+        .benefits-boutique .benefit h3{font-family:var(--serif);font-size:1.3rem;color:var(--ink);font-weight:500;margin-bottom:.8rem}
+        .benefits-boutique .benefit p{font-size:.95rem;color:var(--ink-soft);line-height:1.7}
+        @media(max-width:700px){.benefits-boutique{grid-template-columns:1fr;max-width:420px}}
+
+        .schedule-box{max-width:640px;margin:0 auto;background:var(--surface);border-radius:var(--r-lg);padding:3rem 2.5rem;text-align:center;box-shadow:var(--shadow-soft);border-top:3px solid var(--gold)}
+        .schedule-box .schedule-icon{font-size:1.8rem;color:var(--gold);margin-bottom:1rem}
+        .schedule-big{font-family:var(--serif);font-size:2.6rem;color:var(--ink);font-weight:500;letter-spacing:-.5px;margin:.3rem 0 .8rem;line-height:1.15}
+        .schedule-kicker{font-size:.78rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-muted);font-weight:500}
+        .schedule-divider{width:40px;height:1px;background:var(--line);margin:1.8rem auto}
+        .schedule-message{font-size:1rem;color:var(--ink-soft);line-height:1.75;margin-top:1.5rem}
+        .schedule-message strong{color:var(--ink);font-family:var(--serif);font-style:italic;font-weight:500}
+
+        .regions-boutique{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:960px;margin:0 auto;border-top:.5px solid var(--line);border-left:.5px solid var(--line)}
+        .regions-boutique .region{padding:1.3rem 1rem;border-right:.5px solid var(--line);border-bottom:.5px solid var(--line);font-family:var(--serif);font-size:1rem;color:var(--ink);text-align:center;transition:background .3s ease}
+        .regions-boutique .region:hover{background:var(--gold-tint);color:var(--gold-dark)}
+        @media(max-width:900px){.regions-boutique{grid-template-columns:repeat(3,1fr)}}
+        @media(max-width:600px){.regions-boutique{grid-template-columns:repeat(2,1fr)}.regions-boutique .region{font-size:.85rem;padding:1rem .6rem}}
+
+        .topics-boutique{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:900px;margin:0 auto}
+        .topics-boutique .topic{padding:1.8rem 1rem;text-align:center;border:.5px solid var(--line);border-radius:var(--r-md);background:var(--surface);transition:all .35s ease}
+        .topics-boutique .topic:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+        .topics-boutique .topic i{font-size:1.5rem;color:var(--gold);margin-bottom:.8rem}
+        .topics-boutique .topic span{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:500}
+        @media(max-width:700px){.topics-boutique{grid-template-columns:repeat(2,1fr)}}
+
+        .coverage-boutique{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:760px;margin:0 auto;background:var(--surface);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-soft)}
+        .coverage-boutique .coverage-item{padding:2.5rem 2rem;text-align:center;border-right:.5px solid var(--line)}
+        .coverage-boutique .coverage-item:last-child{border-right:none}
+        .coverage-label{font-size:.78rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dark);font-weight:500;margin-bottom:.6rem}
+        .coverage-price{font-family:var(--serif);font-size:2.4rem;color:var(--ink);font-weight:500;letter-spacing:-.5px;margin-bottom:.5rem}
+        .coverage-detail{font-size:.95rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.3rem;min-height:3rem}
+        @media(max-width:600px){.coverage-boutique{grid-template-columns:1fr}.coverage-boutique .coverage-item{border-right:none;border-bottom:.5px solid var(--line)}.coverage-boutique .coverage-item:last-child{border-bottom:none}}
+
+        .scheduling-boutique{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;max-width:960px;margin:0 auto}
+        .scheduling-card-b{background:var(--surface);padding:2.5rem 2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);text-align:center}
+        .scheduling-card-b .sch-icon{width:60px;height:60px;border-radius:50%;background:var(--gold-tint);color:var(--gold-dark);display:inline-flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.2rem}
+        .scheduling-card-b h4{font-family:var(--serif);font-size:1.35rem;color:var(--ink);font-weight:500;margin-bottom:.8rem}
+        .scheduling-card-b p{font-size:.95rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1rem}
+        .sch-divider{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--ink-muted)}
+        .sch-checklist{list-style:none;padding:0;margin:1rem auto;text-align:left;max-width:260px}
+        .sch-checklist li{padding:.4rem 0;font-size:.92rem;color:var(--ink-soft)}
+        .sch-checklist li i{color:var(--gold);margin-right:.5rem}
+        .sch-note{margin-top:1rem;padding:.8rem 1rem;background:var(--gold-tint);border-radius:var(--r-sm);font-size:.85rem;color:var(--ink);line-height:1.5}
+        .sch-confirmation{font-size:.85rem;color:var(--ink-muted);margin-top:.8rem;font-style:italic}
+        @media(max-width:800px){.scheduling-boutique{grid-template-columns:1fr;gap:1.5rem}.sch-divider{margin:0 auto}}
+
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900;transition:all .3s ease}
+        .whatsapp-float:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(37,211,102,.45)}
+    </style>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://faroterapeutico.com/terapia-online">
+    <meta property="twitter:title" content="Terapia Online | Faro Terapéutico">
+    <meta property="twitter:description" content="Psicoterapia online con psicólogos clínicos. Isapre y Fonasa.">
+    <meta property="twitter:image" content="https://faroterapeutico.com/images/hero-index.escritorio.webp">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="author" content="Faro Terapéutico">
+    <meta name="language" content="es-CL">
+</head>
+
+<body class="boutique page-online">
+    <header id="main-header" class="main-header">
+        <div class="container">
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo Faro Terapéutico" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
+            <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="images/Oficina/hero-online-mobil.webp">
+                <img src="images/Oficina/hero-online-escritorio.webp" alt="Psicólogo online" class="hero-bg-img" fetchpriority="high">
+            </picture>
+            <div class="container">
+                <div class="hero-inner">
+                    <span class="eyebrow eyebrow-framed">Terapia online · 16 regiones de Chile</span>
+                    <h1>Psicólogo <em>online</em> para<br>todo Chile.</h1>
+                    <p class="hero-lead">Psicólogos clínicos por videollamada. Lunes a viernes hasta las 22:00 hrs. Atención con FONASA e Isapre.</p>
+                    <div class="hero-price"><span class="hero-price-label">FONASA</span><span class="hero-price-amount">$14.420</span><span class="hero-price-note">— Isapre $30.000 con reembolso</span></div>
+                    <br><a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20online." target="_blank" rel="noopener noreferrer" class="cta">Agendar sesión online <span class="cta-arrow"></span></a>
+                    <div class="hero-meta"><span><span class="dot"></span>Desde tu hogar</span><span><span class="dot"></span>Hasta 22:00 hrs</span><span><span class="dot"></span>16 regiones</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficios-online">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <div class="ornament">✦</div>
+                    <span class="eyebrow">— Por qué online</span>
+                    <h2>La misma calidad profesional, <em>adaptada a tu vida</em>.</h2>
+                    <p class="section-lead">Una sesión online tiene la misma estructura, duración y profundidad que una presencial. Psicoterapia real, no un chat.</p>
+                </div>
+                <div class="benefits-boutique reveal-up delay-1">
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-home"></i></div><h3>Desde tu hogar</h3><p>Sin traslados ni tiempos de espera. Conéctate desde cualquier lugar cómodo y privado donde te sientas seguro/a.</p></div>
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-clock"></i></div><h3>Horarios extendidos</h3><p>Sesiones disponibles hasta las <strong>22:00 hrs</strong> de lunes a viernes. Ideales si trabajas o estudias durante el día.</p></div>
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-map-marked-alt"></i></div><h3>Acceso desde cualquier región</h3><p>Estés en Arica, Santiago o Punta Arenas, accede a psicólogos clínicos de alta calidad sin importar tu ubicación.</p></div>
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-award"></i></div><h3>Misma calidad profesional</h3><p>Nuestras sesiones online tienen la misma estructura, duración y profundidad que las presenciales.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="horarios-online" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— Horarios</span><h2>Sesiones <em>cómodas</em> para ti.</h2></div>
+                <div class="schedule-box reveal-up delay-1">
+                    <div class="schedule-icon"><i class="fas fa-moon"></i></div>
+                    <div class="schedule-kicker">Lunes a Viernes</div>
+                    <div class="schedule-big">10:00 — 22:00 hrs</div>
+                    <div class="schedule-divider"></div>
+                    <div class="schedule-kicker">Sábados</div>
+                    <div class="schedule-big" style="font-size:1.8rem;">10:00 — 14:00 hrs</div>
+                    <p class="schedule-message">Sabemos que tu día es largo. Por eso, ofrecemos sesiones en <strong>horarios vespertinos y nocturnos</strong> para que la terapia no interfiera con tu trabajo, estudios o vida familiar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="regiones-online">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Cobertura nacional</span>
+                    <h2>Atendemos en <em>todas las regiones</em> de Chile.</h2>
+                    <p class="section-lead">No importa en qué parte del país estés. Nuestros psicólogos están disponibles por videollamada para acompañarte.</p>
+                </div>
+                <div class="regions-boutique reveal-up delay-1">
+                    <div class="region">Arica y Parinacota</div><div class="region">Tarapacá</div><div class="region">Antofagasta</div><div class="region">Atacama</div>
+                    <div class="region">Coquimbo</div><div class="region">Valparaíso</div><div class="region">Metropolitana</div><div class="region">O'Higgins</div>
+                    <div class="region">Maule</div><div class="region">Ñuble</div><div class="region">Biobío</div><div class="region">La Araucanía</div>
+                    <div class="region">Los Ríos</div><div class="region">Los Lagos</div><div class="region">Aysén</div><div class="region">Magallanes</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="temas-online" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— Motivos de consulta</span><h2>¿En qué te podemos <em>ayudar</em>?</h2></div>
+                <div class="topics-boutique reveal-up delay-1">
+                    <div class="topic"><i class="fas fa-cloud-sun"></i><span>Depresión</span></div>
+                    <div class="topic"><i class="fas fa-shield-alt"></i><span>Ansiedad</span></div>
+                    <div class="topic"><i class="fas fa-heart-broken"></i><span>Duelo</span></div>
+                    <div class="topic"><i class="fas fa-bolt"></i><span>Estrés y burnout</span></div>
+                    <div class="topic"><i class="fas fa-users"></i><span>Relaciones</span></div>
+                    <div class="topic"><i class="fas fa-low-vision"></i><span>Autoestima</span></div>
+                    <div class="topic"><i class="fas fa-brain"></i><span>Trastornos de personalidad</span></div>
+                    <div class="topic"><i class="fas fa-wine-bottle"></i><span>Adicciones</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="terapeutas-online">
+            <div class="container">
+                <div class="section-head reveal-up"><div class="ornament">✦</div><span class="eyebrow">— Nuestro equipo</span><h2>Psicólogos clínicos <em>a tu disposición</em>.</h2></div>
+                <div class="therapist-grid">
+                    <article class="therapist reveal-up delay-1">
+                        <div class="therapist-photo"><img src="images/aaron.webp" alt="Psicólogo Aaron Millán" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 870794</span>
+                            <h3 class="therapist-name">Aaron Millán</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Psicodinámica freudiana. <strong>Duelos, trastornos de personalidad y adicciones.</strong></p>
+                            <div class="therapist-actions"><a href="aaron" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                    <article class="therapist reveal-up delay-2">
+                        <div class="therapist-photo"><img src="images/david.webp" alt="Psicólogo David Walter" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 870946</span>
+                            <h3 class="therapist-name">David Walter</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Trastornos del ánimo y ansiedad. <strong>Estrés y desarrollo personal.</strong></p>
+                            <div class="therapist-actions"><a href="david" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                    <article class="therapist reveal-up delay-3">
+                        <div class="therapist-photo"><img src="images/isidora.webp" alt="Psicóloga Isidora Sanhueza" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 866414</span>
+                            <h3 class="therapist-name">Isidora Sanhueza</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Terapia DBT y psicología deportiva. <strong>Ansiedad y trastornos anímicos.</strong></p>
+                            <div class="therapist-actions"><a href="isidora" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="como-funciona-online" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— El proceso</span><h2>¿Cómo funciona tu <em>sesión online</em>?</h2></div>
+                <div class="steps-grid">
+                    <div class="step reveal-up delay-1"><div class="step-number">i.</div><h3>Agenda tu hora</h3><p>Escríbenos por WhatsApp o agenda directamente en nuestra plataforma. Elige el horario que más te acomode.</p></div>
+                    <div class="step reveal-up delay-2"><div class="step-number">ii.</div><h3>Recibe tu enlace</h3><p>Te enviaremos un enlace seguro de videollamada por correo y WhatsApp. Solo necesitas un dispositivo con cámara.</p></div>
+                    <div class="step reveal-up delay-3"><div class="step-number">iii.</div><h3>Conéctate</h3><p>A la hora acordada, haz clic en el enlace desde un espacio privado. Tu sesión dura 50 minutos.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cobertura-online">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Cobertura y valores</span>
+                    <h2>Sesiones online con <em>cobertura completa</em>.</h2>
+                    <p class="section-lead">Las sesiones online tienen cobertura FONASA e Isapre, igual que las presenciales.</p>
+                </div>
+                <div class="coverage-boutique reveal-up delay-1">
+                    <div class="coverage-item"><div class="coverage-label">FONASA Nivel 3</div><div class="coverage-price">$14.420</div><p class="coverage-detail">Copago por sesión de 50 min. Bono 100% digital.</p><a href="fonasa" class="text-link">Ver más sobre FONASA <span class="cta-arrow"></span></a></div>
+                    <div class="coverage-item"><div class="coverage-label">Isapre</div><div class="coverage-price">$30.000</div><p class="coverage-detail">Reembolso hasta el 80% según tu plan.</p><a href="isapre" class="text-link">Ver más sobre Isapre <span class="cta-arrow"></span></a></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agendar-online" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— Agenda tu sesión</span><h2>¿Cómo agendar tu <em>sesión online</em>?</h2></div>
+                <div class="scheduling-boutique reveal-up delay-1">
+                    <div class="scheduling-card-b">
+                        <div class="sch-icon"><i class="fab fa-whatsapp"></i></div>
+                        <h4>Por WhatsApp</h4>
+                        <p>Envíanos un mensaje al <strong>+56 9 4559 3808</strong> indicando:</p>
+                        <ul class="sch-checklist">
+                            <li><i class="fas fa-check-circle"></i> Día y horario de preferencia</li>
+                            <li><i class="fas fa-check-circle"></i> Si eres FONASA o Isapre</li>
+                            <li><i class="fas fa-check-circle"></i> Tu región (para referencia)</li>
+                        </ul>
+                        <div class="sch-note"><i class="fas fa-bolt"></i> Respondemos en pocos minutos. Si tardamos, es porque estamos en sesión.</div>
+                        <p class="sch-confirmation"><i class="fas fa-envelope"></i> Recibirás tu enlace de videollamada por correo.</p><br>
+                        <a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20online." target="_blank" rel="noopener noreferrer" class="cta cta-wa">Escribir por WhatsApp <span class="cta-arrow"></span></a>
+                    </div>
+                    <div class="sch-divider">o</div>
+                    <div class="scheduling-card-b">
+                        <div class="sch-icon"><i class="fas fa-laptop"></i></div>
+                        <h4>Agenda online</h4>
+                        <p>Ingresa a nuestra plataforma y elige tu horario. Selecciona el día, horario y terapeuta que prefieras.</p><br>
+                        <a href="https://encuadrado.com/centro/faro-terapeutico" target="_blank" rel="noopener noreferrer" class="cta">Agendar en Encuadrado <span class="cta-arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-online">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— Preguntas frecuentes</span><h2>Lo que suelen <em>preguntarnos</em>.</h2></div>
+                <div class="faq-list reveal-up delay-1">
+                    <div class="faq-item"><button class="faq-question" type="button">¿Atienden online a todo Chile?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Sí, atendemos por videollamada a pacientes de las <strong>16 regiones de Chile</strong>, desde Arica y Parinacota hasta Magallanes y la Antártica Chilena.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Hasta qué hora atienden online?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>De <strong>lunes a viernes realizamos sesiones hasta las 22:00 horas</strong>. Los sábados atendemos hasta las 14:00 horas. Ofrecemos horarios vespertinos y nocturnos para que la terapia se adapte a tu rutina.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Qué necesito para una sesión online?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Solo necesitas un <strong>dispositivo con cámara y micrófono</strong> (computador, tablet o celular), <strong>conexión a internet estable</strong> y un <strong>espacio privado</strong> donde puedas hablar con tranquilidad.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿La terapia online es igual de efectiva?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Sí. Investigaciones recientes confirman que la <strong>psicoterapia online es tan efectiva como la presencial</strong> para la mayoría de las problemáticas. Nuestras sesiones por videollamada tienen la misma estructura y profundidad.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Aceptan FONASA e Isapre en sesiones online?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Sí. Atendemos con <strong>bono FONASA</strong> (copago <strong>$14.420</strong>) de forma 100% digital y con <strong>Isapre</strong> (reembolso hasta el 80%). No necesitas ir a ningún lugar para obtener tu bono.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Puedo cambiar de online a presencial?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Sí. Nuestras sesiones son <strong>híbridas</strong>. Si estás en Santiago y deseas asistir presencialmente a nuestra consulta en Providencia, puedes cambiar tu modalidad con <strong>dos días de anticipación</strong>.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Hablemos</span>
+                    <h2>¿Hablamos? <em>Contáctanos</em>.</h2>
+                    <p class="section-lead">Déjanos tus datos si quieres saber cómo podemos ayudarte. Te contactaremos en menos de 24 horas.</p>
+                </div>
+                <div class="contact-form-wrap reveal-up delay-1">
+                    <form action="https://formspree.io/f/xovpkvwk" method="POST">
+                        <div class="form-group"><label for="email">Correo Electrónico</label><input type="email" id="email" name="email" placeholder="tu.correo@ejemplo.com" required autocomplete="email"></div>
+                        <div class="form-group"><label for="phone">Número de Celular</label><input type="tel" id="phone" name="phone" placeholder="+56 9 1234 5678" autocomplete="tel"></div>
+                        <div class="form-group"><label for="question">¿Tienes alguna pregunta? (Opcional)</label><textarea id="question" name="question" placeholder="Escribe tu consulta aquí..."></textarea></div>
+                        <button type="submit" class="cta">Enviar <span class="cta-arrow"></span></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Equipo de psicólogos clínicos. Acompañamiento profesional, cálido y efectivo para tu salud mental. Atención presencial y online para todo Chile.</p></div>
+                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="sobre-nosotros">Equipo Clínico</a></li><li><a href="terapia-presencial">Terapia Presencial</a></li><li><a href="blog">Blog</a></li></ul></div>
+                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
+                <div class="footer-col"><h4>Síguenos</h4><div class="social-links"><a href="https://www.instagram.com/faro_terapeutico/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/profile.php?id=61575925194962" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico. Todos los derechos reservados.</p></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20online." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
+
+    <script src="script.js" defer></script>
+    <script>
+    (function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}document.querySelectorAll('.faq-question').forEach(function(b){b.addEventListener('click',function(){b.parentElement.classList.toggle('active');});});})();
+    </script>
+</body>
+</html>

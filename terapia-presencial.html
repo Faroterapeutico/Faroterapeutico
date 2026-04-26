@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicólogo Presencial en Providencia | Faro Terapéutico</title>
+    <meta name="description" content="Psicólogos clínicos en Providencia. Consulta presencial en La Concepción 56. FONASA e Isapre. Lunes a sábado 11:00 a 20:00 hrs.">
+    <link rel="canonical" href="https://faroterapeutico.com/terapia-presencial" />
+    <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faroterapeutico.com/terapia-presencial">
+    <meta property="og:title" content="Psicólogo Presencial en Providencia | Faro Terapéutico">
+    <meta property="og:description" content="Consulta presencial en Providencia, a pasos del Metro Pedro de Valdivia.">
+    <meta property="og:image" content="https://faroterapeutico.com/images/Oficina/hero-presencial-escritorio.webp">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/Oficina/hero-presencial-escritorio.webp" fetchpriority="high">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="boutique.css">
+    <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+
+    <style>
+        .benefits-boutique{display:grid;grid-template-columns:repeat(2,1fr);gap:0;max-width:900px;margin:0 auto;border-top:.5px solid var(--line);border-left:.5px solid var(--line)}
+        .benefits-boutique .benefit{padding:2.5rem 2rem;border-right:.5px solid var(--line);border-bottom:.5px solid var(--line);text-align:center}
+        .benefits-boutique .benefit-icon{font-size:1.6rem;color:var(--gold);margin-bottom:1rem}
+        .benefits-boutique .benefit h3{font-family:var(--serif);font-size:1.3rem;color:var(--ink);font-weight:500;margin-bottom:.8rem}
+        .benefits-boutique .benefit p{font-size:.95rem;color:var(--ink-soft);line-height:1.7}
+        @media(max-width:700px){.benefits-boutique{grid-template-columns:1fr;max-width:420px}}
+
+        .topics-boutique{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:900px;margin:0 auto}
+        .topics-boutique .topic{padding:1.8rem 1rem;text-align:center;border:.5px solid var(--line);border-radius:var(--r-md);background:var(--surface);transition:all .35s ease}
+        .topics-boutique .topic:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+        .topics-boutique .topic i{font-size:1.5rem;color:var(--gold);margin-bottom:.8rem}
+        .topics-boutique .topic span{display:block;font-family:var(--serif);font-size:1.05rem;color:var(--ink);font-weight:500}
+        @media(max-width:700px){.topics-boutique{grid-template-columns:repeat(2,1fr)}}
+
+        .location-box{max-width:780px;margin:0 auto 2rem;padding:2rem 2.5rem;background:var(--surface);border-radius:var(--r-lg);box-shadow:var(--shadow-soft);display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;border-top:3px solid var(--gold)}
+        .location-detail{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem}
+        .location-detail i{color:var(--gold);font-size:1.3rem}
+        .location-detail span{font-size:.92rem;color:var(--ink-soft);line-height:1.5;font-weight:300}
+        .location-detail span strong{color:var(--ink);font-family:var(--serif);font-size:1.05rem;font-weight:500;display:block;margin-bottom:.2rem}
+        @media(max-width:700px){.location-box{grid-template-columns:1fr;padding:1.8rem}}
+
+        .coverage-boutique{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:760px;margin:0 auto;background:var(--surface);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-soft)}
+        .coverage-boutique .coverage-item{padding:2.5rem 2rem;text-align:center;border-right:.5px solid var(--line)}
+        .coverage-boutique .coverage-item:last-child{border-right:none}
+        .coverage-label{font-size:.78rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dark);font-weight:500;margin-bottom:.6rem}
+        .coverage-price{font-family:var(--serif);font-size:2.4rem;color:var(--ink);font-weight:500;letter-spacing:-.5px;margin-bottom:.5rem}
+        .coverage-detail{font-size:.95rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1.3rem;min-height:3rem}
+        @media(max-width:600px){.coverage-boutique{grid-template-columns:1fr}.coverage-boutique .coverage-item{border-right:none;border-bottom:.5px solid var(--line)}.coverage-boutique .coverage-item:last-child{border-bottom:none}}
+
+        .scheduling-boutique{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;max-width:960px;margin:0 auto}
+        .scheduling-card-b{background:var(--surface);padding:2.5rem 2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);text-align:center}
+        .scheduling-card-b .sch-icon{width:60px;height:60px;border-radius:50%;background:var(--gold-tint);color:var(--gold-dark);display:inline-flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.2rem}
+        .scheduling-card-b h4{font-family:var(--serif);font-size:1.35rem;color:var(--ink);font-weight:500;margin-bottom:.8rem}
+        .scheduling-card-b p{font-size:.95rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1rem}
+        .sch-divider{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--ink-muted)}
+        .sch-checklist{list-style:none;padding:0;margin:1rem auto;text-align:left;max-width:260px}
+        .sch-checklist li{padding:.4rem 0;font-size:.92rem;color:var(--ink-soft)}
+        .sch-checklist li i{color:var(--gold);margin-right:.5rem}
+        .sch-note{margin-top:1rem;padding:.8rem 1rem;background:var(--gold-tint);border-radius:var(--r-sm);font-size:.85rem;color:var(--ink);line-height:1.5}
+        .sch-confirmation{font-size:.85rem;color:var(--ink-muted);margin-top:.8rem;font-style:italic}
+        @media(max-width:800px){.scheduling-boutique{grid-template-columns:1fr;gap:1.5rem}.sch-divider{margin:0 auto}}
+
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
+        .whatsapp-float:hover{transform:translateY(-3px)}
+    </style>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://faroterapeutico.com/terapia-presencial">
+    <meta property="twitter:title" content="Terapia Presencial en Providencia | Faro Terapéutico">
+    <meta property="twitter:description" content="Consulta presencial en La Concepción 56, Providencia.">
+    <meta property="twitter:image" content="https://faroterapeutico.com/images/Oficina/Hero-isapre-escritorio.webp">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="author" content="Faro Terapéutico">
+    <meta name="language" content="es-CL">
+</head>
+
+<body class="boutique page-presencial">
+    <header id="main-header" class="main-header">
+        <div class="container">
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo Faro Terapéutico" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
+            <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <picture>
+                <source media="(max-width: 768px)" srcset="images/Oficina/hero-presencial-mobil.webp">
+                <img src="images/Oficina/hero-presencial-escritorio.webp" alt="Consulta presencial en Providencia" class="hero-bg-img" fetchpriority="high">
+            </picture>
+            <div class="container">
+                <div class="hero-inner">
+                    <span class="eyebrow eyebrow-framed">Providencia · Metro Pedro de Valdivia</span>
+                    <h1>Psicólogo <em>presencial</em><br>en Providencia.</h1>
+                    <p class="hero-lead">Un espacio cálido y profesional para tu proceso terapéutico. A pasos del Metro Pedro de Valdivia. Lunes a sábado de 11:00 a 20:00 hrs.</p>
+                    <div class="hero-price">
+                        <span class="hero-price-label">FONASA</span>
+                        <span class="hero-price-amount">$14.420</span>
+                        <span class="hero-price-note">— Isapre $30.000 con reembolso</span>
+                    </div>
+                    <br>
+                    <a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20presencial%20en%20Providencia." target="_blank" rel="noopener noreferrer" class="cta">Agendar presencial <span class="cta-arrow"></span></a>
+                    <div class="hero-meta">
+                        <span><span class="dot"></span>La Concepción 56</span>
+                        <span><span class="dot"></span>Lun — Sáb</span>
+                        <span><span class="dot"></span>FONASA & Isapre</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficios-presencial">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <div class="ornament">✦</div>
+                    <span class="eyebrow">— Por qué presencial</span>
+                    <h2>La atención <em>cara a cara</em>.</h2>
+                    <p class="section-lead">La atención cara a cara ofrece una experiencia terapéutica profunda que potencia tu proceso de cambio.</p>
+                </div>
+
+                <div class="benefits-boutique reveal-up delay-1">
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-handshake"></i></div><h3>Conexión cara a cara</h3><p>La presencia física fortalece el vínculo terapéutico, generando una conexión más profunda y genuina con tu psicólogo.</p></div>
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-shield-alt"></i></div><h3>Espacio seguro y privado</h3><p>Una consulta diseñada para brindarte total privacidad y comodidad. Sin interrupciones, sin distracciones.</p></div>
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-eye"></i></div><h3>Lectura corporal completa</h3><p>El terapeuta puede observar tu lenguaje corporal y señales no verbales, enriqueciendo la comprensión de tu proceso.</p></div>
+                    <div class="benefit"><div class="benefit-icon"><i class="fas fa-door-open"></i></div><h3>Un espacio solo para ti</h3><p>Salir de tu entorno cotidiano y acudir a un lugar dedicado a tu bienestar genera un ritual terapéutico que potencia los resultados.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="temas-presencial" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Motivos de consulta</span>
+                    <h2>¿En qué te podemos <em>ayudar</em>?</h2>
+                    <p class="section-lead">Nuestro equipo de psicólogos en Providencia trabaja con diversas problemáticas de salud mental.</p>
+                </div>
+                <div class="topics-boutique reveal-up delay-1">
+                    <div class="topic"><i class="fas fa-cloud-sun"></i><span>Depresión</span></div>
+                    <div class="topic"><i class="fas fa-shield-alt"></i><span>Ansiedad</span></div>
+                    <div class="topic"><i class="fas fa-heart-broken"></i><span>Duelo</span></div>
+                    <div class="topic"><i class="fas fa-bolt"></i><span>Estrés y burnout</span></div>
+                    <div class="topic"><i class="fas fa-users"></i><span>Relaciones</span></div>
+                    <div class="topic"><i class="fas fa-low-vision"></i><span>Autoestima</span></div>
+                    <div class="topic"><i class="fas fa-brain"></i><span>Trastornos de personalidad</span></div>
+                    <div class="topic"><i class="fas fa-wine-bottle"></i><span>Adicciones</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="terapeutas-presencial">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <div class="ornament">✦</div>
+                    <span class="eyebrow">— Nuestro equipo</span>
+                    <h2>Psicólogos clínicos <em>especializados</em>.</h2>
+                    <p class="section-lead">Psicólogos clínicos especializados que te atienden presencialmente en nuestra consulta de Providencia.</p>
+                </div>
+                <div class="therapist-grid">
+                    <article class="therapist reveal-up delay-1">
+                        <div class="therapist-photo"><img src="images/aaron.webp" alt="Psicólogo Aaron Millán" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 870794</span>
+                            <h3 class="therapist-name">Aaron Millán</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Psicodinámica freudiana. <strong>Duelos, trastornos de personalidad y adicciones.</strong></p>
+                            <div class="therapist-actions"><a href="aaron" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                    <article class="therapist reveal-up delay-2">
+                        <div class="therapist-photo"><img src="images/david.webp" alt="Psicólogo David Walter Salinas" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 870946</span>
+                            <h3 class="therapist-name">David Walter</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Trastornos del ánimo y ansiedad. <strong>Estrés y desarrollo personal.</strong></p>
+                            <div class="therapist-actions"><a href="david" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                    <article class="therapist reveal-up delay-3">
+                        <div class="therapist-photo"><img src="images/isidora.webp" alt="Psicóloga Isidora Sanhueza" loading="lazy"></div>
+                        <div class="therapist-body">
+                            <span class="therapist-kicker">Reg. SIS N° 866414</span>
+                            <h3 class="therapist-name">Isidora Sanhueza</h3>
+                            <div class="therapist-rule"></div>
+                            <p class="therapist-focus">Terapia DBT y psicología deportiva. <strong>Ansiedad y trastornos anímicos.</strong></p>
+                            <div class="therapist-actions"><a href="isidora" class="cta-outline">Ver perfil</a></div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="ubicacion-presencial" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— La consulta</span>
+                    <h2>Nuestro espacio en <em>Providencia</em>.</h2>
+                    <p class="section-lead">Te esperamos en un espacio acogedor y accesible, pensado para tu comodidad.</p>
+                </div>
+
+                <div class="location-box reveal-up delay-1">
+                    <div class="location-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><strong>Dirección</strong>La Concepción 56, Providencia</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="fas fa-subway"></i>
+                        <span><strong>Metro</strong>A pasos de Pedro de Valdivia</span>
+                    </div>
+                    <div class="location-detail">
+                        <i class="far fa-clock"></i>
+                        <span><strong>Horarios</strong>Lun — Sáb: 11:00 a 20:00 hrs</span>
+                    </div>
+                </div>
+
+                <div class="reveal-up delay-2">
+                    <iframe src="https://www.google.com/maps?q=La+Concepción+56,+Providencia&t=&z=17&ie=UTF8&iwloc=&output=embed" width="100%" height="420" style="border:0;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Faro Terapéutico en Providencia"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="cobertura-presencial">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Cobertura y valores</span>
+                    <h2>Atendemos con <em>cobertura completa</em>.</h2>
+                    <p class="section-lead">Trabajamos con las principales coberturas de salud en Chile para que accedas a terapia sin complicaciones.</p>
+                </div>
+                <div class="coverage-boutique reveal-up delay-1">
+                    <div class="coverage-item"><div class="coverage-label">FONASA Nivel 3</div><div class="coverage-price">$14.420</div><p class="coverage-detail">Copago por sesión de 50 min. Compra tu bono de forma rápida y 100% online.</p><a href="fonasa" class="text-link">Ver más sobre FONASA <span class="cta-arrow"></span></a></div>
+                    <div class="coverage-item"><div class="coverage-label">Isapre</div><div class="coverage-price">$30.000</div><p class="coverage-detail">Reembolso hasta el 80% según tu plan. Emitimos boleta para tu reembolso.</p><a href="isapre" class="text-link">Ver más sobre Isapre <span class="cta-arrow"></span></a></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agendar-presencial" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— Agenda tu sesión</span><h2>¿Cómo agendar tu <em>hora presencial</em>?</h2></div>
+                <div class="scheduling-boutique reveal-up delay-1">
+                    <div class="scheduling-card-b">
+                        <div class="sch-icon"><i class="fab fa-whatsapp"></i></div>
+                        <h4>Por WhatsApp</h4>
+                        <p>Envíanos un mensaje al <strong>+56 9 4559 3808</strong> indicando:</p>
+                        <ul class="sch-checklist">
+                            <li><i class="fas fa-check-circle"></i> Día y horario de preferencia</li>
+                            <li><i class="fas fa-check-circle"></i> Si eres FONASA o Isapre</li>
+                            <li><i class="fas fa-check-circle"></i> Nombre del terapeuta (opcional)</li>
+                        </ul>
+                        <div class="sch-note"><i class="fas fa-bolt"></i> Respondemos en pocos minutos. Si tardamos, es porque estamos en sesión.</div>
+                        <p class="sch-confirmation"><i class="fas fa-envelope"></i> Una vez confirmada tu hora, recibirás un correo con los datos.</p><br>
+                        <a href="https://wa.me/56945593808?text=Hola,%20me%20gustar%C3%ADa%20agendar%20una%20hora%20presencial%20en%20Providencia." target="_blank" rel="noopener noreferrer" class="cta cta-wa">Escribir por WhatsApp <span class="cta-arrow"></span></a>
+                    </div>
+                    <div class="sch-divider">o</div>
+                    <div class="scheduling-card-b">
+                        <div class="sch-icon"><i class="fas fa-laptop"></i></div>
+                        <h4>Agenda online</h4>
+                        <p>Ingresa a nuestra plataforma de agendamiento y elige el día, horario y terapeuta que prefieras.</p><br>
+                        <a href="https://encuadrado.com/centro/faro-terapeutico" target="_blank" rel="noopener noreferrer" class="cta">Agendar en Encuadrado <span class="cta-arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq-presencial">
+            <div class="container">
+                <div class="section-head reveal-up"><span class="eyebrow">— Preguntas frecuentes</span><h2>Lo que suelen <em>preguntarnos</em>.</h2></div>
+                <div class="faq-list reveal-up delay-1">
+                    <div class="faq-item"><button class="faq-question" type="button">¿Dónde queda la consulta presencial?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Nuestra consulta está en <strong>La Concepción 56, Providencia</strong>, a solo pasos del <strong>Metro Pedro de Valdivia</strong>. Es una ubicación céntrica y de fácil acceso en Santiago.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Cuáles son los horarios de atención?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Atendemos de <strong>lunes a sábado de 11:00 a 20:00 horas</strong>. Puedes elegir el horario que mejor se adapte a tu rutina.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Puedo cambiar mi sesión presencial a online?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Sí. Nuestras sesiones son <strong>híbridas</strong>: si lo solicitas con <strong>dos días de anticipación</strong>, puedes cambiar tu sesión presencial a online y viceversa, sin costo adicional.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Aceptan FONASA e Isapre?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Sí. Atendemos con <strong>bono FONASA</strong> (copago <strong>$14.420</strong>) y con <strong>Isapre</strong> (reembolso hasta el 80%). Sesión particular desde $30.000.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Cómo es la primera sesión presencial?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>En la primera sesión hablamos sobre la <strong>confidencialidad</strong> del espacio, y luego escuchamos el motivo que te trae a consulta. Las sesiones duran <strong>50 minutos</strong>. Es un espacio de confianza donde tú decides el ritmo.</p></div></div>
+                    <div class="faq-item"><button class="faq-question" type="button">¿Atienden niños de forma presencial?<span class="faq-toggle">+</span></button><div class="faq-answer"><p>Atendemos <strong>adolescentes desde los 16 años</strong> de forma presencial. Para niños más pequeños, realizamos <strong>derivaciones</strong> a psicólogos especializados.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" style="background: var(--paper-deep);">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Hablemos</span>
+                    <h2>¿Hablamos? <em>Contáctanos</em>.</h2>
+                    <p class="section-lead">Déjanos tus datos si quieres saber cómo podemos ayudarte. Te contactaremos en menos de 24 horas.</p>
+                </div>
+                <div class="contact-form-wrap reveal-up delay-1">
+                    <form action="https://formspree.io/f/xovpkvwk" method="POST">
+                        <div class="form-group"><label for="email">Correo Electrónico</label><input type="email" id="email" name="email" required autocomplete="email"></div>
+                        <div class="form-group"><label for="phone">Número de Celular</label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
+                        <div class="form-group"><label for="question">¿Tienes alguna pregunta? (Opcional)</label><textarea id="question" name="question"></textarea></div>
+                        <button type="submit" class="cta">Enviar <span class="cta-arrow"></span></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Equipo de psicólogos clínicos en Providencia. Acompañamiento profesional, cálido y efectivo. Presencial y online.</p></div>
+                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="sobre-nosotros">Equipo Clínico</a></li><li><a href="terapia-online">Terapia Online</a></li><li><a href="blog">Blog</a></li></ul></div>
+                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
+                <div class="footer-col"><h4>Síguenos</h4><div class="social-links"><a href="https://www.instagram.com/faro_terapeutico/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/profile.php?id=61575925194962" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a></div></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico. Todos los derechos reservados.</p></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20presencial." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
+
+    <script src="script.js" defer></script>
+    <script>
+    (function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}document.querySelectorAll('.faq-question').forEach(function(b){b.addEventListener('click',function(){b.parentElement.classList.toggle('active');});});})();
+    </script>
+</body>
+</html>

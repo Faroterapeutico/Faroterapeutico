@@ -1,0 +1,4728 @@
+/* --- Font Awesome font-display: swap overrides --- */
+/* Sobreescribe las declaraciones @font-face del CDN de Font Awesome
+   para agregar font-display: swap, eliminando el bloqueo de renderizado
+   y mejorando FCP (First Contentful Paint). */
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2') format('woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.woff2') format('woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.ttf') format('truetype');
+}
+
+/* --- Poppins Fallback: Reduce CLS durante font-swap --- */
+/* Declara una fuente de respaldo local (Arial) con mÃ©tricas ajustadas
+   para que ocupe el mismo espacio que Poppins, evitando saltos de diseÃ±o
+   cuando la fuente web termina de cargarse. */
+@font-face {
+    font-family: 'Poppins Fallback';
+    src: local('Arial');
+    font-style: normal;
+    font-weight: 400;
+    ascent-override: 105%;    /* 1050 / 1000 */
+    descent-override: 35%;    /* 350 / 1000 */
+    line-gap-override: 10%;   /* 100 / 1000 */
+    size-adjust: 112%;        /* Ajuste de tamaÃ±o para igualar el ancho de Poppins */
+}
+
+/* --- Estilos Base y Variables (Mobile-First) --- */
+:root {
+    --primary-color: #5b7c99;
+    /* Azul suave y profesional */
+    --secondary-color: #8aa399;
+    /* Verde salvia */
+    --accent-color: #d4c2ad;
+    /* Arena/Dorado suave */
+    --accent-color: #9A5F28;
+    /* Dorado metalizado sobrio y elegante */
+    --light-color: #fdfdfd;
+    --dark-color: #333d42;
+    --white-color: #ffffff;
+    --text-color: #556066;
+    /* Ligeramente oscurecido para mejorar contraste */
+    --font-family: 'Poppins', 'Poppins Fallback', sans-serif;
+    --transition-speed: 0.4s ease;
+    --header-height: 70px;
+    --graphite-color: #383838;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    color: var(--text-color);
+    /* Fondo con textura de mÃƒÂ¡rmol sutil generada con CSS */
+    background-color: #f8f8f8;
+    /* Color base claro */
+    background-image:
+        radial-gradient(circle at 100% 0, rgba(212, 194, 173, 0.15), transparent 25%),
+        radial-gradient(circle at 0% 100%, rgba(212, 194, 173, 0.15), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.2), transparent 30%),
+        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.2), transparent 30%);
+    background-size: 40em 40em;
+    /* Se eliminan las siguientes secciones que ahora tienen fondo claro */
+    /*
+    background-color: var(--dark-color);
+    */
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
+    /* Added padding to prevent content hugging edges on mobile */
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--dark-color);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    /* Smooth resizing for Main Heading */
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    /* Smooth resizing for Subheadings */
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+/* Asegura que los tÃƒÂ­tulos de secciÃƒÂ³n sean visibles en el fondo oscuro */
+/* section h2 ya tiene color oscuro por defecto, no es necesario cambiarlo */
+
+.highlight {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+section {
+    padding: 5rem 0;
+    overflow: hidden;
+    /* Separador de secciÃƒÂ³n */
+    position: relative;
+}
+
+/* Separador de secciÃƒÂ³n elegante */
+section:not(#hero):not(#contacto):not(#landing-content)::before,
+#landing-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    /* Color de lÃƒÂ­nea ajustado para fondo claro */
+    background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.1), transparent);
+    opacity: 0.8;
+}
+
+/* Estilo unificado para el contenedor principal en landing pages */
+#landing-content {
+    background-color: var(--white-color);
+    padding: 4rem 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    margin-top: -6rem;
+    /* Sube la secciÃƒÂ³n para que se solape un poco con el hero */
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition-speed);
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    /* Sombra mÃƒÂ¡s notoria */
+}
+
+.btn:hover {
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+    /* Sombra mÃƒÂ¡s notoria al pasar el cursor */
+    filter: brightness(0.9);
+    /* Oscurece ligeramente el fondo en hover */
+}
+
+.btn-subtle {
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    border: 1px solid var(--primary-color);
+    /* Borde azulado */
+    padding: 0.4rem 1rem;
+    /* Padding reducido */
+    font-size: 0.8rem;
+    /* Fuente mÃƒÂ¡s pequeÃƒÂ±a */
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* Sombra reducida */
+    transition: all var(--transition-speed);
+    backdrop-filter: blur(5px);
+    /* Efecto de vidrio esmerilado */
+}
+
+.btn-subtle:hover {
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    border-color: var(--primary-color);
+    /* Borde azulado */
+    transform: translateY(-3px);
+    /* Consistente con otros botones */
+    filter: brightness(0.9);
+    /* Oscurece ligeramente el fondo en hover */
+}
+
+/* BotÃƒÂ³n para acciones secundarias sobre fondos claros */
+.btn-secondary-action {
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    border: 2px solid var(--primary-color);
+    /* Borde azulado */
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed);
+    cursor: pointer;
+    border-radius: 50px;
+    font-weight: 500;
+    text-decoration: none;
+    /* AÃƒÂ±adido para quitar el subrayado */
+}
+
+.btn-secondary-action i {
+    margin-right: 8px;
+}
+
+.btn-secondary-action:hover {
+    filter: brightness(0.9);
+    /* Oscurece ligeramente el fondo en hover */
+    transform: translateY(-3px);
+    /* Consistente con otros botones */
+}
+
+.btn-hero {
+    margin-top: 2rem;
+    padding: 1.2rem 3rem;
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+    /* Reducido un tercio */
+    font-size: 0.9rem;
+    /* Reducido para mejor proporciÃƒÂ³n */
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    border-color: var(--primary-color);
+    /* Borde azulado */
+}
+
+.btn-hero:hover {
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    border-color: var(--primary-color);
+    /* Borde azulado */
+    filter: brightness(0.9);
+    /* Oscurece ligeramente el fondo en hover */
+}
+
+/* --- Barra de NavegaciÃƒÂ³n Fija --- */
+.header-agendar-btn {
+    /* Estilo unificado para el botÃƒÂ³n de agendar en el header */
+    display: inline-block;
+    /* Changed to be visible by default (desktop-first) */
+    padding: 0.5rem 1.2rem;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border-color: var(--primary-color);
+    font-weight: 600;
+    /* Unificado con el resto de los botones */
+    font-size: 0.9rem;
+    /* TamaÃƒÂ±o ajustado */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    transition: var(--transition-speed);
+    /* Asegura la transiciÃƒÂ³n en hover */
+}
+
+.header-agendar-btn:hover {
+    filter: brightness(0.9);
+    /* Oscurece ligeramente el fondo en hover */
+    transform: translateY(-3px);
+    /* Consistente con otros botones */
+}
+
+.main-header {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: var(--header-height);
+    transition: top 0.3s;
+}
+
+.main-header.header-hidden {
+    top: -80px;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.main-header.landing-page-header .container {
+    justify-content: space-between;
+}
+
+.logo {
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.2rem;
+    /* Reducido un 25% */
+    text-decoration: none;
+    transition: color var(--transition-speed), text-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Sombra sutil para elegancia */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.logo:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.logo-icon {
+    height: 32px;
+    width: 32px;
+}
+
+.main-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    /* Default desktop width */
+    height: 100vh;
+    background-color: var(--graphite-color);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    padding: 100px 0 2rem 0;
+    visibility: hidden;
+}
+
+@media (max-width: 768px) {
+    .main-nav {
+        width: 50%;
+        /* Half screen width on mobile */
+        padding-top: 80px;
+    }
+}
+
+.main-nav.active {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-nav ul li a {
+    display: block;
+    padding: 1.2rem 2.5rem;
+    text-align: left;
+    text-decoration: none;
+    color: var(--white-color);
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 2.5rem;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding-left: 3rem;
+    color: var(--accent-color);
+}
+
+.main-nav ul li a:hover::after {
+    width: calc(100% - 6rem);
+}
+
+
+.hamburger-menu {
+    display: block;
+    /* Visible por defecto en mÃƒÂ³vil */
+    font-size: 1.5rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--dark-color);
+    transition: color var(--transition-speed), transform var(--transition-speed);
+    z-index: 2100;
+    /* Ensure it's above the sidebar */
+    position: relative;
+}
+
+.hamburger-menu:hover {
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* Close icon color when menu is active */
+.main-nav.active~.hamburger-menu {
+    color: var(--white-color);
+}
+
+/* --- Overlay and Scroll Lock for Sidebar --- */
+body.menu-open {
+    overflow: hidden;
+}
+
+body.menu-open::before {
+    display: none;
+}
+
+/* --- 1. Hero Section --- */
+#hero {
+    position: relative;
+    /* Necesario para los pseudo-elementos */
+    color: var(--white-color);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: var(--header-height) 1rem 0 1rem;
+    /* Padding combinado para evitar sobreescritura */
+}
+
+/* Pseudo-elementos para las imÃƒÂ¡genes de fondo */
+#hero::before,
+#hero::after {
+    /* Mantenemos el after para el degradado oscuro */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    /* DetrÃƒÂ¡s del contenido */
+}
+
+#hero::before {
+    background: url('images/hero-background.webp') no-repeat center center/cover;
+}
+
+#hero::after {
+    background: linear-gradient(to bottom, rgba(20, 30, 40, 0.45) 0%, rgba(20, 30, 40, 0.7) 100%);
+}
+
+/* Fondo especÃƒÂ­fico para la pÃƒÂ¡gina de SesiÃƒÂ³n de OrientaciÃƒÂ³n */
+.page-orientacion #hero::before {
+    background-image: url('images/hero-orientacion.webp');
+}
+
+#hero h1 {
+    font-size: 1.7rem;
+    /* TamaÃƒÂ±o reducido un tercio */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--white-color);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle-secondary {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white-color);
+    /* Cambiado a blanco para el carrusel del hero */
+    text-shadow: none;
+    /* Sombras eliminadas */
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle-secondary span {
+    transition: opacity 0.5s ease-in-out;
+    display: inline-block;
+    /* Asegura que la transiciÃƒÂ³n funcione correctamente */
+    min-height: 1.2em;
+    /* Evita que el layout salte cuando el texto cambia */
+    opacity: 1;
+}
+
+.hero-subtitle-secondary span.fade-out {
+    opacity: 0;
+}
+
+.hero-subtitle {
+    font-size: 0.8rem !important;
+    /* Reducido un tercio (forzado) */
+    font-weight: 400;
+    color: var(--white-color);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+    /* Ajustado para el nuevo subtÃƒÂ­tulo ÃƒÂºnico */
+    margin-bottom: 1.5rem;
+    /* Espacio antes del botÃƒÂ³n */
+}
+
+/* Estilo para el subtÃƒÂ­tulo de ubicaciÃƒÂ³n */
+.hero-location {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    margin-top: -1rem;
+    /* Lo acerca al subtÃƒÂ­tulo anterior */
+    margin-bottom: 2rem;
+    /* Espacio antes de los botones */
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 1rem auto 0 auto;
+    /* Centra el bloque del pÃƒÂ¡rrafo horizontalmente */
+}
+
+/* Estilos especÃƒÂ­ficos para el hero de las landing pages */
+.hero-landing h1 {
+    font-size: 1.7rem;
+    /* Mantenemos el tamaÃƒÂ±o base para las landing */
+}
+
+.hero-landing p {
+    font-size: 1rem;
+    /* Ajustamos el pÃƒÂ¡rrafo de las landing */
+    max-width: 700px;
+}
+
+/* Estilos especÃƒÂ­ficos para el hero de las landing pages (Fonasa, Isapre) para crear el efecto de tarjeta superpuesta */
+body.page-isapre #hero,
+body.page-fonasa #hero {
+    height: auto;
+    /* La altura se ajusta al contenido */
+    min-height: auto;
+    /* Anulamos la altura de 100vh del hero principal */
+    padding-top: calc(var(--header-height) + 5rem);
+    /* Espacio para el header y un poco mÃƒÂ¡s */
+    padding-bottom: 12rem;
+    /* Espacio inferior amplio para que la tarjeta de contenido se solape correctamente */
+}
+
+/* Asegura que el contenedor del hero ocupe todo el ancho para centrar el texto */
+#hero .container {
+    width: 100%;
+}
+
+/* Contenedor para los botones del hero */
+.hero-actions {
+    margin-bottom: 2rem;
+    /* Espacio entre el botÃƒÂ³n y las nuevas tarjetas */
+    text-align: center;
+}
+
+/* --- Estilos para el Carrusel de Terapeutas --- */
+.therapist-carousel {
+    width: 100%;
+    margin: 2rem auto 0 auto;
+    overflow: hidden;
+    position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+}
+
+.therapist-track {
+    display: flex;
+    width: calc(250px * 6);
+    /* Ancho de tarjeta * nÃƒÂºmero de tarjetas duplicadas */
+}
+
+.therapist-carousel .therapist-card-mini {
+    width: 250px;
+    margin: 0 1rem;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: none;
+    /* Ocultamos los botones, el carrusel es automÃƒÂ¡tico */
+}
+
+/* --- NUEVO: Contenedor para agrupar botones y precios en el Hero --- */
+.hero-cta-group {
+    margin-top: 2rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    color: var(--white-color);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* --- NUEVA SECCIÃƒâ€œN: Sobre Nosotros --- */
+#sobre-nosotros {
+    /* El fondo ahora hereda del body para ser consistente con la secciÃƒÂ³n de la consulta */
+    padding-top: 5rem;
+}
+
+.about-us-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-us-image {
+    text-align: center;
+}
+
+.about-us-image img {
+    max-width: 100%;
+    height: auto;
+    max-height: 400px;
+    /* Limita la altura de la imagen */
+    border-radius: 12px;
+    /* Bordes redondeados para un look moderno */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil para darle profundidad */
+    border: 1px solid #eee;
+    /* Borde fino para enmarcarla */
+}
+
+.about-us-content {
+    text-align: center;
+}
+
+.about-us-content h2 {
+    margin-bottom: 1.5rem;
+}
+
+.about-us-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Indicador de Scroll --- */
+.scroll-down-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.5rem;
+}
+
+/* --- Tarjetas de Terapeutas en el Hero --- */
+.therapists-grid-hero {
+    display: flex;
+    flex-direction: column;
+    /* Una columna en mÃƒÂ³vil */
+    justify-content: center;
+    /* Centra las tarjetas en el espacio disponible */
+    gap: 1rem;
+    /* Reducimos el espacio entre tarjetas */
+    margin-top: 2rem;
+    width: 100%;
+    align-items: center;
+    /* Centra las tarjetas cuando estÃƒÂ¡n en columna */
+}
+
+.therapist-card-mini {
+    background-color: var(--white-color);
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--text-color);
+    width: 48%;
+    max-width: 220px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.07);
+    transition: var(--transition-speed);
+    display: flex;
+    /* AÃƒÂ±adido para centrar contenido */
+    flex-direction: column;
+    /* Apila los elementos verticalmente */
+    align-items: center;
+    /* Centra los elementos horizontalmente */
+    cursor: pointer;
+    min-height: 280px;
+    /* Altura mÃƒÂ­nima para alinear el botÃƒÂ³n */
+}
+
+.therapist-card-mini:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.therapist-mini-img {
+    width: 80px;
+    /* TamaÃƒÂ±o aumentado un tercio */
+    height: 80px;
+    /* TamaÃƒÂ±o aumentado un tercio */
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--white-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.therapist-card-mini h3 {
+    color: var(--dark-color);
+    /* TipografÃƒÂ­a fluida: se adapta al tamaÃƒÂ±o de la pantalla */
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+    margin-bottom: 0.25rem;
+}
+
+.therapist-card-mini .therapist-subtitle {
+    /* TipografÃƒÂ­a fluida: se adapta al tamaÃƒÂ±o de la pantalla */
+    font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+    font-weight: 400;
+    /* Peso mÃƒÂ¡s ligero que el nombre */
+    color: var(--text-color);
+    margin: 0;
+    /* Quitamos margen superior/inferior */
+    margin-bottom: 1rem;
+    /* Espacio antes del botÃƒÂ³n */
+}
+
+/* --- InformaciÃƒÂ³n de Precios en el Hero --- */
+.hero-pricing {
+    margin-bottom: 1.5rem;
+    /* Espacio entre los precios y el botÃƒÂ³n de agendar */
+}
+
+.hero-pricing h4 {
+    color: var(--white-color);
+    font-size: 1rem;
+    /* Reducido */
+    margin-bottom: 0.75rem;
+    /* Reducido */
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.5rem;
+    /* Reducido */
+}
+
+.pricing-item {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    /* Aumentado para mayor ÃƒÂ¡rea de clic */
+    text-decoration: none;
+    color: var(--white-color);
+    border-radius: 8px;
+    transition: background-color var(--transition-speed);
+    gap: 1rem;
+    /* Aumenta el espacio entre el texto y el precio */
+}
+
+.pricing-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+    /* AÃƒÂ±ade un ligero zoom para dar feedback */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-item span {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--accent-color);
+    white-space: nowrap;
+    /* Evita que el precio se divida en dos lÃƒÂ­neas */
+    display: flex;
+    /* Para alinear el ÃƒÂ­cono */
+    align-items: center;
+    gap: 0.75rem;
+    /* Espacio entre el precio y el ÃƒÂ­cono */
+}
+
+.pricing-item span i {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    transition: opacity var(--transition-speed);
+}
+
+.hero-pricing p span {
+    font-weight: 700;
+    font-size: 0.95rem;
+    /* Reducido */
+    color: var(--accent-color);
+    /* Color de acento para el precio */
+}
+
+.hero-pricing-actions {
+    margin-top: 1rem;
+    /* Reducido */
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.hero-pricing-actions .btn-secondary-action {
+    padding: 0.4rem 0.8rem;
+    /* Padding mÃƒÂ¡s pequeÃƒÂ±o para estos botones */
+}
+
+/* --- NUEVO: Estilos para las Opciones de AtenciÃƒÂ³n en el Hero --- */
+.hero-options {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.option-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark-color);
+    transition: var(--transition-speed);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.option-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background-color: var(--white-color);
+}
+
+.option-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-right: 1.5rem;
+}
+
+.option-item .arrow {
+    margin-left: auto;
+    color: var(--secondary-color);
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.option-item:hover .arrow {
+    transform: translateX(5px);
+}
+
+.option-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.option-text strong {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Se reutiliza el estilo .btn-secondary-action para el botÃƒÂ³n "Ver Detalles" */
+.therapist-card-mini .btn-subtle {
+    margin-top: auto;
+    /* Empuja el botÃƒÂ³n hacia abajo */
+}
+
+
+
+/* --- 2. Servicios --- */
+.services-grid,
+.servicios-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Una columna por defecto (mÃ³vil) */
+    gap: 2rem;
+    /* Reducido para mejor visualizaciÃ³n en mÃ³vil */
+    padding: 0 1rem;
+    /* AÃ±adido padding lateral para evitar que toque los bordes */
+}
+
+.service-card {
+    background-color: var(--white-color);
+    /* Fondo blanco sÃƒÂ³lido */
+    border: 1px solid #f0f0f0;
+    /* Borde sutil */
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.07);
+    /* Sombra para fondo claro */
+    display: flex;
+    /* Habilita Flexbox */
+    flex-direction: column;
+    /* Apila los elementos verticalmente */
+}
+
+@media (max-width: 768px) {
+    .service-card {
+        padding: 1.5rem;
+    }
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajuste de colores de texto para que contrasten con el fondo de la secciÃƒÂ³n */
+
+/* Ajuste de colores de texto para que contrasten con el fondo de la secciÃƒÂ³n */
+.service-card .icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    /* Slightly larger */
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.service-card p,
+.service-description {
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    /* Improved readability */
+    color: #555;
+    /* Better contrast */
+    line-height: 1.6;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    /* Ensure list is always left-aligned */
+    width: 100%;
+    /* Ensure full width usage */
+}
+
+.service-list li {
+    position: relative;
+    padding-left: 25px;
+    /* More space for bullet */
+    margin-bottom: 0.85rem;
+    /* More spacing between items */
+    font-size: 1rem;
+    color: #444;
+    line-height: 1.5;
+}
+
+.service-list li::before {
+    content: '\f00c';
+    /* Font Awesome check icon instead of dot for clearer list */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    top: 2px;
+}
+
+/* Estilos para la galerÃƒÂ­a dentro de la tarjeta de servicio */
+.service-card-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    /* Espacio sobre la galerÃƒÂ­a */
+    margin-bottom: 1.5rem;
+    /* Espacio debajo de la galerÃƒÂ­a, antes del botÃƒÂ³n */
+}
+
+.service-card-gallery img {
+    width: 100%;
+    height: 120px;
+    /* Altura fija para las imÃƒÂ¡genes */
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    /* Indica que la imagen es clickeable */
+}
+
+.service-card-gallery img:hover {
+    transform: scale(1.05);
+    /* Efecto de zoom al pasar el cursor */
+}
+
+/* --- NUEVO: Estilos para el precio en la tarjeta de servicio --- */
+.service-card-price {
+    margin-top: auto;
+    /* Empuja el precio hacia abajo */
+    padding-top: 1.5rem;
+    /* Espacio sobre el precio */
+    margin-bottom: 1.5rem;
+    /* Espacio antes del botÃƒÂ³n */
+    border-top: 1px solid #f0f0f0;
+}
+
+.price-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.price-amount {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+/* Estilo para el subtÃƒÂ­tulo de la secciÃƒÂ³n de terapeutas */
+.subsection-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-top: 4rem;
+    /* Espacio sobre el tÃƒÂ­tulo */
+}
+
+/* --- Estilos para el Modal de ImÃƒÂ¡genes (Lightbox) --- */
+.image-modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    z-index: 3000;
+    /* Por encima de todo lo demÃƒÂ¡s */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    /* Usar vh para asegurar que cubra toda la pantalla visible */
+    background-color: rgba(0, 0, 0, 0.85);
+    /* Fondo oscuro mÃƒÂ¡s opaco */
+    backdrop-filter: blur(5px);
+    /* display: flex; se controla con la clase .active */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-modal.active {
+    display: flex;
+    /* Se muestra al aÃƒÂ±adir la clase active */
+    opacity: 1;
+}
+
+.image-modal-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+
+
+
+.btn-notification {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color var(--transition-speed);
+}
+
+.btn-notification:hover {
+    color: var(--dark-color);
+}
+
+/* --- 4. Sobre MÃƒÂ­ --- */
+.about-me-image .image-wrapper {
+    width: 280px;
+    /* TamaÃƒÂ±o fijo para el contenedor de la imagen */
+    height: 280px;
+    margin: 0 auto 2rem auto;
+    /* Centrado en mÃƒÂ³vil */
+}
+
+.about-me-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-me-image .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Imagen circular */
+    object-fit: cover;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border: 10px solid var(--white-color);
+}
+
+.about-me-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.about-me-content {
+    text-align: center;
+}
+
+#sobre-mi h2,
+#sobre-mi h3,
+#sobre-mi h4 {
+    color: var(--dark-color);
+    /* Aseguramos que los tÃƒÂ­tulos sean oscuros */
+}
+
+.about-me-grid {
+    grid-template-columns: 1fr;
+}
+
+.about-me-credentials {
+    margin-bottom: 1.5rem;
+}
+
+.about-me-credentials h3 {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    margin-bottom: 0.25rem;
+}
+
+.about-me-credentials p {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.about-me-description {
+    /* Contenedor para el texto principal en el nuevo layout de escritorio */
+    margin-top: 2rem;
+}
+
+.about-me-text {
+    font-size: 1.1rem;
+    /* Mantenemos el tamaÃƒÂ±o de fuente */
+    margin: 2rem 0;
+    /* Espacio vertical consistente */
+}
+
+.about-me-cta {
+    position: relative;
+    font-style: italic;
+    color: var(--primary-color);
+    margin: 2rem 0;
+    font-size: 1.2rem;
+    padding: 1.5rem 2rem 1.5rem 3rem;
+    border-left: 4px solid var(--accent-color);
+    background-color: #fdfcfb;
+    text-align: left;
+}
+
+.about-me-cta::before {
+    content: 'Ã¢â‚¬Å“';
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: 4rem;
+    color: var(--accent-color);
+    opacity: 0.5;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.about-me-signature {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-top: 1rem;
+}
+
+/* --- Estilos para los botones de acciÃƒÂ³n en "Sobre MÃƒÂ­" --- */
+.about-me-actions {
+    margin-top: 2.5rem;
+    text-align: center;
+    /* Centrado en mÃƒÂ³vil */
+}
+
+.about-me-social {
+    display: flex;
+    justify-content: center;
+    /* Centrado por defecto */
+    margin-top: 1.5rem;
+    gap: 2rem;
+}
+
+.about-me-social a {
+    font-size: 1.6rem;
+    color: var(--secondary-color);
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.about-me-social a:hover {
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* --- Estilos para la informaciÃƒÂ³n de precios en "Sobre MÃƒÂ­" --- */
+.pricing-info {
+    margin: 2rem 0;
+    /* Espacio vertical consistente */
+    padding: 1.5rem;
+    background-color: #f9fafb;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+}
+
+.pricing-info h4 {
+    color: var(--dark-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.pricing-info ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
+}
+
+.pricing-info ul li {
+    margin-bottom: 0.5rem;
+}
+
+.pricing-note {
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* --- Nuevo Sistema de Tarjetas de Terapeutas --- */
+.therapists-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Una columna en mÃƒÂ³vil */
+    gap: 2.5rem;
+    /* Espacio entre tarjetas */
+}
+
+.therapist-card {
+    background-color: var(--white-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    text-align: center;
+}
+
+/* Ajustes para el contenido de las tarjetas en mÃƒÂ³vil */
+.therapist-card {
+    padding: 1.5rem;
+    /* Padding reducido en mÃƒÂ³vil */
+}
+
+.therapist-card .about-me-image .image-wrapper {
+    width: 150px;
+    /* Imagen mÃƒÂ¡s pequeÃƒÂ±a en mÃƒÂ³vil */
+    height: 150px;
+    margin: 0 auto 1.5rem auto;
+    /* Margen reducido */
+}
+
+.therapist-card .about-me-credentials h3 {
+    font-size: 1.3rem;
+    /* TÃƒÂ­tulo ligeramente mÃƒÂ¡s pequeÃƒÂ±o */
+}
+
+.therapist-card .about-me-text {
+    margin: 1.5rem 0;
+    /* Margen reducido */
+}
+
+.therapist-card .about-me-image img {
+    margin-bottom: 1rem;
+}
+
+.therapist-card .pricing-info {
+    margin: 1.5rem 0;
+    /* Margen reducido */
+}
+
+.therapist-card .pricing-info {
+    margin-top: auto;
+    /* Empuja la secciÃƒÂ³n de precios hacia abajo */
+}
+
+/* --- Estilos para la descripciÃƒÂ³n expandible --- */
+.about-me-description-wrapper {
+    position: relative;
+    max-height: 70px;
+    /* Altura inicial para mÃƒÂ³vil */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    margin-bottom: 1rem;
+    /* Espacio antes del botÃƒÂ³n */
+    text-align: left;
+    /* Alineado a la izquierda para mejor legibilidad */
+}
+
+.therapist-card .about-me-description-wrapper {
+    text-align: left;
+    /* Alinea el texto a la izquierda dentro de la tarjeta */
+}
+
+.about-me-description-wrapper.expanded {
+    max-height: none;
+    /* Permite la altura completa */
+}
+
+.about-me-description-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    /* Altura del efecto de desvanecimiento */
+    background: linear-gradient(to top, var(--white-color), transparent);
+    pointer-events: none;
+    /* Permite clics a travÃƒÂ©s del overlay */
+    transition: opacity 0.5s ease-out;
+}
+
+.about-me-description-wrapper.expanded::after {
+    opacity: 0;
+    /* Oculta el efecto de desvanecimiento cuando estÃƒÂ¡ expandido */
+}
+
+.read-more-btn {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    /* Espacio aÃƒÂ±adido para separar del bloque de precios */
+    display: block;
+    /* Para que margin-top y auto margins funcionen */
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    /* Ajusta el ancho al contenido del botÃƒÂ³n */
+    cursor: pointer;
+}
+
+.accordion-container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.accordion-item {
+    margin-bottom: 1rem;
+}
+
+.accordion-button {
+    width: 100%;
+    background-color: var(--white-color);
+    color: var(--dark-color);
+    cursor: pointer;
+    padding: 1.2rem;
+    text-align: left;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    /* Sombra sutil aÃƒÂ±adida */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion-button:hover,
+.accordion-button.active {
+    /* Se mantiene el hover */
+    background-color: #f0f0f0;
+}
+
+.accordion-button .icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-button.active .icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content,
+.tab-content {
+    display: none;
+    padding: 1.5rem;
+    background-color: var(--white-color);
+    border: 1px solid #eee;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.accordion-content ul {
+    list-style-position: outside;
+    padding-left: 0.5rem;
+}
+
+.accordion-content p,
+.accordion-content ul,
+.tab-content p,
+.tab-content ul {
+    margin-bottom: 1rem;
+}
+
+.accordion-content .source-link,
+.tab-content .source-link {
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.accordion-content .source-link a,
+.tab-content .source-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.accordion-content .source-link a:hover,
+.tab-content .source-link a:hover {
+    text-decoration: underline;
+}
+
+.accordion-content .disclaimer,
+.tab-content .disclaimer {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffeeba;
+    padding: 1rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+}
+
+/* --- NUEVA SECCIÃƒâ€œN: Recursos y Modalidades --- */
+/* Se eliminan los fondos especÃƒÂ­ficos para que hereden del body o de la regla nth-of-type */
+
+.recursos-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+}
+
+.recursos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.recursos-group {
+    background-color: var(--white-color);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    text-align: center;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.recursos-group:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.recursos-group h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+}
+
+.recursos-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-recurso {
+    display: block;
+    padding: 1rem;
+    /* Mantenemos el padding */
+    border: 2px solid var(--primary-color);
+    /* Borde azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    /* TransiciÃƒÂ³n completa */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    /* Sombra sutil por defecto */
+
+}
+
+.btn-recurso:hover {
+    background-color: var(--secondary-color);
+    color: var(--light-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    /* Sombra mejorada en hover */
+}
+
+/* Estilo para detalles del profesional (FONASA) */
+.professional-details {
+    background-color: #f8f9fa;
+    /* Tono neutro y elegante */
+    border-left: 4px solid var(--primary-color);
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+}
+
+.professional-details p {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.professional-details ul {
+    padding-left: 0;
+    /* Resetea el padding para que no se vea desalineado */
+}
+
+.professional-details ul li a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color var(--transition-speed);
+}
+
+.professional-details ul li a:hover {
+    text-decoration: none;
+}
+
+/* --- Estilos para la secciÃƒÂ³n de la Consulta --- */
+.consulta-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    /* Altura fija para consistencia */
+    object-fit: cover;
+    /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.gallery-item img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo unificado para el texto de las landing pages */
+.landing-text {
+    font-size: 1.05rem;
+    /* TamaÃƒÂ±o de fuente consistente */
+}
+
+/* Estilos para nuevas secciones en landing pages */
+.landing-section {
+    margin-top: 4rem;
+}
+
+.section-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: -2rem auto 3rem auto;
+}
+
+/* Estilos para la lista de Mitos y Realidades (dl) */
+.myths-realities-list dt {
+    font-weight: bold;
+}
+
+.myths-realities-list dd {
+    margin-left: 0;
+    /* Resetea la indentaciÃƒÂ³n por defecto */
+    margin-bottom: 1rem;
+    /* Espacio entre cada par de mito/realidad */
+}
+
+/* Estilos para listas con iconos */
+.icon-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.icon-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.8rem;
+}
+
+.icon-list-icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+    width: 30px;
+    text-align: center;
+}
+
+.icon-list-content {
+    flex-grow: 1;
+}
+
+.icon-list-content strong {
+    color: var(--dark-color);
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+/* Estilos para guÃƒÂ­as paso a paso */
+.step-guide {
+    margin: 2rem 0;
+}
+
+.step-item {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fdfdfd;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: var(--transition-speed);
+}
+
+.step-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin-right: 1.5rem;
+    line-height: 1;
+}
+
+.step-content strong {
+    color: var(--dark-color);
+}
+
+/* --- 6. Contacto --- */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+/* --- 7. Pie de PÃƒÂ¡gina --- */
+.main-footer {
+    background-color: var(--dark-color);
+    color: #adb5bd;
+    padding: 5rem 0 2rem 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+}
+
+.footer-grid h4 {
+    color: var(--white-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.footer-grid p,
+.footer-grid a {
+    color: #adb5bd;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.footer-grid a i {
+    /* AÃƒÂ±ade el color de acento a los iconos del footer */
+    color: var(--accent-color);
+    margin-right: 5px;
+    transition: color var(--transition-speed);
+}
+
+.footer-grid a:hover {
+    color: var(--white-color);
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    /* Centra los iconos en mÃƒÂ³vil */
+    gap: 1.5rem;
+    /* Espacio entre los iconos */
+    margin-bottom: 1rem;
+    /* Espacio debajo de los iconos */
+}
+
+.social-links a {
+    font-size: 1.5rem;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #495057;
+    font-size: 0.8rem;
+}
+
+.footer-bottom p {
+    margin-bottom: 0.5rem;
+}
+
+
+
+/* --- Estilos para el Modal de Terapeutas --- */
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fondo oscuro semitransparente */
+    backdrop-filter: blur(5px);
+
+}
+
+.modal.active {
+    display: flex;
+    /* Usamos flex para centrar el contenido */
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+    max-height: 90vh;
+    /* Altura mÃƒÂ¡xima para que no ocupe toda la pantalla */
+    overflow-y: auto;
+    /* Scroll si el contenido es muy largo */
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    background-color: #f1f3f5;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 35px;
+    text-align: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition-speed);
+}
+
+.modal-close:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    transform: rotate(90deg);
+}
+
+.therapist-card-full .about-me-text {
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+.therapist-card-full .pricing-info {
+    text-align: left;
+    margin: 1rem 0;
+}
+
+.therapist-card-full .about-me-social {
+    margin-top: 2rem;
+}
+
+.fab-option:hover {
+    transform: translateY(5px) scale(1);
+    /* Efecto de elevaciÃƒÂ³n al pasar el cursor */
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    filter: brightness(1.15);
+}
+
+.fab-container.active .fab-option {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* --- Media Queries para Tablets y Desktop --- */
+@media (min-width: 768px) {
+
+    /* Hamburger menu is hidden on desktop */
+    .hamburger-menu {
+        display: none;
+    }
+
+    /* Main navigation is visible and static on desktop */
+    .main-nav {
+        display: flex;
+        /* Ensure flex for aligning nav items and button */
+        position: static;
+        width: auto;
+        height: auto;
+        background: none;
+        box-shadow: none;
+        transform: none;
+        visibility: visible;
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        margin-left: auto;
+        /* Push nav and button to the right */
+    }
+
+    .main-nav ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        /* Horizontal navigation */
+    }
+
+    /* Main nav links */
+    .main-nav ul li a {
+        border: none;
+        /* No border for main nav links */
+        padding: 0.5rem 1.2rem;
+        /* Relieve y sombra para contraste sobre fondo claro */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 1px 1px 0px rgba(0, 0, 0, 0.2);
+        color: var(--white-color) !important;
+        font-weight: 700;
+        transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .main-nav ul li a:hover {
+        transform: translateY(-2px);
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6), 1px 1px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-agendar-btn {
+        margin-left: 1.5rem;
+        /* Space between nav and button */
+    }
+
+    h2 {
+        font-size: 2.8rem;
+    }
+
+    #hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-subtitle-secondary {
+        font-size: 1.6rem;
+    }
+
+    .services-grid,
+    .servicios-grid {
+        display: grid;
+        /* Usamos grid para un control mÃƒÂ¡s simple */
+        grid-template-columns: 1fr 1fr;
+        /* Dos columnas de igual tamaÃƒÂ±o */
+        gap: 2rem;
+        /* Espacio de separaciÃƒÂ³n entre las tarjetas */
+        max-width: 800px;
+        /* Ancho mÃƒÂ¡ximo para el grid */
+        margin: 0 auto;
+        /* Centra el grid dentro del contenedor principal */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem !important;
+        /* Reducido un tercio (forzado) */
+        margin-bottom: 2rem;
+    }
+
+    .about-me-image {
+        align-items: flex-start;
+    }
+
+    /* Layout de 2 columnas por defecto para "Sobre MÃƒÂ­" en escritorio */
+    .about-me-grid {
+        grid-template-columns: 280px 1fr;
+        gap: 3rem;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    /* Anula el layout de 2 columnas para pÃƒÂ¡ginas como Fonasa/Isapre */
+    .about-me-grid.single-column {
+        grid-template-columns: 1fr;
+        /* Fuerza una sola columna */
+        text-align: center;
+        /* Centra el texto para este layout */
+    }
+
+    .therapist-card {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        /* Columna de imagen mÃƒÂ¡s pequeÃƒÂ±a */
+        gap: 2.5rem;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    .therapists-grid {
+        grid-template-columns: 1fr 1fr;
+        /* Dos columnas para las tarjetas en escritorio */
+        padding: 0 5%;
+        /* AÃƒÂ±ade padding horizontal para que no toque los bordes */
+        max-width: 100%;
+        /* Asegura que ocupe todo el ancho disponible */
+        gap: 2.5rem;
+    }
+
+    .therapist-card {
+        padding: 2rem;
+        /* Restauramos el padding para desktop */
+    }
+
+    .therapist-card .about-me-image .image-wrapper {
+        width: 220px;
+        /* TamaÃƒÂ±o de imagen reducido */
+        height: 220px;
+        /* TamaÃƒÂ±o de imagen reducido */
+        margin: 0;
+        /* Restauramos el margen para desktop */
+    }
+
+    .therapist-card .about-me-credentials h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-me-description-wrapper {
+        max-height: 100px;
+        /* Un poco mÃƒÂ¡s de altura para desktop */
+    }
+
+    .read-more-btn {
+        margin-left: 0;
+        /* Alinea el botÃƒÂ³n a la izquierda en desktop */
+    }
+
+    .therapist-content-col {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sobre-nosotros .about-me-description-wrapper {
+        text-align: left;
+    }
+
+    .therapist-card .about-me-image img {
+        margin-bottom: 1rem;
+    }
+
+    .therapist-card .about-me-social {
+        justify-content: flex-start;
+    }
+
+    .therapist-card .about-me-actions {
+        text-align: left;
+    }
+
+    /* Ajustes del modal para escritorio */
+    .therapist-card-full {
+        grid-template-columns: 220px 1fr;
+        gap: 2.5rem;
+        text-align: left;
+    }
+
+    /* Restauramos el tamaÃƒÂ±o del botÃƒÂ³n del hero para escritorio */
+    .btn-hero-secondary {
+        padding: 1.2rem 3rem;
+        font-size: 1.1rem;
+    }
+
+    .about-me-credentials {
+        margin-top: 0 !important;
+        /* Resetea el margen en escritorio */
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(4, 1fr);
+        text-align: left;
+    }
+
+    .footer-grid .social-links {
+        justify-content: flex-start;
+        /* Alinea los iconos a la izquierda en escritorio */
+    }
+
+    .recursos-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        /* 3 columnas en escritorio */
+    }
+
+    .servicios-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .steps-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (min-width: 600px) {
+    .therapists-grid-hero {
+        flex-direction: row;
+        justify-content: center;
+        /* Mantiene el centrado en pantallas mÃƒÂ¡s grandes */
+    }
+}
+
+/* Ocultar/Mostrar elementos segÃƒÂºn el tamaÃƒÂ±o de pantalla */
+@media (max-width: 767px) {
+    .about-us-grid {
+        grid-template-columns: 1fr;
+        /* La imagen y el texto se apilan en mÃƒÂ³vil */
+    }
+
+    #hero::before {
+        background-position: right center;
+        /* Alinea la imagen de fondo a la derecha en mÃƒÂ³vil */
+    }
+
+    /* ReducciÃƒÂ³n de tamaÃƒÂ±o de texto en hero de landing pages (Fonasa, Isapre) para mÃƒÂ³vil */
+    .hero-landing h1 {
+        font-size: 1.8rem;
+        /* TamaÃƒÂ±o de fuente ajustado para mÃƒÂ³vil */
+    }
+
+    .hero-landing p {
+        font-size: 1rem;
+        /* TamaÃƒÂ±o de fuente ajustado para mÃƒÂ³vil */
+        max-width: 90%;
+        margin: 1rem auto 0 auto;
+    }
+}
+
+/* --- Media Query para MÃƒÂ³vil en modo Horizontal (Landscape) --- */
+@media (orientation: landscape) and (max-height: 500px) {
+
+    /* Ajusta el hero de la pÃƒÂ¡gina principal para que no se corte */
+    #hero {
+        height: auto;
+        /* Permite que la altura se ajuste al contenido */
+        min-height: 100vh;
+        /* Asegura que al menos ocupe la pantalla, pero puede crecer */
+        padding-top: calc(var(--header-height) + 3rem);
+        /* Espacio superior */
+        padding-bottom: 3rem;
+        /* Espacio inferior */
+    }
+}
+
+/* --- BotÃƒÂ³n Flotante de WhatsApp (Unificado) --- */
+.whatsapp-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    border-radius: 50px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-fab:hover {
+    background-color: var(--primary-color);
+    /* Fondo azulado */
+    color: var(--white-color);
+    /* Letras blancas */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.whatsapp-fab i {
+    font-size: 1.8rem;
+}
+
+/* --- 8. Formulario "Mantente Informado" --- */
+#contacto {
+    color: var(--dark-color);
+    padding: 5rem 0;
+}
+
+#contacto h2 {
+    color: var(--dark-color);
+    margin-bottom: 2rem;
+    /* Aumentado para dar mÃƒÂ¡s espacio */
+}
+
+#contacto .highlight {
+    color: var(--primary-color);
+    /* Usamos el color primario para consistencia */
+}
+
+#contacto .section-intro {
+    color: var(--text-color);
+    margin-bottom: 3rem;
+    max-width: 600px;
+}
+
+.contact-header {
+    background-color: #faf9f5;
+    /* Fondo crema */
+    padding: 2rem;
+    border-radius: 12px;
+    margin: 0 auto 3rem auto;
+    max-width: 650px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    text-align: center;
+}
+
+.contact-header .section-intro {
+    margin-bottom: 0;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    background-color: var(--white-color);
+    color: var(--dark-color);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(91, 124, 153, 0.25);
+}
+
+
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* --- Estilos para las Tarjetas de Ayuda en "Sobre Nosotros" --- */
+.help-topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.topic-card {
+    background-color: var(--white-color);
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    cursor: pointer;
+    display: flex;
+    /* AÃƒÂ±adido para controlar la altura del contenido interno */
+    flex-direction: column;
+    /* Apila los elementos verticalmente */
+    justify-content: center;
+    /* Centra el contenido verticalmente */
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.topic-header {
+    padding: 1.2rem 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background-color var(--transition-speed);
+    flex-grow: 1;
+    /* Asegura que el header ocupe todo el espacio vertical disponible */
+}
+
+.topic-card:hover .topic-header {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.topic-card i {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    transition: color var(--transition-speed);
+}
+
+.topic-card:hover .topic-header i {
+    color: var(--white-color);
+}
+
+/* --- Estilos para los Modales de Temas de Ayuda --- */
+.topic-modal .modal-content {
+    max-width: 450px;
+    /* Ancho mÃƒÂ¡s reducido para estos modales */
+    text-align: center;
+    padding: 2.5rem;
+}
+
+.topic-modal i {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.topic-modal h3 {
+    color: var(--dark-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Estilos para el Carrusel de Terapeutas (Manual) - OVERRIDE --- */
+.therapist-carousel {
+    width: 100% !important;
+    max-width: 900px !important;
+    margin: 2rem auto 0 auto !important;
+    overflow: hidden !important;
+    position: relative !important;
+    padding: 0 50px !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+}
+
+.therapist-track {
+    display: flex !important;
+    transition: transform 0.5s ease-in-out !important;
+    width: 100% !important;
+    gap: 0 !important;
+}
+
+.therapist-carousel .therapist-card-mini {
+    width: 33.333% !important;
+    flex: 0 0 33.333% !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.carousel-btn {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background-color: var(--white-color) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.carousel-btn:hover {
+    background-color: var(--primary-color) !important;
+    color: var(--white-color) !important;
+}
+
+.carousel-prev {
+    left: 0 !important;
+}
+
+.carousel-next {
+    right: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .therapist-carousel {
+        padding: 0 40px !important;
+    }
+
+    .therapist-carousel .therapist-card-mini {
+        width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+}
+
+
+/* --- Estilos para el Carrusel 3D (Cilindro) - OVERRIDE --- */
+.therapist-carousel {
+    perspective: 1000px !important;
+    overflow: visible !important;
+    /* Permitir que el efecto 3D se salga un poco si es necesario */
+    padding: 40px 0 !important;
+    /* Espacio vertical para la perspectiva */
+    height: 400px !important;
+    /* Altura fija necesaria para posicionamiento absoluto */
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.therapist-track {
+    position: relative !important;
+    width: 250px !important;
+    /* Ancho base de la tarjeta */
+    height: 350px !important;
+    /* Altura base de la tarjeta */
+    transform-style: preserve-3d !important;
+    transition: transform 1s ease-out !important;
+    /* TransiciÃ³n suave de rotaciÃ³n */
+    display: block !important;
+    /* Reset flex */
+}
+
+.therapist-carousel .therapist-card-mini {
+    position: absolute !important;
+    width: 250px !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #ddd !important;
+    /* Ocultar la cara trasera si se desea, o dejarla visible */
+    backface-visibility: hidden !important;
+    /* Sombra para dar profundidad */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    opacity: 0.9 !important;
+    transition: opacity 0.3s !important;
+    padding: 1.5rem !important;
+    margin: 0 !important;
+    flex: none !important;
+}
+
+/* Resaltar la tarjeta frontal */
+.therapist-carousel .therapist-card-mini.active-card {
+    opacity: 1 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    border-color: var(--accent-color) !important;
+    z-index: 10 !important;
+}
+
+/* Botones de navegaciÃ³n posicionados fuera del cilindro */
+.carousel-btn {
+    z-index: 100 !important;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    width: 50px !important;
+    height: 50px !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
+.carousel-prev {
+    left: 10px !important;
+}
+
+.carousel-next {
+    right: 10px !important;
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+    .therapist-carousel {
+        height: 350px !important;
+        perspective: 800px !important;
+    }
+
+    .therapist-track {
+        width: 220px !important;
+        height: 300px !important;
+    }
+
+    .therapist-carousel .therapist-card-mini {
+        width: 220px !important;
+    }
+}
+
+
+/* --- Estilos para el Carrusel 3D (Coverflow) - RE-OVERRIDE --- */
+.therapist-carousel {
+    perspective: 1200px !important;
+    overflow: visible !important;
+    padding: 60px 0 !important;
+    height: 500px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+}
+
+.therapist-track {
+    position: relative !important;
+    width: 300px !important;
+    height: 450px !important;
+    transform-style: preserve-3d !important;
+    display: block !important;
+    transform: none !important;
+}
+
+.therapist-carousel .therapist-card-mini {
+    position: absolute !important;
+    width: 100% !important;
+    height: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    background: #fff !important;
+    border-radius: 20px !important;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    backface-visibility: hidden !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}
+
+/* Image styles within card - Slice Completa */
+.therapist-carousel .therapist-card-mini img.therapist-mini-img {
+    width: 100% !important;
+    height: 85% !important;
+    object-fit: cover !important;
+    object-position: center top !important;
+    border-bottom: 5px solid var(--accent-color) !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Text styles */
+.therapist-carousel .therapist-card-mini h3 {
+    margin: 12px 0 2px 0 !important;
+    font-size: 1.6rem !important;
+    color: var(--primary-color) !important;
+    font-weight: 700 !important;
+}
+
+.therapist-carousel .therapist-card-mini .therapist-subtitle {
+    margin: 0 !important;
+    font-size: 0.9rem !important;
+    color: #666 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.therapist-carousel .therapist-card-mini .btn-subtle {
+    display: none !important;
+}
+
+/* Active State Enhancements */
+.therapist-carousel .therapist-card-mini.active-card {
+    box-shadow: 0 25px 50px rgba(184, 115, 51, 0.4) !important;
+    z-index: 100 !important;
+}
+
+/* Navigation Buttons adjustments */
+.carousel-btn {
+    top: 50% !important;
+    margin-top: -30px !important;
+}
+
+.carousel-prev {
+    left: 10% !important;
+}
+
+.carousel-next {
+    right: 10% !important;
+}
+
+
+/* --- Responsive Adjustments for 3D Carousel --- */
+@media (max-width: 768px) {
+    .therapist-carousel {
+        height: 400px !important;
+        /* Reduce height for mobile */
+        padding: 40px 0 !important;
+        perspective: 800px !important;
+        /* Slightly reduce perspective */
+    }
+
+    .therapist-track {
+        width: 220px !important;
+        /* Narrower track matching Isapre */
+        height: 340px !important;
+    }
+
+    /* Adjust buttons to be closer to edges */
+    .carousel-prev {
+        left: 5px !important;
+    }
+
+    .carousel-next {
+        right: 5px !important;
+    }
+
+    .therapist-carousel .therapist-card-mini .therapist-subtitle {
+        font-size: 0.8rem !important;
+    }
+
+    .therapist-carousel .therapist-card-mini h3 {
+        font-size: 1.4rem !important;
+    }
+}
+
+
+
+
+/* Force centering fix for mobile */
+@media (max-width: 768px) {
+    .therapist-track {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+
+/* --- Isapre 3D Carousel Specific Overrides --- */
+.isapre-3d-carousel .therapist-card-mini.isapre-card {
+    /* Reset some mini card styles from therapist carousel */
+    padding: 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    text-align: center !important;
+}
+
+.isapre-3d-carousel .therapist-card-mini.isapre-card h4 {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    clip: auto !important;
+    margin: 10px 0 !important;
+    color: var(--primary-color) !important;
+    font-size: 1.3rem !important;
+}
+
+.isapre-3d-carousel .therapist-card-mini.isapre-card .isapre-logo {
+    height: 50px !important;
+    width: auto !important;
+    max-width: 80% !important;
+    object-fit: contain !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Adjust card content */
+.isapre-3d-carousel .reimbursement-info p {
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+}
+
+.isapre-3d-carousel .plans-reviewed {
+    font-size: 0.8rem !important;
+    color: #888 !important;
+    border-top: 1px solid #eee !important;
+    width: 100% !important;
+    padding-top: 5px !important;
+    margin-top: 10px !important;
+}
+
+/* Fix active card shadow for isapre cards */
+.isapre-3d-carousel .therapist-card-mini.isapre-card.active-card {
+    border-top: 5px solid !important;
+    /* Restore specific border colors */
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+}
+
+/* Restore border colors from original css */
+.isapre-card.cruzblanca {
+    border-color: #0033A0 !important;
+}
+
+.isapre-card.colmena {
+    border-color: #FFC300 !important;
+}
+
+.isapre-card.consalud {
+    border-color: #009A44 !important;
+}
+
+.isapre-card.banmedica {
+    border-color: #D92231 !important;
+}
+
+.isapre-card.vidatres {
+    border-color: #00AEEF !important;
+}
+
+.isapre-card.masvida {
+    border-color: #F37021 !important;
+}
+
+.isapre-card.esencial {
+    border-color: #E6007E !important;
+}
+
+
+/* --- Isapre 3D Carousel Mobile Adjustments --- */
+@media (max-width: 768px) {
+    .isapre-3d-carousel .therapist-track {
+        width: 220px !important;
+        height: 340px !important;
+    }
+
+    .isapre-3d-carousel .therapist-card-mini.isapre-card {
+        padding: 1rem !important;
+    }
+
+    .isapre-3d-carousel .therapist-card-mini.isapre-card h4 {
+        font-size: 1.1rem !important;
+        margin: 5px 0 !important;
+    }
+
+    .isapre-3d-carousel .therapist-card-mini.isapre-card .isapre-logo {
+        height: 40px !important;
+    }
+
+    .isapre-3d-carousel .reimbursement-info p {
+        font-size: 0.8rem !important;
+    }
+}
+
+
+/* --- Newspaper / Editorial Styles --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
+
+.newspaper-article {
+    font-family: 'Poppins', sans-serif;
+    color: #2c3e50;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.newspaper-article h2 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.newspaper-meta {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1.5rem;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newspaper-article p,
+.newspaper-article li {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    /* Newspaper justification */
+    text-justify: inter-word;
+}
+
+@media (max-width: 768px) {
+
+    .newspaper-article p,
+    .newspaper-article li {
+        text-align: justify !important;
+        /* Force on mobile */
+    }
+}
+
+/* Drop Cap for the first paragraph of the content */
+.newspaper-article .drop-cap-text::first-letter {
+    float: left;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 0.85;
+    padding-right: 0.5rem;
+    padding-top: 0.2rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.newspaper-article h3,
+.newspaper-article h4 {
+    font-family: 'Playfair Display', serif;
+    color: #2c3e50;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Article CTA Section */
+.article-cta-box {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background-color: #f8f9fa;
+    border-top: 4px solid var(--primary-color);
+    text-align: center;
+    border-radius: 4px;
+}
+
+.article-cta-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #1a1a1a;
+}
+
+.article-cta-box p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    /* Center align CTA text */
+}
+
+.article-cta-box .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.article-cta-box .btn:hover {
+    background-color: #a89642;
+    /* Darken primary color */
+}
+
+
+/* Responsive fix for Therapist Carousel - Mobile Sizing */
+@media (max-width: 768px) {
+    .therapist-carousel .therapist-card-mini {
+        flex: 0 0 260px !important;
+        /* Reduce width for mobile */
+    }
+}
+
+
+/* --- New Therapist Card Animation Styles --- */
+.card-action-label {
+    width: 100%;
+    height: 30px;
+    background-color: var(--accent-color);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    margin-top: -5px;
+    /* Overlap slightly with border */
+    z-index: 5;
+}
+
+.card-action-label span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-action-label .text-primary {
+    transform: translateY(0);
+}
+
+.card-action-label .text-secondary {
+    transform: translateY(100%);
+    color: #333;
+    /* Dark text for contrast on hover if needed, or keep white */
+}
+
+.therapist-card-mini:hover .card-action-label .text-primary {
+    transform: translateY(-100%);
+}
+
+.therapist-card-mini:hover .card-action-label .text-secondary {
+    transform: translateY(0);
+}
+
+
+
+/* Force override for image height to make room for label */
+.therapist-carousel .therapist-card-mini img.therapist-mini-img {
+    height: 70% !important;
+}
+
+/* === Header Blog Refined Styles === */
+.landing-page-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0.5rem 0;
+    z-index: 1000;
+}
+
+.landing-page-header .logo span,
+.landing-page-header .main-nav ul li a {
+    color: var(--accent-color) !important;
+    font-weight: 700;
+}
+
+.landing-page-header .logo-icon {
+    filter: none !important;
+}
+
+.landing-page-header .btn {
+    background: transparent !important;
+    border: 1px solid var(--accent-color) !important;
+    color: var(--accent-color) !important;
+    text-shadow: none !important;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    box-shadow: none !important;
+}
+
+.landing-page-header .btn:hover {
+    background: var(--accent-color) !important;
+    color: #fff !important;
+}
+
+/* === Mobile Header Adjustments for Blog/Articles === */
+@media (max-width: 768px) {
+    .landing-page-header .container {
+        padding: 0 1rem !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+
+    .landing-page-header .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .landing-page-header .logo span {
+        font-size: 1rem !important;
+        /* Smaller text for mobile */
+        white-space: nowrap;
+    }
+
+    .landing-page-header .logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .landing-page-header .main-nav {
+        display: block !important;
+        /* Ensure nav is visible to show button */
+    }
+
+    .landing-page-header .btn {
+        padding: 0.3rem 0.6rem !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap;
+    }
+}
+
+/* === Global Logo Style — Elegante y sobrio === */
+.logo span {
+    color: var(--white-color);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-size: 1.05rem;
+}
+
+/* --- Isapre 3D Carousel Mobile Adjustments (Override) --- */
+@media (max-width: 768px) {
+    .isapre-3d-carousel .therapist-track {
+        width: 100% !important;
+        /* Fix clipped content */
+        max-width: 320px;
+        /* Limit width */
+        height: 380px !important;
+        /* Increase height for content */
+        margin: 0 auto;
+    }
+
+    .isapre-3d-carousel .therapist-card-mini.isapre-card {
+        padding: 1rem !important;
+        /* Ensure card fits within the track with 3D transforms */
+        max-width: 90%;
+    }
+}
+
+/* --- Therapist Carousel Mobile Resizing & Centering (Match Isapre Behavior) --- */
+@media (max-width: 768px) {
+
+    /* Reset track to block for absolute positioning */
+    .therapist-carousel .therapist-track {
+        display: block !important;
+        position: relative;
+        height: 520px !important;
+        overflow: hidden;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .therapist-carousel .therapist-card-mini {
+        position: absolute !important;
+        left: 50% !important;
+        top: 1rem !important;
+        margin-left: -88px !important;
+
+        flex: 0 0 176px !important;
+        width: 176px !important;
+        min-width: 176px !important;
+        max-width: 176px !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* Closing the media query started at 3246 */
+
+
+@media (max-width: 768px) {
+    .therapist-carousel .therapist-card-mini img.therapist-mini-img {
+        height: 210px !important;
+        /* Reduced image height for mobile */
+    }
+}
+
+
+/* --- Therapist Card Compaction (Mobile) --- */
+@media (max-width: 768px) {
+
+    /* Reduce track height to match shorter cards */
+    .therapist-carousel .therapist-track {
+        height: 380px !important;
+    }
+
+    /* Compact the card */
+    .therapist-carousel .therapist-card-mini {
+        height: auto !important;
+        /* Let content dictate height */
+        padding-bottom: 1rem !important;
+        /* Reduced bottom padding */
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Tighter text spacing */
+    .therapist-carousel .therapist-card-mini h3 {
+        margin: 8px 0 2px 0 !important;
+        font-size: 1.1rem !important;
+    }
+
+    .therapist-carousel .therapist-card-mini .therapist-subtitle {
+        margin-bottom: 8px !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* Hide the button to save space if needed, or make it smaller */
+    .therapist-carousel .therapist-card-mini .btn-subtle {
+        padding: 0.3rem 0.8rem !important;
+        font-size: 0.8rem !important;
+        margin-top: auto !important;
+        /* Push to bottom if flex */
+    }
+}
+
+
+/* --- RESTORE DESKTOP PARITY ON MOBILE (FINAL FIX) --- */
+@media (max-width: 768px) {
+
+    /* 1. Ensure Track Height accommodates the full card (Image + Text + Button) */
+    .therapist-carousel .therapist-track {
+        height: 420px !important;
+        /* Slightly increased to fit button without cut-off */
+    }
+
+    /* 2. Restore Full Card Styling (Shadows, Radius, Bg) */
+    .therapist-carousel .therapist-card-mini {
+        /* Geometry */
+        width: 176px !important;
+        height: auto !important;
+        position: absolute !important;
+        left: 50% !important;
+        margin-left: -88px !important;
+
+        /* Visuals (Desktop Match) */
+        background: #fff !important;
+        border-radius: 12px !important;
+        /* Standard desktop radius */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+        /* Restore depth */
+
+        /* Layout */
+        display: flex !important;
+        flex-direction: column !important;
+        padding-bottom: 1.2rem !important;
+        /* Space for button */
+        overflow: hidden !important;
+        /* Clip top corners of image */
+    }
+
+    /* 3. Restore Image Aspect Ratio & Size */
+    .therapist-carousel .therapist-card-mini img.therapist-mini-img {
+        width: 100% !important;
+        height: 210px !important;
+        /* Kept per user validation */
+        border-radius: 12px 12px 0 0 !important;
+        /* Top corners only */
+        margin-bottom: 0 !important;
+    }
+
+    /* 4. Restore Text Typography (Scaled but proportionally identical) */
+    .therapist-carousel .therapist-card-mini h3 {
+        font-size: 1.15rem !important;
+        margin: 10px 0 4px 0 !important;
+        font-weight: 700 !important;
+        color: var(--primary-color) !important;
+    }
+
+    .therapist-carousel .therapist-card-mini .therapist-subtitle {
+        font-size: 0.85rem !important;
+        margin-bottom: 12px !important;
+        color: #777 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    /* 5. Restore Button (Critical for 'Exact Match') */
+    .therapist-carousel .therapist-card-mini .btn-subtle {
+        display: inline-block !important;
+        margin-top: auto !important;
+        padding: 0.4rem 1rem !important;
+        font-size: 0.8rem !important;
+        border: 1px solid var(--accent-color) !important;
+        color: var(--primary-color) !important;
+        background: transparent !important;
+        border-radius: 20px !important;
+    }
+}
+
+
+/* --- DEFINITIVE DESKTOP-TO-MOBILE PARITY FIX --- */
+@media (max-width: 768px) {
+
+    /* 1. Reset Track */
+    .therapist-carousel .therapist-track {
+        height: 480px !important;
+        /* Plenty of space */
+    }
+
+    /* 2. Enforce Exact Desktop Styling on Mobile Mini Card */
+    .therapist-carousel .therapist-card-mini {
+        /* Dimensions */
+        width: 176px !important;
+        height: auto !important;
+        /* Auto height to fit everything naturaly */
+        min-height: 380px !important;
+        /* Ensure consistency */
+
+        /* Positioning */
+        position: absolute !important;
+        left: 50% !important;
+        margin-left: -88px !important;
+
+        /* Visuals - Exact Match */
+        background: #fff !important;
+        border-radius: 20px !important;
+        /* Match Desktop Radius */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+        border: none !important;
+
+        /* Layout - Flex Column */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        padding-bottom: 20px !important;
+    }
+
+    /* 3. Image - Desktop Ratio (85% of some container, or fixed ratio) */
+    .therapist-carousel .therapist-card-mini img.therapist-mini-img {
+        width: 100% !important;
+        height: 250px !important;
+        /* Taller image to match desktop 'slice' feel */
+        object-fit: cover !important;
+        border-radius: 20px 20px 0 0 !important;
+        /* Match top radius */
+        border-bottom: 5px solid var(--accent-color) !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* 4. Text - Scaled but Identical Font/Color */
+    .therapist-carousel .therapist-card-mini h3 {
+        margin: 15px 0 5px 0 !important;
+        font-size: 1.25rem !important;
+        /* Clear header */
+        font-weight: 700 !important;
+        color: var(--primary-color) !important;
+        text-align: center !important;
+    }
+
+    .therapist-carousel .therapist-card-mini .therapist-subtitle {
+        margin-bottom: 15px !important;
+        font-size: 0.85rem !important;
+        color: #666 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        text-align: center !important;
+    }
+
+    /* 5. Button - VISIBLE AND STYLED */
+    .therapist-carousel .therapist-card-mini .btn-subtle {
+        display: inline-block !important;
+        /* Force show */
+        margin-top: auto !important;
+        padding: 0.5rem 1.2rem !important;
+        border-radius: 50px !important;
+        font-size: 0.85rem !important;
+        background: transparent !important;
+        border: 1px solid #ddd !important;
+        color: #555 !important;
+        transition: all 0.3s ease !important;
+    }
+}
+
+
+/* --- Remove 'Ver Detalles' Button on Mobile (User Request) --- */
+@media (max-width: 768px) {
+    .therapist-carousel .therapist-card-mini .btn-subtle {
+        display: none !important;
+    }
+}
+
+
+/* --- Final compaction of Therapist Cards (Post-Parity) --- */
+@media (max-width: 768px) {
+
+    /* 1. Shrink Track */
+    .therapist-carousel .therapist-track {
+        height: 350px !important;
+        /* Reduced from 480px */
+    }
+
+    /* 2. Shrink Card Container */
+    .therapist-carousel .therapist-card-mini {
+        min-height: 0 !important;
+        /* Remove fixed height constraint */
+        height: auto !important;
+        padding-bottom: 15px !important;
+        /* Tighter bottom spacing */
+    }
+
+    /* 3. Reduce Image Height further */
+    .therapist-carousel .therapist-card-mini img.therapist-mini-img {
+        height: 190px !important;
+        /* Reduced from 250px */
+    }
+}
+
+
+/* --- Desktop Compaction (Match Mobile) --- */
+@media (min-width: 769px) {
+
+    /* Explicitly target desktop */
+    .therapist-carousel {
+        height: 480px !important;
+        /* Reduce overall carousel height */
+    }
+
+    .therapist-track {
+        height: 450px !important;
+        /* Reduce track height */
+    }
+
+    .therapist-carousel .therapist-card-mini {
+        height: auto !important;
+        /* Remove fixed height */
+        padding-bottom: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Reduce Image Height slightly for proportional look */
+    .therapist-carousel .therapist-card-mini img.therapist-mini-img {
+        height: 250px !important;
+        /* Valid desktop height, but kept tight */
+        /* margin-bottom: 0 !important; <-- Already set */
+    }
+
+    /* Hide 'Ver Detalles' button on Desktop too */
+    .therapist-carousel .therapist-card-mini .btn-subtle {
+        display: none !important;
+    }
+}
+
+
+/* --- Mobile Shadow Adjustment (Proportional Fix) --- */
+@media (max-width: 768px) {
+    .therapist-carousel .therapist-card-mini {
+        /* Reduced shadow to match 176px width */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .therapist-carousel .therapist-card-mini.active-card {
+        /* Slightly larger shadow for active state but still controlled */
+        box-shadow: 0 8px 20px rgba(184, 115, 51, 0.25) !important;
+    }
+}
+
+
+/* --- Ensure Background Cards Visibility (No Cut-off) --- */
+@media (max-width: 768px) {
+    .therapist-carousel {
+        overflow: visible !important;
+        /* Allow cards to extend outside */
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .therapist-carousel .therapist-track {
+        overflow: visible !important;
+        /* Allow cards to extend outside track */
+        width: 100% !important;
+        max-width: 100% !important;
+        /* Remove constraints */
+        margin: 0 !important;
+        /* height is already handled */
+    }
+}
+
+
+/* --- Performance Optimization (Scroll Fix) --- */
+.therapist-carousel .therapist-card-mini {
+    will-change: transform !important;
+    /* Hint browser to promote to layer */
+    backface-visibility: hidden !important;
+    /* Reduce repaint */
+    transform-style: preserve-3d !important;
+    /* Blur logic removed in JS */
+}
+
+
+/* --- Cloud Banner Redesign (Floating Pill) --- */
+.free-session-banner {
+    position: fixed !important;
+    /* Float above content */
+    top: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: auto !important;
+    max-width: 90% !important;
+    border-radius: 50px !important;
+    /* Cloud/Pill shape */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
+    padding: 10px 40px 10px 25px !important;
+    /* Extra padding right for close btn */
+    z-index: 9999 !important;
+    /* Highest layer */
+    font-size: 0.9rem !important;
+    /* Smaller text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.free-session-banner.hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateX(-50%) translateY(-20px) !important;
+}
+
+/* Close Button Style */
+.close-banner {
+    position: absolute !important;
+    right: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
+    line-height: 1 !important;
+    color: var(--primary-color) !important;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.close-banner:hover {
+    opacity: 1;
+}
+
+/* Ensure header doesn't overlap or look weird (reset if needed) */
+/* (Header is predominantly relative now so no huge conflict) */
+
+
+/* --- Banner Refinements (User Request) --- */
+.free-session-banner {
+    padding: 8px 35px 8px 20px !important;
+    /* Tighter padding */
+    font-weight: 600 !important;
+}
+
+.close-banner {
+    right: 10px !important;
+    font-size: 1.4rem !important;
+    /* Larger X */
+    font-weight: 800 !important;
+    color: var(--primary-color) !important;
+    opacity: 0.8 !important;
+    background: rgba(255, 255, 255, 0.4) !important;
+    /* Subtle bg for contrast */
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-banner:hover {
+    background: rgba(255, 255, 255, 0.8) !important;
+    opacity: 1 !important;
+}
+
+
+/* --- Transparent Header Override (User Request) --- */
+.main-header {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+}
+
+/* Ensure logo and toggle remain visible (they are already styled, but good to ensure z-index/color) */
+
+
+/* --- Banner Repositioning (User Request: Left & Lower) --- */
+.free-session-banner {
+    left: 20px !important;
+    transform: none !important;
+    /* Remove centering */
+    top: 100px !important;
+    /* Lower down */
+}
+
+
+/* --- Hero Overlay Fix (User Request) --- */
+.main-header {
+    position: absolute !important;
+    /* Overlays hero */
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Ensure no body padding pushes content down if default exists */
+body {
+    padding-top: 0 !important;
+}
+
+
+/* --- Hero Overlay Fix (Force Override) --- */
+body.page-isapre #hero,
+body.page-fonasa #hero {
+    padding-top: 6rem !important;
+    /* Force override of the query */
+}
+
+
+/* --- Mobile Menu: Right-side 50% sidebar --- */
+@media (max-width: 768px) {
+    .main-nav {
+        width: 50% !important;
+        left: auto !important;
+        right: 0 !important;
+        top: 0 !important;
+        height: 100vh !important;
+        border-radius: 0 !important;
+        overflow-y: auto !important;
+        box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3) !important;
+        border: none;
+    }
+}
+
+
+/* Update service card shadow */
+.service-card {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Floating WhatsApp Button */
+.floating-whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+    background-color: #25D366;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-whatsapp-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    color: white;
+}
+
+.floating-whatsapp-btn i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .floating-whatsapp-btn {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Location Section Redesign */
+.location-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: stretch;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.location-map,
+.location-image {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.location-map iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 400px;
+    /* Ensure map has height */
+}
+
+.location-image {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.location-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.location-image:hover img {
+    transform: scale(1.03);
+}
+
+.location-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.location-caption i {
+    color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+    .location-container {
+        grid-template-columns: 1fr;
+        padding: 0;
+        box-shadow: none;
+        background: transparent;
+        gap: 1.5rem;
+    }
+
+    .location-map,
+    .location-map iframe,
+    .location-image {
+        min-height: 300px;
+        height: 300px;
+    }
+}
+
+
+/* Updated Location Section - Caption Outside */
+.location-visuals {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+}
+
+.location-image {
+    flex-grow: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    min-height: 350px;
+}
+
+.location-caption-text {
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 1rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.location-caption-text i {
+    color: var(--accent-color);
+}
+
+
+/* Estilos para la secciÃ³n de precios mejorada */
+.pricing-design {
+    background-color: #f9f8f4;
+    border: 1px solid #e6e2d3;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing-design::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: var(--accent-color, #9A5F28);
+}
+
+.pricing-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    color: var(--primary-color, #2c3e50);
+}
+
+.pricing-header i {
+    color: var(--accent-color, #9A5F28);
+    font-size: 1.2rem;
+}
+
+.pricing-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.pricing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.pricing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dashed #dcd6c0;
+}
+
+.pricing-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.pricing-label {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.pricing-value {
+    font-weight: 700;
+    color: var(--primary-color, #2c3e50);
+    font-size: 1rem;
+    background: #fff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    border: 1px solid #e6e2d3;
+}
+
+.pricing-note {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #777;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+
+/* Fix horizontal scrolling on mobile */
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+    /* Ensure it respects overflow hidden */
+}
+
+/* --- Mobile Optimization Additions --- */
+
+@media (max-width: 768px) {
+
+    /* Footer Stack */
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 2rem !important;
+    }
+
+    .footer-col {
+        align-items: center !important;
+        /* Center content in column */
+    }
+
+    .social-links {
+        justify-content: center !important;
+    }
+
+    /* Modal Mobile Adjustments */
+    .therapist-card-full {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        text-align: left !important;
+    }
+
+    .therapist-image-col {
+        width: 100% !important;
+        max-width: 250px !important;
+        margin: 0 auto 1.5rem auto !important;
+    }
+
+    .therapist-content-col {
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+
+    /* Hero Text Adjustment */
+    .hero-text h1 {
+        font-size: 2.5rem !important;
+    }
+
+    .hero-text p {
+        font-size: 1rem !important;
+    }
+
+    /* General Padding */
+    section {
+        padding: 3rem 0 !important;
+    }
+}
+
+/* Ensure images don't overflow */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- Estilos para Botones de Servicios ClÃ­nicos (Relieve y Sombra) --- */
+.service-button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+    /* Reduced padding for more discreet look */
+    margin-bottom: 8px;
+    /* Reduced margin */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-left: 4px solid var(--primary-color);
+    /* Slightly thinner border */
+    border-radius: 8px;
+    /* Slightly smaller radius */
+    text-decoration: none !important;
+    color: #555 !important;
+    font-size: 0.9rem;
+    /* Smaller font */
+    font-weight: 500;
+    /* Slightly less heavy weight */
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* Much lighter shadow */
+    position: relative;
+    overflow: hidden;
+    line-height: 1.3;
+}
+
+.service-button:hover {
+    transform: translateY(-2px);
+    /* Less movement */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Lighter hover shadow */
+    background-color: #fdfdfd;
+    border-color: #d0d0d0;
+}
+
+.service-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.service-button i {
+    margin-right: 10px;
+    /* Reduced margin */
+    font-size: 0.9rem;
+    /* Smaller icon */
+    margin-top: 0 !important;
+}
+
+/* --- Global Shadow and Relief Utilities --- */
+
+/* Apply shadow and relief to buttons */
+.btn,
+.btn-secondary-action,
+.btn-hero,
+.btn-subtle,
+.btn-recurso {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover,
+.btn-secondary-action:hover,
+.btn-hero:hover,
+.btn-subtle:hover,
+.btn-recurso:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Apply shadow and relief to cards */
+.therapist-card,
+.service-card,
+.topic-card,
+.pricing-design,
+.contact-header,
+.about-me-cta {
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.therapist-card:hover,
+.service-card:hover,
+.topic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(50, 50, 93, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply subtle shadow to input fields for depth */
+.form-group input,
+.form-group textarea {
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Apply shadow to specific containers */
+.about-me-image .image-wrapper img {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Refine pricing cards */
+.pricing-design {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar subtle shadow */
+.main-header {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* === ISAPRE Reimbursement List (Accordion Style) === */
+.isapre-list-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    /* Soft shadow for "floating" effect */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Subtle border */
+    overflow: hidden;
+    /* Contains children */
+}
+
+.isapre-list-item {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    /* Indicador de click */
+}
+
+.isapre-list-item:last-child {
+    border-bottom: none;
+}
+
+.isapre-list-item:hover {
+    background-color: #fafafa;
+}
+
+/* Header (Always Visible) */
+.isapre-list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    user-select: none;
+    background: transparent;
+}
+
+.isapre-identity {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.isapre-list-logo {
+    height: 35px;
+    /* Fixed height for logos */
+    width: 100px;
+    /* Fixed width to align text */
+    object-fit: contain;
+    object-position: left;
+    filter: grayscale(100%);
+    /* Start gray */
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.isapre-list-item:hover .isapre-list-logo,
+.isapre-list-item.active .isapre-list-logo {
+    filter: grayscale(0%);
+    /* Color on hover/active */
+    opacity: 1;
+}
+
+.isapre-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark-color);
+}
+
+.toggle-icon {
+    color: #ccc;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.isapre-list-item.active .toggle-icon {
+    transform: rotate(180deg);
+    color: var(--primary-color);
+}
+
+/* Body (Hidden by default) */
+.isapre-list-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Smooth accordion animation */
+    background-color: #f9f9f9;
+    /* Slightly different bg for content */
+}
+
+.isapre-list-content {
+    padding: 1.5rem 2rem 2rem 2rem;
+    border-top: 1px solid #eee;
+}
+
+.isapre-list-content p {
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.isapre-list-content p i {
+    color: var(--primary-color);
+    /* Icon color */
+    width: 20px;
+    text-align: center;
+}
+
+.isapre-list-content p:last-child {
+    margin-bottom: 0;
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: #888;
+    margin-left: 0.5rem;
+}
+
+/* Plans Note Styles */
+.plans-note {
+    font-size: 0.9rem !important;
+    color: #777;
+    margin-top: 1rem;
+    font-style: italic;
+    justify-content: flex-end;
+    display: flex;
+    width: 100%;
+}
+
+/* Button to Request Info */
+.btn-isapre-info {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    /* Transparent background */
+    color: #666;
+    /* Subtler text color */
+    padding: 0.5rem 1rem;
+    /* Smaller padding */
+    border-radius: 6px;
+    /* Slightly smaller radius */
+    text-decoration: none;
+    font-weight: 500;
+    /* Less bold */
+    margin-top: 1rem;
+    /* Reduced margin */
+    transition: all 0.3s ease;
+    width: fit-content;
+
+    /* Proper button styling */
+    border: 1px solid #ddd;
+    /* Subtle border */
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    /* Smaller font */
+    line-height: 1.5;
+}
+
+.btn-isapre-info:hover {
+    background-color: #f5f5f5;
+    /* Light gray on hover */
+    color: #333;
+    /* Darker text on hover */
+    border-color: #bbb;
+    /* Slightly darker border */
+    transform: translateY(-1px);
+    /* Subtle lift */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .isapre-identity {
+        gap: 1rem;
+    }
+
+    .isapre-list-logo {
+        width: 80px;
+        height: 30px;
+    }
+
+    .isapre-list-header {
+        padding: 1.2rem 1.5rem;
+    }
+
+    .isapre-name {
+        font-size: 1rem;
+    }
+
+    /* Enhanced Mobile Readability */
+    .isapre-list-content {
+        padding: 1.5rem;
+    }
+
+    .isapre-list-content p {
+        font-size: 1.05rem;
+        /* Larger text for readability */
+        margin-bottom: 1rem;
+    }
+
+    .small-text {
+        font-size: 0.9rem;
+        display: block;
+        /* Break line for small text on mobile */
+        margin-left: 0;
+        margin-top: 0.2rem;
+    }
+
+    .btn-isapre-info {
+        width: 100%;
+        /* Full width button on mobile */
+        margin-top: 1.5rem;
+    }
+
+    /* Toggle visibility */
+    .desktop-text {
+        display: none !important;
+    }
+
+    .mobile-text {
+        display: inline !important;
+    }
+}
+
+/* Default hidden on desktop */
+.mobile-text {
+    display: none;
+}
+
+/* --- Mejoras para los enlaces de precios en el sidebar --- */
+.sidebar-box ul li a {
+    display: inline-block;
+    padding: 2px 10px;
+    margin: 2px -4px;
+    border-radius: 6px;
+    color: var(--primary-color) !important;
+    text-decoration: underline !important;
+    background-color: rgba(91, 124, 153, 0.05);
+    border: 1px solid rgba(91, 124, 153, 0.1);
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.sidebar-box ul li a:hover {
+    background-color: var(--primary-color);
+    color: white !important;
+    transform: translateY(-2px);
+    text-decoration: none !important;
+    box-shadow: 0 4px 12px rgba(91, 124, 153, 0.2);
+}
+
+/* ============================================
+   DESKTOP AESTHETIC REFINEMENTS (â‰¥769px)
+   Elegante y Sobrio
+   ============================================ */
+@media (min-width: 769px) {
+
+    /* --- Hero Section Desktop --- */
+    #hero h1 {
+        font-size: clamp(2.4rem, 4vw, 3.2rem);
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem !important;
+        font-weight: 300;
+        letter-spacing: 0.02em;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-subtitle-secondary {
+        font-size: 1.6rem;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+    }
+
+    /* Hero options lado a lado en escritorio */
+    .hero-options {
+        flex-direction: row;
+        justify-content: center;
+        max-width: 700px;
+        gap: 1.25rem;
+    }
+
+    .hero-options .option-item {
+        flex: 1;
+        max-width: 320px;
+        padding: 1.1rem 1.5rem;
+        border-radius: 14px;
+    }
+
+    /* --- Landing Pages Hero (isapre, fonasa) --- */
+    .hero-landing h1 {
+        font-size: clamp(2rem, 3.5vw, 2.8rem);
+        letter-spacing: -0.01em;
+    }
+
+    .hero-landing p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    /* --- Secciones Desktop --- */
+    section {
+        padding: 6rem 0;
+    }
+
+    h2 {
+        margin-bottom: 3.5rem;
+        font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    }
+
+    .section-intro {
+        font-size: 1.1rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
+    }
+
+    /* --- Service Cards Grid (2 columnas) --- */
+    .services-grid,
+    .servicios-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        padding: 0;
+    }
+
+    .service-card {
+        padding: 2.5rem;
+        border-radius: 16px;
+        text-align: left;
+    }
+
+    .service-card h3 {
+        text-align: left;
+    }
+
+    .service-card .icon {
+        text-align: left;
+    }
+
+    /* --- Therapist Cards Desktop --- */
+    .therapist-carousel {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .therapist-card-mini {
+        max-width: 240px;
+        border-radius: 16px;
+        padding: 2rem 1.5rem;
+    }
+
+    .therapist-mini-img {
+        width: 100px;
+        height: 100px;
+        border: 5px solid var(--white-color);
+    }
+
+    .therapist-card-mini h3 {
+        font-size: 1.15rem;
+        margin-top: 0.5rem;
+    }
+
+    /* --- Container desktop --- */
+    .container {
+        max-width: 1200px;
+    }
+
+    /* --- Location section desktop --- */
+    .location-container {
+        gap: 2.5rem;
+    }
+
+    /* --- Footer desktop --- */
+    .footer-grid {
+        gap: 3rem;
+    }
+
+    /* --- Contact form desktop --- */
+    .contact-form {
+        max-width: 650px;
+        margin: 0 auto;
+    }
+
+    /* --- Subtle refinements --- */
+    .about-me-text {
+        font-size: 1.15rem;
+        line-height: 1.8;
+    }
+
+    .complementary-note {
+        border-radius: 12px;
+        padding: 2rem;
+    }
+
+    .automation-card {
+        border-radius: 20px;
+        padding: 2.5rem;
+    }
+
+    /* --- ISAPRE list items desktop --- */
+    .isapre-list-item {
+        border-radius: 12px;
+    }
+}
+
+/* ============================================================
+   PROFILE PAGES â€” Enhanced Aesthetics (Psychology Theme)
+   ============================================================ */
+
+/* Canvas background z-index coordination */
+#profile-canvas-bg {
+    z-index: 0;
+}
+
+body[data-theme-color] .main-header {
+    z-index: 1000;
+}
+
+body[data-theme-color] .profile-page-content {
+    position: relative;
+    z-index: 1;
+}
+
+body[data-theme-color] .reviews-section {
+    position: relative;
+    z-index: 1;
+}
+
+body[data-theme-color] .main-footer {
+    position: relative;
+    z-index: 1;
+}
+
+body[data-theme-color] .floating-whatsapp-btn {
+    z-index: 999;
+}
+
+/* --- Profile Card (transparent, no white overlay) --- */
+body[data-theme-color] .therapist-card-full {
+    background: transparent;
+    border: none;
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: none;
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+body[data-theme-color] .therapist-card-full:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- Image Frame with Gradient Border --- */
+body[data-theme-color] .about-me-image .image-wrapper {
+    position: relative;
+    padding: 4px;
+    background: linear-gradient(135deg,
+            var(--profile-accent, #5b7c99),
+            rgba(184, 115, 51, 0.6),
+            var(--profile-accent, #5b7c99));
+    background-size: 200% 200%;
+    animation: shimmerFrame 6s ease-in-out infinite;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+body[data-theme-color] .about-me-image .image-wrapper img {
+    border-radius: 20px !important;
+    display: block;
+}
+
+@keyframes shimmerFrame {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* --- Credentials Decorator --- */
+body[data-theme-color] .about-me-credentials {
+    position: relative;
+    padding-bottom: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+body[data-theme-color] .about-me-credentials::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--profile-accent, #5b7c99), var(--accent-color, #9A5F28));
+    border-radius: 3px;
+    transition: width 0.4s ease;
+}
+
+body[data-theme-color] .therapist-card-full:hover .about-me-credentials::after {
+    width: 120px;
+}
+
+@media (max-width: 767px) {
+    body[data-theme-color] .about-me-credentials::after {
+        left: 0;
+        transform: none;
+    }
+}
+
+/* --- Psychology SVG Icons --- */
+.psy-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.1em;
+    height: 1.1em;
+    flex-shrink: 0;
+    vertical-align: middle;
+}
+
+.psy-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.service-button:hover .psy-icon svg,
+.pricing-header:hover .psy-icon svg {
+    transform: scale(1.15);
+}
+
+/* Section title icons â€” slightly larger */
+h5 .psy-icon,
+.pricing-header .psy-icon {
+    width: 1.3em;
+    height: 1.3em;
+}
+
+/* --- Pricing Section Enhancements --- */
+body[data-theme-color] .pricing-design {
+    background: rgba(249, 248, 244, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(230, 226, 211, 0.6);
+    border-radius: 16px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+body[data-theme-color] .pricing-design:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+    transform: translateY(-1px);
+}
+
+body[data-theme-color] .pricing-item {
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+    border-radius: 8px;
+    padding: 0.5rem 0.5rem 0.8rem 0.5rem;
+}
+
+body[data-theme-color] .pricing-item:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding-left: 0.8rem;
+}
+
+/* --- Service Buttons Enhanced --- */
+body[data-theme-color] .service-button {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+body[data-theme-color] .service-button:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(4px);
+}
+
+/* --- Reviews Section (transparent, no white overlay) --- */
+body[data-theme-color] .reviews-section {
+    padding: 3rem 0;
+}
+
+body[data-theme-color] .review-summary {
+    background: transparent;
+    box-shadow: none;
+}
+
+body[data-theme-color] .review-card {
+    background: transparent;
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body[data-theme-color] .review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: none;
+}
+
+/* --- Social Links Enhanced --- */
+body[data-theme-color] .about-me-social a {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme-color] .about-me-social a:hover {
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* --- Mobile Adjustments for Profile Enhancements --- */
+@media (max-width: 767px) {
+    body[data-theme-color] .therapist-card-full {
+        padding: 1.5rem;
+        border-radius: 20px;
+        text-align: left !important;
+    }
+
+    /* Left-align all profile content on mobile */
+    body[data-theme-color] .therapist-content-col {
+        text-align: left !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+
+    body[data-theme-color] .about-me-credentials {
+        text-align: left !important;
+    }
+
+    body[data-theme-color] .about-me-credentials::after {
+        left: 0 !important;
+        transform: none !important;
+    }
+
+    body[data-theme-color] .about-me-description-wrapper {
+        text-align: left !important;
+    }
+
+    /* Left-align section headers (flex containers) */
+    body[data-theme-color] .clinical-services-section,
+    body[data-theme-color] .recommended-articles-section {
+        text-align: left !important;
+        width: 100%;
+    }
+
+    body[data-theme-color] .clinical-services-section h5,
+    body[data-theme-color] .recommended-articles-section h5 {
+        justify-content: flex-start !important;
+    }
+
+    /* Pricing section full width */
+    body[data-theme-color] .pricing-design {
+        width: 100%;
+    }
+
+    body[data-theme-color] .pricing-header {
+        justify-content: flex-start !important;
+    }
+
+    /* Left-align action button */
+    body[data-theme-color] .about-me-actions {
+        text-align: left !important;
+        width: 100%;
+        display: flex !important;
+        justify-content: flex-start !important;
+    }
+
+    /* Left-align location text */
+    body[data-theme-color] .location-subtle {
+        text-align: left !important;
+    }
+
+    /* Left-align social icons */
+    body[data-theme-color] .about-me-social {
+        justify-content: flex-start !important;
+        display: flex !important;
+    }
+}
+
+/* ============================================
+   HERO TEXT — Elegante y Sobrio
+   ============================================ */
+
+/* Hero H1 — blanco puro, tipografía con peso */
+#hero h1 {
+    color: var(--white-color);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.35);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+/* Hero subtítulos — blanco con opacidad suave */
+#hero .hero-subtitle,
+#hero .hero-price-sub,
+#hero .hero-subtitle-secondary {
+    color: rgba(255, 255, 255, 0.88);
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Hero price highlight — acento dorado apagado, sin animación */
+#hero .hero-price-highlight {
+    color: #e8d5b0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}

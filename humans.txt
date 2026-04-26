@@ -1,0 +1,9 @@
+/* TEAM */
+Aaron Millán Solís — Psicólogo Clínico (Reg. SIS 870794)
+David Walter Salinas — Psicólogo Clínico (Reg. SIS 870946)
+Isidora Sanhueza — Psicóloga Clínica (Reg. SIS 866414)
+
+/* SITE */
+Last update: 2026-04-25
+Language: Español (Chile)
+Standards: HTML5, Schema.org, WCAG 2.1

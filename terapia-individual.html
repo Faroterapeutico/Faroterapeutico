@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicólogo para Adultos — Atención Individual | Faro Terapéutico</title>
+    <meta name="description" content="Psicoterapia individual para adultos en Providencia y online. Autoconocimiento, sanación y crecimiento personal. FONASA e Isapre.">
+    <link rel="canonical" href="https://faroterapeutico.com/terapia-individual" />
+    <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://faroterapeutico.com/terapia-individual">
+    <meta property="og:title" content="Psicólogo para Adultos — Atención Individual | Faro Terapéutico">
+    <meta property="og:description" content="Psicoterapia individual para adultos en Providencia y online. Autoconocimiento, sanación y crecimiento personal. FONASA e Isapre.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="boutique.css">
+    <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css"></noscript>
+
+    <style>
+        .service-boutique-wrap{max-width:1050px;margin:0 auto;padding:2rem 2rem 5rem;display:grid;grid-template-columns:1.8fr 1fr;gap:3.5rem;align-items:start}
+        @media(max-width:860px){.service-boutique-wrap{grid-template-columns:1fr;max-width:680px;padding:2rem 1.5rem 4rem}}
+        .service-body{font-size:1.02rem;color:var(--ink-soft);line-height:1.8;font-weight:300;margin-bottom:2rem}
+        .service-body strong{color:var(--ink);font-weight:500}
+        .service-work-list{list-style:none;padding:0;margin:0 0 2rem}
+        .service-work-list li{padding:1rem 0;border-bottom:.5px solid var(--line-soft);display:grid;grid-template-columns:28px 1fr;gap:1rem;align-items:center;font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:500}
+        .service-work-list li:last-child{border-bottom:none}
+        .service-work-list li i{color:var(--gold);font-size:.9rem}
+        .highlight-boutique{margin:2rem 0;padding:1.8rem 2rem;background:var(--surface);border-left:2px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0;box-shadow:var(--shadow-soft)}
+        .highlight-boutique strong{display:block;font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--gold-dark);font-weight:500;margin-bottom:.5rem}
+        .highlight-boutique p{font-size:.98rem;color:var(--ink-soft);line-height:1.7;margin:0}
+        .sidebar-boutique{position:sticky;top:calc(var(--header-height) + 2rem);background:var(--surface);padding:2rem 1.8rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);border-top:3px solid var(--gold)}
+        @media(max-width:860px){.sidebar-boutique{position:relative;top:0}}
+        .sidebar-title{font-family:var(--serif);font-size:1.3rem;color:var(--ink);font-weight:500;margin-bottom:1.5rem;letter-spacing:-.2px}
+        .sidebar-row{padding:1rem 0;border-bottom:.5px solid var(--line-soft)}
+        .sidebar-row:last-of-type{border-bottom:none}
+        .sidebar-label{display:flex;align-items:center;gap:.6rem;font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);font-weight:500;margin-bottom:.3rem}
+        .sidebar-value{font-family:var(--serif);font-size:1.2rem;color:var(--ink);font-weight:500}
+        .sidebar-value .small{font-size:.85rem;color:var(--ink-muted);font-weight:300;font-family:var(--sans);font-style:italic;margin-left:.3rem}
+        .modal-badge-b{display:inline-block;padding:.35rem .9rem;border-radius:50px;font-size:.78rem;letter-spacing:1px;font-weight:500;margin-right:.4rem;margin-top:.3rem;border:.5px solid var(--line);color:var(--ink);background:var(--paper);transition:all .3s ease;text-decoration:none}
+        .modal-badge-b:hover{border-color:var(--gold);color:var(--gold-dark);background:var(--gold-tint)}
+        .coverage-mini{list-style:none;padding:0;margin:.5rem 0 0}
+        .coverage-mini li{padding:.5rem 0;display:flex;align-items:center;gap:.6rem;font-size:.92rem;color:var(--ink-soft)}
+        .coverage-mini li a{color:var(--gold-dark);font-weight:500;text-decoration:none;border-bottom:.5px solid var(--gold)}
+        .coverage-mini li i{color:var(--gold);font-size:.8rem}
+        .service-hero{padding:calc(var(--header-height) + 3rem) 2rem 2rem;text-align:center;background:linear-gradient(180deg,var(--paper-deep) 0%,var(--paper) 100%)}
+        .service-hero h1{font-size:clamp(2.4rem,5vw,3.6rem);margin-bottom:.5rem}
+        .service-hero-intro{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.25rem;line-height:1.5;margin:0 auto 0;max-width:640px;font-weight:400}
+        .process-grid-b{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-bottom:2.5rem}
+        @media(max-width:600px){.process-grid-b{grid-template-columns:1fr}}
+        .process-item-b{padding:1.3rem 1.4rem;background:var(--surface);border-left:2px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0;box-shadow:var(--shadow-soft)}
+        .process-item-b h4{font-family:var(--sans);font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);font-weight:500;margin-bottom:.4rem}
+        .process-item-b strong{display:block;font-family:var(--serif);font-size:1.1rem;color:var(--ink);font-weight:500;margin-bottom:.4rem}
+        .process-item-b p{font-size:.9rem;color:var(--ink-soft);line-height:1.6;margin:0;font-weight:300}
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
+        .whatsapp-float:hover{transform:translateY(-3px)}
+    </style>
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://faroterapeutico.com/terapia-individual">
+    <meta property="twitter:title" content="Terapia Individual | Faro Terapéutico">
+    <meta property="twitter:description" content="Psicoterapia individual en Providencia. Presencial y online.">
+    <meta property="twitter:image" content="https://faroterapeutico.com/images/hero-index.escritorio.webp">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+    <meta name="author" content="Faro Terapéutico">
+    <meta name="language" content="es-CL">
+</head>
+
+<body class="boutique page-service">
+    <header id="main-header" class="main-header">
+        <div class="container">
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
+            <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main>
+        <div class="service-hero">
+            <span class="eyebrow eyebrow-framed">Servicio clínico · Terapia individual</span>
+            <h1>Psicólogo <em>Individual</em> para adultos</h1>
+            <p class="service-hero-intro">Un espacio personal para el autoconocimiento, la sanación y el crecimiento.</p>
+        </div>
+
+        <div class="service-boutique-wrap">
+            <div>
+                <div class="reveal-up">
+                    <span class="eyebrow">— Crecimiento y apoyo</span>
+                    <h2 style="text-align:left;font-size:2rem;margin-bottom:1.2rem;">Crecimiento <em>y apoyo</em>.</h2>
+                    <p class="service-body">La psicoterapia es un camino hacia el bienestar. En <strong>Faro Terapéutico</strong>, te ofrecemos un espacio seguro para explorar tus emociones, superar obstáculos y fortalecer tu salud mental con herramientas prácticas y un enfoque humano.</p>
+                    <div style="margin:2rem 0;">
+                        <a href="https://wa.me/56945593808?text=Hola,%20deseo%20agendar%20una%20sesi%C3%B3n%20de%20Terapia%20Individual." target="_blank" rel="noopener noreferrer" class="cta">Agendar sesión ahora <span class="cta-arrow"></span></a>
+                    </div>
+                </div>
+
+                <div class="reveal-up delay-1" style="margin-top:2.5rem;">
+                    <h3 style="font-family:var(--serif);font-size:1.5rem;color:var(--ink);font-weight:500;margin-bottom:1.2rem;">Tu proceso con <em>nosotros</em>.</h3>
+                    <div class="process-grid-b">
+                        <div class="process-item-b"><h4>Semana 1</h4><strong>El primer encuentro</strong><p>Nos conocemos y decidimos juntos si somos el equipo adecuado para ayudarte.</p></div>
+                        <div class="process-item-b"><h4>Semanas 2 y 3</h4><strong>Entendiendo tu problema</strong><p>Conversamos a fondo sobre lo que te pasa para saber exactamente cómo ayudarte.</p></div>
+                        <div class="process-item-b"><h4>Semana 4</h4><strong>El plan de trabajo</strong><p>Te explicamos qué tienes y cómo lo trataremos. Tú decides si quieres iniciar el proceso.</p></div>
+                        <div class="process-item-b"><h4>6 meses en adelante</h4><strong>Terapia y cambio</strong><p>Trabajamos semana a semana para lograr los cambios reales y profundos que buscas.</p></div>
+                    </div>
+                </div>
+
+                <div class="reveal-up delay-1">
+                    <h3 style="font-family:var(--serif);font-size:1.5rem;color:var(--ink);font-weight:500;margin-top:2.5rem;margin-bottom:1.2rem;">¿Qué <em>trabajamos</em>?</h3>
+                    <ul class="service-work-list">
+                        <li><i class="fas fa-check"></i> Ansiedad, estrés y depresión</li>
+                        <li><i class="fas fa-check"></i> Autoestima y fortalecimiento personal</li>
+                        <li><i class="fas fa-check"></i> Duelos, pérdidas y crisis de vida</li>
+                        <li><i class="fas fa-check"></i> Conflictos relacionales y de pareja</li>
+                    </ul>
+
+                    <div class="highlight-boutique">
+                        <strong>Enfoque personalizado</strong>
+                        <p>Cada persona es única. Adaptamos nuestras herramientas y estrategias terapéuticas a tu historia y necesidades particulares.</p>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="sidebar-boutique reveal-up delay-2">
+                <div class="sidebar-title">Detalles del servicio</div>
+                <div class="sidebar-row">
+                    <div class="sidebar-label"><i class="fas fa-clock"></i> Duración</div>
+                    <div class="sidebar-value">50 min <span class="small">por sesión</span></div>
+                </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-label"><i class="fas fa-laptop-medical"></i> Modalidad</div>
+                    <a href="terapia-online" class="modal-badge-b">Online</a>
+                    <a href="terapia-presencial" class="modal-badge-b">Presencial</a>
+                </div>
+                <div class="sidebar-row">
+                    <div class="sidebar-label"><i class="fas fa-file-invoice-dollar"></i> Cobertura</div>
+                    <ul class="coverage-mini">
+                        <li><i class="fas fa-check-circle"></i><a href="isapre">Isapre $30.000</a></li>
+                        <li><i class="fas fa-check-circle"></i><a href="fonasa">FONASA $14.420</a></li>
+                        <li><i class="fas fa-check-circle"></i>Seguros complementarios</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Acompañamiento psicológico profesional con un enfoque humano y cercano.</p></div>
+                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="servicios-clinicos">Servicios</a></li><li><a href="sobre-nosotros">Sobre Nosotros</a></li></ul></div>
+                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico.</p></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/56945593808?text=Hola,%20deseo%20agendar%20una%20sesi%C3%B3n%20de%20Terapia%20Individual." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
+
+    <script src="script.js" defer></script>
+    <script>(function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}})();</script>
+</body>
+</html>
