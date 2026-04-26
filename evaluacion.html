@@ -310,27 +310,38 @@
       margin-bottom: 16px;
       border: 2px solid var(--accent);
     }
-    .therapist-photo {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
-    .therapist-info { padding: 20px; }
+    .therapist-info { padding: 22px 20px 20px; }
     .therapist-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--ink);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
-    .therapist-role { font-size: 0.8rem; color: var(--muted); margin-bottom: 12px; }
+    .therapist-role { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
+
+    .prevision-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .badge-prevision {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+    }
+    .badge-fonasa  { background: #e3f2fd; color: #1565c0; }
+    .badge-isapre  { background: #f3e5f5; color: #6a1b9a; }
+    .badge-particular { background: #fff8e1; color: #e65100; }
+
     .therapist-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .tag {
       font-size: 0.75rem;
@@ -353,11 +364,16 @@
     }
     .therapist-match i { margin-right: 5px; }
 
-    .contact-buttons { display: flex; gap: 10px; }
-    .btn-whatsapp {
-      flex: 1;
+    .contact-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .contact-row { display: flex; gap: 10px; }
+    .btn-agenda {
+      width: 100%;
       padding: 14px;
-      background: var(--green);
+      background: var(--ink);
       color: white;
       border: none;
       border-radius: 50px;
@@ -372,14 +388,33 @@
       transition: all 0.2s;
       text-decoration: none;
     }
+    .btn-agenda:hover { background: #000; transform: translateY(-2px); }
+    .btn-whatsapp {
+      flex: 1;
+      padding: 13px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
     .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
     .btn-email {
-      padding: 14px 18px;
+      padding: 13px 16px;
       background: none;
       border: 1.5px solid #ddd;
       border-radius: 50px;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       cursor: pointer;
       font-family: inherit;
       display: flex;
@@ -707,19 +742,24 @@
       <div class="result-sub" id="result-sub">Basado en tus respuestas, este profesional se ajusta mejor a lo que necesitas.</div>
 
       <div class="therapist-card">
-        <img class="therapist-photo" id="result-photo" src="" alt="">
         <div class="therapist-info">
           <div class="therapist-name" id="result-fullname">—</div>
           <div class="therapist-role">Psicólogo/a · Faro Terapéutico</div>
+          <div class="prevision-badges" id="result-prevision"></div>
           <div class="therapist-tags" id="result-tags"></div>
           <div class="therapist-match" id="result-match"></div>
           <div class="contact-buttons">
-            <a class="btn-whatsapp" id="result-wa" href="#" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
+            <a class="btn-agenda" id="result-agenda" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">
+              <i class="fas fa-calendar-check"></i> Agendar hora en línea
             </a>
-            <a class="btn-email" id="result-email" href="#" target="_blank">
-              <i class="fas fa-envelope"></i>
-            </a>
+            <div class="contact-row">
+              <a class="btn-whatsapp" id="result-wa" href="#" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+              </a>
+              <a class="btn-email" id="result-email" href="#" target="_blank">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -745,9 +785,10 @@
       aaron: {
         name: 'Aaron',
         fullname: 'Ps. Aaron Millán',
-        photo: 'images/aaron.webp',
         phone: '56945593808',
         email: 'psicologo.aams@gmail.com',
+        encuadrado: 'https://encuadrado.com/p/ps-aaron-millan',
+        prevision: ['fonasa', 'isapre', 'particular'],
         tags: ['Psicodinámica', 'Duelo', 'Adicciones', 'Pareja', 'Personalidad'],
         match: {
           tristeza:    'Su enfoque psicodinámico profundiza en el origen del malestar, no solo en los síntomas.',
@@ -765,9 +806,10 @@
       david: {
         name: 'David',
         fullname: 'Ps. David Walter',
-        photo: 'images/david.webp',
         phone: '56927751595',
         email: 'ps.waltersalinas@gmail.com',
+        encuadrado: null,
+        prevision: ['fonasa', 'isapre', 'particular'],
         tags: ['Trastornos del ánimo', 'Ansiedad', 'Estrés', 'Desarrollo personal', 'Deportiva'],
         match: {
           tristeza:   'Especialista en trastornos del ánimo con enfoque clínico y estructurado.',
@@ -782,9 +824,10 @@
       isidora: {
         name: 'Isidora',
         fullname: 'Ps. Isidora Sanhueza',
-        photo: 'images/isidora.webp',
         phone: '56932013137',
         email: 'Psi.isidorasanhueza@gmail.com',
+        encuadrado: 'https://encuadrado.com/p/psicologa-isidora-sanhueza',
+        prevision: ['fonasa', 'isapre', 'particular'],
         tags: ['Terapia DBT', 'Cognitivo-Conductual', 'Autoestima', 'Depresión', 'Deportiva'],
         match: {
           ansiedad:   'Con terapia DBT y cognitivo-conductual, altamente efectiva para la ansiedad.',
@@ -961,14 +1004,27 @@
       // Rellenar resultado
       document.getElementById('result-name').textContent = t.name;
       document.getElementById('result-fullname').textContent = t.fullname;
-      document.getElementById('result-photo').src = t.photo;
-      document.getElementById('result-photo').alt = t.fullname;
       document.getElementById('result-match').innerHTML = `<i class="fas fa-lightbulb"></i> ${matchMsg}`;
 
-      const tagsEl = document.getElementById('result-tags');
-      tagsEl.innerHTML = t.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+      // Tags de especialidad
+      document.getElementById('result-tags').innerHTML =
+        t.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
 
-      // WhatsApp message
+      // Badges de previsión
+      const prevLabels = { fonasa: 'FONASA', isapre: 'Isapre', particular: 'Particular' };
+      document.getElementById('result-prevision').innerHTML =
+        t.prevision.map(p => `<span class="badge-prevision badge-${p}">${prevLabels[p]}</span>`).join('');
+
+      // Botón Encuadrado
+      const agendaBtn = document.getElementById('result-agenda');
+      if (t.encuadrado) {
+        agendaBtn.href = t.encuadrado;
+        agendaBtn.style.display = 'flex';
+      } else {
+        agendaBtn.style.display = 'none';
+      }
+
+      // WhatsApp
       const motivos = (answers.q1 || []).join(', ');
       const waText = `Hola ${t.name}, hice la evaluación en tu web y me recomendaron contigo.\n\n` +
         `👤 *Mi nombre:* ${leadData.nombre}\n` +
@@ -976,9 +1032,9 @@
         `🏥 *Previsión:* ${leadData.prevision}\n\n` +
         `💬 *Motivo:* ${motivos}\n\n` +
         `Me gustaría agendar una primera sesión. ¿Tienes disponibilidad?`;
-
       document.getElementById('result-wa').href = `https://wa.me/${t.phone}?text=${encodeURIComponent(waText)}`;
 
+      // Email
       const emailSubject = `Consulta - ${leadData.nombre} (evaluación web)`;
       const emailBody = `Hola ${t.name},\n\nHice la evaluación en el sitio web y me recomendaron contigo.\n\nNombre: ${leadData.nombre}\nCorreo: ${leadData.email}\nPrevisión: ${leadData.prevision}\nMotivo: ${motivos}\n\nMe gustaría agendar una primera sesión.`;
       document.getElementById('result-email').href = `mailto:${t.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
