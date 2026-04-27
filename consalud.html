@@ -71,6 +71,25 @@
         .agendar-card .icon{font-size:2.2rem;margin-bottom:0.8rem}
         .agendar-card h4{font-family:var(--serif);font-size:1.2rem;margin:0 0 0.5rem;color:var(--ink);font-weight:500}
         .agendar-card p{font-size:0.85rem;color:var(--ink-soft);margin:0 0 1.2rem;line-height:1.6}
+        .encuadrado-badge{background:var(--gold-tint);border:1px solid var(--gold);border-radius:var(--r-md);padding:1.2rem 1.8rem;display:flex;align-items:flex-start;gap:1rem;margin:0 0 2.5rem}
+        .badge-auto{background:#2e7d32;color:#fff;border-radius:2rem;padding:0.3rem 1rem;font-size:0.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:0.15rem}
+        .badge-manual{background:#555;color:#fff;border-radius:2rem;padding:0.3rem 1rem;font-size:0.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:0.15rem}
+        .encuadrado-badge p{font-size:0.9rem;color:var(--ink-soft);margin:0;line-height:1.6}
+        .reembolso-guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+        @media(max-width:640px){.reembolso-guide-grid{grid-template-columns:1fr}}
+        .rg-card{background:var(--surface);border-radius:var(--r-md);padding:2rem;box-shadow:var(--shadow-soft);border:1px solid var(--line)}
+        .rg-card-header{font-weight:600;font-size:0.92rem;color:var(--ink);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+        .rg-card-header i{color:var(--gold-dark)}
+        .rg-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.7rem}
+        .rg-list li{font-size:0.87rem;color:var(--ink-soft);line-height:1.6;padding-left:1rem;position:relative}
+        .rg-list li::before{content:"·";position:absolute;left:0;color:var(--gold);font-weight:700}
+        .rg-info-box{background:var(--paper-deep);border-radius:var(--r-lg);padding:2.5rem;border:1px solid var(--line)}
+        .rg-info-box h4{font-family:var(--serif);font-size:1.3rem;color:var(--ink);margin:0 0 1.5rem;font-weight:500;display:flex;align-items:center;gap:0.5rem}
+        .rg-info-box h4 i{color:var(--gold-dark);font-size:1rem}
+        .rg-info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+        @media(max-width:640px){.rg-info-grid{grid-template-columns:1fr}}
+        .rg-info-item strong{display:block;font-size:0.9rem;color:var(--ink);margin-bottom:0.4rem}
+        .rg-info-item p{font-size:0.85rem;color:var(--ink-soft);line-height:1.6;margin:0}
     </style>
     <script type="application/ld+json">
     {"@context":"https://schema.org","@type":"Service","serviceType":"Psicoterapia clínica con reembolso Consalud modalidad libre elección","name":"Psicólogo con Consalud en Providencia – Libre Elección","provider":{"@id":"https://faroterapeutico.com/#business"},"areaServed":[{"@type":"City","name":"Providencia"},{"@type":"City","name":"Santiago"}],"description":"Sesión de psicoterapia de 50 minutos en modalidad libre elección Consalud. Reembolso 40–60%. Boleta electrónica automática. Copago $12.000–$18.000.","offers":{"@type":"Offer","price":"30000","priceCurrency":"CLP","description":"Sesión de 50 minutos. Copago $12.000–$18.000 con libre elección Consalud.","availability":"https://schema.org/InStock","validFrom":"2026-01-01","url":"https://faroterapeutico.com/consalud"}}
@@ -351,9 +370,64 @@
                         <ul class="roman-points">
                             <li><span class="mark">I.</span><div><span class="point-title">Tu tarjeta nunca pasa por nosotros</span><p class="point-body">El cobro ocurre en la pasarela encriptada de Encuadrado. Faro Terapéutico nunca ve tus datos de pago.</p></div></li>
                             <li><span class="mark">II.</span><div><span class="point-title">Boleta electrónica al instante</span><p class="point-body">Al pagar, recibes tu boleta con RUT del prestador en el correo. Sin esperar, sin pedirla.</p></div></li>
-                            <li><span class="mark">III.</span><div><span class="point-title">Vincula Consalud y reembolsa en un clic</span><p class="point-body">Si conectas tu Consalud a Encuadrado, el reembolso se tramita automáticamente desde la plataforma.</p></div></li>
+                            <li><span class="mark">III.</span><div><span class="point-title">Boleta lista para subir a Mi Consalud</span><p class="point-body">Tu boleta llega al correo al instante con todos los datos correctos. Descárgala y súbela en Mi Consalud → Reembolsos. Toma menos de 2 minutos.</p></div></li>
                         </ul>
-                        <a href="https://ayuda.encuadrado.com/es/articles/6458665-como-vincular-tu-isapre-y-reembolsar-a-traves-de-encuadrado" target="_blank" rel="noopener noreferrer" class="text-link">Cómo vincular Consalud a Encuadrado <span class="cta-arrow"></span></a>
+                        <a href="https://ayuda.encuadrado.com/es/articles/6458665-como-vincular-tu-isapre-y-reembolsar-a-traves-de-encuadrado" target="_blank" rel="noopener noreferrer" class="text-link">Cómo tramitar el reembolso en Mi Consalud <span class="cta-arrow"></span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GUÍA REEMBOLSO -->
+        <section id="guia-reembolso" style="padding:5rem 0">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Guía completa</span>
+                    <h2>Todo sobre el reembolso <em>Consalud</em>.</h2>
+                    <p class="section-lead">Requisitos, plazos y datos clave que la mayoría no conoce.</p>
+                </div>
+                <div class="encuadrado-badge reveal-up delay-1">
+                    <span class="badge-manual">↑ Reembolso manual — fácil con tu boleta</span>
+                    <p>Consalud aún no está integrada con el sistema automático de Encuadrado. Sin embargo, recibes tu boleta por correo al instante — solo descárgala y súbela en Mi Consalud. Toma menos de 2 minutos.</p>
+                </div>
+                <div class="reembolso-guide-grid reveal-up delay-2">
+                    <div class="rg-card">
+                        <div class="rg-card-header"><i class="fas fa-file-medical"></i> Documentos requeridos</div>
+                        <ul class="rg-list">
+                            <li><strong>Orden médica:</strong> Obligatoria. Debe preceder a la primera sesión — no puede ser emitida con fecha posterior.</li>
+                            <li><strong>Boleta electrónica:</strong> Generada automáticamente por Encuadrado con RUT del profesional, código de prestación (09-02-002), fecha y RUT del paciente.</li>
+                            <li><strong>Sesiones online:</strong> La boleta debe especificar el código de atención a distancia (09-08-101). Encuadrado lo incluye automáticamente.</li>
+                        </ul>
+                    </div>
+                    <div class="rg-card">
+                        <div class="rg-card-header"><i class="fas fa-clock"></i> Plazos y canales</div>
+                        <ul class="rg-list">
+                            <li><strong>Resolución:</strong> 10–15 días hábiles (Consalud tiene procesos de auditoría más frecuentes que otras ISAPREs).</li>
+                            <li><strong>Canal digital:</strong> App "Mi Consalud" o consalud.cl → Reembolsos → Nueva Solicitud. Sube el PDF adjunto de tu boleta.</li>
+                            <li><strong>Recomendación:</strong> Presenta la boleta dentro de los primeros 60–90 días para evitar auditorías manuales adicionales.</li>
+                            <li><strong>Plazo legal:</strong> Hasta 5 años para presentar una boleta desde su emisión.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rg-info-box reveal-up delay-3">
+                    <h4><i class="fas fa-lightbulb"></i> Datos clave para evitar rechazos</h4>
+                    <div class="rg-info-grid">
+                        <div class="rg-info-item">
+                            <strong>Caducidad de la orden médica</strong>
+                            <p>Una sola orden cubre hasta 15–30 sesiones o 6 meses. Pasado ese plazo, renuévala con tu médico de cabecera para evitar rechazos.</p>
+                        </div>
+                        <div class="rg-info-item">
+                            <strong>Ley de Salud Mental 21.331</strong>
+                            <p>Consalud no puede imponer topes anuales de sesiones distintos a los de salud física. Si te rechazan por "límite excedido", tienes derecho a reclamar ante la Superintendencia de Salud.</p>
+                        </div>
+                        <div class="rg-info-item">
+                            <strong>Códigos FONASA correctos</strong>
+                            <p>Encuadrado usa automáticamente: <strong>09-02-001</strong> (consulta psicológica) y <strong>09-02-002</strong> (psicoterapia individual). Sin estos códigos, Consalud puede rechazar la boleta.</p>
+                        </div>
+                        <div class="rg-info-item">
+                            <strong>Actualiza tu cuenta bancaria</strong>
+                            <p>La causa más común de retrasos es una cuenta no actualizada en Mi Consalud. Sin cuenta registrada, el reembolso puede llegar como vale vista físico en el banco.</p>
+                        </div>
                     </div>
                 </div>
             </div>
