@@ -35,6 +35,26 @@
     <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.css"></noscript>
 
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        function loadGtag() {
+            if (window._gtagLoaded) return;
+            window._gtagLoaded = true;
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
+            s.async = true;
+            document.head.appendChild(s);
+            gtag('js', new Date());
+            gtag('config', 'GT-5TJMG836');
+            gtag('config', 'AW-17584631597');
+        }
+        ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
+            window.addEventListener(evt, loadGtag, { once: true, passive: true });
+        });
+        setTimeout(loadGtag, 3500);
+    </script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
