@@ -1225,6 +1225,51 @@ body.boutique #ubicacion iframe {
 body.boutique .main-footer {
     font-family: var(--sans);
     margin-top: 0;
+    background-color: var(--ink) !important;        /* #1f2a30 — oscuro elegante */
+    color: rgba(250, 248, 243, 0.70) !important;    /* crema al 70% */
+    border-top: none !important;
+}
+
+/* Títulos de columna */
+body.boutique .main-footer .footer-grid h4 {
+    color: var(--paper) !important;                 /* crema puro — máximo contraste */
+    font-family: var(--serif) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px;
+}
+
+/* Párrafos y links dentro del footer */
+body.boutique .main-footer .footer-grid p,
+body.boutique .main-footer .footer-grid a {
+    color: rgba(250, 248, 243, 0.70) !important;
+    font-weight: 300 !important;
+}
+
+/* Hover links */
+body.boutique .main-footer .footer-grid a:hover {
+    color: var(--paper) !important;
+}
+
+/* Iconos de contacto */
+body.boutique .main-footer .footer-grid a i {
+    color: var(--gold) !important;
+}
+
+/* Íconos sociales */
+body.boutique .main-footer .social-links a {
+    color: rgba(250, 248, 243, 0.70) !important;
+}
+body.boutique .main-footer .social-links a:hover {
+    color: var(--gold) !important;
+}
+
+/* Footer bottom (copyright) */
+body.boutique .main-footer .footer-bottom {
+    border-top: 1px solid rgba(250, 248, 243, 0.12) !important;
+    color: rgba(250, 248, 243, 0.45) !important;
+}
+body.boutique .main-footer .footer-bottom p {
+    color: rgba(250, 248, 243, 0.45) !important;
 }
 
 /* ========== 19. Accesibilidad ========== */
