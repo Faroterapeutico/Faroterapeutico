@@ -2020,7 +2020,7 @@ body.page-fonasa #hero {
     .main-nav ul li.dropdown .dropdown-menu {
         display: none;
         position: absolute;
-        top: calc(100% + 8px);
+        top: 100%;
         left: 50%;
         transform: translateX(-50%);
         background: #fff;
@@ -2033,7 +2033,8 @@ body.page-fonasa #hero {
         list-style: none;
         margin: 0;
     }
-    .main-nav ul li.dropdown:hover .dropdown-menu {
+    .main-nav ul li.dropdown:hover .dropdown-menu,
+    .main-nav ul li.dropdown.open .dropdown-menu {
         display: block;
     }
     .main-nav ul li.dropdown .dropdown-menu li a {
@@ -2059,7 +2060,8 @@ body.page-fonasa #hero {
         float: none;
         transition: transform 0.2s;
     }
-    .main-nav ul li.dropdown:hover .dropdown-toggle .fa-chevron-down {
+    .main-nav ul li.dropdown:hover .dropdown-toggle .fa-chevron-down,
+    .main-nav ul li.dropdown.open .dropdown-toggle .fa-chevron-down {
         transform: rotate(180deg);
     }
 

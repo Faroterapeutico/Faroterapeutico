@@ -1918,7 +1918,7 @@ body.boutique .main-nav .header-agendar-btn:hover {
     body.boutique .main-nav ul li.dropdown .dropdown-menu {
         display: none;
         position: absolute;
-        top: calc(100% + 6px);
+        top: 100%;
         left: 50%;
         transform: translateX(-50%);
         background: var(--paper);
@@ -1931,7 +1931,8 @@ body.boutique .main-nav .header-agendar-btn:hover {
         list-style: none;
         margin: 0;
     }
-    body.boutique .main-nav ul li.dropdown:hover .dropdown-menu {
+    body.boutique .main-nav ul li.dropdown:hover .dropdown-menu,
+    body.boutique .main-nav ul li.dropdown.open .dropdown-menu {
         display: block;
     }
     body.boutique .main-nav ul li.dropdown .dropdown-menu li a {
@@ -1954,7 +1955,8 @@ body.boutique .main-nav .header-agendar-btn:hover {
         vertical-align: middle;
         transition: transform 0.2s;
     }
-    body.boutique .main-nav ul li.dropdown:hover .dropdown-toggle .fa-chevron-down {
+    body.boutique .main-nav ul li.dropdown:hover .dropdown-toggle .fa-chevron-down,
+    body.boutique .main-nav ul li.dropdown.open .dropdown-toggle .fa-chevron-down {
         transform: rotate(180deg);
     }
 }

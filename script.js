@@ -99,17 +99,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 return `<li><a href="${item.url}">${item.nombre}</a></li>`;
             }).join('');
 
-            // Toggle dropdown en móvil al hacer clic en el item padre
-            navUl.querySelectorAll('.dropdown .dropdown-toggle').forEach(toggle => {
-                toggle.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        const li = toggle.closest('li.dropdown');
-                        li.classList.toggle('open');
-                        const menu = li.querySelector('.dropdown-menu');
-                        if (menu) menu.setAttribute('aria-expanded', li.classList.contains('open'));
+            // Dropdown: hover en desktop, clic en móvil
+            navUl.querySelectorAll('li.dropdown').forEach(li => {
+                const toggle = li.querySelector('.dropdown-toggle');
+                const menu   = li.querySelector('.dropdown-menu');
+
+                // --- Desktop: abrir/cerrar con mouseenter/mouseleave ---
+                li.addEventListener('mouseenter', () => {
+                    if (window.innerWidth > 768) {
+                        li.classList.add('open');
+                        if (menu) menu.setAttribute('aria-expanded', 'true');
                     }
                 });
+                li.addEventListener('mouseleave', () => {
+                    if (window.innerWidth > 768) {
+                        li.classList.remove('open');
+                        if (menu) menu.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // --- Móvil: abrir/cerrar con clic ---
+                if (toggle) {
+                    toggle.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            li.classList.toggle('open');
+                            if (menu) menu.setAttribute('aria-expanded', li.classList.contains('open'));
+                        }
+                    });
+                }
             });
         },
 
