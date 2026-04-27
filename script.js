@@ -196,30 +196,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
                 el.addEventListener('click', (e) => {
-                    // Prevenimos que el enlace se abra inmediatamente.
                     e.preventDefault();
 
-                    this.trackEvent('contacto', 'Clic', 'WhatsApp');
-                    console.log('Clic en WhatsApp detectado'); // Para depuración
+                    const linkText = el.textContent.trim() || 'WhatsApp';
+                    const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                    const label = `${linkText} — ${page}`;
+
+                    this.trackEvent('contacto_whatsapp', 'WhatsApp', label);
 
                     if (typeof gtag === 'function') {
-                        console.log('Enviando conversión de Google Ads para Contact y abriendo enlace en callback'); // Para depuración
                         gtag('event', 'conversion', {
                             'send_to': 'AW-17584631597/xJYeCMuY2qYbEK3egMFB',
                             'event_callback': contactConversionCallback(el.href)
                         });
+                    } else {
+                        setTimeout(() => window.open(el.href, '_blank'), 300);
                     }
 
                     if (typeof fbq === 'function') {
-                        const eventId = crypto.randomUUID();
-                        console.log(`Enviando evento de Meta Pixel para Contact con event_id: ${eventId}`); // Para depuración
-                        fbq('track', 'Contact', {}, { eventID: eventId });
+                        fbq('track', 'Contact', { content_name: label }, { eventID: crypto.randomUUID() });
                     }
+                });
+            });
 
-                    // Si gtag no está definido, abrimos el enlace directamente después de un pequeño retraso.
-                    if (typeof gtag !== 'function') {
-                        setTimeout(() => window.open(el.href, '_blank'), 300);
-                    }
+            // Seguimiento de clics en Encuadrado
+            document.querySelectorAll('a[href*="encuadrado.com"]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const label = el.textContent.trim() || 'Encuadrado';
+                    const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                    this.trackEvent('agendar_encuadrado', 'Encuadrado', `${label} — ${page}`);
+                    if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
+                    if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Encuadrado — ${page}` }, { eventID: crypto.randomUUID() });
+                });
+            });
+
+            // Seguimiento de rutas FONASA / ISAPRE en el hero del inicio
+            document.querySelectorAll('.hero-path').forEach(el => {
+                el.addEventListener('click', () => {
+                    const label = el.querySelector('strong')?.textContent.trim() || el.textContent.trim();
+                    this.trackEvent('navegacion_hero', 'Clic Hero Path', label);
                 });
             });
 
@@ -280,31 +295,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Seguimiento de envíos del formulario de contacto
-            const contactForm = document.querySelector('.contact-form');
-            if (contactForm) {
-                contactForm.addEventListener('submit', (e) => {
-                    // 1. Prevenimos el envío automático del formulario
+            // Seguimiento de envíos de todos los formularios de contacto
+            document.querySelectorAll('.contact-form, .cf-form').forEach(form => {
+                form.addEventListener('submit', (e) => {
                     e.preventDefault();
 
-                    // 2. Creamos una función de callback que enviará el formulario
-                    const submitFormCallback = () => {
-                        contactForm.submit();
-                    };
+                    const prevision = form.querySelector('[name="prevision"]')?.value || '';
+                    const origen = form.querySelector('[name="origen_formulario"]')?.value || 'Formulario';
+                    const label = prevision ? `${origen} — ${prevision}` : origen;
 
-                    // 3. Enviamos el evento de conversión a Google Analytics
-                    this.trackEvent('formulario_contacto', 'Submit', 'Envio Exitoso');
+                    const submitFormCallback = () => form.submit();
 
-                    // 4. Enviamos la conversión a Google Ads con el callback
+                    this.trackEvent('formulario_contacto', 'Submit', label);
+
                     if (typeof gtag === 'function') {
                         gtag('event', 'conversion', { 'send_to': 'AW-17584631597/euI3CNy83rgbEK3egMFB', 'event_callback': submitFormCallback });
+                    } else {
+                        submitFormCallback();
                     }
 
                     if (typeof fbq === 'function') {
-                        fbq('track', 'Lead', { content_name: 'Formulario de Contacto' }, { eventID: crypto.randomUUID() });
+                        fbq('track', 'Lead', { content_name: label }, { eventID: crypto.randomUUID() });
                     }
                 });
-            }
+            });
 
             // Seguimiento de clics en redes sociales
             document.querySelectorAll('a[href*="instagram.com"]').forEach(el => {
@@ -314,11 +328,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.addEventListener('click', () => this.trackEvent('social', 'Clic', 'Facebook'));
             });
 
+            // Seguimiento de preguntas frecuentes (FAQ)
+            document.querySelectorAll('.faq-question').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const isOpening = !btn.parentElement.classList.contains('active');
+                    if (isOpening) {
+                        const question = btn.textContent.trim().substring(0, 80);
+                        const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                        this.trackEvent('faq_abierta', 'FAQ', `${question} — ${page}`);
+                    }
+                });
+            });
+
             // Seguimiento de CTA en Artículos del Blog
             document.querySelectorAll('.article-cta-box .btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     this.trackEvent('blog_cta', 'Clic', 'CTA Articulo a Inicio');
-                    console.log('Clic en CTA de Blog detectado');
                 });
             });
 
