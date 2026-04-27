@@ -64,7 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 {
                     nombre: "Isapre", // 5. Reembolso ISAPRE
-                    url: "isapre.html"
+                    url: "isapre.html",
+                    subsecciones: [
+                        { nombre: "Ver todas las ISAPREs", url: "isapre.html" },
+                        { nombre: "Colmena", url: "colmena.html" },
+                        { nombre: "Banmédica", url: "banmedica.html" },
+                        { nombre: "Cruz Blanca", url: "cruz-blanca.html" },
+                        { nombre: "Consalud", url: "consalud.html" },
+                        { nombre: "Vida Tres", url: "vida-tres.html" },
+                        { nombre: "Nueva Másvida", url: "nueva-masvida.html" }
+                    ]
                 },
                 {
                     nombre: "Políticas", // 6. Políticas de Cancelación
