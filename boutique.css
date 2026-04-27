@@ -54,6 +54,14 @@ body.boutique {
     overflow-x: hidden;
 }
 
+/* ========== 2b. Sin subrayado en ningún link ========== */
+body.boutique a,
+body.boutique a:hover,
+body.boutique a:focus,
+body.boutique a:visited {
+    text-decoration: none !important;
+}
+
 body.boutique p {
     font-size: 1rem;
     font-weight: 300;
