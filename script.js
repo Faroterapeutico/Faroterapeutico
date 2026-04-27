@@ -159,6 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 document.querySelectorAll('.main-nav a').forEach(link => {
                     link.addEventListener('click', () => {
+                        // En móvil, el dropdown-toggle NO cierra el menú (despliega sub-items)
+                        if (window.innerWidth <= 768 && link.classList.contains('dropdown-toggle')) return;
+
                         nav.classList.remove('active');
                         document.body.classList.remove('menu-open');
                         // Evento de seguimiento para clics en la navegación principal
