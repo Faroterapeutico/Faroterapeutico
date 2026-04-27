@@ -98,6 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return `<li><a href="${item.url}">${item.nombre}</a></li>`;
             }).join('');
+
+            // Toggle dropdown en móvil al hacer clic en el item padre
+            navUl.querySelectorAll('.dropdown .dropdown-toggle').forEach(toggle => {
+                toggle.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        const li = toggle.closest('li.dropdown');
+                        li.classList.toggle('open');
+                        const menu = li.querySelector('.dropdown-menu');
+                        if (menu) menu.setAttribute('aria-expanded', li.classList.contains('open'));
+                    }
+                });
+            });
         },
 
         initComponents() {

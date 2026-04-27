@@ -1908,6 +1908,91 @@ body.boutique .main-nav .header-agendar-btn:hover {
     }
 }
 
+/* ========== Dropdown nav ========== */
+
+/* Desktop: muestra al hover */
+@media (min-width: 769px) {
+    body.boutique .main-nav ul li.dropdown {
+        position: relative;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-lift);
+        min-width: 220px;
+        padding: 0.4rem 0;
+        z-index: 1000;
+        list-style: none;
+        margin: 0;
+    }
+    body.boutique .main-nav ul li.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-menu li a {
+        display: block;
+        padding: 0.65rem 1.3rem !important;
+        font-size: 0.87rem !important;
+        color: var(--ink) !important;
+        font-weight: 400 !important;
+        white-space: nowrap;
+        border-bottom: none !important;
+        transition: background 0.15s, color 0.15s;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-menu li a:hover {
+        background: var(--gold-tint) !important;
+        color: var(--gold-dark) !important;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-toggle .fa-chevron-down {
+        font-size: 0.68rem;
+        margin-left: 4px;
+        vertical-align: middle;
+        transition: transform 0.2s;
+    }
+    body.boutique .main-nav ul li.dropdown:hover .dropdown-toggle .fa-chevron-down {
+        transform: rotate(180deg);
+    }
+}
+
+/* Móvil: muestra al hacer clic (clase .open añadida por JS) */
+@media (max-width: 768px) {
+    body.boutique .main-nav ul li.dropdown .dropdown-menu {
+        display: none;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background: var(--gold-tint);
+        border-left: 3px solid var(--gold);
+    }
+    body.boutique .main-nav ul li.dropdown.open .dropdown-menu {
+        display: block;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-menu li a {
+        padding: 0.75rem 2.8rem !important;
+        font-size: 0.88rem !important;
+        color: var(--ink-soft) !important;
+        font-weight: 400 !important;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-menu li a:hover {
+        background: rgba(0,0,0,0.04) !important;
+        color: var(--gold-dark) !important;
+    }
+    body.boutique .main-nav ul li.dropdown .dropdown-toggle .fa-chevron-down {
+        float: right;
+        margin-top: 3px;
+        font-size: 0.72rem;
+        transition: transform 0.2s;
+    }
+    body.boutique .main-nav ul li.dropdown.open .dropdown-toggle .fa-chevron-down {
+        transform: rotate(180deg);
+    }
+}
+
 /* ========== Testimonios grid (fonasa / isapre) ========== */
 .testimonios-rating-bar {
     display: flex;
