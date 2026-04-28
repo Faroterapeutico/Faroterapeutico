@@ -220,8 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Seguimiento de clics en Encuadrado
-            document.querySelectorAll('a[href*="encuadrado.com"]').forEach(el => {
-                if (el.href.includes('ayuda.encuadrado.com')) return;
+            document.querySelectorAll('a[href*="encuadrado.com"]:not([href*="ayuda.encuadrado.com"])').forEach(el => {
                 el.addEventListener('click', () => {
                     const label = el.textContent.trim() || 'Encuadrado';
                     const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
