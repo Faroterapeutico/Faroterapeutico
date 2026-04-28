@@ -329,10 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Seguimiento de preguntas frecuentes (FAQ)
+            // Nota: el script inline ya toggleó 'active' antes de que este listener corra,
+            // por eso verificamos que 'active' esté presente (= acaba de abrirse).
             document.querySelectorAll('.faq-question').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    const isOpening = !btn.parentElement.classList.contains('active');
-                    if (isOpening) {
+                    if (btn.parentElement.classList.contains('active')) {
                         const question = btn.textContent.trim().substring(0, 80);
                         const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
                         this.trackEvent('faq_abierta', 'FAQ', `${question} — ${page}`);
