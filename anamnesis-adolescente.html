@@ -439,6 +439,25 @@
       .btn-therapist { padding: 14px 6px; font-size: 0.85rem; }
     }
   </style>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    function loadGtag() {
+      if (window._gtagLoaded) return;
+      window._gtagLoaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
+      s.async = true;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'GT-5TJMG836');
+      gtag('config', 'AW-17584631597');
+    }
+    ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
+      window.addEventListener(evt, loadGtag, { once: true, passive: true });
+    });
+    setTimeout(loadGtag, 3500);
+  </script>
 </head>
 
 <body class="boutique page-anamnesis">
@@ -1173,6 +1192,11 @@
           const name = this.dataset.name;
           const msg = buildMessage(name);
           const url = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+          if (typeof gtag === 'function') {
+            gtag('event', 'contacto_whatsapp', { event_category: 'WhatsApp', event_label: `WhatsApp ${name} — anamnesis-adolescente` });
+            gtag('event', 'conversion', { 'send_to': 'AW-17584631597/xJYeCMuY2qYbEK3egMFB' });
+          }
+          if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: `WhatsApp ${name} — anamnesis-adolescente` }, { eventID: crypto.randomUUID() });
           window.open(url, '_blank');
           document.getElementById('successMsg').style.display = 'block';
           document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth' });

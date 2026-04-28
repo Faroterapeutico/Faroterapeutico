@@ -460,6 +460,25 @@
       .contact-buttons { flex-direction: column; }
     }
   </style>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    function loadGtag() {
+      if (window._gtagLoaded) return;
+      window._gtagLoaded = true;
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
+      s.async = true;
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'GT-5TJMG836');
+      gtag('config', 'AW-17584631597');
+    }
+    ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
+      window.addEventListener(evt, loadGtag, { once: true, passive: true });
+    });
+    setTimeout(loadGtag, 3500);
+  </script>
 </head>
 
 <body>
@@ -1020,6 +1039,13 @@
       if (t.encuadrado) {
         agendaBtn.href = t.encuadrado;
         agendaBtn.style.display = 'flex';
+        agendaBtn.onclick = function() {
+          if (typeof gtag === 'function') {
+            gtag('event', 'agendar_encuadrado', { event_category: 'Encuadrado', event_label: 'Evaluacion — evaluacion' });
+            gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
+          }
+          if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: 'Encuadrado — evaluacion' }, { eventID: crypto.randomUUID() });
+        };
       } else {
         agendaBtn.style.display = 'none';
       }
@@ -1032,7 +1058,15 @@
         `🏥 *Previsión:* ${leadData.prevision}\n\n` +
         `💬 *Motivo:* ${motivos}\n\n` +
         `Me gustaría agendar una primera sesión. ¿Tienes disponibilidad?`;
-      document.getElementById('result-wa').href = `https://wa.me/${t.phone}?text=${encodeURIComponent(waText)}`;
+      const waBtn = document.getElementById('result-wa');
+      waBtn.href = `https://wa.me/${t.phone}?text=${encodeURIComponent(waText)}`;
+      waBtn.onclick = function() {
+        if (typeof gtag === 'function') {
+          gtag('event', 'contacto_whatsapp', { event_category: 'WhatsApp', event_label: 'WhatsApp — evaluacion' });
+          gtag('event', 'conversion', { 'send_to': 'AW-17584631597/xJYeCMuY2qYbEK3egMFB' });
+        }
+        if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: 'WhatsApp — evaluacion' }, { eventID: crypto.randomUUID() });
+      };
 
       // Email
       const emailSubject = `Consulta - ${leadData.nombre} (evaluación web)`;
