@@ -427,25 +427,6 @@
         }
         .trust-item i { color: var(--gold); }
 
-        .whatsapp-float {
-            position: fixed;
-            bottom: 28px; right: 28px;
-            background: #25D366;
-            color: #fff;
-            padding: 14px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.88rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 8px 24px rgba(37,211,102,.35);
-            z-index: 900;
-            transition: all .3s ease;
-        }
-        .whatsapp-float:hover { transform: translateY(-3px); }
-
         /* Prueba social — testimonios */
         .testimonios-rating-bar {
             display: flex;
@@ -839,7 +820,10 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
+    <div class="wa-banner" role="complementary" aria-label="Agendar cita">
+        <span class="wa-banner-text">¿Listo para comenzar? Agenda tu primera sesión hoy.</span>
+        <a href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n." class="wa-banner-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Agendar por Wasa</a>
+    </div>
 
     <script src="script.js" defer></script>
     <script>
