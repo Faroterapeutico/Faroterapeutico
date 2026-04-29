@@ -954,6 +954,12 @@
         })
       }).catch(() => {}); // silencioso si falla
 
+      if (typeof gtag === 'function') {
+        gtag('event', 'formulario_contacto', { event_category: 'Submit', event_label: `Evaluador de síntomas — ${prev}` });
+        gtag('event', 'conversion', { 'send_to': 'AW-17584631597/euI3CNy83rgbEK3egMFB' });
+      }
+      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: `Evaluador de síntomas — ${prev}` }, { eventID: crypto.randomUUID() });
+
       showStep(1);
     });
 
