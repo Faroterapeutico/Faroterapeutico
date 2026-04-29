@@ -2220,7 +2220,22 @@ body.boutique .main-nav .header-agendar-btn:hover {
     box-shadow: 0 4px 16px rgba(37,211,102,.35);
 }
 .wa-banner-btn:hover { background: #1aab52; transform: scale(1.03); }
+.wa-banner-save {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .8rem;
+    color: rgba(250,248,243,.55);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid rgba(250,248,243,.2);
+    border-radius: 20px;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+}
+.wa-banner-save:hover { color: rgba(250,248,243,.9); border-color: rgba(250,248,243,.5); }
 @media (max-width: 640px) {
     .wa-banner { flex-direction: column; gap: 10px; padding: 14px 20px; text-align: center; }
     .wa-banner-text { display: none; }
+    .wa-banner-save { font-size: .75rem; }
 }
