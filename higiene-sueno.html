@@ -64,6 +64,13 @@
 
         .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
         .whatsapp-float:hover{transform:translateY(-3px)}
+        /* FAQ section */
+        .faq-section{margin:3.5rem 0 2rem}
+        .faq-section > h2{font-family:var(--serif);font-size:2rem;color:var(--ink);font-weight:500;margin:0 0 1.8rem;letter-spacing:-.4px;line-height:1.2}
+        .faq-item{border-bottom:.5px solid var(--line-soft);padding:1.4rem 0}
+        .faq-item:last-child{border-bottom:none}
+        .faq-q{font-family:var(--serif);font-size:1.18rem;color:var(--ink);font-weight:500;margin-bottom:.7rem;line-height:1.35}
+        .faq-a{font-size:1rem;color:var(--ink-soft);line-height:1.8;font-weight:300;margin:0}
     </style>
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://faroterapeutico.com/higiene-sueno">
@@ -73,6 +80,71 @@
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="author" content="Faro Terapéutico">
     <meta name="language" content="es-CL">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Recupera tu descanso con higiene del sueño",
+      "description": "Guía completa de higiene del sueño: hábitos, rutinas y herramientas para recuperar un descanso reparador.",
+      "image": "https://faroterapeutico.com/images/higiene-sueno.webp",
+      "author": {"@type": "Person", "name": "Aaron Millán Solís", "url": "https://faroterapeutico.com/aaron"},
+      "publisher": {"@type": "Organization", "name": "Faro Terapéutico", "url": "https://faroterapeutico.com"},
+      "datePublished": "2026-04-28",
+      "dateModified": "2026-04-28",
+      "mainEntityOfPage": {"@type": "WebPage", "@id": "https://faroterapeutico.com/higiene-sueno"},
+      "inLanguage": "es-CL"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cuántas horas de sueño necesita un adulto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los adultos necesitan entre 7 y 9 horas de sueño por noche según la National Sleep Foundation. Sin embargo, la calidad importa tanto como la cantidad: 7 horas de sueño profundo son más beneficiosas que 9 horas fragmentadas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué me despierto varias veces en la noche?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los despertares nocturnos frecuentes pueden deberse a estrés, ansiedad, consumo de cafeína o alcohol, temperatura inadecuada, apnea del sueño o problemas emocionales no resueltos. Si ocurren más de tres veces por semana durante más de un mes, es recomendable consultar a un profesional."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿La luz del celular realmente afecta el sueño?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. La luz azul de las pantallas suprime la producción de melatonina, la hormona que regula el ciclo sueño-vigilia. Usarlas en la hora previa a dormir puede retrasar el inicio del sueño entre 30 y 60 minutos y reducir la calidad del sueño profundo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo el insomnio necesita atención psicológica?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cuando el insomnio persiste más de tres meses, ocurre al menos tres noches por semana y afecta el funcionamiento diario (trabajo, concentración, ánimo), se habla de insomnio crónico. La terapia cognitivo-conductual para el insomnio (TCC-I) es el tratamiento de primera línea con mayor evidencia científica, más eficaz a largo plazo que los fármacos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué hacer si no puedo conciliar el sueño?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si llevas más de 20 minutos en la cama sin poder dormir, levántate y haz una actividad tranquila con poca luz hasta sentir somnolencia. Quedarte en la cama despierto/a refuerza la asociación cama-vigilia. Evita mirar el reloj, ya que aumenta la ansiedad por el sueño."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="boutique page-article">
@@ -92,7 +164,7 @@
                 <div class="article-byline">
                     <img src="images/aaron.webp" alt="Ps. Aaron Millán">
                     <div>
-                        <div class="article-byline-author">Ps. Aaron Millán</div>
+                        <div class="article-byline-author"><a href="aaron" style="color:inherit;text-decoration:none;transition:color .3s ease" onmouseover="this.style.color='var(--gold-dark)'" onmouseout="this.style.color='inherit'">Ps. Aaron Millán</a></div>
                         <div class="article-byline-meta">Psicólogo clínico · 6 min de lectura</div>
                     </div>
                 </div>
@@ -105,6 +177,8 @@
                     de tu vida,
                     reducir el <strong>estrés</strong> y potenciar tu rendimiento diario.
                 </p>
+
+                <p>En consulta, el sueño es una de las primeras cosas que evalúo. Muchas personas llegan con el insomnio como queja principal, pero al explorar más, resulta ser la expresión de algo que no ha sido procesado: una pérdida, una situación de estrés crónico, o una ansiedad que durante el día se mantiene contenida y que de noche —cuando los mecanismos de distracción desaparecen— encuentra espacio para emerger. <em>Los hábitos ayudan, pero no siempre son suficientes.</em></p>
 
                 <h2>Recomendaciones clave</h2>
                 <p>Para lograr un cambio efectivo, es importante la constancia. Intenta incorporar estas pautas una a
@@ -211,6 +285,37 @@
                     <a href="sesion-orientacion" class="btn"
                         style="background-color: #d9534f; border-color: #d9534f; color: white;">Solicitar Ayuda
                         Gratuita</a>
+                </div>
+            </div>
+
+            <div class="article-body-b">
+                <div class="faq-section">
+                    <h2>Preguntas frecuentes sobre la higiene del sueño</h2>
+
+                    <div class="faq-item">
+                        <p class="faq-q">¿Cuántas horas de sueño necesita un adulto?</p>
+                        <p class="faq-a">Los adultos necesitan entre 7 y 9 horas por noche según la National Sleep Foundation. La calidad importa tanto como la cantidad: 7 horas de sueño profundo son más reparadoras que 9 horas fragmentadas.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <p class="faq-q">¿Por qué me despierto varias veces en la noche?</p>
+                        <p class="faq-a">Los despertares frecuentes pueden deberse a estrés, ansiedad, cafeína o alcohol, temperatura inadecuada del dormitorio, apnea del sueño o problemas emocionales no resueltos. Si ocurren más de tres veces por semana durante más de un mes, es recomendable consultar a un profesional.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <p class="faq-q">¿La luz del celular realmente afecta el sueño?</p>
+                        <p class="faq-a">Sí. La luz azul de las pantallas suprime la producción de melatonina, la hormona que regula el ciclo sueño-vigilia. Usarlas en la hora previa a dormir puede retrasar el inicio del sueño entre 30 y 60 minutos y reducir la calidad del sueño profundo.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <p class="faq-q">¿Cuándo el insomnio necesita atención psicológica?</p>
+                        <p class="faq-a">Cuando persiste más de tres meses, ocurre al menos tres noches por semana y afecta el funcionamiento diario (trabajo, concentración, ánimo). En ese punto, la terapia cognitivo-conductual para el insomnio (TCC-I) es el tratamiento de primera línea con mayor evidencia científica, más eficaz a largo plazo que los fármacos.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <p class="faq-q">¿Qué hacer si no puedo conciliar el sueño?</p>
+                        <p class="faq-a">Si llevas más de 20 minutos en la cama sin poder dormir, levántate y haz una actividad tranquila con poca luz hasta sentir somnolencia. Quedarte despierto/a en la cama refuerza la asociación cama-vigilia. Evita mirar el reloj, ya que aumenta la ansiedad por el sueño.</p>
+                    </div>
                 </div>
             </div>
 
