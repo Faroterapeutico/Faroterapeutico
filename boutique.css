@@ -2235,7 +2235,8 @@ body.boutique .main-nav .header-agendar-btn:hover {
 }
 .wa-banner-save:hover { color: rgba(250,248,243,.9); border-color: rgba(250,248,243,.5); }
 @media (max-width: 640px) {
-    .wa-banner { flex-direction: column; gap: 10px; padding: 14px 20px; text-align: center; }
+    .wa-banner { flex-direction: row; gap: 10px; padding: 10px 16px; justify-content: center; }
     .wa-banner-text { display: none; }
-    .wa-banner-save { font-size: .75rem; }
+    .wa-banner-btn { font-size: .82rem; padding: 9px 16px; }
+    .wa-banner-save { font-size: .78rem; padding: 5px 10px; border: none; opacity: .7; }
 }
