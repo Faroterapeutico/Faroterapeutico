@@ -2222,5 +2222,5 @@ body.boutique .main-nav .header-agendar-btn:hover {
 .wa-banner-btn:hover { background: #1aab52; transform: scale(1.03); }
 @media (max-width: 640px) {
     .wa-banner { flex-direction: column; gap: 10px; padding: 14px 20px; text-align: center; }
-    .wa-banner-text { font-size: 0.83rem; white-space: normal; }
+    .wa-banner-text { display: none; }
 }
