@@ -270,6 +270,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
+            // Tracking de clics en "Ver perfil" de terapeutas (index, fonasa, isapres, sobre-nosotros, etc.)
+            document.querySelectorAll('a[href="aaron"], a[href="david"], a[href="isidora"], a[href="aaron.html"], a[href="david.html"], a[href="isidora.html"]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const href = el.getAttribute('href').replace('.html', '');
+                    this.trackEvent('clic_ver_perfil', 'Perfiles', `Ver perfil — ${href.charAt(0).toUpperCase() + href.slice(1)}`);
+                });
+            });
+
             // Lógica para las tarjetas de modalidad de servicio (Presencial / Online)
             // Estas tarjetas ahora actúan como disparadores de modales.
             const serviceCards = document.querySelectorAll('.service-card[data-modal-target]');
