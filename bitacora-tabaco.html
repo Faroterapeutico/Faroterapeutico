@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitacora de Tabaco | Faro Terapeutico</title>
+    <meta name="description" content="Bitacora privada para observar cinco cigarros diarios de forma didactica.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1f2a30;
+            --ink-soft: #4a5560;
+            --ink-muted: #6a727a;
+            --paper: #faf8f3;
+            --paper-deep: #f3efe5;
+            --surface: #ffffff;
+            --gold: #9A5F28;
+            --gold-dark: #7a4a1f;
+            --gold-tint: rgba(154, 95, 40, 0.08);
+            --line: rgba(31, 42, 48, 0.14);
+            --line-soft: rgba(31, 42, 48, 0.07);
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Poppins', Arial, sans-serif;
+            --shadow-soft: 0 1px 2px rgba(31,42,48,.04), 0 18px 40px -22px rgba(31,42,48,.12);
+            --shadow-lift: 0 1px 2px rgba(31,42,48,.05), 0 32px 60px -28px rgba(31,42,48,.18);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: var(--sans);
+            font-weight: 300;
+            color: var(--ink-soft);
+            background:
+                radial-gradient(circle at top left, rgba(154,95,40,.09), transparent 28rem),
+                linear-gradient(180deg, var(--paper), #f7f1e8 58%, var(--paper));
+            min-height: 100vh;
+        }
+
+        button, input, select, textarea { font: inherit; }
+        .app-shell { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 56px; }
+        .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+        .brand { display: flex; flex-direction: column; gap: 2px; }
+        .brand strong { font-family: var(--serif); font-size: 1.35rem; color: var(--ink); font-weight: 500; }
+        .brand span { font-size: .74rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); font-weight: 500; }
+        .privacy-pill { border: 1px solid var(--line); color: var(--ink-muted); background: rgba(255,255,255,.58); border-radius: 999px; padding: 8px 12px; font-size: .78rem; }
+
+        .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .75fr); gap: 26px; align-items: stretch; margin-bottom: 28px; }
+        .hero-panel, .summary-panel, .card, .insight-panel {
+            background: rgba(255,255,255,.78);
+            border: 1px solid rgba(255,255,255,.76);
+            box-shadow: var(--shadow-soft);
+            backdrop-filter: blur(12px);
+        }
+        .hero-panel { border-radius: 22px; padding: clamp(28px, 5vw, 48px); }
+        .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: .76rem; letter-spacing: 2.3px; text-transform: uppercase; color: var(--gold-dark); font-weight: 500; margin-bottom: 14px; }
+        .eyebrow::before { content: ""; width: 30px; height: 1px; background: var(--gold); opacity: .75; }
+        h1 { font-family: var(--serif); font-size: clamp(2.8rem, 7vw, 5rem); line-height: .95; color: var(--ink); font-weight: 400; letter-spacing: -1px; margin: 0 0 18px; }
+        h1 em { color: var(--gold); font-style: italic; }
+        .lead { font-size: 1.02rem; line-height: 1.75; max-width: 680px; margin: 0; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+        .btn {
+            border: 0;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 12px 18px;
+            font-size: .85rem;
+            font-weight: 600;
+            color: #fff;
+            background: var(--ink);
+            box-shadow: 0 12px 28px rgba(31,42,48,.17);
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+        .btn.secondary { color: var(--ink); background: rgba(255,255,255,.72); border: 1px solid var(--line); box-shadow: none; }
+        .btn.gold { background: var(--gold-dark); }
+
+        .summary-panel { border-radius: 22px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; }
+        .summary-title { font-family: var(--serif); color: var(--ink); font-size: 1.8rem; line-height: 1.05; margin: 0; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .stat { border: 1px solid var(--line-soft); background: rgba(250,248,243,.72); border-radius: 14px; padding: 14px; }
+        .stat span { display: block; color: var(--ink-muted); font-size: .72rem; text-transform: uppercase; letter-spacing: 1.4px; font-weight: 500; margin-bottom: 4px; }
+        .stat strong { font-family: var(--serif); color: var(--ink); font-size: 2rem; line-height: 1; font-weight: 500; }
+        .meme-box { border-radius: 16px; padding: 14px 16px; background: var(--gold-tint); color: var(--ink); font-size: .92rem; line-height: 1.55; }
+
+        .grid { display: grid; grid-template-columns: repeat(5, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
+        .card { border-radius: 18px; padding: 18px; transition: transform .2s ease, box-shadow .2s ease; }
+        .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+        .card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+        .badge { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gold-tint); color: var(--gold-dark); font-weight: 600; }
+        .status { font-size: .7rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1.3px; font-weight: 500; }
+        .score { font-family: var(--serif); color: var(--ink); font-size: 2.5rem; line-height: 1; margin: 8px 0 4px; }
+        .score small { font-family: var(--sans); font-size: .82rem; color: var(--ink-muted); }
+        .card label { display: block; font-size: .72rem; color: var(--ink-muted); letter-spacing: 1.2px; text-transform: uppercase; font-weight: 500; margin: 14px 0 6px; }
+        input[type="range"] { width: 100%; accent-color: var(--gold); }
+        select, textarea {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(255,255,255,.82);
+            color: var(--ink);
+            padding: 10px 11px;
+            outline: none;
+        }
+        textarea { min-height: 74px; resize: vertical; line-height: 1.45; }
+        .mini-result { margin-top: 12px; border-top: 1px solid var(--line-soft); padding-top: 12px; font-size: .85rem; line-height: 1.55; color: var(--ink-soft); min-height: 58px; }
+
+        .insight-panel { border-radius: 22px; padding: 24px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 18px; align-items: start; }
+        .insight-panel h2 { font-family: var(--serif); color: var(--ink); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 10px; line-height: 1.05; }
+        .insight-list { display: grid; gap: 10px; }
+        .insight-item { border: 1px solid var(--line-soft); background: rgba(250,248,243,.72); border-radius: 14px; padding: 14px; }
+        .insight-item strong { color: var(--ink); font-weight: 600; }
+        .note { font-size: .82rem; color: var(--ink-muted); line-height: 1.65; margin-top: 16px; }
+
+        @media (max-width: 980px) {
+            .hero { grid-template-columns: 1fr; }
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .insight-panel { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 560px) {
+            .app-shell { width: min(100% - 24px, 1120px); padding-top: 20px; }
+            .topbar { align-items: flex-start; flex-direction: column; }
+            .grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .hero-actions .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <main class="app-shell">
+        <div class="topbar">
+            <div class="brand">
+                <strong>Faro Terapeutico</strong>
+                <span>Herramienta privada</span>
+            </div>
+            <div class="privacy-pill">Se envian solo si confirmas en WhatsApp</div>
+        </div>
+
+        <section class="hero">
+            <div class="hero-panel">
+                <span class="eyebrow">Bitacora de habito</span>
+                <h1>Cinco cigarros, <em>cinco pistas</em>.</h1>
+                <p class="lead">
+                    Registra cada cigarro del dia con una escala simple. La idea no es retarte:
+                    es mirar con curiosidad que prometio el cigarro, que entrego realmente y que
+                    contexto lo hizo aparecer.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn" id="saveBtn" type="button">Guardar y enviar por WhatsApp</button>
+                    <button class="btn secondary" id="resetBtn" type="button">Limpiar dia</button>
+                </div>
+                <p class="note">
+                    Esta herramienta acompana la autoobservacion terapeutica. Al guardar, se abre WhatsApp
+                    con el resumen escrito; la paciente decide si lo envia. No reemplaza una consulta medica
+                    ni indicaciones profesionales para cesacion tabaquica.
+                </p>
+            </div>
+
+            <aside class="summary-panel">
+                <h2 class="summary-title">Resumen del dia</h2>
+                <div class="stats-grid">
+                    <div class="stat"><span>Registrados</span><strong id="doneCount">0/5</strong></div>
+                    <div class="stat"><span>Promesa</span><strong id="avgUrge">-</strong></div>
+                    <div class="stat"><span>Placer real</span><strong id="avgPleasure">-</strong></div>
+                    <div class="stat"><span>Malestar</span><strong id="avgDiscomfort">-</strong></div>
+                </div>
+                <div class="meme-box" id="dailyMeme">
+                    El cigarro todavia no ha declarado ante la comision investigadora.
+                </div>
+            </aside>
+        </section>
+
+        <section class="grid" id="cigaretteGrid" aria-label="Registro de cinco cigarros"></section>
+
+        <section class="insight-panel">
+            <div>
+                <span class="eyebrow">Lectura terapeutica</span>
+                <h2>Que nos esta contando el habito?</h2>
+                <p class="lead">Al completar el dia, mira patrones: hora, contexto, diferencia entre ganas y placer, y que frase mental aparece antes de fumar.</p>
+            </div>
+            <div class="insight-list" id="insightList">
+                <div class="insight-item"><strong>Pista 1:</strong> registra al menos un cigarro para empezar a ver el mapa.</div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const STORAGE_KEY = 'faro-bitacora-tabaco-v1';
+        const contexts = ['Cafe', 'Estres', 'Aburrimiento', 'Despues de comer', 'Social', 'Ansiedad', 'Pausa', 'Otro'];
+        const whatsappNumber = '56979035006';
+        const jokes = [
+            'Prometio pelicula de accion y entrego tramite municipal.',
+            'El cigarro dijo "yo te calmo". La evidencia pide segunda opinion.',
+            'Mucho trailer, poco estreno.',
+            'Este fue mas ritual que necesidad. El detective interno toma nota.',
+            'La nicotina intento vender humo. Literalmente.',
+            'El cigarro aparecio como solucion express. Spoiler: no siempre resuelve la trama.'
+        ];
+        const motivationalNotes = [
+            'Buen trabajo: observar sin pelear ya es una forma de recuperar libertad.',
+            'Cada registro es una pista. No necesitas hacerlo perfecto, necesitas verlo con honestidad.',
+            'Hoy no se trata de ganar una guerra; se trata de conocer mejor el mapa.',
+            'Si aparecio el impulso y pudiste mirarlo, ya hubo un pequeno espacio de eleccion.',
+            'La meta no es culpa. La meta es claridad, y hoy juntaste datos valiosos.'
+        ];
+
+        const state = loadState();
+        const grid = document.getElementById('cigaretteGrid');
+
+        function emptyEntry(index) {
+            return {
+                id: index + 1,
+                urge: 5,
+                pleasure: 5,
+                discomfort: 5,
+                context: '',
+                thought: '',
+                done: false
+            };
+        }
+
+        function loadState() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+                if (saved && Array.isArray(saved.entries) && saved.entries.length === 5) return saved;
+            } catch (_) {}
+            return { date: new Date().toISOString().slice(0, 10), entries: Array.from({ length: 5 }, (_, i) => emptyEntry(i)) };
+        }
+
+        function saveState() {
+            state.date = new Date().toISOString().slice(0, 10);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function average(values) {
+            if (!values.length) return null;
+            return Math.round((values.reduce((a, b) => a + b, 0) / values.length) * 10) / 10;
+        }
+
+        function getEntryTone(entry) {
+            const gap = entry.urge - entry.pleasure;
+            if (!entry.done) return 'Pendiente. El cigarro aun esta en modo misterio.';
+            if (gap >= 4) return 'Prometia bastante mas de lo que entrego. Marketing agresivo, producto discutible.';
+            if (entry.discomfort >= 8) return 'Dejo harto malestar despues. Buena pista para conversar en sesion.';
+            if (entry.pleasure >= 8) return 'Este tuvo recompensa alta. Conviene mirar que contexto lo hizo tan atractivo.';
+            if (entry.urge <= 4 && entry.pleasure <= 4) return 'Parece automatico mas que necesario. El piloto automatico anda con mucha confianza.';
+            return jokes[(entry.id + entry.urge + entry.pleasure + entry.discomfort) % jokes.length];
+        }
+
+        function renderCards() {
+            grid.innerHTML = '';
+            state.entries.forEach((entry, index) => {
+                const card = document.createElement('article');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="badge">${entry.id}</span>
+                        <span class="status">${entry.done ? 'Registrado' : 'Pendiente'}</span>
+                    </div>
+                    <label for="urge-${index}">Ganas antes</label>
+                    <div class="score"><span id="urgeValue-${index}">${entry.urge}</span><small>/10</small></div>
+                    <input id="urge-${index}" type="range" min="1" max="10" value="${entry.urge}" data-field="urge" data-index="${index}">
+
+                    <label for="pleasure-${index}">Placer real</label>
+                    <div class="score"><span id="pleasureValue-${index}">${entry.pleasure}</span><small>/10</small></div>
+                    <input id="pleasure-${index}" type="range" min="1" max="10" value="${entry.pleasure}" data-field="pleasure" data-index="${index}">
+
+                    <label for="discomfort-${index}">Malestar despues</label>
+                    <div class="score"><span id="discomfortValue-${index}">${entry.discomfort}</span><small>/10</small></div>
+                    <input id="discomfort-${index}" type="range" min="1" max="10" value="${entry.discomfort}" data-field="discomfort" data-index="${index}">
+
+                    <label for="context-${index}">Contexto</label>
+                    <select id="context-${index}" data-field="context" data-index="${index}">
+                        <option value="">Elige una pista</option>
+                        ${contexts.map(c => `<option value="${c}" ${entry.context === c ? 'selected' : ''}>${c}</option>`).join('')}
+                    </select>
+
+                    <label for="thought-${index}">Frase mental</label>
+                    <textarea id="thought-${index}" data-field="thought" data-index="${index}" placeholder="Ej: me lo merezco, me calma, solo uno...">${entry.thought}</textarea>
+
+                    <div class="mini-result">${getEntryTone(entry)}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderSummary() {
+            const done = state.entries.filter(e => e.done);
+            document.getElementById('doneCount').textContent = `${done.length}/5`;
+            document.getElementById('avgUrge').textContent = average(done.map(e => e.urge)) ?? '-';
+            document.getElementById('avgPleasure').textContent = average(done.map(e => e.pleasure)) ?? '-';
+            document.getElementById('avgDiscomfort').textContent = average(done.map(e => e.discomfort)) ?? '-';
+
+            const gap = average(done.map(e => e.urge - e.pleasure));
+            const topContext = mostCommon(done.map(e => e.context).filter(Boolean));
+            const meme = done.length
+                ? (gap >= 3 ? 'Hoy el cigarro prometio mas de lo que entrego. Publicidad enganosa con filtro.' : jokes[done.length % jokes.length])
+                : 'El cigarro todavia no ha declarado ante la comision investigadora.';
+            document.getElementById('dailyMeme').textContent = meme;
+
+            const insights = [];
+            if (!done.length) insights.push('Registra al menos un cigarro para empezar a ver el mapa.');
+            if (topContext) insights.push(`El contexto mas repetido fue <strong>${topContext}</strong>. Ahi puede vivir un disparador.`);
+            if (gap >= 3) insights.push('La diferencia entre ganas y placer fue alta. Buena senal para cuestionar la promesa del cigarro.');
+            if (average(done.map(e => e.discomfort)) >= 7) insights.push('El malestar posterior esta alto. Ese dato vale mas que una pelea interna.');
+            if (done.length === 5) insights.push('Dia completo. Manana puedes elegir un cigarro para retrasarlo 5 minutos y observar que pasa.');
+            document.getElementById('insightList').innerHTML = insights.map((text, index) => `<div class="insight-item"><strong>Pista ${index + 1}:</strong> ${text}</div>`).join('');
+        }
+
+        function mostCommon(values) {
+            if (!values.length) return '';
+            const counts = values.reduce((acc, value) => {
+                acc[value] = (acc[value] || 0) + 1;
+                return acc;
+            }, {});
+            return Object.entries(counts).sort((a, b) => b[1] - a[1])[0][0];
+        }
+
+        function buildWhatsappMessage() {
+            const done = state.entries.filter(e => e.done);
+            const avgUrgeValue = average(done.map(e => e.urge));
+            const avgPleasureValue = average(done.map(e => e.pleasure));
+            const avgDiscomfortValue = average(done.map(e => e.discomfort));
+            const topContext = mostCommon(done.map(e => e.context).filter(Boolean));
+            const motivation = motivationalNotes[done.length % motivationalNotes.length];
+
+            const lines = [
+                'Hola, esta es mi bitacora de tabaco de hoy.',
+                '',
+                `Cigarros registrados: ${done.length}/5`,
+                `Promedio de ganas antes: ${avgUrgeValue ?? '-'}/10`,
+                `Promedio de placer real: ${avgPleasureValue ?? '-'}/10`,
+                `Promedio de malestar despues: ${avgDiscomfortValue ?? '-'}/10`,
+                topContext ? `Contexto mas repetido: ${topContext}` : 'Contexto mas repetido: aun sin datos',
+                '',
+                'Detalle:'
+            ];
+
+            state.entries.forEach(entry => {
+                if (!entry.done) {
+                    lines.push(`Cigarro ${entry.id}: pendiente`);
+                    return;
+                }
+                lines.push(
+                    `Cigarro ${entry.id}: ganas ${entry.urge}/10, placer ${entry.pleasure}/10, malestar ${entry.discomfort}/10` +
+                    `${entry.context ? `, contexto: ${entry.context}` : ''}` +
+                    `${entry.thought ? `, frase: "${entry.thought.trim()}"` : ''}`
+                );
+            });
+
+            lines.push('', `Comentario motivador: ${motivation}`);
+            lines.push('', 'Nota: esto es una autoobservacion, no una prueba que se aprueba o reprueba.');
+
+            return lines.join('\n');
+        }
+
+        function openWhatsappSummary() {
+            const message = buildWhatsappMessage();
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
+        function refresh() {
+            renderCards();
+            renderSummary();
+        }
+
+        grid.addEventListener('input', (event) => {
+            const target = event.target;
+            const index = Number(target.dataset.index);
+            const field = target.dataset.field;
+            if (!field || Number.isNaN(index)) return;
+
+            const value = target.type === 'range' ? Number(target.value) : target.value;
+            state.entries[index][field] = value;
+            state.entries[index].done = Boolean(state.entries[index].context || state.entries[index].thought || state.entries[index].urge || state.entries[index].pleasure || state.entries[index].discomfort);
+
+            const valueLabel = document.getElementById(`${field}Value-${index}`);
+            if (valueLabel) valueLabel.textContent = value;
+            saveState();
+            renderSummary();
+        });
+
+        grid.addEventListener('change', () => {
+            saveState();
+            refresh();
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            saveState();
+            refresh();
+            openWhatsappSummary();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            if (!confirm('Quieres limpiar la bitacora de hoy?')) return;
+            state.entries = Array.from({ length: 5 }, (_, i) => emptyEntry(i));
+            saveState();
+            refresh();
+        });
+
+        refresh();
+    </script>
+</body>
+</html>
