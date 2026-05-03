@@ -1,5 +1,23 @@
 // --- Lógica principal de la aplicación ---
 document.addEventListener('DOMContentLoaded', () => {
+    const loadTrackingIfMissing = () => {
+        if (typeof window.gtag === 'function') return;
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { window.dataLayer.push(arguments); };
+
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
+        document.head.appendChild(script);
+
+        window.gtag('js', new Date());
+        window.gtag('config', 'GT-5TJMG836');
+        window.gtag('config', 'AW-17584631597');
+    };
+
+    loadTrackingIfMissing();
+
     const app = {
         // Método para enviar eventos a Google Analytics
         trackEvent(eventName, eventCategory, eventLabel) {
@@ -11,22 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         },
-
-        // Método para enviar eventos de CONVERSIÓN a Google Ads y Analytics
-        trackConversion(gaEvent, adsConversionLabel) {
-            // gaEvent = { eventName, eventCategory, eventLabel }
-            // adsConversionLabel = 'AW-17584631597/XXXXXXXXXX'
-
-            // 1. Enviar evento a Google Analytics (como ya se hacía)
-            this.trackEvent(gaEvent.eventName, gaEvent.eventCategory, gaEvent.eventLabel);
-
-            // 2. Enviar evento de conversión a Google Ads
-            if (typeof gtag === 'function' && adsConversionLabel) {
-                console.log(`Tracking Ads Conversion: ${adsConversionLabel} for ${gaEvent.eventLabel}`); // Para depuración
-                gtag('event', 'conversion', { 'send_to': adsConversionLabel });
-            }
-        },
-
 
         // Método de inicialización
         init() {
@@ -152,9 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     hamburgerIcon.classList.toggle('fa-times', isOpen);
 
                     // Evento de seguimiento para apertura de menú
-                    if (isOpen) {
-                        this.trackEvent('navegacion', 'Clic', 'Abrir Menu Hamburguesa');
-                    }
                 });
 
                 document.querySelectorAll('.main-nav a').forEach(link => {
@@ -165,8 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         nav.classList.remove('active');
                         document.body.classList.remove('menu-open');
                         // Evento de seguimiento para clics en la navegación principal
-                        const linkText = link.textContent || 'Link sin texto';
-                        this.trackEvent('navegacion', 'Clic Menu', linkText);
                     });
                 });
 
@@ -230,20 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Seguimiento de rutas FONASA / ISAPRE en el hero del inicio
-            document.querySelectorAll('.hero-path').forEach(el => {
-                el.addEventListener('click', () => {
-                    const label = el.querySelector('strong')?.textContent.trim() || el.textContent.trim();
-                    this.trackEvent('navegacion_hero', 'Clic Hero Path', label);
-                });
-            });
-
-            // Botón de orientación en la página de inicio
-            document.getElementById('btn-orientacion-hero')?.addEventListener('click', (e) => {
-                // No previene el default, solo trackea. La navegación a la página de orientación es normal.
-                this.trackEvent('explore_free_session', 'Interés', 'Clic en Saber Más Orientación');
-            });
-
             // Seguimiento de todos los clics en enlaces de Calendly
             document.querySelectorAll('a[href*="calendly.com"], button[onclick*="calendly.com"]').forEach(el => {
                 el.addEventListener('click', () => {
@@ -251,19 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (isOrientation) {
                         // Es un agendamiento de orientación (Lead)
-                        this.trackEvent('generate_lead', 'Agendamiento', 'Clic en Sesión Orientación');
-                        console.log('Clic en Sesión de Orientación detectado');
                         if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/jLpYCK6Y2qYbEK3egMFB' });
                         if (typeof fbq === 'function') fbq('track', 'Lead', {}, { eventID: crypto.randomUUID() });
                     } else {
                         // Es un agendamiento de sesión normal (Schedule)
                         const therapist = el.dataset.therapist;
                         const therapistName = therapist ? therapist.charAt(0).toUpperCase() + therapist.slice(1) : 'General';
-                        const eventLabel = `Clic en Calendly ${therapistName}`;
-                        const eventName = `agendar_${therapist || 'general'}`;
-
-                        this.trackEvent(eventName, 'Agendamiento', eventLabel);
-                        console.log(`Evento GA: ${eventName}, Label: ${eventLabel}`);
                         if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
                         if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Agendar con ${therapistName}` }, { eventID: crypto.randomUUID() });
                     }
@@ -288,15 +264,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (e.target.closest('a')) {
                         return;
                     }
-
-                    const isPresencial = card.classList.contains('presencial');
-                    const eventLabel = isPresencial ? 'Ver Mas Presencial' : 'Ver Mas Online';
-                    const adsLabel = card.dataset.adsConversion; // Leer la etiqueta de conversión desde el HTML
-
-                    this.trackConversion(
-                        { eventName: 'ver_mas_modalidad', eventCategory: 'Clic', eventLabel: eventLabel },
-                        adsLabel
-                    );
 
                     // Abrir el modal correspondiente
                     this.openModalByTarget(card.dataset.modalTarget);
@@ -328,14 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Seguimiento de clics en redes sociales
-            document.querySelectorAll('a[href*="instagram.com"]').forEach(el => {
-                el.addEventListener('click', () => this.trackEvent('social', 'Clic', 'Instagram'));
-            });
-            document.querySelectorAll('a[href*="facebook.com"]').forEach(el => {
-                el.addEventListener('click', () => this.trackEvent('social', 'Clic', 'Facebook'));
-            });
-
             // Seguimiento de preguntas frecuentes (FAQ)
             // Nota: el script inline ya toggleó 'active' antes de que este listener corra,
             // por eso verificamos que 'active' esté presente (= acaba de abrirse).
@@ -356,12 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Seguimiento del botón de scroll-down
-            document.querySelector('.scroll-down-indicator')?.addEventListener('click', () => {
-                this.trackEvent('navegacion', 'Clic', 'Scroll Down Indicator');
-            });
-
-
             // Componentes críticos: se ejecutan inmediatamente
             this.initAccordions(); // Acordeones de preguntas frecuentes
             this.initReadMoreToggle(); // Botón "Continuar leyendo"
@@ -380,32 +333,8 @@ document.addEventListener('DOMContentLoaded', () => {
             deferInit(this.initTestimonialSlider); // Carrusel de testimonios
             deferInit(this.initTherapistCarousel); // Carrusel de Terapeutas
             deferInit(this.initIsapreAccordion); // Lista Acordeón de ISAPREs
-            deferInit(this.initCardTracking); // Seguimiento de clics en tarjetas
             deferInit(this.initContactForms); // Formularios de contacto interactivos
         },
-
-        // Nuevo método para seguir clics en tarjetas de terapeutas y temas de ayuda
-        initCardTracking() {
-            // Seguimiento de tarjetas de terapeutas
-            document.querySelectorAll('.therapist-card-mini').forEach(card => {
-                card.addEventListener('click', () => {
-                    const therapistName = card.querySelector('h3')?.textContent.trim() || 'Desconocido';
-                    const context = card.closest('section')?.id || 'general';
-                    this.trackEvent('interaccion_terapeuta', 'Clic Tarjeta', `${therapistName} (${context})`);
-                });
-            });
-
-            // Seguimiento de tarjetas de temas de ayuda (FAQ/Temas)
-            document.querySelectorAll('.topic-card').forEach(card => {
-                card.addEventListener('click', () => {
-                    const topicTitle = card.querySelector('span')?.textContent.trim() || 'Tema Desconocido';
-                    this.trackEvent('interaccion_ayuda', 'Clic Tarjeta', topicTitle);
-                });
-            });
-        },
-
-
-
 
         // Lógica para mostrar/ocultar header en scroll
         handleHeaderVisibility() {
@@ -434,9 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (isActive) {
                         content.style.display = 'block';
-                        // Evento de seguimiento para apertura de acordeón
-                        const accordionTitle = button.textContent.trim().replace(/<span.*<\/span>/, '').trim();
-                        this.trackEvent('interaccion', 'Abrir Acordeon', accordionTitle);
                     } else {
                         content.style.display = 'none';
                     }
@@ -457,12 +383,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         if (isExpanded) {
                             button.textContent = 'Mostrar menos';
-                            // Evento de seguimiento para "Continuar leyendo"
-                            const parentCard = button.closest('.therapist-card, .about-us-content');
-                            const titleElement = parentCard?.querySelector('h3, h2');
-                            // Limpia el título de etiquetas HTML internas como <span>
-                            const therapistName = titleElement ? titleElement.textContent.replace(/<[^>]*>/g, " ").replace(/\s+/g, ' ').trim() : 'Desconocido';
-                            this.trackEvent('interaccion', 'Clic', `Continuar Leyendo - ${therapistName}`);
                         } else {
                             button.textContent = 'Continuar leyendo';
                         }
@@ -560,15 +480,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const modalTriggers = document.querySelectorAll('.topic-card[data-modal-target]');
             modalTriggers.forEach(trigger => {
                 trigger.addEventListener('click', () => {
-                    const topicName = trigger.querySelector('span')?.textContent.trim() || 'Tema Desconocido';
-                    // Lee la etiqueta de conversión específica del atributo data-ads-conversion
-                    const adsLabel = trigger.dataset.adsConversion;
-
-                    this.trackConversion(
-                        { eventName: 'interaccion_ayuda', eventCategory: 'Clic', eventLabel: `Ayuda con ${topicName}` },
-                        adsLabel // Envía la etiqueta específica a Google Ads
-                    );
-
                     this.openModalByTarget(trigger.dataset.modalTarget);
                 });
             });
@@ -837,9 +748,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             body.style.maxHeight = body.scrollHeight + "px";
                         }
 
-                        // Evento de seguimiento
-                        const isapreName = item.querySelector('.isapre-name')?.textContent || 'Desconocida';
-                        this.trackEvent('interaccion_isapre', 'Abrir Acordeon', isapreName);
                     }
                 });
             });
@@ -871,8 +779,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     // 4. Abrir el modal
                     this.openModalByTarget('#modal-isapre-info');
 
-                    // Tracking
-                    this.trackEvent('interaccion_isapre', 'Click Solicitud', isapreName);
                 });
             });
         }

@@ -192,25 +192,69 @@
         .hero-eval-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 16px;
-            padding: 10px 20px;
-            background: rgba(26,26,26,0.08);
-            border: 1.5px solid rgba(26,26,26,0.25);
+            justify-content: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.78);
+            border: 1px solid rgba(176,141,85,0.44);
             border-radius: 50px;
             color: var(--ink);
-            font-size: 0.85rem;
-            font-weight: 500;
+            font-family: var(--sans);
+            font-weight: 600;
             text-decoration: none;
-            transition: all 0.25s ease;
+            box-shadow: 0 10px 28px rgba(31,42,48,0.10), inset 0 0 0 1px rgba(255,255,255,0.55);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
         .hero-eval-btn:hover {
-            background: var(--ink);
-            color: #fff;
-            border-color: var(--ink);
+            background: #fff;
+            color: var(--ink);
+            border-color: var(--gold);
             transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(31,42,48,0.14);
         }
-        .hero-eval-btn i { font-size: 0.9rem; }
+        .hero-eval-btn i {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gold-tint);
+            color: var(--gold-dark);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        .hero-eval-copy {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1px;
+            line-height: 1.15;
+        }
+        .hero-eval-copy strong {
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+        }
+        .hero-eval-copy span {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: var(--ink-muted);
+        }
+        .hero-eval-arrow {
+            color: var(--gold-dark);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .hero-eval-btn {
+                width: 100%;
+                max-width: 320px;
+                justify-content: flex-start;
+                padding: 12px 14px;
+            }
+            .hero-eval-arrow { margin-left: auto; }
+        }
 
         /* Proceso terapéutico timeline */
         .proceso-timeline {
@@ -544,8 +588,12 @@
                     </div>
 
                     <a href="evaluacion" class="hero-eval-btn">
-                        <i class="fas fa-brain"></i>
-                        ¿No sabes por dónde empezar? → Evalúate gratis en 2 min
+                        <i class="fas fa-clipboard-check"></i>
+                        <span class="hero-eval-copy">
+                            <strong>Autoevalúate gratis</strong>
+                            <span>2 minutos · orientación inicial</span>
+                        </span>
+                        <span class="hero-eval-arrow">→</span>
                     </a>
 
                     <div class="hero-meta">
