@@ -221,6 +221,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.addEventListener('click', () => {
                     const label = el.textContent.trim() || 'Encuadrado';
                     const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                    if (el.matches('.encuadrado-inline-link')) {
+                        this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
+                        return;
+                    }
+                    if (el.matches('[data-encuadrado-center="true"]')) {
+                        this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
+                    }
                     this.trackEvent('agendar_encuadrado', 'Encuadrado', `${label} — ${page}`);
                     if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
                     if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Encuadrado — ${page}` }, { eventID: crypto.randomUUID() });

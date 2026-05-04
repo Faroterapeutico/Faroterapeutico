@@ -2280,3 +2280,126 @@ body.boutique .main-nav .header-agendar-btn:hover {
     .wa-banner-btn { font-size: .82rem; padding: 9px 16px; }
     .wa-banner-save { font-size: .78rem; padding: 5px 10px; border: none; opacity: .7; }
 }
+
+/* Hero typography - lectura mas clara */
+body.boutique #hero .eyebrow {
+    font-size: 0.82rem;
+    letter-spacing: 0;
+    font-weight: 500;
+    color: var(--ink-soft);
+}
+body.boutique #hero .eyebrow-framed {
+    padding-inline: 1.6rem;
+}
+body.boutique #hero .hero-inner h1 {
+    font-size: 3.15rem;
+    line-height: 1.08;
+    letter-spacing: 0;
+    font-weight: 500;
+    max-width: 760px;
+    margin-inline: auto;
+    margin-bottom: 1.35rem;
+}
+body.boutique #hero .hero-inner h1 em {
+    font-weight: 400;
+}
+body.boutique #hero .hero-lead {
+    font-size: 1.08rem;
+    line-height: 1.62;
+    font-weight: 400;
+    max-width: 500px;
+    margin-bottom: 2.35rem;
+    color: var(--ink-soft);
+}
+@media (max-width: 768px) {
+    body.boutique #hero .eyebrow {
+        font-size: 0.76rem;
+    }
+    body.boutique #hero .hero-inner h1 {
+        font-size: 2.35rem;
+        line-height: 1.1;
+        max-width: 92%;
+        margin-bottom: 1rem;
+    }
+    body.boutique #hero .hero-lead {
+        font-size: 1rem;
+        line-height: 1.58;
+        max-width: 90%;
+        margin-bottom: 2rem;
+    }
+}
+@media (max-width: 420px) {
+    body.boutique #hero .hero-inner h1 {
+        font-size: 2.05rem;
+    }
+}
+
+/* Review typography - lectura mas facil */
+body.boutique #testimonios .testimonios-grid {
+    gap: 1.15rem;
+}
+body.boutique #testimonios blockquote,
+body.boutique #testimonios .testimonio-card {
+    border-left-width: 2px !important;
+}
+body.boutique #testimonios blockquote p,
+body.boutique #testimonios .testimonio-card p,
+body.boutique .review-text {
+    font-family: var(--sans) !important;
+    font-style: normal !important;
+    font-size: 1rem !important;
+    line-height: 1.72 !important;
+    font-weight: 400 !important;
+    color: var(--ink) !important;
+    letter-spacing: 0 !important;
+    max-width: 34rem;
+}
+body.boutique #testimonios blockquote footer,
+body.boutique #testimonios .testimonio-card footer {
+    font-size: 0.8rem !important;
+    line-height: 1.45 !important;
+    color: var(--ink-muted) !important;
+}
+body.boutique #testimonios blockquote cite,
+body.boutique #testimonios .testimonio-card cite {
+    font-style: normal !important;
+    color: var(--ink-soft) !important;
+}
+.encuadrado-inline-link {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(176, 141, 85, 0.42);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.encuadrado-inline-link:hover {
+    color: var(--gold-dark);
+    border-bottom-color: var(--gold-dark);
+}
+.isapre-inline-link {
+    color: inherit;
+    font: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(74, 85, 96, 0.35);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.isapre-inline-link:hover {
+    color: var(--gold-dark);
+    border-bottom-color: var(--gold-dark);
+}
+@media (min-width: 769px) {
+    body.boutique #testimonios .testimonios-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        max-width: 1120px;
+    }
+}
+@media (max-width: 768px) {
+    body.boutique #testimonios blockquote p,
+    body.boutique #testimonios .testimonio-card p,
+    body.boutique .review-text {
+        font-size: 0.98rem !important;
+        line-height: 1.68 !important;
+    }
+}
