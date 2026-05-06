@@ -1,0 +1,26 @@
+{
+  "name": "Faro Terapeutico",
+  "short_name": "Faro",
+  "description": "Psicologia clinica presencial en Providencia y terapia online en Chile.",
+  "lang": "es-CL",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#faf8f3",
+  "theme_color": "#faf8f3",
+  "categories": ["health", "medical", "lifestyle"],
+  "icons": [
+    {
+      "src": "/images/favicon-32x32.webp",
+      "sizes": "32x32",
+      "type": "image/webp"
+    },
+    {
+      "src": "/images/apple-touch-icon.png",
+      "sizes": "341x341",
+      "type": "image/png"
+    }
+  ]
+}
