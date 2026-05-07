@@ -71,12 +71,82 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#faf8f3">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "https://faroterapeutico.com/servicios-clinicos#collection",
+      "name": "Servicios cl\u00ednicos de Faro Terap\u00e9utico",
+      "url": "https://faroterapeutico.com/servicios-clinicos",
+      "description": "Listado de servicios cl\u00ednicos: terapia individual, pareja, familiar, infantojuvenil, orientaci\u00f3n psicol\u00f3gica y certificado de animal de apoyo emocional.",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://faroterapeutico.com/#organization",
+        "name": "Faro Terap\u00e9utico",
+        "url": "https://faroterapeutico.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://faroterapeutico.com/images/favicon-32x32.webp",
+          "width": 32,
+          "height": 32
+        }
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Terapia individual",
+            "url": "https://faroterapeutico.com/terapia-individual"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Terapia de pareja",
+            "url": "https://faroterapeutico.com/terapia-pareja"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Terapia familiar",
+            "url": "https://faroterapeutico.com/terapia-familiar"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Terapia infantojuvenil",
+            "url": "https://faroterapeutico.com/terapia-infanto-juvenil"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Terapia online",
+            "url": "https://faroterapeutico.com/terapia-online"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Terapia presencial",
+            "url": "https://faroterapeutico.com/terapia-presencial"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Certificado de animal de apoyo emocional",
+            "url": "https://faroterapeutico.com/certificado-mascota"
+          }
+        ]
+      },
+      "inLanguage": "es-CL"
+    }
+    </script>
 </head>
 
 <body class="boutique page-servicios">
     <header id="main-header" class="main-header">
         <div class="container">
-            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon" width="32" height="32"><span>Faro Terapéutico</span></a>
             <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
             <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
         </div>
@@ -91,6 +161,8 @@
                     <h1 style="font-size: clamp(2.4rem, 5vw, 3.4rem);">Nuestros servicios <em>clínicos</em>.</h1>
                     <p class="section-lead">Ofrecemos distintas modalidades de atención para acompañar cada proceso con la profundidad y el cuidado que requiere.</p>
                 </div>
+
+                <h2 class="sr-only">Listado de servicios cl&iacute;nicos</h2>
 
                 <div class="services-grid-b">
                     <article class="service-card-b reveal-up delay-1">
@@ -234,9 +306,9 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Acompañamiento psicológico profesional con un enfoque humano y cercano.</p></div>
-                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="servicios-clinicos">Servicios</a></li><li><a href="sobre-nosotros">Sobre Nosotros</a></li></ul></div>
-                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
+                <div class="footer-col"><h3>Faro Terapéutico</h3><p>Acompañamiento psicológico profesional con un enfoque humano y cercano.</p></div>
+                <div class="footer-col"><h3>Navegación</h3><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="servicios-clinicos">Servicios</a></li><li><a href="sobre-nosotros">Sobre Nosotros</a></li></ul></div>
+                <div class="footer-col"><h3>Contacto</h3><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
             </div>
             <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico.</p></div>
         </div>

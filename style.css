@@ -1783,6 +1783,7 @@ body.page-fonasa #hero {
     text-align: center;
 }
 
+.footer-grid h3,
 .footer-grid h4 {
     color: var(--white-color);
     font-weight: 600;

@@ -11,12 +11,13 @@
     <meta property="og:url" content="https://faroterapeutico.com/terapia-presencial">
     <meta property="og:title" content="Psicólogo Presencial en Providencia | Faro Terapéutico">
     <meta property="og:description" content="Consulta presencial en Providencia, a pasos del Metro Pedro de Valdivia.">
-    <meta property="og:image" content="https://faroterapeutico.com/images/Oficina/hero-presencial-escritorio.png">
+    <meta property="og:image" content="https://faroterapeutico.com/images/Oficina/hero-presencial-escritorio.webp">
+    <meta property="og:image:alt" content="Faro Terapéutico, consulta presencial en Providencia">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="images/Oficina/hero-presencial-escritorio.png" fetchpriority="high">
+    <link rel="preload" as="image" href="images/Oficina/hero-presencial-escritorio.webp" fetchpriority="high">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="boutique.css">
     <link rel="preload" as="style" href="style.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -55,7 +56,7 @@
         .scheduling-boutique{display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;max-width:960px;margin:0 auto}
         .scheduling-card-b{background:var(--surface);padding:2.5rem 2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);text-align:center}
         .scheduling-card-b .sch-icon{width:60px;height:60px;border-radius:50%;background:var(--gold-tint);color:var(--gold-dark);display:inline-flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:1.2rem}
-        .scheduling-card-b h4{font-family:var(--serif);font-size:1.35rem;color:var(--ink);font-weight:500;margin-bottom:.8rem}
+        .scheduling-card-b h3{font-family:var(--serif);font-size:1.35rem;color:var(--ink);font-weight:500;margin-bottom:.8rem}
         .scheduling-card-b p{font-size:.95rem;color:var(--ink-soft);line-height:1.65;margin-bottom:1rem}
         .sch-divider{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--ink-muted)}
         .sch-checklist{list-style:none;padding:0;margin:1rem auto;text-align:left;max-width:260px}
@@ -72,19 +73,73 @@
     <meta property="twitter:url" content="https://faroterapeutico.com/terapia-presencial">
     <meta property="twitter:title" content="Terapia Presencial en Providencia | Faro Terapéutico">
     <meta property="twitter:description" content="Consulta presencial en La Concepción 56, Providencia.">
-    <meta property="twitter:image" content="https://faroterapeutico.com/images/Oficina/Hero-isapre-escritorio.webp">
+    <meta property="twitter:image" content="https://faroterapeutico.com/images/Oficina/hero-presencial-escritorio.webp">
+    <meta property="twitter:image:alt" content="Faro Terapéutico, consulta presencial en Providencia">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <meta name="author" content="Faro Terapéutico">
     <meta name="language" content="es-CL">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#faf8f3">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": "https://faroterapeutico.com/terapia-presencial#service",
+      "name": "Psicoterapia presencial en Providencia",
+      "serviceType": "Psicoterapia clínica presencial",
+      "url": "https://faroterapeutico.com/terapia-presencial",
+      "description": "Atención psicológica presencial en Providencia, a pasos del Metro Pedro de Valdivia, con cobertura FONASA e Isapre.",
+      "provider": {
+        "@type": "MedicalBusiness",
+        "@id": "https://faroterapeutico.com/#business",
+        "name": "Faro Terapéutico"
+      },
+      "areaServed": [
+        {"@type": "City", "name": "Providencia"},
+        {"@type": "City", "name": "Santiago"}
+      ],
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "name": "Consulta presencial",
+        "serviceLocation": {
+          "@type": "Place",
+          "name": "Faro Terapéutico",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "La Concepción 56, Oficina 702",
+            "addressLocality": "Providencia",
+            "addressRegion": "Región Metropolitana",
+            "addressCountry": "CL"
+          }
+        }
+      },
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Sesión particular o Isapre",
+          "price": "30000",
+          "priceCurrency": "CLP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://faroterapeutico.com/terapia-presencial"
+        },
+        {
+          "@type": "Offer",
+          "name": "Bono FONASA Nivel 3",
+          "price": "14420",
+          "priceCurrency": "CLP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://faroterapeutico.com/fonasa"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="boutique page-presencial">
     <header id="main-header" class="main-header">
         <div class="container">
-            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo Faro Terapéutico" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo Faro Terapéutico" class="logo-icon" width="32" height="32"><span>Faro Terapéutico</span></a>
             <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
             <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
         </div>
@@ -93,8 +148,8 @@
     <main>
         <section id="hero">
             <picture>
-                <source media="(max-width: 768px)" srcset="images/Oficina/hero-presencial-mobil.png">
-                <img src="images/Oficina/hero-presencial-escritorio.png" alt="Consulta presencial en Providencia" class="hero-bg-img" fetchpriority="high">
+                <source media="(max-width: 768px)" srcset="images/Oficina/hero-presencial-mobil.webp">
+                <img src="images/Oficina/hero-presencial-escritorio.webp" alt="Consulta presencial en Providencia" class="hero-bg-img" fetchpriority="high" width="1672" height="941">
             </picture>
             <div class="container">
                 <div class="hero-inner">
@@ -165,7 +220,7 @@
                 </div>
                 <div class="therapist-grid">
                     <article class="therapist reveal-up delay-1">
-                        <div class="therapist-photo"><img src="images/aaron.webp" alt="Psicólogo Aaron Millán" loading="lazy"></div>
+                        <div class="therapist-photo"><img src="images/aaron.webp" alt="Psicólogo Aaron Millán" loading="lazy" width="864" height="1184"></div>
                         <div class="therapist-body">
                             <span class="therapist-kicker">Reg. SIS N° 870794</span>
                             <h3 class="therapist-name">Aaron Millán</h3>
@@ -175,7 +230,7 @@
                         </div>
                     </article>
                     <article class="therapist reveal-up delay-2">
-                        <div class="therapist-photo"><img src="images/david.webp" alt="Psicólogo David Walter Salinas" loading="lazy"></div>
+                        <div class="therapist-photo"><img src="images/david.webp" alt="Psicólogo David Walter Salinas" loading="lazy" width="765" height="1024"></div>
                         <div class="therapist-body">
                             <span class="therapist-kicker">Reg. SIS N° 870946</span>
                             <h3 class="therapist-name">David Walter</h3>
@@ -185,7 +240,7 @@
                         </div>
                     </article>
                     <article class="therapist reveal-up delay-3">
-                        <div class="therapist-photo"><img src="images/isidora.webp" alt="Psicóloga Isidora Sanhueza" loading="lazy"></div>
+                        <div class="therapist-photo"><img src="images/isidora.webp" alt="Psicóloga Isidora Sanhueza" loading="lazy" width="768" height="1092"></div>
                         <div class="therapist-body">
                             <span class="therapist-kicker">Reg. SIS N° 866414</span>
                             <h3 class="therapist-name">Isidora Sanhueza</h3>
@@ -247,7 +302,7 @@
                 <div class="scheduling-boutique reveal-up delay-1">
                     <div class="scheduling-card-b">
                         <div class="sch-icon"><i class="fab fa-whatsapp"></i></div>
-                        <h4>Por WhatsApp</h4>
+                        <h3>Por WhatsApp</h3>
                         <p>Envíanos un mensaje al <strong>+56 9 4559 3808</strong> indicando:</p>
                         <ul class="sch-checklist">
                             <li><i class="fas fa-check-circle"></i> Día y horario de preferencia</li>
@@ -261,7 +316,7 @@
                     <div class="sch-divider">o</div>
                     <div class="scheduling-card-b">
                         <div class="sch-icon"><i class="fas fa-laptop"></i></div>
-                        <h4>Agenda online</h4>
+                        <h3>Agenda online</h3>
                         <p>Ingresa a nuestra plataforma de agendamiento y elige el día, horario y terapeuta que prefieras.</p><br>
                         <a href="https://encuadrado.com/centro/faro-terapeutico" target="_blank" rel="noopener noreferrer" class="cta">Agendar en Encuadrado <span class="cta-arrow"></span></a>
                     </div>
@@ -305,10 +360,10 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Equipo de psicólogos clínicos en Providencia. Acompañamiento profesional, cálido y efectivo. Presencial y online.</p></div>
-                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="sobre-nosotros">Equipo Clínico</a></li><li><a href="terapia-online">Terapia Online</a></li><li><a href="blog">Blog</a></li></ul></div>
-                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
-                <div class="footer-col"><h4>Síguenos</h4><div class="social-links"><a href="https://www.instagram.com/faro_terapeutico/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/profile.php?id=61575925194962" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a></div></div>
+                <div class="footer-col"><h3>Faro Terapéutico</h3><p>Equipo de psicólogos clínicos en Providencia. Acompañamiento profesional, cálido y efectivo. Presencial y online.</p></div>
+                <div class="footer-col"><h3>Navegación</h3><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="sobre-nosotros">Equipo Clínico</a></li><li><a href="terapia-online">Terapia Online</a></li><li><a href="blog">Blog</a></li></ul></div>
+                <div class="footer-col"><h3>Contacto</h3><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a><a href="mailto:psicologo.aams@gmail.com"><p><i class="fas fa-envelope"></i> psicologo.aams@gmail.com</p></a></div>
+                <div class="footer-col"><h3>Síguenos</h3><div class="social-links"><a href="https://www.instagram.com/faro_terapeutico/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/profile.php?id=61575925194962" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a></div></div>
             </div>
             <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico. Todos los derechos reservados.</p></div>
         </div>

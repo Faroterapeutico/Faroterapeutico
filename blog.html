@@ -34,6 +34,7 @@
         .blog-card-b:hover .blog-card-visual-b img{transform:scale(1.05)}
         .blog-card-body-b{padding:1.8rem 1.8rem 1.6rem;display:flex;flex-direction:column;flex:1}
         .blog-meta-b{display:inline-block;font-family:var(--sans);font-size:.72rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-dark);font-weight:500;margin-bottom:.8rem}
+        .blog-section-title{font-family:var(--serif);font-size:clamp(1.9rem,4vw,2.5rem);line-height:1.15;color:var(--ink);font-weight:500;letter-spacing:-.4px;margin:.6rem 0 0}
         .blog-title-b{font-family:var(--serif);font-size:1.45rem;line-height:1.25;color:var(--ink);font-weight:500;letter-spacing:-.3px;margin-bottom:.7rem}
         .blog-excerpt-b{font-size:.95rem;color:var(--ink-soft);line-height:1.65;font-weight:300;margin-bottom:1.2rem;flex:1}
         .blog-read-b{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:.75rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--ink);font-weight:500;padding-top:1rem;border-top:.5px solid var(--line-soft)}
@@ -53,12 +54,92 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#faf8f3">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "@id": "https://faroterapeutico.com/blog#blog",
+      "name": "Blog de Salud Mental | Faro Terap\u00e9utico",
+      "url": "https://faroterapeutico.com/blog",
+      "description": "Blog psicol\u00f3gico de Faro Terap\u00e9utico con recursos y reflexiones cl\u00ednicas para bienestar y salud mental.",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://faroterapeutico.com/#organization",
+        "name": "Faro Terap\u00e9utico",
+        "url": "https://faroterapeutico.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://faroterapeutico.com/images/favicon-32x32.webp",
+          "width": 32,
+          "height": 32
+        }
+      },
+      "inLanguage": "es-CL",
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Delirios y obsesiones: gu\u00eda cl\u00ednica",
+          "url": "https://faroterapeutico.com/delirios-y-obsesiones"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Qu\u00e9 es la psicoterapia",
+          "url": "https://faroterapeutico.com/que-es-la-psicoterapia"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "S\u00edntomas f\u00edsicos de la ansiedad",
+          "url": "https://faroterapeutico.com/ansiedad-cuerpo-mente"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Primera sesi\u00f3n con psic\u00f3logo",
+          "url": "https://faroterapeutico.com/primera-sesion-psicologo"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Higiene del sue\u00f1o y c\u00f3mo dormir mejor",
+          "url": "https://faroterapeutico.com/higiene-sueno"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "T\u00e9cnica 4-7-8 para la ansiedad",
+          "url": "https://faroterapeutico.com/herramientas-ansiedad"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "C\u00f3mo comprar bono FONASA psic\u00f3logo",
+          "url": "https://faroterapeutico.com/bono-fonasa-paso-a-paso"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Psic\u00f3logo FONASA: valor y agenda",
+          "url": "https://faroterapeutico.com/psicologo-fonasa-valores-horarios-agenda"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Depresi\u00f3n: s\u00edntomas y tratamiento",
+          "url": "https://faroterapeutico.com/depresion-que-es-sintomas-tratamiento"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Duelo: c\u00f3mo transitar una p\u00e9rdida",
+          "url": "https://faroterapeutico.com/duelo-como-superar-una-perdida"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Superar una ruptura de pareja",
+          "url": "https://faroterapeutico.com/como-superar-ruptura-de-pareja"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="boutique page-blog">
     <header id="main-header" class="main-header">
         <div class="container">
-            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon"><span>Faro Terapéutico</span></a>
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon" width="32" height="32"><span>Faro Terapéutico</span></a>
             <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
             <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
         </div>
@@ -75,39 +156,40 @@
             <div style="text-align:center;margin-bottom:3rem;" class="reveal-up delay-1">
                 <div class="ornament">✦</div>
                 <span class="eyebrow">— Artículos recientes</span>
+                <h2 class="blog-section-title">Artículos del blog</h2>
             </div>
 
             <div class="blog-grid-b">
                 <a href="delirios-y-obsesiones" class="blog-card-b reveal-up delay-1">
-                    <div class="blog-card-visual-b"><img src="images/delirios_psicopatologia_books.webp" alt="Libros de psicopatología" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/delirios_psicopatologia_books.webp" alt="Libros de psicopatología" loading="lazy" width="512" height="512"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Psicopatología</span><h3 class="blog-title-b">Delirios y obsesiones</h3><p class="blog-excerpt-b">Una mirada clínica para distinguir entre delirios y pensamientos obsesivos.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="que-es-la-psicoterapia" class="blog-card-b reveal-up delay-2">
-                    <div class="blog-card-visual-b"><img src="images/psicoterapia-profunda.webp" alt="Psicoterapia" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/psicoterapia-profunda.webp" alt="Psicoterapia" loading="lazy" width="1400" height="932"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Psicoterapia</span><h3 class="blog-title-b">Psicoterapia: el orden del caos</h3><p class="blog-excerpt-b">Cómo la terapia enciende la luz en los momentos de mayor desorden vital.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="ansiedad-cuerpo-mente" class="blog-card-b reveal-up delay-3">
-                    <div class="blog-card-visual-b"><img src="images/ansiedad-cuerpo-mente.webp" alt="Ansiedad y cuerpo" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/ansiedad-cuerpo-mente.webp" alt="Ansiedad y cuerpo" loading="lazy" width="612" height="433"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Psicosomática</span><h3 class="blog-title-b">Ansiedad: escucha a tu cuerpo</h3><p class="blog-excerpt-b">Lo que tu cuerpo muestra cuando la mente calla. Señales físicas de la ansiedad.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="primera-sesion-psicologo" class="blog-card-b reveal-up delay-1">
-                    <div class="blog-card-visual-b"><img src="images/cronica-primera-sesion.webp" alt="Primera sesión" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/cronica-primera-sesion.webp" alt="Primera sesión" loading="lazy" width="592" height="432"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Reflexión</span><h3 class="blog-title-b">Crónica de una primera sesión</h3><p class="blog-excerpt-b">El lenguaje del cuidado y la protección en el espacio terapéutico inicial.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="higiene-sueno" class="blog-card-b reveal-up delay-2">
-                    <div class="blog-card-visual-b"><img src="images/higiene-sueno.webp" alt="Higiene del sueño" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/higiene-sueno.webp" alt="Higiene del sueño" loading="lazy" width="704" height="368"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Bienestar</span><h3 class="blog-title-b">Higiene del sueño</h3><p class="blog-excerpt-b">Consejos prácticos y efectivos para recuperar un descanso reparador.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="herramientas-ansiedad" class="blog-card-b reveal-up delay-3">
-                    <div class="blog-card-visual-b"><img src="images/tecnica-4-7-8.webp" alt="Técnica 4-7-8" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/tecnica-4-7-8.webp" alt="Técnica 4-7-8" loading="lazy" width="568" height="464"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Herramientas</span><h3 class="blog-title-b">Gestión de ansiedad: técnica 4-7-8</h3><p class="blog-excerpt-b">Domina tu respiración para calmar el sistema nervioso en minutos.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="psicologo-fonasa-valores-horarios-agenda" class="blog-card-b reveal-up delay-1">
-                    <div class="blog-card-visual-b"><img src="images/logo-fonasa.webp" alt="FONASA" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/logo-fonasa.webp" alt="FONASA" loading="lazy" width="1232" height="864"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Guía</span><h3 class="blog-title-b">Psicólogo por FONASA: valor y cómo agendar</h3><p class="blog-excerpt-b">Conoce el copago, horarios, modalidades de atención y reembolsos complementarios.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="bono-fonasa-paso-a-paso" class="blog-card-b reveal-up delay-2">
-                    <div class="blog-card-visual-b"><img src="images/logo-fonasa.webp" alt="Bono FONASA paso a paso" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/logo-fonasa.webp" alt="Bono FONASA paso a paso" loading="lazy" width="1232" height="864"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Tutorial</span><h3 class="blog-title-b">Cómo comprar bono FONASA paso a paso</h3><p class="blog-excerpt-b">Aprende qué código usar y cómo comprar tu bono de psicología en Mi FONASA o sucursal.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="depresion-que-es-sintomas-tratamiento" class="blog-card-b reveal-up delay-2">
@@ -119,7 +201,7 @@
                     <div class="blog-card-body-b"><span class="blog-meta-b">Pérdida &amp; Duelo</span><h3 class="blog-title-b">Duelo: transitar la pérdida sin perder el rumbo</h3><p class="blog-excerpt-b">Etapas, duelo complicado y cómo la terapia acompaña el proceso de perder a alguien.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
                 <a href="como-superar-ruptura-de-pareja" class="blog-card-b reveal-up delay-1">
-                    <div class="blog-card-visual-b"><img src="images/deporte.webp" alt="Cómo superar una ruptura de pareja" loading="lazy"></div>
+                    <div class="blog-card-visual-b"><img src="images/deporte.webp" alt="Cómo superar una ruptura de pareja" loading="lazy" width="1408" height="768"></div>
                     <div class="blog-card-body-b"><span class="blog-meta-b">Vínculos &amp; Relaciones</span><h3 class="blog-title-b">Cómo superar una ruptura de pareja</h3><p class="blog-excerpt-b">La neurociencia del dolor amoroso, los errores que lo prolongan y los pasos concretos para sanar.</p><span class="blog-read-b">Leer más</span></div>
                 </a>
             </div>
@@ -129,9 +211,9 @@
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col"><h4>Faro Terapéutico</h4><p>Acompañamiento psicológico profesional con un enfoque humano y cercano.</p></div>
-                <div class="footer-col"><h4>Navegación</h4><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="sobre-nosotros">Sobre Nosotros</a></li><li><a href="blog">Blog</a></li></ul></div>
-                <div class="footer-col"><h4>Contacto</h4><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a></div>
+                <div class="footer-col"><h3>Faro Terapéutico</h3><p>Acompañamiento psicológico profesional con un enfoque humano y cercano.</p></div>
+                <div class="footer-col"><h3>Navegación</h3><ul class="footer-links"><li><a href="/">Inicio</a></li><li><a href="sobre-nosotros">Sobre Nosotros</a></li><li><a href="blog">Blog</a></li></ul></div>
+                <div class="footer-col"><h3>Contacto</h3><a href="https://wa.me/56945593808" target="_blank" rel="noopener noreferrer"><p><i class="fab fa-whatsapp"></i> +56 9 4559 3808</p></a></div>
             </div>
             <div class="footer-bottom"><p>&copy; 2026 Faro Terapéutico.</p></div>
         </div>

@@ -86,6 +86,18 @@ body.boutique h2 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); font-weight: 400; le
 body.boutique h3 { font-size: 1.75rem; font-weight: 500; }
 body.boutique h4 { font-size: 1.35rem; font-weight: 500; }
 
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
 body.boutique em,
 .serif-italic {
     font-family: var(--serif);
@@ -1271,6 +1283,7 @@ body.boutique .main-footer {
 }
 
 /* Títulos de columna */
+body.boutique .main-footer .footer-grid h3,
 body.boutique .main-footer .footer-grid h4 {
     color: var(--paper) !important;                 /* crema puro — máximo contraste */
     font-family: var(--serif) !important;
@@ -1687,6 +1700,7 @@ body.boutique .pricing-box {
     margin: 2.5rem 0;
     border-top: 3px solid var(--gold);
 }
+body.boutique .pricing-box h3,
 body.boutique .pricing-box h4 {
     font-family: var(--serif) !important;
     font-style: italic;
