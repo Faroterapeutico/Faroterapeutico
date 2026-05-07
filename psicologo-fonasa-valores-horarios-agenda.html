@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -142,16 +142,52 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#faf8f3">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://faroterapeutico.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://faroterapeutico.com/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Psicólogo FONASA: valores y agenda",
+          "item": "https://faroterapeutico.com/psicologo-fonasa-valores-horarios-agenda"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="boutique page-article">
     <header id="main-header" class="main-header">
         <div class="container">
-            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo" class="logo-icon" width="32" height="32"><span>Faro Terapéutico</span></a>
+            <a href="/" class="logo"><img src="images/favicon-32x32.webp" alt="Logo Faro Terapéutico" class="logo-icon" width="32" height="32"><span>Faro Terapéutico</span></a>
             <nav id="main-nav" class="main-nav"><ul id="main-nav-ul"></ul></nav>
             <button id="hamburger-menu" class="hamburger-menu" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav"><i class="fas fa-bars"></i></button>
         </div>
     </header>
+
+    <nav class="breadcrumb" aria-label="Miga de pan">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li aria-current="page">Psicólogo FONASA: valores y agenda</li>
+            </ol>
+        </div>
+    </nav>
 
     <main>
         <article class="article-boutique">

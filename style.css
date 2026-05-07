@@ -359,6 +359,60 @@ section:not(#hero):not(#contacto):not(#landing-content)::before,
     width: 32px;
 }
 
+/* Breadcrumbs SEO/accesibilidad */
+.breadcrumb {
+    position: relative;
+    z-index: 20;
+    padding: 0.75rem 0;
+    background: rgba(250, 248, 243, 0.94);
+    border-bottom: 1px solid rgba(31, 42, 48, 0.07);
+}
+.main-header + .breadcrumb {
+    margin-top: var(--header-height);
+}
+.breadcrumb .container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.78rem;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: #6a727a;
+}
+.breadcrumb-list li {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+}
+.breadcrumb-list li + li::before {
+    content: "/";
+    margin-right: 0.4rem;
+    color: var(--accent-color);
+    opacity: 0.72;
+}
+.breadcrumb-list a {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+.breadcrumb-list [aria-current="page"] {
+    color: #6a727a;
+}
+@media (max-width: 640px) {
+    .breadcrumb { padding: 0.65rem 0; }
+    .breadcrumb-list { font-size: 0.7rem; letter-spacing: 0; }
+}
+
 .main-nav {
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 
 <head>
   <meta charset="UTF-8">
@@ -442,16 +442,45 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#faf8f3">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://faroterapeutico.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Anamnesis adolescente",
+          "item": "https://faroterapeutico.com/anamnesis-adolescente"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="boutique page-anamnesis">
 
   <header class="app-header">
     <a href="/" class="logo-container">
-      <img src="images/favicon-32x32.webp" alt="Logo" width="32" height="32">
+      <img src="images/favicon-32x32.webp" alt="Logo Faro Terapéutico" width="32" height="32">
       <span>Faro Terapéutico</span>
     </a>
   </header>
+
+    <nav class="breadcrumb" aria-label="Miga de pan">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="/">Inicio</a></li>
+                <li aria-current="page">Anamnesis adolescente</li>
+            </ol>
+        </div>
+    </nav>
 
   <div class="app-container">
     <h1 style="text-align: center; color: var(--primary-color); font-size: 1.8rem; margin-bottom: 20px;">Ficha de

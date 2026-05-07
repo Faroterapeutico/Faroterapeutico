@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -135,10 +135,46 @@
             .stats-grid { grid-template-columns: 1fr 1fr; }
             .hero-actions .btn { width: 100%; }
         }
-    </style>
+
+        .breadcrumb{margin-bottom:18px;}
+        .breadcrumb .container{width:100%;}
+        .breadcrumb-list{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0;font-size:.72rem;letter-spacing:0;text-transform:uppercase;color:var(--ink-muted);}
+        .breadcrumb-list li{display:inline-flex;align-items:center;}
+        .breadcrumb-list li+li::before{content:"/";margin-right:.4rem;color:var(--gold);opacity:.72;}
+        .breadcrumb-list a{color:var(--gold-dark);font-weight:500;text-decoration:none;}
+  </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://faroterapeutico.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Bitácora tabaco",
+          "item": "https://faroterapeutico.com/bitacora-tabaco"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <main class="app-shell">
+    <nav class="breadcrumb" aria-label="Miga de pan">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="/">Inicio</a></li>
+                <li aria-current="page">Bitácora tabaco</li>
+            </ol>
+        </div>
+    </nav>
+
         <div class="topbar">
             <div class="brand">
                 <strong>Faro Terapeutico</strong>

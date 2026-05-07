@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CL">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -529,6 +529,13 @@
       .question-card { padding: 22px 18px; }
       .contact-buttons { flex-direction: column; }
     }
+
+    .breadcrumb{background:var(--white);border-bottom:1px solid rgba(0,0,0,.06);padding:10px 0;}
+    .breadcrumb .container{max-width:560px;margin:0 auto;padding:0 20px;}
+    .breadcrumb-list{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;margin:0;padding:0;font-size:.72rem;letter-spacing:0;text-transform:uppercase;color:var(--muted);}
+    .breadcrumb-list li{display:inline-flex;align-items:center;}
+    .breadcrumb-list li+li::before{content:"/";margin-right:.4rem;color:var(--accent);opacity:.72;}
+    .breadcrumb-list a{color:var(--accent);font-weight:600;text-decoration:none;}
   </style>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -602,6 +609,26 @@
       }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://faroterapeutico.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Evaluación gratuita",
+          "item": "https://faroterapeutico.com/evaluacion"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -611,6 +638,15 @@
       <span>Faro Terapéutico</span>
     </a>
   </header>
+
+    <nav class="breadcrumb" aria-label="Miga de pan">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li><a href="/">Inicio</a></li>
+                <li aria-current="page">Evaluación gratuita</li>
+            </ol>
+        </div>
+    </nav>
 
   <!-- PROGRESS BAR (oculta en step 0 y resultado) -->
   <div class="progress-wrap" id="progressWrap" style="display:none;">
