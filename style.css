@@ -1914,6 +1914,27 @@ body.page-fonasa #hero {
     margin-bottom: 0.5rem;
 }
 
+.footer-bottom a {
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    color: var(--white-color);
+}
+
+.footer-legal-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    margin-top: 0.8rem;
+}
+
+.footer-legal-links span {
+    color: #6f7780;
+}
+
 
 
 /* --- Estilos para el Modal de Terapeutas --- */
