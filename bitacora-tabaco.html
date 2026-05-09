@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bitacora de Tabaco | Faro Terapeutico</title>
-    <meta name="description" content="Bitacora privada para observar cinco cigarros diarios de forma didactica.">
+    <meta name="description" content="Bitacora privada para observar cuatro cigarros diarios y cerrar el dia con una limonada.">
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
     <link rel="manifest" href="/manifest.webmanifest">
@@ -97,6 +97,7 @@
         .grid { display: grid; grid-template-columns: repeat(5, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
         .card { border-radius: 18px; padding: 18px; transition: transform .2s ease, box-shadow .2s ease; }
         .card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+        .card.closing-card { background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(243,239,229,.94)); border-color: rgba(154,95,40,.16); }
         .card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
         .badge { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--gold-tint); color: var(--gold-dark); font-weight: 600; }
         .status { font-size: .7rem; color: var(--ink-muted); text-transform: uppercase; letter-spacing: 1.3px; font-weight: 500; }
@@ -114,7 +115,17 @@
             outline: none;
         }
         textarea { min-height: 74px; resize: vertical; line-height: 1.45; }
+        input[type="time"] {
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: rgba(255,255,255,.82);
+            color: var(--ink);
+            padding: 10px 11px;
+            outline: none;
+        }
         .mini-result { margin-top: 12px; border-top: 1px solid var(--line-soft); padding-top: 12px; font-size: .85rem; line-height: 1.55; color: var(--ink-soft); min-height: 58px; }
+        .closing-copy { color: var(--ink); line-height: 1.65; margin: 0; }
 
         .insight-panel { border-radius: 22px; padding: 24px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 18px; align-items: start; }
         .insight-panel h2 { font-family: var(--serif); color: var(--ink); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 10px; line-height: 1.05; }
@@ -187,11 +198,11 @@
         <section class="hero">
             <div class="hero-panel">
                 <span class="eyebrow">Bitacora de habito</span>
-                <h1>Cinco cigarros, <em>cinco pistas</em>.</h1>
+                <h1>Cuatro cigarros, <em>un cierre con limonada</em>.</h1>
                 <p class="lead">
-                    Registra cada cigarro del dia con una escala simple. La idea no es retarte:
-                    es mirar con curiosidad que prometio el cigarro, que entrego realmente y que
-                    contexto lo hizo aparecer.
+                    Registra los primeros cuatro cigarros del dia con una escala simple. La idea no es retarte:
+                    es mirar con curiosidad que prometio el cigarro, que entrego realmente y cerrar la jornada
+                    con una limonada para descansar.
                 </p>
                 <div class="hero-actions">
                     <button class="btn" id="saveBtn" type="button">Guardar y enviar por WhatsApp</button>
@@ -207,7 +218,7 @@
             <aside class="summary-panel">
                 <h2 class="summary-title">Resumen del dia</h2>
                 <div class="stats-grid">
-                    <div class="stat"><span>Registrados</span><strong id="doneCount">0/5</strong></div>
+                    <div class="stat"><span>Registrados</span><strong id="doneCount">0/4</strong></div>
                     <div class="stat"><span>Promesa</span><strong id="avgUrge">-</strong></div>
                     <div class="stat"><span>Placer real</span><strong id="avgPleasure">-</strong></div>
                     <div class="stat"><span>Malestar</span><strong id="avgDiscomfort">-</strong></div>
@@ -218,7 +229,7 @@
             </aside>
         </section>
 
-        <section class="grid" id="cigaretteGrid" aria-label="Registro de cinco cigarros"></section>
+        <section class="grid" id="cigaretteGrid" aria-label="Registro de cuatro cigarros y cierre con limonada"></section>
 
         <section class="insight-panel">
             <div>
@@ -234,6 +245,9 @@
 
     <script>
         const STORAGE_KEY = 'faro-bitacora-tabaco-v1';
+        const CIGARETTE_SLOTS = 4;
+        const TOTAL_SLOTS = 5;
+        const CLOSING_INDEX = TOTAL_SLOTS - 1;
         const contexts = ['Cafe', 'Estres', 'Aburrimiento', 'Despues de comer', 'Social', 'Ansiedad', 'Pausa', 'Otro'];
         const whatsappNumber = '56979035006';
         const jokes = [
@@ -262,17 +276,43 @@
                 pleasure: 5,
                 discomfort: 5,
                 context: '',
+                time: '',
                 thought: '',
                 done: false
             };
         }
 
+        function isClosingEntry(index) {
+            return index === CLOSING_INDEX;
+        }
+
+        function normalizeEntry(entry, index) {
+            const base = emptyEntry(index);
+            return {
+                ...base,
+                ...entry,
+                id: index + 1
+            };
+        }
+
+        function isEntryDone(entry, index) {
+            if (isClosingEntry(index)) return Boolean(entry.time || entry.thought.trim());
+            return Boolean(entry.context || entry.thought.trim() || entry.urge || entry.pleasure || entry.discomfort);
+        }
+
         function loadState() {
             try {
                 const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                if (saved && Array.isArray(saved.entries) && saved.entries.length === 5) return saved;
+                if (saved && Array.isArray(saved.entries) && saved.entries.length === TOTAL_SLOTS) {
+                    saved.entries = saved.entries.map((entry, index) => {
+                        const normalized = normalizeEntry(entry, index);
+                        normalized.done = isEntryDone(normalized, index);
+                        return normalized;
+                    });
+                    return saved;
+                }
             } catch (_) {}
-            return { date: new Date().toISOString().slice(0, 10), entries: Array.from({ length: 5 }, (_, i) => emptyEntry(i)) };
+            return { date: new Date().toISOString().slice(0, 10), entries: Array.from({ length: TOTAL_SLOTS }, (_, i) => emptyEntry(i)) };
         }
 
         function saveState() {
@@ -286,6 +326,11 @@
         }
 
         function getEntryTone(entry) {
+            if (isClosingEntry(entry.id - 1)) {
+                return entry.done
+                    ? 'Es el cierre del dia. Descansa y disfruta la limonada.'
+                    : 'Hora de tomar la limonada. Es el cierre del dia: descansa y disfruta la limonada.';
+            }
             const gap = entry.urge - entry.pleasure;
             if (!entry.done) return 'Pendiente. El cigarro aun esta en modo misterio.';
             if (gap >= 4) return 'Prometia bastante mas de lo que entrego. Marketing agresivo, producto discutible.';
@@ -299,42 +344,59 @@
             grid.innerHTML = '';
             state.entries.forEach((entry, index) => {
                 const card = document.createElement('article');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <span class="badge">${entry.id}</span>
-                        <span class="status">${entry.done ? 'Registrado' : 'Pendiente'}</span>
-                    </div>
-                    <label for="urge-${index}">Ganas antes</label>
-                    <div class="score"><span id="urgeValue-${index}">${entry.urge}</span><small>/10</small></div>
-                    <input id="urge-${index}" type="range" min="1" max="10" value="${entry.urge}" data-field="urge" data-index="${index}">
+                card.className = `card${isClosingEntry(index) ? ' closing-card' : ''}`;
+                if (isClosingEntry(index)) {
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span class="badge">${entry.id}</span>
+                            <span class="status">${entry.done ? 'Cierre listo' : 'Cierre del dia'}</span>
+                        </div>
+                        <p class="closing-copy">Hora de tomar la limonada. Es el cierre del dia: descansa y disfruta la limonada.</p>
+                        <label for="time-${index}">Hora de tomar la limonada</label>
+                        <input id="time-${index}" type="time" value="${entry.time}" data-field="time" data-index="${index}">
+                        <label for="thought-${index}">Como se siente este cierre</label>
+                        <textarea id="thought-${index}" data-field="thought" data-index="${index}" placeholder="Ej: me relajo, ya termino el dia, puedo descansar...">${entry.thought}</textarea>
+                        <div class="mini-result">${getEntryTone(entry)}</div>
+                    `;
+                } else {
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span class="badge">${entry.id}</span>
+                            <span class="status">${entry.done ? 'Registrado' : 'Pendiente'}</span>
+                        </div>
+                        <label for="urge-${index}">Ganas antes</label>
+                        <div class="score"><span id="urgeValue-${index}">${entry.urge}</span><small>/10</small></div>
+                        <input id="urge-${index}" type="range" min="1" max="10" value="${entry.urge}" data-field="urge" data-index="${index}">
 
-                    <label for="pleasure-${index}">Placer real</label>
-                    <div class="score"><span id="pleasureValue-${index}">${entry.pleasure}</span><small>/10</small></div>
-                    <input id="pleasure-${index}" type="range" min="1" max="10" value="${entry.pleasure}" data-field="pleasure" data-index="${index}">
+                        <label for="pleasure-${index}">Placer real</label>
+                        <div class="score"><span id="pleasureValue-${index}">${entry.pleasure}</span><small>/10</small></div>
+                        <input id="pleasure-${index}" type="range" min="1" max="10" value="${entry.pleasure}" data-field="pleasure" data-index="${index}">
 
-                    <label for="discomfort-${index}">Malestar despues</label>
-                    <div class="score"><span id="discomfortValue-${index}">${entry.discomfort}</span><small>/10</small></div>
-                    <input id="discomfort-${index}" type="range" min="1" max="10" value="${entry.discomfort}" data-field="discomfort" data-index="${index}">
+                        <label for="discomfort-${index}">Malestar despues</label>
+                        <div class="score"><span id="discomfortValue-${index}">${entry.discomfort}</span><small>/10</small></div>
+                        <input id="discomfort-${index}" type="range" min="1" max="10" value="${entry.discomfort}" data-field="discomfort" data-index="${index}">
 
-                    <label for="context-${index}">Contexto</label>
-                    <select id="context-${index}" data-field="context" data-index="${index}">
-                        <option value="">Elige una pista</option>
-                        ${contexts.map(c => `<option value="${c}" ${entry.context === c ? 'selected' : ''}>${c}</option>`).join('')}
-                    </select>
+                        <label for="context-${index}">Contexto</label>
+                        <select id="context-${index}" data-field="context" data-index="${index}">
+                            <option value="">Elige una pista</option>
+                            ${contexts.map(c => `<option value="${c}" ${entry.context === c ? 'selected' : ''}>${c}</option>`).join('')}
+                        </select>
 
-                    <label for="thought-${index}">Frase mental</label>
-                    <textarea id="thought-${index}" data-field="thought" data-index="${index}" placeholder="Ej: me lo merezco, me calma, solo uno...">${entry.thought}</textarea>
+                        <label for="thought-${index}">Frase mental</label>
+                        <textarea id="thought-${index}" data-field="thought" data-index="${index}" placeholder="Ej: me lo merezco, me calma, solo uno...">${entry.thought}</textarea>
 
-                    <div class="mini-result">${getEntryTone(entry)}</div>
-                `;
+                        <div class="mini-result">${getEntryTone(entry)}</div>
+                    `;
+                }
                 grid.appendChild(card);
             });
         }
 
         function renderSummary() {
-            const done = state.entries.filter(e => e.done);
-            document.getElementById('doneCount').textContent = `${done.length}/5`;
+            const cigaretteEntries = state.entries.slice(0, CIGARETTE_SLOTS);
+            const done = cigaretteEntries.filter(e => e.done);
+            const closingEntry = state.entries[CLOSING_INDEX];
+            document.getElementById('doneCount').textContent = `${done.length}/4`;
             document.getElementById('avgUrge').textContent = average(done.map(e => e.urge)) ?? '-';
             document.getElementById('avgPleasure').textContent = average(done.map(e => e.pleasure)) ?? '-';
             document.getElementById('avgDiscomfort').textContent = average(done.map(e => e.discomfort)) ?? '-';
@@ -351,7 +413,8 @@
             if (topContext) insights.push(`El contexto mas repetido fue <strong>${topContext}</strong>. Ahi puede vivir un disparador.`);
             if (gap >= 3) insights.push('La diferencia entre ganas y placer fue alta. Buena senal para cuestionar la promesa del cigarro.');
             if (average(done.map(e => e.discomfort)) >= 7) insights.push('El malestar posterior esta alto. Ese dato vale mas que una pelea interna.');
-            if (done.length === 5) insights.push('Dia completo. Manana puedes elegir un cigarro para retrasarlo 5 minutos y observar que pasa.');
+            if (done.length === CIGARETTE_SLOTS) insights.push('Los cuatro cigarros del dia ya quedaron observados. Manana puedes elegir uno para retrasarlo 5 minutos y mirar que pasa.');
+            if (closingEntry.done) insights.push('Hora de tomar la limonada. Es el cierre del dia: descansa y disfruta la limonada.');
             document.getElementById('insightList').innerHTML = insights.map((text, index) => `<div class="insight-item"><strong>Pista ${index + 1}:</strong> ${text}</div>`).join('');
         }
 
@@ -365,17 +428,21 @@
         }
 
         function buildWhatsappMessage() {
-            const done = state.entries.filter(e => e.done);
+            const cigaretteEntries = state.entries.slice(0, CIGARETTE_SLOTS);
+            const done = cigaretteEntries.filter(e => e.done);
+            const closingEntry = state.entries[CLOSING_INDEX];
             const avgUrgeValue = average(done.map(e => e.urge));
             const avgPleasureValue = average(done.map(e => e.pleasure));
             const avgDiscomfortValue = average(done.map(e => e.discomfort));
             const topContext = mostCommon(done.map(e => e.context).filter(Boolean));
-            const motivation = motivationalNotes[done.length % motivationalNotes.length];
+            const motivation = closingEntry.done
+                ? 'Es el cierre del dia: descansa y disfruta la limonada.'
+                : motivationalNotes[done.length % motivationalNotes.length];
 
             const lines = [
                 'Hola, esta es mi bitacora de tabaco de hoy.',
                 '',
-                `Cigarros registrados: ${done.length}/5`,
+                `Cigarros registrados: ${done.length}/4`,
                 `Promedio de ganas antes: ${avgUrgeValue ?? '-'}/10`,
                 `Promedio de placer real: ${avgPleasureValue ?? '-'}/10`,
                 `Promedio de malestar despues: ${avgDiscomfortValue ?? '-'}/10`,
@@ -384,7 +451,7 @@
                 'Detalle:'
             ];
 
-            state.entries.forEach(entry => {
+            cigaretteEntries.forEach(entry => {
                 if (!entry.done) {
                     lines.push(`Cigarro ${entry.id}: pendiente`);
                     return;
@@ -396,6 +463,11 @@
                 );
             });
 
+            lines.push(
+                closingEntry.done
+                    ? `Cierre del dia: limonada${closingEntry.time ? ` a las ${closingEntry.time}` : ''}${closingEntry.thought ? `, nota: "${closingEntry.thought.trim()}"` : ''}`
+                    : 'Cierre del dia: pendiente la limonada'
+            );
             lines.push('', `Comentario motivador: ${motivation}`);
             lines.push('', 'Nota: esto es una autoobservacion, no una prueba que se aprueba o reprueba.');
 
@@ -421,7 +493,7 @@
 
             const value = target.type === 'range' ? Number(target.value) : target.value;
             state.entries[index][field] = value;
-            state.entries[index].done = Boolean(state.entries[index].context || state.entries[index].thought || state.entries[index].urge || state.entries[index].pleasure || state.entries[index].discomfort);
+            state.entries[index].done = isEntryDone(state.entries[index], index);
 
             const valueLabel = document.getElementById(`${field}Value-${index}`);
             if (valueLabel) valueLabel.textContent = value;
@@ -442,7 +514,7 @@
 
         document.getElementById('resetBtn').addEventListener('click', () => {
             if (!confirm('Quieres limpiar la bitacora de hoy?')) return;
-            state.entries = Array.from({ length: 5 }, (_, i) => emptyEntry(i));
+            state.entries = Array.from({ length: TOTAL_SLOTS }, (_, i) => emptyEntry(i));
             saveState();
             refresh();
         });
