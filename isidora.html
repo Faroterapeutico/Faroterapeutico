@@ -8,21 +8,21 @@
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="theme-color" content="#faf8f3">
-    <title>Ps. Isidora Sanhueza, deporte y DBT | Faro Terapéutico</title>
+    <title>Psicóloga DBT y deportiva | Isidora Sanhueza</title>
     <meta name="description"
-        content="Psicoterapia con Isidora Sanhueza. Experta en psicología deportiva y terapia DBT. Ansiedad, depresión, trastornos anímicos y fortalecimiento de la autoestima. Online y presencial.">
+        content="Psicoterapia con Isidora Sanhueza. DBT, psicología deportiva, ansiedad, ánimo, autoestima y regulación emocional. Atención online y presencial.">
     <link rel="canonical" href="https://faroterapeutico.com/isidora" />
 
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://faroterapeutico.com/isidora">
-    <meta property="og:title" content="Ps. Isidora Sanhueza — Psicología deportiva y terapia DBT">
-    <meta property="og:description" content="Experta en psicología deportiva y terapia DBT. Online y presencial.">
+    <meta property="og:title" content="Psicóloga Isidora Sanhueza — DBT y psicología deportiva">
+    <meta property="og:description" content="Psicoterapia para regulación emocional, ansiedad, autoestima y rendimiento deportivo. Online y presencial.">
     <meta property="og:image" content="https://faroterapeutico.com/images/isidora.webp">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://faroterapeutico.com/isidora">
-    <meta property="twitter:title" content="Ps. Isidora Sanhueza — Psicología deportiva y terapia DBT">
-    <meta property="twitter:description" content="Experta en psicología deportiva y terapia DBT.">
+    <meta property="twitter:title" content="Psicóloga Isidora Sanhueza — DBT y psicología deportiva">
+    <meta property="twitter:description" content="DBT, regulación emocional, ansiedad, autoestima y rendimiento deportivo.">
     <meta property="twitter:image" content="https://faroterapeutico.com/images/isidora.webp">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,193 +55,55 @@
         setTimeout(loadGtag, 3500);
     </script>
 
-    <style>
-        /* Reseñas boutique */
-        .reviews-boutique {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-        .reviews-summary {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-        .reviews-rating-big {
-            font-family: var(--serif);
-            font-size: 4.5rem;
-            font-weight: 500;
-            color: var(--ink);
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-        .reviews-stars {
-            font-size: 1rem;
-            color: var(--gold);
-            letter-spacing: 3px;
-            margin: 0.6rem 0;
-        }
-        .reviews-count {
-            font-size: 0.82rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--ink-soft);
-            font-weight: 500;
-        }
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        @media (max-width: 860px) {
-            .reviews-grid { grid-template-columns: 1fr; max-width: 480px; }
-        }
-        .review-card-boutique {
-            background: var(--surface);
-            border-radius: var(--r-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-soft);
-            display: flex;
-            flex-direction: column;
-        }
-        .review-card-stars {
-            color: var(--gold);
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
-        }
-        .review-card-text {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--ink);
-            font-weight: 400;
-            flex: 1;
-            margin-bottom: 1.5rem;
-        }
-        .review-card-text::before { content: '\201C'; color: var(--gold); font-size: 1.4em; font-weight: 500; }
-        .review-card-text::after  { content: '\201D'; color: var(--gold); font-size: 1.4em; font-weight: 500; }
-        .review-card-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding-top: 1.2rem;
-            border-top: 0.5px solid var(--line);
-        }
-        .review-card-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--gold-tint);
-            color: var(--gold-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        .review-card-name {
-            font-family: var(--serif);
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--ink);
-        }
-        .review-card-role {
-            font-size: 0.72rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--ink-muted);
-            font-weight: 500;
-        }
-
-        .profile-pricing.four-items {
-            grid-template-columns: 1fr 1fr;
-        }
-        .profile-pricing.four-items .profile-pricing-item:nth-child(1),
-        .profile-pricing.four-items .profile-pricing-item:nth-child(2) {
-            border-bottom: 0.5px solid var(--line);
-        }
-        .profile-pricing.four-items .profile-pricing-item:nth-child(2) { border-right: none; }
-        @media (max-width: 500px) {
-            .profile-pricing.four-items { grid-template-columns: 1fr; }
-            .profile-pricing.four-items .profile-pricing-item { border-right: none; border-bottom: 0.5px solid var(--line); }
-            .profile-pricing.four-items .profile-pricing-item:last-child { border-bottom: none; }
-        }
-
-        .floating-whatsapp-btn {
-            position: fixed;
-            bottom: 28px;
-            right: 28px;
-            background: #25D366;
-            color: #fff;
-            padding: 14px 22px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.88rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 8px 24px rgba(37,211,102,.35);
-            z-index: 900;
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-        .floating-whatsapp-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(37,211,102,.45); }
-        .floating-whatsapp-btn i { font-size: 1.15rem; }
-    </style>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Physician",
-      "@id": "https://faroterapeutico.com/isidora#person",
-      "name": "Isidora Sanhueza",
-      "jobTitle": "Psicóloga Clínica",
-      "image": "https://faroterapeutico.com/images/isidora.webp",
+      "@type": "ProfilePage",
+      "@id": "https://faroterapeutico.com/isidora#profile",
       "url": "https://faroterapeutico.com/isidora",
-      "telephone": "+56932013137",
-      "medicalSpecialty": "MentalHealth",
-      "knowsAbout": ["Terapia DBT", "Psicología deportiva", "Ansiedad", "Depresión", "Trastornos anímicos"],
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "license",
-        "recognizedBy": {
-          "@type": "Organization",
-          "name": "Superintendencia de Salud de Chile",
-          "url": "https://rnpi.superdesalud.gob.cl/"
+      "name": "Perfil de Isidora Sanhueza",
+      "description": "Psicóloga clínica en Faro Terapéutico, con foco en terapia DBT, psicología deportiva, ansiedad, autoestima y regulación emocional.",
+      "dateModified": "2026-05-10",
+      "inLanguage": "es-CL",
+      "mainEntity": {
+        "@type": "Person",
+        "@id": "https://faroterapeutico.com/isidora#person",
+        "name": "Isidora Sanhueza",
+        "jobTitle": "Psicóloga Clínica",
+        "description": "Psicóloga clínica con formación en terapia cognitivo conductual, DBT y psicología deportiva. Atiende online y presencial.",
+        "image": "https://faroterapeutico.com/images/isidora.webp",
+        "url": "https://faroterapeutico.com/isidora",
+        "telephone": "+56932013137",
+        "sameAs": ["https://www.instagram.com/psico.equilibrioymentalidad/"],
+        "knowsAbout": ["Terapia DBT", "Terapia cognitivo conductual", "Psicología deportiva", "Ansiedad", "Depresión", "Regulación emocional", "Autoestima"],
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "license",
+          "recognizedBy": {
+            "@type": "Organization",
+            "name": "Superintendencia de Salud de Chile",
+            "url": "https://rnpi.superdesalud.gob.cl/"
+          },
+          "identifier": "866414"
         },
-        "identifier": "866414"
-      },
-      "worksFor": {"@id": "https://faroterapeutico.com/#business"},
-      "availableService": {
-        "@type": "MedicalTherapy",
-        "name": "Terapia Dialéctica Conductual (DBT)"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.5",
-        "reviewCount": "11",
-        "bestRating": "5",
-        "worstRating": "1"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "author": {"@type": "Person", "name": "Fabiola Tabilo"},
-          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-          "datePublished": "2026-03-01",
-          "reviewBody": "Excelente profesional, muy profesional y asertiva. La recomiendo completamente."
-        },
-        {
-          "@type": "Review",
-          "author": {"@type": "Person", "name": "Francisca Monserrat Peña Ville"},
-          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-          "datePublished": "2026-03-01",
-          "reviewBody": "Muy agradecida por la comprensión y la atención que me otorga, logra crear un ambiente de confianza y relajación. La recomiendo 100%."
-        }
-      ]
+        "worksFor": {"@id": "https://faroterapeutico.com/#business"},
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "name": "Psicoterapia Isapre presencial u online",
+            "price": "30000",
+            "priceCurrency": "CLP",
+            "availability": "https://schema.org/InStock"
+          },
+          {
+            "@type": "Offer",
+            "name": "Psicoterapia FONASA presencial",
+            "price": "14420",
+            "priceCurrency": "CLP",
+            "availability": "https://schema.org/InStock"
+          }
+        ]
+      }
     }
     </script>
     <script type="application/ld+json">
@@ -298,21 +160,38 @@
                 <h1>Isidora <em>Sanhueza</em></h1>
                 <div class="profile-credentials">Psicóloga · Reg. SIS N° 866414</div>
 
+                <div class="profile-tags" aria-label="Áreas de trabajo clínico">
+                    <span class="profile-tag">DBT</span>
+                    <span class="profile-tag">TCC</span>
+                    <span class="profile-tag">Ansiedad</span>
+                    <span class="profile-tag">Autoestima</span>
+                    <span class="profile-tag">Psicología deportiva</span>
+                    <span class="profile-tag">Regulación emocional</span>
+                </div>
+
                 <div class="profile-body">
                     <p>
-                        Psicóloga experta en <strong>psicología deportiva</strong> y
-                        <strong>terapia dialéctico conductual</strong>. Certificada en
-                        <strong>terapia cognitivo conductual</strong>, con especialización en
-                        <strong>terapia DBT</strong> y <strong>psicología deportiva</strong>.
+                        Psicóloga clínica con formación en <strong>terapia cognitivo conductual</strong>,
+                        <strong>terapia dialéctico conductual (DBT)</strong> y
+                        <strong>psicología deportiva</strong>. Su trabajo integra herramientas concretas
+                        con un espacio de escucha claro, respetuoso y orientado al cambio.
                     </p>
                     <p>
-                        Terapia online efectiva y adaptable a tu rutina. Atiende regularmente pacientes con
-                        ansiedad, depresión, trastornos anímicos, y en el fortalecimiento de la autoestima,
-                        autoconfianza y motivación.
+                        Atiende a personas que buscan apoyo en ansiedad, depresión, trastornos anímicos,
+                        autoestima, autoconfianza, motivación, rendimiento deportivo y regulación emocional.
+                        Trabaja en modalidad online y presencial.
                     </p>
                     <p>
-                        <em>Brindo un espacio profesional y seguro, con un apoyo psicológico integral y estratégico
-                        para tus necesidades.</em>
+                        <em>La terapia puede ayudarte a comprender lo que sientes, regular lo que se vuelve
+                        intenso y construir una forma más amable y estratégica de relacionarte contigo.</em>
+                    </p>
+                </div>
+
+                <div class="profile-insight">
+                    <div class="profile-insight-title">Foco terapéutico</div>
+                    <p>
+                        Su estilo combina habilidades prácticas de DBT, mirada cognitivo conductual y trabajo
+                        con motivación, disciplina y presión de rendimiento cuando el deporte forma parte del proceso.
                     </p>
                 </div>
 
@@ -328,8 +207,30 @@
                 </div>
 
                 <div class="profile-section">
+                    <div class="profile-section-title">— Puede ser una buena opción si buscas</div>
+                    <div class="profile-card-grid">
+                        <div class="profile-card">
+                            <h3>Regular emociones intensas</h3>
+                            <p>Trabajo con ansiedad, cambios de ánimo, impulsividad emocional y momentos de alta sensibilidad.</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Fortalecer autoestima</h3>
+                            <p>Un proceso para revisar autocrítica, inseguridad, comparación y patrones que afectan la confianza.</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Ordenar hábitos y motivación</h3>
+                            <p>Apoyo para sostener rutinas, metas personales y decisiones que requieren constancia.</p>
+                        </div>
+                        <div class="profile-card">
+                            <h3>Trabajar rendimiento deportivo</h3>
+                            <p>Acompañamiento para presión, concentración, autoconfianza, frustración y retorno luego de lesiones.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
                     <div class="profile-section-title">— Valores de la sesión</div>
-                    <div class="profile-pricing four-items">
+                    <div class="profile-pricing three-items">
                         <a href="https://encuadrado.com/p/psicologa-isidora-sanhueza"
                             target="_blank" rel="noopener noreferrer"
                             class="profile-pricing-item" style="text-decoration: none;">
@@ -348,22 +249,50 @@
                             <div class="profile-pricing-label">FONASA · Presencial</div>
                             <div class="profile-pricing-value">$14.420</div>
                         </a>
-                        <a href="https://encuadrado.com/p/psicologa-isidora-sanhueza"
-                            target="_blank" rel="noopener noreferrer"
-                            class="profile-pricing-item" style="text-decoration: none;">
-                            <div class="profile-pricing-label">FONASA · Online</div>
-                            <div class="profile-pricing-value">$12.250</div>
-                        </a>
                     </div>
                     <div class="profile-pricing-note">Sesiones de 50 minutos</div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="profile-section-title">— Cómo es el proceso</div>
+                    <div class="profile-process">
+                        <div class="profile-step">
+                            <div>
+                                <h3>Evaluación inicial</h3>
+                                <p>Se conversa el motivo de consulta, el contexto actual y los objetivos que te gustaría trabajar.</p>
+                            </div>
+                        </div>
+                        <div class="profile-step">
+                            <div>
+                                <h3>Habilidades concretas</h3>
+                                <p>Según el caso, se incorporan herramientas de regulación emocional, autocuidado, conducta y pensamiento.</p>
+                            </div>
+                        </div>
+                        <div class="profile-step">
+                            <div>
+                                <h3>Seguimiento y ajuste</h3>
+                                <p>El proceso se revisa de manera continua para que las sesiones sigan conectadas con tu vida diaria.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="profile-section">
                     <div class="profile-section-title">— Servicios clínicos</div>
                     <ul class="profile-link-list">
                         <li><a href="terapia-individual">Terapia individual</a></li>
-                        <li><a href="psicologo-deportivo-david">Psicología deportiva</a></li>
                         <li><a href="terapia-online">Terapia online</a></li>
+                        <li><a href="terapia-presencial">Terapia presencial en Providencia</a></li>
+                        <li><a href="servicios-clinicos">Servicios clínicos de Faro Terapéutico</a></li>
+                    </ul>
+                </div>
+
+                <div class="profile-section">
+                    <div class="profile-section-title">— Lecturas relacionadas</div>
+                    <ul class="profile-link-list">
+                        <li><a href="ansiedad-cuerpo-mente">Ansiedad: escucha a tu cuerpo</a></li>
+                        <li><a href="herramientas-ansiedad">Técnica 4-7-8 para calmar la ansiedad</a></li>
+                        <li><a href="que-es-la-psicoterapia">Qué es la psicoterapia y cómo funciona</a></li>
                     </ul>
                 </div>
 
@@ -377,6 +306,24 @@
                         class="text-link" style="margin-top: 1rem;">
                         Ver en el mapa <span class="cta-arrow"></span>
                     </a>
+                </div>
+
+                <div class="profile-section">
+                    <div class="profile-section-title">— Preguntas frecuentes</div>
+                    <div class="profile-faq">
+                        <details>
+                            <summary>¿Qué significa trabajar con herramientas DBT?</summary>
+                            <p>DBT aporta habilidades para observar emociones, regular intensidad, tolerar malestar y actuar con más claridad en momentos difíciles.</p>
+                        </details>
+                        <details>
+                            <summary>¿Isidora atiende online?</summary>
+                            <p>Sí. Atiende online y presencial. La modalidad online puede ser útil cuando necesitas continuidad, flexibilidad horaria o vives fuera de Santiago.</p>
+                        </details>
+                        <details>
+                            <summary>¿La psicología deportiva es solo para deportistas profesionales?</summary>
+                            <p>No. También puede servir para personas que practican deporte de forma amateur y quieren trabajar motivación, presión, disciplina o autoconfianza.</p>
+                        </details>
+                    </div>
                 </div>
 
                 <div class="profile-social">
@@ -395,16 +342,20 @@
     <section class="reviews-boutique">
         <div class="section-head">
             <span class="eyebrow">— Lo que dicen los pacientes</span>
-            <h2>Opiniones <em>verificadas</em></h2>
+            <h2>Opiniones de <em>pacientes</em></h2>
+            <p class="reviews-source">
+                Reseñas publicadas originalmente en
+                <a href="https://encuadrado.com/p/psicologa-isidora-sanhueza" target="_blank" rel="noopener nofollow">Encuadrado</a>.
+            </p>
         </div>
 
         <div class="reviews-summary">
             <div class="reviews-rating-big">4.5</div>
             <div class="reviews-stars">★ ★ ★ ★ ½</div>
-            <div class="reviews-count">Basado en 11 opiniones verificadas</div>
+            <div class="reviews-count">Promedio visible en Encuadrado · 11 opiniones</div>
         </div>
 
-        <div class="reviews-grid">
+        <div class="reviews-grid two-items">
             <div class="review-card-boutique">
                 <div class="review-card-stars">★ ★ ★ ★ ★</div>
                 <p class="review-card-text">
@@ -414,7 +365,7 @@
                     <div class="review-card-avatar">FT</div>
                     <div>
                         <div class="review-card-name">Fabiola Tabilo</div>
-                        <div class="review-card-role">Paciente verificada</div>
+                        <div class="review-card-role">Opinión en Encuadrado</div>
                     </div>
                 </div>
             </div>
@@ -428,7 +379,7 @@
                     <div class="review-card-avatar">FM</div>
                     <div>
                         <div class="review-card-name">Francisca Monserrat Peña Ville</div>
-                        <div class="review-card-role">Paciente verificada</div>
+                        <div class="review-card-role">Opinión en Encuadrado</div>
                     </div>
                 </div>
             </div>
