@@ -31,6 +31,7 @@ Todas las transacciones, boletas electrónicas y reembolsos se gestionan vía En
 ## URLs principales
 - https://faroterapeutico.com/ — Inicio
 - https://faroterapeutico.com/isapre — Reembolso Isapre
+- https://faroterapeutico.com/reembolso-colmena-psicologo-guia — Guía práctica de reembolso Colmena para psicólogo
 - https://faroterapeutico.com/fonasa — Atención Fonasa
 - https://faroterapeutico.com/aaron — Perfil Aaron Millán
 - https://faroterapeutico.com/david — Perfil David Walter
