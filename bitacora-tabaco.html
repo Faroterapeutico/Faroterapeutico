@@ -8,7 +8,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
     <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-20260512.png">
     <meta name="theme-color" content="#faf8f3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -126,6 +126,11 @@
         }
         .mini-result { margin-top: 12px; border-top: 1px solid var(--line-soft); padding-top: 12px; font-size: .85rem; line-height: 1.55; color: var(--ink-soft); min-height: 58px; }
         .closing-copy { color: var(--ink); line-height: 1.65; margin: 0; }
+        .done-toggle { display: inline-flex!important; align-items: center; gap: 8px; margin-top: 12px!important; color: var(--ink)!important; letter-spacing: 0!important; text-transform: none!important; font-size: .86rem!important; cursor: pointer; }
+        .done-toggle input { width: 16px; height: 16px; accent-color: var(--gold); }
+        .legal-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px 12px; margin: 24px 0 0; color: var(--ink-muted); font-size: .78rem; }
+        .legal-links a { color: var(--gold-dark); text-decoration: none; border-bottom: 1px solid transparent; }
+        .legal-links a:hover { border-color: var(--gold-dark); }
 
         .insight-panel { border-radius: 22px; padding: 24px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 18px; align-items: start; }
         .insight-panel h2 { font-family: var(--serif); color: var(--ink); font-weight: 400; font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 10px; line-height: 1.05; }
@@ -241,10 +246,16 @@
                 <div class="insight-item"><strong>Pista 1:</strong> registra al menos un cigarro para empezar a ver el mapa.</div>
             </div>
         </section>
+        <nav class="legal-links" aria-label="Enlaces legales">
+            <a href="politica-de-privacidad">Pol&iacute;tica de privacidad</a>
+            <span aria-hidden="true">|</span>
+            <a href="confidencialidad-y-secreto-profesional">Confidencialidad y secreto profesional</a>
+        </nav>
     </main>
 
     <script>
-        const STORAGE_KEY = 'faro-bitacora-tabaco-v1';
+        const STORAGE_KEY = 'faro-bitacora-tabaco-v2';
+        const LEGACY_STORAGE_KEY = 'faro-bitacora-tabaco-v1';
         const CIGARETTE_SLOTS = 4;
         const TOTAL_SLOTS = 5;
         const CLOSING_INDEX = TOTAL_SLOTS - 1;
@@ -282,40 +293,85 @@
             };
         }
 
+        function freshState() {
+            return {
+                version: 2,
+                date: new Date().toISOString().slice(0, 10),
+                entries: Array.from({ length: TOTAL_SLOTS }, (_, i) => emptyEntry(i))
+            };
+        }
+
         function isClosingEntry(index) {
             return index === CLOSING_INDEX;
         }
 
-        function normalizeEntry(entry, index) {
+        function hasCigaretteData(entry) {
+            return Boolean(
+                entry.context ||
+                entry.thought.trim() ||
+                entry.urge !== 5 ||
+                entry.pleasure !== 5 ||
+                entry.discomfort !== 5
+            );
+        }
+
+        function normalizeEntry(entry, index, trustDone) {
             const base = emptyEntry(index);
-            return {
+            const normalized = {
                 ...base,
                 ...entry,
                 id: index + 1
             };
+            normalized.thought = String(normalized.thought || '');
+            normalized.time = String(normalized.time || '');
+            if (isClosingEntry(index)) {
+                normalized.done = isEntryDone(normalized, index);
+            } else {
+                normalized.done = trustDone ? Boolean(entry && entry.done) : hasCigaretteData(normalized);
+            }
+            return normalized;
         }
 
         function isEntryDone(entry, index) {
             if (isClosingEntry(index)) return Boolean(entry.time || entry.thought.trim());
-            return Boolean(entry.context || entry.thought.trim() || entry.urge || entry.pleasure || entry.discomfort);
+            return Boolean(entry.done);
+        }
+
+        function loadStoredState(key, options) {
+            try {
+                const saved = JSON.parse(localStorage.getItem(key));
+                if (!saved || !Array.isArray(saved.entries)) return null;
+
+                const entries = options.legacy
+                    ? saved.entries.slice(0, CIGARETTE_SLOTS).concat(emptyEntry(CLOSING_INDEX))
+                    : saved.entries;
+                if (entries.length !== TOTAL_SLOTS) return null;
+
+                return {
+                    version: 2,
+                    date: saved.date || new Date().toISOString().slice(0, 10),
+                    entries: entries.map((entry, index) => normalizeEntry(entry, index, options.trustDone))
+                };
+            } catch (_) {
+                return null;
+            }
         }
 
         function loadState() {
-            try {
-                const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-                if (saved && Array.isArray(saved.entries) && saved.entries.length === TOTAL_SLOTS) {
-                    saved.entries = saved.entries.map((entry, index) => {
-                        const normalized = normalizeEntry(entry, index);
-                        normalized.done = isEntryDone(normalized, index);
-                        return normalized;
-                    });
-                    return saved;
-                }
-            } catch (_) {}
-            return { date: new Date().toISOString().slice(0, 10), entries: Array.from({ length: TOTAL_SLOTS }, (_, i) => emptyEntry(i)) };
+            const current = loadStoredState(STORAGE_KEY, { trustDone: true, legacy: false });
+            if (current) return current;
+
+            const legacy = loadStoredState(LEGACY_STORAGE_KEY, { trustDone: false, legacy: true });
+            if (legacy) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(legacy));
+                return legacy;
+            }
+
+            return freshState();
         }
 
         function saveState() {
+            state.version = 2;
             state.date = new Date().toISOString().slice(0, 10);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
         }
@@ -384,6 +440,11 @@
 
                         <label for="thought-${index}">Frase mental</label>
                         <textarea id="thought-${index}" data-field="thought" data-index="${index}" placeholder="Ej: me lo merezco, me calma, solo uno...">${entry.thought}</textarea>
+
+                        <label class="done-toggle" for="done-${index}">
+                            <input id="done-${index}" type="checkbox" ${entry.done ? 'checked' : ''} data-field="done" data-index="${index}">
+                            Cigarro registrado
+                        </label>
 
                         <div class="mini-result">${getEntryTone(entry)}</div>
                     `;
@@ -491,9 +552,14 @@
             const field = target.dataset.field;
             if (!field || Number.isNaN(index)) return;
 
-            const value = target.type === 'range' ? Number(target.value) : target.value;
-            state.entries[index][field] = value;
-            state.entries[index].done = isEntryDone(state.entries[index], index);
+            const entry = state.entries[index];
+            let value = target.type === 'range' ? Number(target.value) : target.value;
+            if (field === 'done') {
+                entry.done = target.checked;
+            } else {
+                entry[field] = value;
+                entry.done = isClosingEntry(index) ? isEntryDone(entry, index) : true;
+            }
 
             const valueLabel = document.getElementById(`${field}Value-${index}`);
             if (valueLabel) valueLabel.textContent = value;
@@ -514,7 +580,7 @@
 
         document.getElementById('resetBtn').addEventListener('click', () => {
             if (!confirm('Quieres limpiar la bitacora de hoy?')) return;
-            state.entries = Array.from({ length: TOTAL_SLOTS }, (_, i) => emptyEntry(i));
+            state.entries = freshState().entries;
             saveState();
             refresh();
         });

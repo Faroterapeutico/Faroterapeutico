@@ -522,6 +522,20 @@
       font-size: 0.78rem;
       color: #aaa;
     }
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin-top: 8px;
+    }
+    .legal-links a {
+      color: #8c6a46;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .legal-links a:hover { border-color: #8c6a46; }
 
     @media (max-width: 420px) {
       .answers-grid { grid-template-columns: 1fr; }
@@ -558,7 +572,7 @@
     setTimeout(loadGtag, 3500);
   </script>
     <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-20260512.png">
     <meta name="theme-color" content="#faf8f3">
     <script type="application/ld+json">
     {
@@ -695,7 +709,11 @@
         <button class="btn-primary" id="btnStart">
           Comenzar evaluación <i class="fas fa-arrow-right"></i>
         </button>
-        <p style="font-size:0.72rem;color:#bbb;margin-top:12px;">No enviamos spam. Tus datos son confidenciales.</p>
+        <p style="font-size:0.72rem;color:#888;margin-top:12px;line-height:1.6;">
+          No enviamos spam. Tus datos son confidenciales.
+          Al continuar aceptas nuestra <a href="politica-de-privacidad" target="_blank" rel="noopener noreferrer" style="color:#8c6a46;">pol&iacute;tica de privacidad</a>
+          y el compromiso de <a href="confidencialidad-y-secreto-profesional" target="_blank" rel="noopener noreferrer" style="color:#8c6a46;">confidencialidad</a>.
+        </p>
       </div>
     </div>
 
@@ -998,6 +1016,11 @@
 
   <footer>
     <p>© 2026 Faro Terapéutico · Todos los derechos reservados</p>
+    <p class="legal-links">
+      <a href="politica-de-privacidad">Pol&iacute;tica de privacidad</a>
+      <span aria-hidden="true">|</span>
+      <a href="confidencialidad-y-secreto-profesional">Confidencialidad y secreto profesional</a>
+    </p>
   </footer>
 
   <script>

@@ -322,6 +322,22 @@
       color: #888;
       margin-top: 40px;
     }
+    .legal-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      margin: 8px 0 0;
+    }
+    .legal-links a {
+      color: var(--primary-color);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .legal-links a:hover {
+      border-color: var(--primary-color);
+    }
 
     .loader {
       border: 3px solid rgba(255, 255, 255, 0.3);
@@ -440,7 +456,7 @@
     }
   </style>
     <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon-20260512.png">
     <meta name="theme-color" content="#faf8f3">
     <script type="application/ld+json">
     {
@@ -945,6 +961,12 @@
         <div class="section-card" style="padding: 30px 25px; text-align: center;">
           <h2 style="display:block; border:none; padding:0; margin-bottom:8px;">¡Ficha Completada!</h2>
           <p style="color: #666; margin: 0 0 20px 0;">Elige a tu terapeuta para enviar la ficha directo por WhatsApp:</p>
+          <p style="color:#888; font-size:0.82rem; line-height:1.6; margin: -8px 0 18px 0;">
+            Esta ficha contiene datos sensibles. Antes de enviarla, revisa nuestra
+            <a href="politica-de-privacidad" target="_blank" rel="noopener noreferrer" style="color:var(--primary-color);">pol&iacute;tica de privacidad</a>
+            y el compromiso de
+            <a href="confidencialidad-y-secreto-profesional" target="_blank" rel="noopener noreferrer" style="color:var(--primary-color);">confidencialidad</a>.
+          </p>
 
           <div class="therapist-grid">
             <button type="button" class="btn-therapist" data-phone="56945593808" data-name="Aaron">
@@ -984,7 +1006,12 @@
   </div>
 
   <footer>
-    <p> 2026 Faro Terapéutico - Ficha Clnica Digital</p>
+    <p>&copy; 2026 Faro Terap&eacute;utico - Ficha Cl&iacute;nica Digital</p>
+    <p class="legal-links">
+      <a href="politica-de-privacidad">Pol&iacute;tica de privacidad</a>
+      <span aria-hidden="true">|</span>
+      <a href="confidencialidad-y-secreto-profesional">Confidencialidad y secreto profesional</a>
+    </p>
   </footer>
 
   <!-- Logic Script -->
