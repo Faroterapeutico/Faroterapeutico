@@ -50,40 +50,40 @@ document.addEventListener('DOMContentLoaded', () => {
             const menuData = [
                 {
                     nombre: "Inicio", // 1. Inicio
-                    url: "index.html#hero"
+                    url: "/#hero"
                 },
                 {
                     nombre: "Servicios Clínicos", // 2. Servicios Clínicos
-                    url: "servicios-clinicos.html"
+                    url: "/servicios-clinicos"
                 },
                 {
                     nombre: "Sobre Nosotros", // 3. Sobre Nosotros
-                    url: "sobre-nosotros.html"
+                    url: "/sobre-nosotros"
                 },
                 {
                     nombre: "Fonasa", // 4. Fonasa
-                    url: "fonasa.html"
+                    url: "/fonasa"
                 },
                 {
                     nombre: "Isapre", // 5. Reembolso ISAPRE
-                    url: "isapre.html",
+                    url: "/isapre",
                     subsecciones: [
-                        { nombre: "Ver todas las ISAPREs", url: "isapre.html" },
-                        { nombre: "Colmena", url: "colmena.html" },
-                        { nombre: "Banmédica", url: "banmedica.html" },
-                        { nombre: "Cruz Blanca", url: "cruz-blanca.html" },
-                        { nombre: "Consalud", url: "consalud.html" },
-                        { nombre: "Vida Tres", url: "vida-tres.html" },
-                        { nombre: "Nueva Másvida", url: "nueva-masvida.html" }
+                        { nombre: "Ver todas las ISAPREs", url: "/isapre" },
+                        { nombre: "Colmena", url: "/colmena" },
+                        { nombre: "Banmédica", url: "/banmedica" },
+                        { nombre: "Cruz Blanca", url: "/cruz-blanca" },
+                        { nombre: "Consalud", url: "/consalud" },
+                        { nombre: "Vida Tres", url: "/vida-tres" },
+                        { nombre: "Nueva Másvida", url: "/nueva-masvida" }
                     ]
                 },
                 {
                     nombre: "Políticas", // 6. Políticas de Cancelación
-                    url: "politicas-cancelacion.html"
+                    url: "/politicas-cancelacion"
                 },
                 {
                     nombre: "Blog", // 7. Blog
-                    url: "blog.html"
+                    url: "/blog"
                 }
             ];
 
