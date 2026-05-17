@@ -1,6 +1,3 @@
-User-agent: Cloudflare-AI-Search
-Allow: /
-
 User-agent: *
 Allow: /
 
