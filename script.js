@@ -54,7 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 {
                     nombre: "Servicios Clínicos", // 2. Servicios Clínicos
-                    url: "/servicios-clinicos"
+                    url: "/servicios-clinicos",
+                    subsecciones: [
+                        { nombre: "Ver todos los servicios", url: "/servicios-clinicos" },
+                        { nombre: "Terapia individual", url: "/terapia-individual" },
+                        { nombre: "Terapia de pareja", url: "/terapia-pareja" },
+                        { nombre: "Terapia familiar", url: "/terapia-familiar" },
+                        { nombre: "Terapia infantojuvenil", url: "/terapia-infanto-juvenil" },
+                        { nombre: "Terapia online", url: "/terapia-online" },
+                        { nombre: "Terapia presencial", url: "/terapia-presencial" },
+                        { nombre: "Psicología deportiva", url: "/psicologia-deportiva" },
+                        { nombre: "Certificado mascota", url: "/certificado-mascota" }
+                    ]
                 },
                 {
                     nombre: "Sobre Nosotros", // 3. Sobre Nosotros

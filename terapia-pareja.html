@@ -115,6 +115,22 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿La terapia de pareja tiene el mismo valor que la terapia individual?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. La terapia de pareja tiene el mismo valor que la terapia individual. En FONASA, el copago es de $14.420 por sesión. No se compra un bono por cada integrante: solo deben comprar un bono por sesión. El valor es el mismo independiente de cuántas personas asistan."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
         {
@@ -226,6 +242,27 @@
                 </div>
             </aside>
         </div>
+
+        <section id="faq">
+            <div class="container">
+                <div class="section-head reveal-up">
+                    <span class="eyebrow">— Preguntas frecuentes</span>
+                    <h2>Valor de la <em>terapia de pareja</em>.</h2>
+                </div>
+
+                <div class="faq-list reveal-up delay-1">
+                    <div class="faq-item">
+                        <button class="faq-question" type="button">
+                            ¿La terapia de pareja tiene el mismo valor que la terapia individual?
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sí. La <strong>terapia de pareja</strong> tiene el mismo valor que la terapia individual. En FONASA, el copago es de <strong>$14.420</strong> por sesión. No se compra un bono por cada integrante: solo deben comprar <strong>un bono por sesión</strong>. El valor es el mismo independiente de cuántas personas asistan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer class="main-footer">
@@ -242,6 +279,6 @@
     <a href="https://wa.me/56945593808?text=Hola,%20deseo%20agendar%20una%20sesi%C3%B3n%20de%20Terapia%20de%20Pareja." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
 
     <script src="script.js" defer></script>
-    <script>(function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}})();</script>
+    <script>(function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}document.querySelectorAll('.faq-question').forEach(function(b){b.addEventListener('click',function(){b.parentElement.classList.toggle('active');});});})();</script>
 </body>
 </html>
