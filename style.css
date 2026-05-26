@@ -2995,17 +2995,16 @@ body.page-fonasa #hero {
 
 
 /* --- Newspaper / Editorial Styles --- */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap');
 
 .newspaper-article {
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--sans, var(--font-family));
     color: #2c3e50;
     line-height: 1.8;
     font-size: 1.05rem;
 }
 
 .newspaper-article h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--serif, Georgia, serif);
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
@@ -3045,7 +3044,7 @@ body.page-fonasa #hero {
 /* Drop Cap for the first paragraph of the content */
 .newspaper-article .drop-cap-text::first-letter {
     float: left;
-    font-family: 'Playfair Display', serif;
+    font-family: var(--serif, Georgia, serif);
     font-size: 3.5rem;
     line-height: 0.85;
     padding-right: 0.5rem;
@@ -3056,7 +3055,7 @@ body.page-fonasa #hero {
 
 .newspaper-article h3,
 .newspaper-article h4 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--serif, Georgia, serif);
     color: #2c3e50;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -3073,7 +3072,7 @@ body.page-fonasa #hero {
 }
 
 .article-cta-box h3 {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--serif, Georgia, serif);
     font-size: 1.8rem;
     margin-bottom: 1rem;
     color: #1a1a1a;

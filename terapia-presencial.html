@@ -16,12 +16,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="preload" as="image" href="images/Oficina/hero-presencial-escritorio.webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="images/Oficina/hero-presencial-mobil.webp" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="images/Oficina/hero-presencial-escritorio.webp" media="(min-width: 769px)" fetchpriority="high">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="boutique.css?v=20260510-reviews">
-    <link rel="preload" as="style" href="style.css?v=20260512-cache" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260512-cache"></noscript>
+    <link rel="preload" as="style" href="style.css?v=20260526-perf" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260526-perf"></noscript>
 
     <style>
         .benefits-boutique{display:grid;grid-template-columns:repeat(2,1fr);gap:0;max-width:900px;margin:0 auto;border-top:.5px solid var(--line);border-left:.5px solid var(--line)}
@@ -407,7 +408,7 @@
 
     <a href="https://wa.me/56945593808?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20presencial." class="whatsapp-float" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Escríbeme</a>
 
-    <script src="script.js" defer></script>
+    <script src="script.js?v=20260526-perf" defer></script>
     <script>
     (function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}document.querySelectorAll('.faq-question').forEach(function(b){b.addEventListener('click',function(){b.parentElement.classList.toggle('active');});});})();
     </script>

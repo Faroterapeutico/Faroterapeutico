@@ -1,14 +1,20 @@
 // --- Lógica principal de la aplicación ---
 document.addEventListener('DOMContentLoaded', () => {
-    const loadTrackingIfMissing = () => {
-        if (typeof window.gtag === 'function') return;
+    const TRACKING_SRC = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
 
+    const bootstrapTrackingQueue = () => {
         window.dataLayer = window.dataLayer || [];
-        window.gtag = function () { window.dataLayer.push(arguments); };
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    };
+
+    const loadTrackingIfMissing = () => {
+        bootstrapTrackingQueue();
+        if (window._gtagLoaded || document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
+        window._gtagLoaded = true;
 
         const script = document.createElement('script');
         script.async = true;
-        script.src = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
+        script.src = TRACKING_SRC;
         document.head.appendChild(script);
 
         window.gtag('js', new Date());
@@ -16,18 +22,20 @@ document.addEventListener('DOMContentLoaded', () => {
         window.gtag('config', 'AW-17584631597');
     };
 
-    loadTrackingIfMissing();
+    bootstrapTrackingQueue();
+    ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
+        window.addEventListener(evt, loadTrackingIfMissing, { once: true, passive: true });
+    });
+    setTimeout(loadTrackingIfMissing, 3500);
 
     const app = {
         // Método para enviar eventos a Google Analytics
         trackEvent(eventName, eventCategory, eventLabel) {
-            if (typeof gtag === 'function') {
-                console.log(`Tracking Event: ${eventName}, Category: ${eventCategory}, Label: ${eventLabel}`); // Para depuración
-                gtag('event', eventName, {
-                    'event_category': eventCategory,
-                    'event_label': eventLabel
-                });
-            }
+            loadTrackingIfMissing();
+            window.gtag('event', eventName, {
+                'event_category': eventCategory,
+                'event_label': eventLabel
+            });
         },
 
         // Método de inicialización
@@ -191,171 +199,164 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Eventos de scroll
-            window.addEventListener('scroll', () => {
-                this.handleHeaderVisibility();
-            }, { passive: true });
+            if (this.header) {
+                window.addEventListener('scroll', () => {
+                    this.handleHeaderVisibility();
+                }, { passive: true });
+            }
 
             // Función de callback para el seguimiento de eventos de contacto
             const contactConversionCallback = (url) => {
-                return function () {
+                let opened = false;
+                const openUrl = () => {
+                    if (opened) return;
+                    opened = true;
                     window.open(url, '_blank');
+                };
+                const fallback = setTimeout(openUrl, 800);
+                return function () {
+                    clearTimeout(fallback);
+                    openUrl();
                 };
             };
 
-            document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
-                el.addEventListener('click', (e) => {
-                    e.preventDefault();
+            document.addEventListener('click', (e) => {
+                const anchor = e.target.closest('a[href*="wa.me"]');
+                if (!anchor) return;
+                e.preventDefault();
 
-                    const linkText = el.textContent.trim() || 'WhatsApp';
-                    const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
-                    const label = `${linkText} — ${page}`;
+                const linkText = anchor.textContent.trim() || 'WhatsApp';
+                const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                const label = `${linkText} — ${page}`;
 
-                    this.trackEvent('contacto_whatsapp', 'WhatsApp', label);
-
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'conversion', {
-                            'send_to': 'AW-17584631597/xJYeCMuY2qYbEK3egMFB',
-                            'event_callback': contactConversionCallback(el.href)
-                        });
-                    } else {
-                        setTimeout(() => window.open(el.href, '_blank'), 300);
-                    }
-
-                    if (typeof fbq === 'function') {
-                        fbq('track', 'Contact', { content_name: label }, { eventID: crypto.randomUUID() });
-                    }
+                this.trackEvent('contacto_whatsapp', 'WhatsApp', label);
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-17584631597/xJYeCMuY2qYbEK3egMFB',
+                    'event_callback': contactConversionCallback(anchor.href)
                 });
+
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Contact', { content_name: label }, { eventID: crypto.randomUUID() });
+                }
             });
 
             // Seguimiento de clics en Encuadrado
-            document.querySelectorAll('a[href*="encuadrado.com"]:not([href*="ayuda.encuadrado.com"])').forEach(el => {
-                el.addEventListener('click', () => {
-                    const label = el.textContent.trim() || 'Encuadrado';
-                    const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
-                    if (el.matches('.encuadrado-inline-link')) {
-                        this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
-                        return;
-                    }
-                    if (el.matches('[data-encuadrado-center="true"]')) {
-                        this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
-                    }
-                    this.trackEvent('agendar_encuadrado', 'Encuadrado', `${label} — ${page}`);
-                    if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
-                    if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Encuadrado — ${page}` }, { eventID: crypto.randomUUID() });
-                });
+            document.addEventListener('click', (e) => {
+                const el = e.target.closest('a[href*="encuadrado.com"]:not([href*="ayuda.encuadrado.com"])');
+                if (!el) return;
+
+                const label = el.textContent.trim() || 'Encuadrado';
+                const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                if (el.matches('.encuadrado-inline-link')) {
+                    this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
+                    return;
+                }
+                if (el.matches('[data-encuadrado-center="true"]')) {
+                    this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
+                }
+                this.trackEvent('agendar_encuadrado', 'Encuadrado', `${label} — ${page}`);
+                window.gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
+                if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Encuadrado — ${page}` }, { eventID: crypto.randomUUID() });
             });
 
             // Seguimiento de todos los clics en enlaces de Calendly
-            document.querySelectorAll('a[href*="calendly.com"], button[onclick*="calendly.com"]').forEach(el => {
-                el.addEventListener('click', () => {
-                    const isOrientation = el.href?.includes('/orientacion') || el.getAttribute('onclick')?.includes('/orientacion');
+            document.addEventListener('click', (e) => {
+                const el = e.target.closest('a[href*="calendly.com"], button[onclick*="calendly.com"]');
+                if (!el) return;
 
-                    if (isOrientation) {
-                        // Es un agendamiento de orientación (Lead)
-                        if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/jLpYCK6Y2qYbEK3egMFB' });
-                        if (typeof fbq === 'function') fbq('track', 'Lead', {}, { eventID: crypto.randomUUID() });
-                    } else {
-                        // Es un agendamiento de sesión normal (Schedule)
-                        const therapist = el.dataset.therapist;
-                        const therapistName = therapist ? therapist.charAt(0).toUpperCase() + therapist.slice(1) : 'General';
-                        if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
-                        if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Agendar con ${therapistName}` }, { eventID: crypto.randomUUID() });
-                    }
-                });
+                const isOrientation = el.href?.includes('/orientacion') || el.getAttribute('onclick')?.includes('/orientacion');
+                if (isOrientation) {
+                    window.gtag('event', 'conversion', { 'send_to': 'AW-17584631597/jLpYCK6Y2qYbEK3egMFB' });
+                    if (typeof fbq === 'function') fbq('track', 'Lead', {}, { eventID: crypto.randomUUID() });
+                } else {
+                    const therapist = el.dataset.therapist;
+                    const therapistName = therapist ? therapist.charAt(0).toUpperCase() + therapist.slice(1) : 'General';
+                    window.gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
+                    if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Agendar con ${therapistName}` }, { eventID: crypto.randomUUID() });
+                }
             });
 
             // Tracking de clics en "Ver perfil" de terapeutas (index, fonasa, isapres, sobre-nosotros, etc.)
-            document.querySelectorAll('a[href="aaron"], a[href="david"], a[href="isidora"], a[href="aaron.html"], a[href="david.html"], a[href="isidora.html"]').forEach(el => {
-                el.addEventListener('click', () => {
-                    const href = el.getAttribute('href').replace('.html', '');
-                    this.trackEvent('clic_ver_perfil', 'Perfiles', `Ver perfil — ${href.charAt(0).toUpperCase() + href.slice(1)}`);
-                });
-            });
+            document.addEventListener('click', (e) => {
+                const el = e.target.closest('a[href="aaron"], a[href="david"], a[href="isidora"], a[href="aaron.html"], a[href="david.html"], a[href="isidora.html"]');
+                if (!el) return;
 
-            // Lógica para las tarjetas de modalidad de servicio (Presencial / Online)
-            // Estas tarjetas ahora actúan como disparadores de modales.
-            const serviceCards = document.querySelectorAll('.service-card[data-modal-target]');
-            serviceCards.forEach(card => {
-                card.addEventListener('click', (e) => {
-                    // Evitamos que el clic en la tarjeta active los enlaces de agendar dentro de ella.
-                    // El modal tendrá su propio botón para agendar.
-                    if (e.target.closest('a')) {
-                        return;
-                    }
-
-                    // Abrir el modal correspondiente
-                    this.openModalByTarget(card.dataset.modalTarget);
-                });
+                const href = el.getAttribute('href').replace('.html', '');
+                this.trackEvent('clic_ver_perfil', 'Perfiles', `Ver perfil — ${href.charAt(0).toUpperCase() + href.slice(1)}`);
             });
 
             // Seguimiento de envíos de todos los formularios de contacto
-            document.querySelectorAll('.contact-form, .cf-form').forEach(form => {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
+            document.addEventListener('submit', (e) => {
+                const form = e.target.closest('.contact-form, .cf-form');
+                if (!form) return;
+                e.preventDefault();
 
-                    const prevision = form.querySelector('[name="prevision"]')?.value || '';
-                    const origen = form.querySelector('[name="origen_formulario"]')?.value || 'Formulario';
-                    const label = prevision ? `${origen} — ${prevision}` : origen;
+                const prevision = form.querySelector('[name="prevision"]')?.value || '';
+                const origen = form.querySelector('[name="origen_formulario"]')?.value || 'Formulario';
+                const label = prevision ? `${origen} — ${prevision}` : origen;
 
-                    const submitFormCallback = () => form.submit();
+                const submitFormCallback = (() => {
+                    let submitted = false;
+                    const submit = () => {
+                        if (submitted) return;
+                        submitted = true;
+                        form.submit();
+                    };
+                    const fallback = setTimeout(submit, 900);
+                    return () => {
+                        clearTimeout(fallback);
+                        submit();
+                    };
+                })();
 
-                    this.trackEvent('formulario_contacto', 'Submit', label);
+                this.trackEvent('formulario_contacto', 'Submit', label);
+                window.gtag('event', 'conversion', { 'send_to': 'AW-17584631597/euI3CNy83rgbEK3egMFB', 'event_callback': submitFormCallback });
 
-                    if (typeof gtag === 'function') {
-                        gtag('event', 'conversion', { 'send_to': 'AW-17584631597/euI3CNy83rgbEK3egMFB', 'event_callback': submitFormCallback });
-                    } else {
-                        submitFormCallback();
-                    }
-
-                    if (typeof fbq === 'function') {
-                        fbq('track', 'Lead', { content_name: label }, { eventID: crypto.randomUUID() });
-                    }
-                });
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Lead', { content_name: label }, { eventID: crypto.randomUUID() });
+                }
             });
 
-            // Seguimiento de preguntas frecuentes (FAQ)
-            // Nota: el script inline ya toggleó 'active' antes de que este listener corra,
-            // por eso verificamos que 'active' esté presente (= acaba de abrirse).
-            document.querySelectorAll('.faq-question').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (btn.parentElement.classList.contains('active')) {
-                        const question = btn.textContent.trim().substring(0, 80);
-                        const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
-                        this.trackEvent('faq_abierta', 'FAQ', `${question} — ${page}`);
-                    }
-                });
-            });
+            // Seguimiento de preguntas frecuentes (FAQ) y CTA de artículos
+            document.addEventListener('click', (e) => {
+                const faqButton = e.target.closest('.faq-question');
+                if (faqButton?.parentElement.classList.contains('active')) {
+                    const question = faqButton.textContent.trim().substring(0, 80);
+                    const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
+                    this.trackEvent('faq_abierta', 'FAQ', `${question} — ${page}`);
+                    return;
+                }
 
-            // Seguimiento de CTA en Artículos del Blog
-            document.querySelectorAll('.article-cta-box .btn').forEach(btn => {
-                btn.addEventListener('click', () => {
+                if (e.target.closest('.article-cta-box .btn')) {
                     this.trackEvent('blog_cta', 'Clic', 'CTA Articulo a Inicio');
-                });
+                }
             });
 
-            // Componentes críticos: se ejecutan inmediatamente
-            this.initAccordions(); // Acordeones de preguntas frecuentes
-            this.initReadMoreToggle(); // Botón "Continuar leyendo"
-            this.initModalSystem(); // Sistema general de modales
-            this.initHelpTopicCards(); // Lógica específica para tarjetas de ayuda
+            const has = (selector) => document.querySelector(selector);
+
+            // Componentes críticos: se ejecutan solo si la página los usa
+            if (has('.accordion-button')) this.initAccordions();
+            if (has('.read-more-btn')) this.initReadMoreToggle();
+            if (has('[data-modal-target], .modal-close, .modal')) this.initModalSystem();
 
             // Componentes no-críticos: diferidos para reducir TBT (Total Blocking Time)
             const deferInit = (fn) => {
                 if ('requestIdleCallback' in window) {
-                    requestIdleCallback(() => fn.call(this));
+                    requestIdleCallback(() => fn.call(this), { timeout: 1200 });
                 } else {
                     setTimeout(() => fn.call(this), 0);
                 }
             };
-            deferInit(this.initImageLightbox); // Visor de imágenes de la galería
-            deferInit(this.initTestimonialSlider); // Carrusel de testimonios
-            deferInit(this.initTherapistCarousel); // Carrusel de Terapeutas
-            deferInit(this.initIsapreAccordion); // Lista Acordeón de ISAPREs
-            deferInit(this.initContactForms); // Formularios de contacto interactivos
+            if (has('.lightbox-trigger')) deferInit(this.initImageLightbox);
+            if (has('.testimonial-slider')) deferInit(this.initTestimonialSlider);
+            if (has('.therapist-carousel')) deferInit(this.initTherapistCarousel);
+            if (has('.isapre-list-item')) deferInit(this.initIsapreAccordion);
+            if (has('.cf-cards, .cf-pills[data-target]')) deferInit(this.initContactForms);
         },
 
         // Lógica para mostrar/ocultar header en scroll
         handleHeaderVisibility() {
+            if (!this.header) return;
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             if (scrollTop > this.lastScrollTop && scrollTop > this.header.offsetHeight) {
                 // Scroll hacia abajo
@@ -409,45 +410,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         },
 
-        // Lógica para los modales de los terapeutas
-        initTherapistModals() {
-            const modalTriggers = document.querySelectorAll('[data-modal-target]');
-            // Este listener es específico para los terapeutas, para trackear el evento.
-            const modals = document.querySelectorAll('.modal');
-            const closeButtons = document.querySelectorAll('.modal-close');
-
-            const openModal = (modal) => {
-                if (modal) {
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden'; // Evita el scroll del fondo
-                }
-            };
-
-            const closeModal = (modal) => {
-                if (modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = ''; // Restaura el scroll
-                }
-            };
-
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    const modal = document.querySelector(trigger.dataset.modalTarget);
-                    openModal(modal);
-                });
-            });
-
-            closeButtons.forEach(button => {
-                button.addEventListener('click', () => closeModal(button.closest('.modal')));
-            });
-
-            modals.forEach(modal => {
-                modal.addEventListener('click', e => {
-                    if (e.target === modal) closeModal(modal); // Cierra si se hace clic en el fondo
-                });
-            });
-        },
-
         // Lógica para el visor de imágenes (Lightbox)
         initImageLightbox() {
             const modal = document.getElementById('image-modal');
@@ -489,17 +451,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (e.target === modal) {
                     closeModal();
                 }
-            });
-        },
-
-        // Lógica para las tarjetas de ayuda expandibles
-        initHelpTopicCards() {
-            // Esta función ahora reutiliza la lógica de los modales
-            const modalTriggers = document.querySelectorAll('.topic-card[data-modal-target]');
-            modalTriggers.forEach(trigger => {
-                trigger.addEventListener('click', () => {
-                    this.openModalByTarget(trigger.dataset.modalTarget);
-                });
             });
         },
 
