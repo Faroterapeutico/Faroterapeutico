@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
             navUl.innerHTML = menuData.map(item => {
                 if (item.subsecciones && item.subsecciones.length > 0) {
                     const subItems = item.subsecciones.map(sub => `<li><a href="${sub.url}">${sub.nombre}</a></li>`).join('');
-                    return `<li class="dropdown" role="menuitem" aria-haspopup="true">
-                                <a href="${item.url}" class="dropdown-toggle">${item.nombre} <i class="fas fa-chevron-down"></i></a>
-                                <ul class="dropdown-menu" aria-expanded="false">${subItems}</ul>
+                    return `<li class="dropdown">
+                                <a href="${item.url}" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">${item.nombre} <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+                                <ul class="dropdown-menu">${subItems}</ul>
                             </li>`;
                 }
                 return `<li><a href="${item.url}">${item.nombre}</a></li>`;
@@ -123,19 +123,18 @@ document.addEventListener('DOMContentLoaded', () => {
             // Dropdown: hover en desktop, clic en móvil
             navUl.querySelectorAll('li.dropdown').forEach(li => {
                 const toggle = li.querySelector('.dropdown-toggle');
-                const menu   = li.querySelector('.dropdown-menu');
 
                 // --- Desktop: abrir/cerrar con mouseenter/mouseleave ---
                 li.addEventListener('mouseenter', () => {
                     if (window.innerWidth > 768) {
                         li.classList.add('open');
-                        if (menu) menu.setAttribute('aria-expanded', 'true');
+                        if (toggle) toggle.setAttribute('aria-expanded', 'true');
                     }
                 });
                 li.addEventListener('mouseleave', () => {
                     if (window.innerWidth > 768) {
                         li.classList.remove('open');
-                        if (menu) menu.setAttribute('aria-expanded', 'false');
+                        if (toggle) toggle.setAttribute('aria-expanded', 'false');
                     }
                 });
 
@@ -145,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (window.innerWidth <= 768) {
                             e.preventDefault();
                             li.classList.toggle('open');
-                            if (menu) menu.setAttribute('aria-expanded', li.classList.contains('open'));
+                            toggle.setAttribute('aria-expanded', String(li.classList.contains('open')));
                         }
                     });
                 }

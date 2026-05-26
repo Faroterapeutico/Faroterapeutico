@@ -1651,18 +1651,32 @@ body.boutique main.profile-main {
 .isapre-ask-link button:hover { color: var(--ink); border-color: var(--ink); }
 
 .complementary-note {
+    display: block;
+    width: 100%;
     max-width: 680px;
     margin: 3rem auto 0;
     padding: 1.8rem 2rem;
     border-top: 0.5px solid var(--line);
+    border-right: 0;
     border-bottom: 0.5px solid var(--line);
+    border-left: 0;
     text-align: center;
     cursor: pointer;
     transition: background 0.3s ease;
     background: transparent;
+    color: inherit;
+    font: inherit;
 }
-.complementary-note:hover { background: var(--gold-tint); }
-.complementary-note p {
+.complementary-note:hover,
+.complementary-note:focus-visible {
+    background: var(--gold-tint);
+}
+.complementary-note:focus-visible {
+    outline: 2px solid var(--gold-dark);
+    outline-offset: 4px;
+}
+.complementary-note .note-copy {
+    display: block;
     margin: 0;
     font-size: 1rem;
     line-height: 1.6;
@@ -2829,7 +2843,7 @@ body.boutique .main-nav .header-agendar-btn:hover {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--wa-green);
+    background: #0f7a40;
     color: #fff;
     font-family: var(--sans);
     font-size: 0.88rem;
@@ -2841,7 +2855,7 @@ body.boutique .main-nav .header-agendar-btn:hover {
     transition: background .2s ease, transform .2s ease;
     box-shadow: 0 4px 16px rgba(37,211,102,.35);
 }
-.wa-banner-btn:hover { background: #1aab52; transform: scale(1.03); }
+.wa-banner-btn:hover { background: #0b6534; transform: scale(1.03); }
 .wa-banner-save {
     display: inline-flex;
     align-items: center;
