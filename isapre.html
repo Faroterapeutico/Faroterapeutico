@@ -51,15 +51,13 @@
         ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
             window.addEventListener(evt, loadGtag, { once: true, passive: true });
         });
-        setTimeout(loadGtag, 3500);
+        setTimeout(loadGtag, 7000);
     </script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         media="print" onload="this.media='all'" />
 
-    <link rel="stylesheet" href="boutique.css?v=20260526-a11y3">
-    <link rel="stylesheet" href="style.css?v=20260526-a11y3" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260526-a11y3"></noscript>
+    <link rel="stylesheet" href="boutique.css?v=20260526-mobile-js">
 
     <script type="application/ld+json">
     {
@@ -1086,104 +1084,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=20260526-a11y3" defer></script>
-
-    <script>
-    (function() {
-        var revealEls = document.querySelectorAll('.reveal-up');
-        if (revealEls.length && 'IntersectionObserver' in window) {
-            var revealObs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        revealObs.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-            revealEls.forEach(function(el) { revealObs.observe(el); });
-        } else {
-            revealEls.forEach(function(el) { el.classList.add('revealed'); });
-        }
-
-        document.querySelectorAll('.isapre-row-header').forEach(function(header) {
-            header.addEventListener('click', function() {
-                header.parentElement.classList.toggle('active');
-            });
-        });
-
-        document.querySelectorAll('.faq-question').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                btn.parentElement.classList.toggle('active');
-            });
-        });
-
-        var counters = document.querySelectorAll('.proof-counter[data-target]');
-        if (counters.length && 'IntersectionObserver' in window) {
-            var counterObs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (!entry.isIntersecting) return;
-                    var el = entry.target;
-                    var target = parseFloat(el.getAttribute('data-target'));
-                    var isDecimal = el.getAttribute('data-decimal') === 'true';
-                    var duration = 1500;
-                    var startTime = null;
-                    function animate(ts) {
-                        if (!startTime) startTime = ts;
-                        var progress = Math.min((ts - startTime) / duration, 1);
-                        var eased = 1 - Math.pow(1 - progress, 3);
-                        var current = target * eased;
-                        el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
-                        if (progress < 1) requestAnimationFrame(animate);
-                    }
-                    requestAnimationFrame(animate);
-                    counterObs.unobserve(el);
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(function(c) { counterObs.observe(c); });
-        }
-
-        document.querySelectorAll('.request-isapre-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(ev) {
-                ev.stopPropagation();
-                var isapre = btn.getAttribute('data-isapre') || '';
-                var modal = document.getElementById('modal-isapre-info');
-                if (!modal) return;
-                var nameEl = document.getElementById('modal-isapre-name');
-                var hiddenEl = document.getElementById('isapre-info-hidden');
-                if (nameEl) nameEl.textContent = isapre;
-                if (hiddenEl) hiddenEl.value = isapre;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        document.querySelectorAll('.modal').forEach(function(modal) {
-            modal.addEventListener('click', function(ev) {
-                if (ev.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-            var closeBtn = modal.querySelector('.modal-close');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                });
-            }
-        });
-
-        document.querySelectorAll('[data-modal-target]').forEach(function(el) {
-            el.addEventListener('click', function() {
-                var target = document.querySelector(el.getAttribute('data-modal-target'));
-                if (target) {
-                    target.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-    })();
-    </script>
+    <script src="isapre-lite.js?v=20260526-mobile-js" defer></script>
 
     <div class="wa-banner" role="complementary" aria-label="Agendar cita">
         <span class="wa-banner-text">¿Listo para comenzar? Agenda tu primera sesión hoy.</span>
