@@ -1860,7 +1860,7 @@ body.boutique .main-footer {
     font-family: var(--sans);
     margin-top: 0;
     background-color: var(--ink) !important;        /* #1f2a30 — oscuro elegante */
-    color: rgba(250, 248, 243, 0.70) !important;    /* crema al 70% */
+    color: #d6d1c5 !important;
     border-top: none !important;
 }
 
@@ -1876,7 +1876,7 @@ body.boutique .main-footer .footer-grid h4 {
 /* Párrafos y links dentro del footer */
 body.boutique .main-footer .footer-grid p,
 body.boutique .main-footer .footer-grid a {
-    color: rgba(250, 248, 243, 0.70) !important;
+    color: #d6d1c5 !important;
     font-weight: 300 !important;
 }
 
@@ -1892,7 +1892,7 @@ body.boutique .main-footer .footer-grid a i {
 
 /* Íconos sociales */
 body.boutique .main-footer .social-links a {
-    color: rgba(250, 248, 243, 0.70) !important;
+    color: #d6d1c5 !important;
 }
 body.boutique .main-footer .social-links a:hover {
     color: var(--gold) !important;
@@ -1901,10 +1901,11 @@ body.boutique .main-footer .social-links a:hover {
 /* Footer bottom (copyright) */
 body.boutique .main-footer .footer-bottom {
     border-top: 1px solid rgba(250, 248, 243, 0.12) !important;
-    color: rgba(250, 248, 243, 0.45) !important;
+    color: #d6d1c5 !important;
 }
 body.boutique .main-footer .footer-bottom p {
-    color: rgba(250, 248, 243, 0.45) !important;
+    color: #d6d1c5 !important;
+    opacity: 1 !important;
 }
 
 /* ========== 19. Accesibilidad ========== */
