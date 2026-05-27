@@ -2497,6 +2497,22 @@ body.boutique .reveal-up.revealed {
     }
 }
 
+@media (max-width: 768px) {
+    body.boutique .reveal-up,
+    body.boutique .reveal-up.revealed {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+
+    body.boutique .reveal-up.delay-1,
+    body.boutique .reveal-up.delay-2,
+    body.boutique .reveal-up.delay-3 {
+        transition-delay: 0s !important;
+    }
+}
+
 /* ============================================================
    SECCIÓN 23. MENÚ MÓVIL BOUTIQUE
    Convierte el sidebar oscuro original en un panel crema
@@ -2872,7 +2888,7 @@ body.boutique .main-nav .header-agendar-btn:hover {
 }
 .wa-banner-save:hover { color: var(--paper); border-color: rgba(250,248,243,.75); }
 @media (max-width: 640px) {
-    .wa-banner { flex-direction: row; gap: 10px; padding: 10px 16px; justify-content: center; }
+    .wa-banner { flex-direction: row; gap: 10px; padding: 10px 16px; justify-content: center; transform: none; animation: none; }
     .wa-banner-text { display: none; }
     .wa-banner-btn { font-size: .82rem; padding: 9px 16px; }
     .wa-banner-save { font-size: .78rem; padding: 5px 10px; opacity: 1; }

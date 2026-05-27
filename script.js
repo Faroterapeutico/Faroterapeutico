@@ -361,18 +361,54 @@ document.addEventListener('DOMContentLoaded', () => {
             if (has('[data-modal-target], .modal-close, .modal')) this.initModalSystem();
 
             // Componentes no-críticos: diferidos para reducir TBT (Total Blocking Time)
-            const deferInit = (fn) => {
+            const runDuringIdle = (callback, timeout = 1500) => {
                 if ('requestIdleCallback' in window) {
-                    requestIdleCallback(() => fn.call(this), { timeout: 1200 });
+                    requestIdleCallback(callback, { timeout });
                 } else {
-                    setTimeout(() => fn.call(this), 0);
+                    setTimeout(callback, 0);
                 }
             };
-            if (has('.lightbox-trigger')) deferInit(this.initImageLightbox);
-            if (has('.testimonial-slider')) deferInit(this.initTestimonialSlider);
-            if (has('.therapist-carousel')) deferInit(this.initTherapistCarousel);
-            if (has('.isapre-list-item')) deferInit(this.initIsapreAccordion);
-            if (has('.cf-cards, .cf-pills[data-target]')) deferInit(this.initContactForms);
+
+            const initWhenNearViewport = (selector, fn, options = {}) => {
+                const targets = document.querySelectorAll(selector);
+                if (!targets.length) return;
+
+                let initialized = false;
+                const run = () => {
+                    if (initialized) return;
+                    initialized = true;
+                    fn.call(this);
+                };
+
+                const fallbackDelay = options.fallbackDelay ?? 7000;
+                const scheduleFallback = () => {
+                    setTimeout(() => {
+                        if (!initialized) runDuringIdle(run);
+                    }, fallbackDelay);
+                };
+
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        if (!entries.some(entry => entry.isIntersecting)) return;
+                        observer.disconnect();
+                        runDuringIdle(run, 1000);
+                    }, { rootMargin: options.rootMargin || '700px 0px' });
+
+                    targets.forEach(target => observer.observe(target));
+                    scheduleFallback();
+                    return;
+                }
+
+                runDuringIdle(run, 1200);
+            };
+
+            if (has('.lightbox-trigger')) initWhenNearViewport('.lightbox-trigger', this.initImageLightbox);
+            if (has('.testimonial-slider')) initWhenNearViewport('.testimonial-slider', this.initTestimonialSlider);
+            if (has('.therapist-carousel')) initWhenNearViewport('.therapist-carousel', this.initTherapistCarousel, { rootMargin: '900px 0px' });
+            if (has('.isapre-list-item')) initWhenNearViewport('.isapre-list-item', this.initIsapreAccordion, { rootMargin: '900px 0px' });
+            if (has('.cf-cards, .cf-pills[data-target], .contact-form, .cf-form')) {
+                initWhenNearViewport('.cf-cards, .cf-pills[data-target], .contact-form, .cf-form', this.initContactForms, { rootMargin: '1200px 0px', fallbackDelay: 3000 });
+            }
         },
 
         // Lógica para mostrar/ocultar header en scroll
@@ -684,7 +720,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
 
                 // Initial call
-                setTimeout(updateCarousel, 100);
+                requestAnimationFrame(updateCarousel);
             });
         },
 
