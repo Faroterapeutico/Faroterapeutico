@@ -1,13 +1,18 @@
 // --- Lógica principal de la aplicación ---
 document.addEventListener('DOMContentLoaded', () => {
     const TRACKING_SRC = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
+    const TRACKING_AUTO_DELAY = window.FARO_TRACKING_AUTO_DELAY || 10000;
+    const TRACKING_IDLE_TIMEOUT = 2000;
 
-    const bootstrapTrackingQueue = () => {
+    function bootstrapTrackingQueue() {
         window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-    };
+        window.gtag = window.gtag || function () {
+            window.dataLayer.push(arguments);
+            if (arguments[0] === 'event') loadTrackingIfMissing();
+        };
+    }
 
-    const loadTrackingIfMissing = () => {
+    function loadTrackingIfMissing() {
         bootstrapTrackingQueue();
         if (window._gtagLoaded || document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
         window._gtagLoaded = true;
@@ -20,13 +25,30 @@ document.addEventListener('DOMContentLoaded', () => {
         window.gtag('js', new Date());
         window.gtag('config', 'GT-5TJMG836');
         window.gtag('config', 'AW-17584631597');
-    };
+    }
+
+    function scheduleTrackingLoad() {
+        const runWhenIdle = () => {
+            const load = () => loadTrackingIfMissing();
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(load, { timeout: TRACKING_IDLE_TIMEOUT });
+            } else {
+                setTimeout(load, 0);
+            }
+        };
+
+        const schedule = () => setTimeout(runWhenIdle, TRACKING_AUTO_DELAY);
+        if (document.readyState === 'complete') {
+            schedule();
+        } else {
+            window.addEventListener('load', schedule, { once: true });
+        }
+    }
 
     bootstrapTrackingQueue();
-    ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
-        window.addEventListener(evt, loadTrackingIfMissing, { once: true, passive: true });
-    });
-    setTimeout(loadTrackingIfMissing, 3500);
+    window.loadFaroTracking = loadTrackingIfMissing;
+    window.loadGtag = window.loadGtag || loadTrackingIfMissing;
+    scheduleTrackingLoad();
 
     const app = {
         // Método para enviar eventos a Google Analytics

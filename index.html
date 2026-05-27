@@ -39,7 +39,7 @@
 
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+        function gtag() { dataLayer.push(arguments); if (arguments[0] === 'event' && window.loadGtag) loadGtag(); }
         function loadGtag() {
             if (window._gtagLoaded) return;
             window._gtagLoaded = true;
@@ -51,10 +51,21 @@
             gtag('config', 'GT-5TJMG836');
             gtag('config', 'AW-17584631597');
         }
-        ['scroll', 'click', 'touchstart', 'keydown'].forEach(function(evt) {
-            window.addEventListener(evt, loadGtag, { once: true, passive: true });
-        });
-        setTimeout(loadGtag, 3500);
+        window.FARO_TRACKING_AUTO_DELAY = window.FARO_TRACKING_AUTO_DELAY || 10000;
+        function scheduleGtagLoad() {
+            var runWhenIdle = function() {
+                var load = function() { loadGtag(); };
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(load, { timeout: 2000 });
+                } else {
+                    setTimeout(load, 0);
+                }
+            };
+            var schedule = function() { setTimeout(runWhenIdle, window.FARO_TRACKING_AUTO_DELAY); };
+            if (document.readyState === 'complete') schedule();
+            else window.addEventListener('load', schedule, { once: true });
+        }
+        scheduleGtagLoad();
     </script>
 
     <script type="application/ld+json">
@@ -1002,7 +1013,7 @@
         <a href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n." class="wa-banner-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Agendar WhatsApp</a>
     </div>
 
-    <script src="script.js?v=20260526-a11y3" defer></script>
+    <script src="script.js?v=20260527-thirdparty1" defer></script>
     <script>
     (function(){var r=document.querySelectorAll('.reveal-up');if(r.length&&'IntersectionObserver' in window){var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('revealed');o.unobserve(e.target);}});},{threshold:.12});r.forEach(function(e){o.observe(e);});}else{r.forEach(function(e){e.classList.add('revealed');});}document.querySelectorAll('.faq-question').forEach(function(b){b.addEventListener('click',function(){b.parentElement.classList.toggle('active');});});})();
     </script>
