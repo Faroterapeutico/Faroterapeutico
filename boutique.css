@@ -1908,64 +1908,6 @@ body.boutique .main-footer .footer-bottom p {
     opacity: 1 !important;
 }
 
-/* ========== Modales ligeros para paginas boutique ========== */
-body.boutique .modal {
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1.2rem;
-    background: rgba(31, 42, 48, 0.68);
-}
-body.boutique .modal.active {
-    display: flex;
-}
-body.boutique .modal-content {
-    position: relative;
-    width: min(92vw, 560px);
-    max-height: 88vh;
-    overflow-y: auto;
-    background: var(--surface);
-    color: var(--ink);
-    border-radius: var(--r-md);
-    padding: 2.4rem;
-    box-shadow: 0 22px 60px rgba(31, 42, 48, 0.24);
-}
-body.boutique .modal-content h3 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-}
-body.boutique .modal-content p {
-    color: var(--ink-soft);
-}
-body.boutique .modal-close {
-    position: absolute;
-    top: 0.85rem;
-    right: 0.85rem;
-    width: 38px;
-    height: 38px;
-    border: 0;
-    border-radius: 50%;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 1.5rem;
-    line-height: 1;
-    cursor: pointer;
-}
-body.boutique .modal-close:hover,
-body.boutique .modal-close:focus-visible {
-    background: var(--ink);
-    color: var(--paper);
-    outline: none;
-}
-body.boutique .modal-content .highlight {
-    color: var(--gold-dark);
-    font-style: italic;
-}
-
 /* ========== 19. Accesibilidad ========== */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
