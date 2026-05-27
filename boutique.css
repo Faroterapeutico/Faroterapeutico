@@ -1907,32 +1907,6 @@ body.boutique .main-footer .footer-bottom p {
     color: #d6d1c5 !important;
     opacity: 1 !important;
 }
-body.boutique .main-footer .footer-bottom a {
-    color: #d6d1c5 !important;
-    text-decoration: underline !important;
-    text-underline-offset: 3px;
-}
-body.boutique .main-footer .footer-bottom a:hover {
-    color: var(--paper) !important;
-}
-body.boutique .main-footer .footer-legal-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.45rem 0.85rem;
-}
-body.boutique .main-footer .social-links {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-}
-body.boutique .main-footer .social-links a {
-    min-width: 44px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
 
 /* ========== Modales ligeros para paginas boutique ========== */
 body.boutique .modal {
