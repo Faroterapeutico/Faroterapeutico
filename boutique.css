@@ -2862,20 +2862,20 @@ body.boutique .main-nav .header-agendar-btn:hover {
     align-items: center;
     gap: 6px;
     font-size: .8rem;
-    color: rgba(250,248,243,.55);
+    color: #d6d1c5;
     text-decoration: none;
     padding: 6px 12px;
-    border: 1px solid rgba(250,248,243,.2);
+    border: 1px solid rgba(214,209,197,.55);
     border-radius: 20px;
     transition: color .2s, border-color .2s;
     white-space: nowrap;
 }
-.wa-banner-save:hover { color: rgba(250,248,243,.9); border-color: rgba(250,248,243,.5); }
+.wa-banner-save:hover { color: var(--paper); border-color: rgba(250,248,243,.75); }
 @media (max-width: 640px) {
     .wa-banner { flex-direction: row; gap: 10px; padding: 10px 16px; justify-content: center; }
     .wa-banner-text { display: none; }
     .wa-banner-btn { font-size: .82rem; padding: 9px 16px; }
-    .wa-banner-save { font-size: .78rem; padding: 5px 10px; border: none; opacity: .7; }
+    .wa-banner-save { font-size: .78rem; padding: 5px 10px; opacity: 1; }
 }
 
 /* Hero typography - lectura mas clara */
