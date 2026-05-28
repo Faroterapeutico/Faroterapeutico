@@ -614,46 +614,8 @@
         </div>
     </div>
 
-    <script src="script.js?v=20260527-js-clean1" defer></script>
-    <script>
-    (function() {
-        var revealEls = document.querySelectorAll('.reveal-up');
-        if ('IntersectionObserver' in window) {
-            var obs = new IntersectionObserver(function(entries) { entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('revealed'); obs.unobserve(e.target); } }); }, { threshold: 0.1 });
-            revealEls.forEach(function(el) { obs.observe(el); });
-        } else { revealEls.forEach(function(el) { el.classList.add('revealed'); }); }
+    <script src="script.js?v=20260527-ui1" defer></script>
 
-        document.querySelectorAll('.isapre-row-header').forEach(function(h) { h.addEventListener('click', function() { h.parentElement.classList.toggle('active'); }); });
-        document.querySelectorAll('.faq-question').forEach(function(btn) { btn.addEventListener('click', function() { btn.parentElement.classList.toggle('active'); }); });
-
-        var counters = document.querySelectorAll('.proof-counter[data-target]');
-        if (counters.length && 'IntersectionObserver' in window) {
-            var cObs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (!entry.isIntersecting) return;
-                    var el = entry.target; var target = parseFloat(el.getAttribute('data-target')); var isDecimal = el.getAttribute('data-decimal') === 'true';
-                    var duration = 1500; var startTime = null;
-                    function animate(ts) { if (!startTime) startTime = ts; var p = Math.min((ts - startTime) / duration, 1); var e2 = 1 - Math.pow(1 - p, 3); el.textContent = isDecimal ? (target * e2).toFixed(1) : Math.floor(target * e2); if (p < 1) requestAnimationFrame(animate); }
-                    requestAnimationFrame(animate); cObs.unobserve(el);
-                });
-            }, { threshold: 0.5 });
-            counters.forEach(function(c) { cObs.observe(c); });
-        }
-
-        document.querySelectorAll('.request-isapre-btn').forEach(function(btn) {
-            btn.addEventListener('click', function(ev) {
-                ev.stopPropagation();
-                var modal = document.getElementById('modal-isapre-info');
-                if (modal) { modal.classList.add('active'); document.body.style.overflow = 'hidden'; }
-            });
-        });
-        document.querySelectorAll('.modal').forEach(function(modal) {
-            modal.addEventListener('click', function(ev) { if (ev.target === modal) { modal.classList.remove('active'); document.body.style.overflow = ''; } });
-            var closeBtn = modal.querySelector('.modal-close');
-            if (closeBtn) closeBtn.addEventListener('click', function() { modal.classList.remove('active'); document.body.style.overflow = ''; });
-        });
-    })();
-    </script>
     <div class="wa-banner" role="complementary" aria-label="Agendar cita">
         <span class="wa-banner-text">¿Listo para comenzar? Agenda tu primera sesión hoy.</span>
         <a href="faro-terapeutico.vcf" download class="wa-banner-save"><i class="fas fa-address-card"></i> Guardar contacto</a>

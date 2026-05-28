@@ -227,6 +227,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             this.initRevealEffects();
+            this.initFaqToggles();
+            this.initIsapreRows();
+            this.initProofCounters();
+            this.initIsapreRequestModal();
 
             // Función de callback para el seguimiento de eventos de contacto
             const contactConversionCallback = (url) => {
@@ -456,6 +460,89 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             revealEls.forEach(el => el.classList.add('revealed'));
+        },
+
+        initFaqToggles() {
+            document.querySelectorAll('.faq-question').forEach(button => {
+                if (button.dataset.faroFaqBound === 'true') return;
+                button.dataset.faroFaqBound = 'true';
+                button.addEventListener('click', () => {
+                    button.parentElement?.classList.toggle('active');
+                });
+            });
+        },
+
+        initIsapreRows() {
+            document.querySelectorAll('.isapre-row-header').forEach(header => {
+                if (header.dataset.faroRowBound === 'true') return;
+                header.dataset.faroRowBound = 'true';
+                header.addEventListener('click', () => {
+                    header.parentElement?.classList.toggle('active');
+                });
+            });
+        },
+
+        initProofCounters() {
+            const counters = document.querySelectorAll('.proof-counter[data-target]');
+            if (!counters.length) return;
+
+            const runCounter = (el) => {
+                if (el.dataset.faroCounterAnimated === 'true') return;
+                const target = parseFloat(el.getAttribute('data-target'));
+                if (Number.isNaN(target)) return;
+
+                el.dataset.faroCounterAnimated = 'true';
+                const isDecimal = el.getAttribute('data-decimal') === 'true';
+                const duration = 1500;
+                let startTime = null;
+
+                const animate = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const current = target * eased;
+                    el.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+                    if (progress < 1) requestAnimationFrame(animate);
+                };
+
+                requestAnimationFrame(animate);
+            };
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        runCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    });
+                }, { threshold: 0.5 });
+
+                counters.forEach(counter => observer.observe(counter));
+                return;
+            }
+
+            counters.forEach(runCounter);
+        },
+
+        initIsapreRequestModal() {
+            document.querySelectorAll('.request-isapre-btn').forEach(button => {
+                if (button.dataset.faroIsapreModalBound === 'true') return;
+                button.dataset.faroIsapreModalBound = 'true';
+                button.addEventListener('click', (event) => {
+                    event.stopPropagation();
+
+                    const modal = document.getElementById('modal-isapre-info');
+                    if (!modal) return;
+
+                    const isapre = button.getAttribute('data-isapre') || '';
+                    const nameEl = document.getElementById('modal-isapre-name');
+                    const hiddenEl = document.getElementById('isapre-info-hidden');
+                    if (nameEl) nameEl.textContent = isapre;
+                    if (hiddenEl) hiddenEl.value = isapre;
+
+                    this.openModalByTarget('#modal-isapre-info');
+                });
+            });
         },
 
         initModalSystem() {
