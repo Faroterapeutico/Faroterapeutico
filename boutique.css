@@ -1952,30 +1952,18 @@ body.boutique #hero p {
 }
 
 /* 20.3 · Botones legacy (.btn, .cta-button) — tratamiento boutique sutil */
-body.boutique .btn,
-body.boutique .btn-primary,
-body.boutique .cta-button {
+body.boutique .btn {
     font-family: var(--sans);
     font-weight: 500;
     letter-spacing: 1.2px;
     border-radius: var(--r-sm);
     transition: all 0.35s ease;
 }
-body.boutique .btn-primary:hover,
-body.boutique .cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lift);
-}
-
 /* 20.4 · Cards genéricas — suavizar sombras agresivas */
 body.boutique .service-card,
 body.boutique .therapist-card,
-body.boutique .therapist-card-full,
-body.boutique .modality-card,
-body.boutique .pricing-card,
 body.boutique .review-card,
-body.boutique .equipo-card,
-body.boutique .value-prop-card {
+body.boutique .equipo-card {
     box-shadow: var(--shadow-soft);
     border-radius: var(--r-md);
     transition: transform 0.4s cubic-bezier(.25,.46,.45,.94),
@@ -1983,12 +1971,8 @@ body.boutique .value-prop-card {
 }
 body.boutique .service-card:hover,
 body.boutique .therapist-card:hover,
-body.boutique .therapist-card-full:hover,
-body.boutique .modality-card:hover,
-body.boutique .pricing-card:hover,
 body.boutique .review-card:hover,
-body.boutique .equipo-card:hover,
-body.boutique .value-prop-card:hover {
+body.boutique .equipo-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lift);
 }
@@ -1996,13 +1980,7 @@ body.boutique .value-prop-card:hover {
 /* 20.5 · Títulos de cards — serif */
 body.boutique .service-card h3,
 body.boutique .service-card h4,
-body.boutique .therapist-card-full h3,
-body.boutique .therapist-card-full h2,
-body.boutique .modality-card h3,
-body.boutique .pricing-card h3,
-body.boutique .pricing-card h4,
-body.boutique .equipo-card h3,
-body.boutique .value-prop-card h3 {
+body.boutique .equipo-card h3 {
     font-family: var(--serif);
     color: var(--ink);
     font-weight: 500;
@@ -2011,11 +1989,7 @@ body.boutique .value-prop-card h3 {
 
 /* 20.6 · Cuerpo de cards — contraste correcto */
 body.boutique .service-card p,
-body.boutique .therapist-card-full p,
-body.boutique .modality-card p,
-body.boutique .pricing-card p,
-body.boutique .equipo-card p,
-body.boutique .value-prop-card p {
+body.boutique .equipo-card p {
     color: var(--ink-soft);
     line-height: 1.7;
     font-weight: 300;
@@ -2034,35 +2008,6 @@ body.boutique .section-description {
     color: var(--ink-soft);
     font-weight: 300;
     line-height: 1.75;
-}
-
-/* 20.8 · Hero options (index) — estilo boutique */
-body.boutique .hero-options .option-item {
-    background: rgba(255, 255, 255, 0.82);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 0.5px solid var(--line);
-    border-radius: var(--r-md);
-    transition: all 0.35s ease;
-}
-body.boutique .hero-options .option-item:hover {
-    background: rgba(255, 255, 255, 0.95);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lift);
-    border-color: var(--gold);
-}
-body.boutique .hero-options .option-item strong {
-    font-family: var(--serif);
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--ink);
-}
-body.boutique .hero-options .option-item span {
-    color: var(--ink-soft);
-    font-weight: 300;
-}
-body.boutique .hero-options .option-item i {
-    color: var(--gold);
 }
 
 /* 20.9 · Acordeones / elementos desplegables */
@@ -2440,31 +2385,6 @@ body.boutique {
     --accent-gold-light: var(--gold-tint);
     --text-main: var(--ink);
 }
-
-/* whatsapp-fab (botón flotante legacy) */
-body.boutique .whatsapp-fab {
-    position: fixed;
-    bottom: 28px;
-    right: 28px;
-    background: #25D366;
-    color: #fff !important;
-    padding: 14px 22px;
-    border-radius: 50px;
-    text-decoration: none !important;
-    font-weight: 500;
-    font-size: 0.88rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 8px 24px rgba(37,211,102,.35);
-    z-index: 900;
-    transition: all .3s ease;
-}
-body.boutique .whatsapp-fab:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(37,211,102,.45);
-}
-body.boutique .whatsapp-fab i { font-size: 1.1rem; }
 
 /* ============================================================
    SECCIÓN 22. FALLBACK DE SEGURIDAD — REVEAL AUTOMÁTICO
