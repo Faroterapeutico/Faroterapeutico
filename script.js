@@ -226,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, { passive: true });
             }
 
+            this.initRevealEffects();
+
             // Función de callback para el seguimiento de eventos de contacto
             const contactConversionCallback = (url) => {
                 let opened = false;
@@ -434,6 +436,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.classList.remove('active');
             });
             document.body.style.overflow = '';
+        },
+
+        initRevealEffects() {
+            const revealEls = document.querySelectorAll('.reveal-up:not(.revealed)');
+            if (!revealEls.length) return;
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    });
+                }, { threshold: 0.12 });
+
+                revealEls.forEach(el => observer.observe(el));
+                return;
+            }
+
+            revealEls.forEach(el => el.classList.add('revealed'));
         },
 
         initModalSystem() {
