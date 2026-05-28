@@ -362,6 +362,13 @@ body.boutique main > section {
     padding: 6rem 0;
     position: relative;
 }
+body.boutique #landing-content {
+    background-color: var(--white-color);
+    padding: 4rem 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    margin-top: -6rem;
+}
 @media (max-width: 768px) {
     body.boutique main > section { padding: 4rem 0; }
     body.boutique section { padding: 3rem 0 !important; }
