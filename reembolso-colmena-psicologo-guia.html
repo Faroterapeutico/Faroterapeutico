@@ -975,8 +975,9 @@
         .article-body-b ul,.article-body-b ol{padding-left:1.5rem;margin-bottom:1.45rem}
         .article-body-b li{margin-bottom:.68rem;color:var(--ink-soft);line-height:1.75}
         .article-body-b li strong{color:var(--ink);font-weight:500}
-        .article-body-b a{color:var(--gold-dark);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;transition:color .3s ease}
-        .article-body-b a:hover{color:var(--ink)}
+        .article-body-b a:not(.btn){color:var(--gold-dark);text-decoration:underline !important;text-decoration-color:var(--gold-dark);text-decoration-thickness:.08em;text-underline-offset:3px;transition:color .3s ease,text-decoration-color .3s ease}
+        .article-body-b a:not(.btn):hover{color:var(--ink);text-decoration-color:var(--ink)}
+        .article-body-b a:not(.btn):focus-visible,.breadcrumb-list a:focus-visible,.article-footer-nav a:focus-visible{outline:2px solid var(--gold-dark);outline-offset:3px;border-radius:2px}
         .article-body-b blockquote{border-left:2px solid var(--gold);padding:.55rem 0 .55rem 1.45rem;margin:2rem 0;font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink);line-height:1.55}
         .key-box,.article-cta-box,.source-box{background:var(--surface);padding:1.75rem 2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);margin:2.25rem 0}
         .key-box{border-top:3px solid var(--gold)}
@@ -994,7 +995,7 @@
         .faq-block{margin-top:3rem}
         .faq-block h3{border-top:.5px solid var(--line-soft);padding-top:1.25rem}
         .article-cta-box{border-left:2px solid var(--gold)}
-        .article-cta-box h3,.source-box h3{font-family:var(--serif);font-style:italic;color:var(--gold-dark);font-size:1.35rem;margin:0 0 1rem;font-weight:500}
+        .article-cta-box .article-cta-heading,.source-box h3{font-family:var(--serif);font-style:italic;color:var(--gold-dark);font-size:1.35rem;margin:0 0 1rem;font-weight:500}
         .article-cta-box p{font-size:1rem;color:var(--ink-soft);margin-bottom:1.3rem;line-height:1.75}
         .article-cta-box .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2rem;background:var(--ink);color:var(--paper);border-radius:var(--r-sm);font-family:var(--sans);font-size:.82rem;letter-spacing:1.8px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .35s ease;border:none}
         .article-cta-box .btn:hover{background:var(--gold);transform:translateY(-2px);box-shadow:var(--shadow-lift)}
@@ -1003,8 +1004,8 @@
         .article-footer-nav{max-width:800px;margin:0 auto;padding:3rem 2rem 0;border-top:.5px solid var(--line)}
         .article-footer-nav a{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:500;transition:color .3s ease}
         .article-footer-nav a:hover{color:var(--gold-dark)}
-        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
-        .whatsapp-float:hover{transform:translateY(-3px)}
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:var(--wa-green-dark);color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(15,122,82,.28);z-index:900}
+        .whatsapp-float:hover{background:#0b6846;transform:translateY(-3px)}
         @media(max-width:640px){.key-box,.article-cta-box,.source-box{padding:1.45rem 1.35rem}.step-list{padding:1.5rem 1.35rem 1.5rem 2.5rem}.whatsapp-float{display:none}}
     </style>
     <link rel="manifest" href="/manifest.webmanifest">
@@ -1293,7 +1294,7 @@ Saludos cordiales,
                 </div>
 
                 <div class="article-cta-box">
-                    <h3>Para cerrar</h3>
+                    <p class="article-cta-heading">Para cerrar</p>
                     <p>Si llegaste hasta acá, gracias por leerlo. Espero que esta guía te haga el camino más liviano y que los trámites no ocupen el lugar que le corresponde a tu proceso terapéutico.</p>
                     <p>Ps. Aaron Millán Solís<br>Registro Superintendencia de Salud: SIS N° 870794<br>Contacto: +56 9 4559 3808 · director@faroterapeutico.com</p>
                     <a href="https://wa.me/56945593808?text=Hola%2C%20le%C3%AD%20la%20gu%C3%ADa%20para%20pacientes%20Colmena%20y%20tengo%20una%20duda." class="btn" target="_blank" rel="noopener noreferrer">Escríbeme</a>

@@ -975,10 +975,11 @@
         .article-body-b ul{padding-left:1.5rem;margin-bottom:1.4rem}
         .article-body-b li{margin-bottom:.6rem;color:var(--ink-soft);line-height:1.7}
         .article-body-b li strong{color:var(--ink);font-weight:500;font-family:var(--serif);font-size:1.05em}
-        .article-body-b a{color:var(--gold-dark);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;transition:color .3s ease}
-        .article-body-b a:hover{color:var(--ink)}
+        .article-body-b a:not(.btn){color:var(--gold-dark);text-decoration:underline !important;text-decoration-color:var(--gold-dark);text-decoration-thickness:.08em;text-underline-offset:3px;transition:color .3s ease,text-decoration-color .3s ease}
+        .article-body-b a:not(.btn):hover{color:var(--ink);text-decoration-color:var(--ink)}
+        .article-body-b a:not(.btn):focus-visible,.breadcrumb-list a:focus-visible,.article-footer-nav a:focus-visible{outline:2px solid var(--gold-dark);outline-offset:3px;border-radius:2px}
         .info-box,.article-cta-box,.isapre-table-box{background:var(--surface);padding:2rem 2.2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);margin:2.5rem 0}
-        .info-box h3,.article-cta-box h3,.isapre-table-box h2{font-family:var(--serif);font-style:italic;color:var(--gold-dark);font-size:1.35rem;margin:0 0 1rem;font-weight:500}
+        .info-box h3,.article-cta-box .article-cta-heading,.isapre-table-box h2{font-family:var(--serif);font-style:italic;color:var(--gold-dark);font-size:1.35rem;margin:0 0 1rem;font-weight:500}
         .article-cta-box{border-left:2px solid var(--gold)}
         .article-cta-box p{font-size:1rem;color:var(--ink-soft);margin-bottom:1.3rem;line-height:1.7}
         .article-cta-box .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2rem;background:var(--ink);color:var(--paper);border-radius:var(--r-sm);font-family:var(--sans);font-size:.82rem;letter-spacing:1.8px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .35s ease;border:none}
@@ -997,8 +998,8 @@
         .article-footer-nav{max-width:760px;margin:0 auto;padding:3rem 2rem 0;border-top:.5px solid var(--line)}
         .article-footer-nav a{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:500;transition:color .3s ease}
         .article-footer-nav a:hover{color:var(--gold-dark)}
-        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
-        .whatsapp-float:hover{transform:translateY(-3px)}
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:var(--wa-green-dark);color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(15,122,82,.28);z-index:900}
+        .whatsapp-float:hover{background:#0b6846;transform:translateY(-3px)}
     </style>
 
     <script type="application/ld+json">
@@ -1150,13 +1151,13 @@
                 <p>La respuesta corta es esta: puedes atenderte como paciente particular, recibir una boleta electrónica y solicitar el <strong>reembolso de psicólogo por ISAPRE</strong> si tu plan contempla cobertura para psicología, psicoterapia o salud mental. El monto final depende de tu contrato, porcentaje, tope por sesión y tope anual.</p>
 
                 <div class="article-cta-box">
-                    <h3>Agenda y revisamos la ruta de reembolso contigo</h3>
+                    <p class="article-cta-heading">Agenda y revisamos la ruta de reembolso contigo</p>
                     <p>En Faro Terapéutico atendemos presencial en Providencia y online. Si tienes ISAPRE o seguro complementario, te orientamos antes de reservar para que sepas qué revisar en tu plan y qué boleta recibirás después de la sesión.</p>
                     <a href="https://wa.me/56945593808?text=Hola%2C%20tengo%20ISAPRE%20y%20quiero%20agendar%20una%20hora%20de%20psicoterapia.%20Me%20gustaria%20orientacion%20sobre%20reembolso." class="btn" target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
                 </div>
 
                 <div class="article-cta-box">
-                    <h3>Cupón de $10.000 para agendar conmigo</h3>
+                    <p class="article-cta-heading">Cupón de $10.000 para agendar conmigo</p>
                     <p>Si quieres agendar una sesión presencial ISAPRE con <strong>Ps. Aaron Millán</strong>, puedes reservar directamente en Encuadrado. La sesión tiene un valor de <strong>$30.000</strong> y al ingresar el cupón <strong>FAROTERAPEUTICO</strong> obtienes <strong>$10.000 de descuento</strong>.</p>
                     <a href="https://encuadrado.com/p/ps-aaron-millan/s/psicoterapia-presencial-isapre" class="btn" target="_blank" rel="noopener noreferrer">Reservar con cupón</a>
                 </div>
@@ -1280,7 +1281,7 @@
                 <p>Después de eso, eliges terapeuta, confirmas horario, pagas por la plataforma indicada y recibes tu boleta electrónica. Si quieres revisar disponibilidad por profesional, puedes conocer al <a href="sobre-nosotros">equipo clínico</a>.</p>
 
                 <div class="article-cta-box">
-                    <h3>¿Quieres partir esta semana?</h3>
+                    <p class="article-cta-heading">¿Quieres partir esta semana?</p>
                     <p>Escríbenos por WhatsApp con tu ISAPRE y modalidad preferida. Te ayudamos a elegir horario y a entender qué revisar para el reembolso antes de tu primera sesión.</p>
                     <a href="https://wa.me/56945593808?text=Hola%2C%20tengo%20ISAPRE%20y%20quiero%20agendar%20una%20hora%20de%20psicoterapia.%20Me%20gustaria%20orientacion%20sobre%20reembolso." class="btn" target="_blank" rel="noopener noreferrer">Quiero agendar</a>
                 </div>

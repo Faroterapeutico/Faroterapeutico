@@ -970,8 +970,9 @@
         .article-body-b ul,.article-body-b ol{padding-left:1.5rem;margin-bottom:1.4rem}
         .article-body-b li{margin-bottom:.6rem;color:var(--ink-soft);line-height:1.7}
         .article-body-b li strong{color:var(--ink);font-weight:500}
-        .article-body-b a{color:var(--gold-dark);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;transition:color .3s ease}
-        .article-body-b a:hover{color:var(--ink)}
+        .article-body-b a:not(.btn){color:var(--gold-dark);text-decoration:underline !important;text-decoration-color:var(--gold-dark);text-decoration-thickness:.08em;text-underline-offset:3px;transition:color .3s ease,text-decoration-color .3s ease}
+        .article-body-b a:not(.btn):hover{color:var(--ink);text-decoration-color:var(--ink)}
+        .article-body-b a:not(.btn):focus-visible,.breadcrumb-list a:focus-visible,.article-footer-nav a:focus-visible{outline:2px solid var(--gold-dark);outline-offset:3px;border-radius:2px}
         .article-body-b blockquote{border-left:2px solid var(--gold);padding:.5rem 0 .5rem 1.5rem;margin:2rem 0;font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink);line-height:1.55}
         .article-body-b hr{border:0;border-top:.5px solid var(--line);margin:3rem auto;width:60px}
         .article-body-b .reference-list{font-size:.88rem;list-style:none;padding-left:0;margin-top:1rem}
@@ -989,8 +990,8 @@
         .article-footer-nav a{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:500;transition:color .3s ease}
         .article-footer-nav a:hover{color:var(--gold-dark)}
 
-        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
-        .whatsapp-float:hover{transform:translateY(-3px)}
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:var(--wa-green-dark);color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(15,122,82,.28);z-index:900}
+        .whatsapp-float:hover{background:#0b6846;transform:translateY(-3px)}
     </style>
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://faroterapeutico.com/primera-sesion-psicologo">
@@ -1152,7 +1153,7 @@
 
             <!-- Call to Action al final -->
             <div class="article-cta-box">
-                <h3>¿Te identificas con este relato?</h3>
+                <p class="article-cta-heading">¿Te identificas con este relato?</p>
                 <p>La terapia es un espacio seguro para escuchar, comprender y sanar. Si buscas un acompañamiento
                     profesional, estoy aquí para ayudarte.</p>
                 <a href="aaron" class="btn">Agendar Sesión con Aaron</a>

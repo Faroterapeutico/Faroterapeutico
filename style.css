@@ -424,7 +424,8 @@ section:not(#hero):not(#contacto):not(#landing-content)::before,
     border-radius: 4px;
 }
 
-.article-cta-box h3 {
+.article-cta-box h3,
+.article-cta-box .article-cta-heading {
     font-family: var(--serif, Georgia, serif);
     font-size: 1.8rem;
     margin-bottom: 1rem;
