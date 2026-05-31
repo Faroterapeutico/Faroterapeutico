@@ -975,11 +975,12 @@
         .article-body-b ul,.article-body-b ol{padding-left:1.5rem;margin-bottom:1.4rem}
         .article-body-b li{margin-bottom:.6rem;color:var(--ink-soft);line-height:1.7}
         .article-body-b li strong{color:var(--ink);font-weight:500;font-family:var(--serif);font-size:1.05em}
-        .article-body-b a{color:var(--gold-dark);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;transition:color .3s ease}
-        .article-body-b a:hover{color:var(--ink)}
+        .article-body-b a:not(.btn){color:var(--gold-dark);text-decoration:underline !important;text-decoration-color:var(--gold-dark);text-decoration-thickness:.08em;text-underline-offset:3px;transition:color .3s ease,text-decoration-color .3s ease}
+        .article-body-b a:not(.btn):hover{color:var(--ink);text-decoration-color:var(--ink)}
+        .article-body-b a:not(.btn):focus-visible,.breadcrumb-list a:focus-visible,.article-footer-nav a:focus-visible{outline:2px solid var(--gold-dark);outline-offset:3px;border-radius:2px}
         .guide-box,.article-cta-box{background:var(--surface);padding:2rem 2.2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-soft);margin:2.5rem 0}
         .guide-box{border-top:3px solid #005eb8}
-        .guide-box h2,.article-cta-box h3{font-family:var(--serif);font-style:italic;color:var(--gold-dark);font-size:1.35rem;margin:0 0 1rem;font-weight:500}
+        .guide-box h2,.article-cta-box .article-cta-heading{font-family:var(--serif);font-style:italic;color:var(--gold-dark);font-size:1.35rem;margin:0 0 1rem;font-weight:500;line-height:1.2}
         .guide-image{display:block;max-width:100%;height:auto;border-radius:var(--r-md);box-shadow:var(--shadow-soft);margin:1.4rem auto;border:.5px solid var(--line)}
         .step-list{background:var(--paper-deep);padding:2rem 2rem 2rem 3rem;border-radius:var(--r-lg);border:.5px solid var(--line)}
         .step-list li{margin-bottom:1.8rem}
@@ -992,10 +993,11 @@
         .article-cta-box .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 2rem;background:var(--ink);color:var(--paper);border-radius:var(--r-sm);font-family:var(--sans);font-size:.82rem;letter-spacing:1.8px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .35s ease;border:none}
         .article-cta-box .btn:hover{background:var(--gold);transform:translateY(-2px);box-shadow:var(--shadow-lift)}
         .article-footer-nav{max-width:760px;margin:0 auto;padding:3rem 2rem 0;border-top:.5px solid var(--line)}
-        .article-footer-nav a{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);text-decoration:none;font-weight:500;transition:color .3s ease}
+        body.boutique.page-article .breadcrumb-list a,body.boutique.page-article .article-footer-nav a{text-decoration:underline !important;text-decoration-thickness:.08em;text-underline-offset:3px}
+        .article-footer-nav a{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--sans);font-size:.78rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);font-weight:500;transition:color .3s ease}
         .article-footer-nav a:hover{color:var(--gold-dark)}
-        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:#25D366;color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(37,211,102,.35);z-index:900}
-        .whatsapp-float:hover{transform:translateY(-3px)}
+        .whatsapp-float{position:fixed;bottom:28px;right:28px;background:var(--wa-green-dark);color:#fff;padding:14px 22px;border-radius:50px;text-decoration:none;font-weight:500;font-size:.88rem;display:inline-flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(15,122,82,.28);z-index:900}
+        .whatsapp-float:hover{background:#0b6846;transform:translateY(-3px)}
     </style>
 
     <script type="application/ld+json">
@@ -1147,7 +1149,7 @@
                 <p>Si todavía estás comparando valores, horarios o modalidad de atención, revisa primero nuestra <a href="psicologo-fonasa-valores-horarios-agenda">guía de psicólogo por FONASA</a> o la página principal de <a href="fonasa">atención psicológica con FONASA</a>. Esta página funciona mejor cuando ya tienes claro que quieres comprar el bono y necesitas hacerlo sin equivocarte.</p>
 
                 <div class="article-cta-box">
-                    <h3>Agenda antes de comprar el bono</h3>
+                    <p class="article-cta-heading">Agenda antes de comprar el bono</p>
                     <p>Para evitar compras equivocadas, puedes escribirnos antes de pagar. Te orientamos con el RUT del terapeuta, el código de prestación y la modalidad de atención que corresponde a tu caso.</p>
                     <a href="https://wa.me/56945593808?text=Hola%2C%20quiero%20agendar%20y%20confirmar%20los%20datos%20para%20comprar%20mi%20bono%20FONASA." class="btn" target="_blank" rel="noopener noreferrer">Agendar por WhatsApp</a>
                 </div>
@@ -1266,7 +1268,7 @@
                 </div>
 
                 <div class="article-cta-box">
-                    <h3>¿Quieres la opción más simple?</h3>
+                    <p class="article-cta-heading">¿Quieres la opción más simple?</p>
                     <p>Antes de comprar tu bono, puedes escribirnos para confirmar terapeuta, código, modalidad y horario disponible. Así haces el trámite con los datos correctos y avanzas directo a la agenda.</p>
                     <a href="https://wa.me/56945593808?text=Hola%2C%20quiero%20agendar%20una%20sesi%C3%B3n%20FONASA%20y%20necesito%20ayuda%20para%20comprar%20el%20bono." class="btn" target="_blank" rel="noopener noreferrer">Agendar y pedir ayuda</a>
                 </div>
