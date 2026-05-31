@@ -352,12 +352,6 @@ body.boutique .container {
     margin: auto;
     padding: 0 20px;
 }
-.container-narrow {
-    width: 90%;
-    max-width: 780px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
 body.boutique main > section {
     padding: 6rem 0;
     position: relative;
@@ -1013,36 +1007,22 @@ body.boutique main.profile-main {
     text-decoration: none;
 }
 
-.profile-pricing.four-items {
-    grid-template-columns: 1fr 1fr;
-}
-
 .profile-pricing.three-items {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.profile-pricing.four-items .profile-pricing-item:nth-child(1),
-.profile-pricing.four-items .profile-pricing-item:nth-child(2) {
-    border-bottom: 0.5px solid var(--line);
-}
-
-.profile-pricing.four-items .profile-pricing-item:nth-child(2) { border-right: none; }
-
 @media (max-width: 560px) {
     .profile-card-grid,
-    .profile-pricing.three-items,
-    .profile-pricing.four-items {
+    .profile-pricing.three-items {
         grid-template-columns: 1fr;
     }
 
-    .profile-pricing.three-items .profile-pricing-item,
-    .profile-pricing.four-items .profile-pricing-item {
+    .profile-pricing.three-items .profile-pricing-item {
         border-right: none;
         border-bottom: 0.5px solid var(--line);
     }
 
-    .profile-pricing.three-items .profile-pricing-item:last-child,
-    .profile-pricing.four-items .profile-pricing-item:last-child {
+    .profile-pricing.three-items .profile-pricing-item:last-child {
         border-bottom: none;
     }
 }
@@ -1967,40 +1947,10 @@ body.boutique .btn {
     transition: all 0.35s ease;
 }
 /* 20.4 · Cards genéricas — suavizar sombras agresivas */
-body.boutique .service-card,
-body.boutique .therapist-card,
-body.boutique .review-card,
-body.boutique .equipo-card {
-    box-shadow: var(--shadow-soft);
-    border-radius: var(--r-md);
-    transition: transform 0.4s cubic-bezier(.25,.46,.45,.94),
-                box-shadow 0.4s cubic-bezier(.25,.46,.45,.94);
-}
-body.boutique .service-card:hover,
-body.boutique .therapist-card:hover,
-body.boutique .review-card:hover,
-body.boutique .equipo-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lift);
-}
 
 /* 20.5 · Títulos de cards — serif */
-body.boutique .service-card h3,
-body.boutique .service-card h4,
-body.boutique .equipo-card h3 {
-    font-family: var(--serif);
-    color: var(--ink);
-    font-weight: 500;
-    letter-spacing: -0.2px;
-}
 
 /* 20.6 · Cuerpo de cards — contraste correcto */
-body.boutique .service-card p,
-body.boutique .equipo-card p {
-    color: var(--ink-soft);
-    line-height: 1.7;
-    font-weight: 300;
-}
 
 /* 20.7 · Section titles y leads — contraste AA garantizado */
 body.boutique .section-title,
@@ -2018,18 +1968,6 @@ body.boutique .section-description {
 }
 
 /* 20.9 · Acordeones / elementos desplegables */
-body.boutique .accordion-item,
-body.boutique .faq-accordion-item {
-    border-color: var(--line);
-    background: var(--surface);
-    border-radius: var(--r-md);
-}
-body.boutique .accordion-header,
-body.boutique .accordion-question {
-    font-family: var(--serif);
-    color: var(--ink);
-    font-weight: 500;
-}
 
 /* 20.10 · Formularios legacy — coherencia con estilo boutique */
 body.boutique .contact-form input,
@@ -2061,22 +1999,6 @@ body.boutique form label {
 }
 
 /* 20.11 · Listas de ítems en páginas de servicios */
-body.boutique .service-list li,
-body.boutique .benefits-list li,
-body.boutique .features-list li {
-    color: var(--ink-soft);
-    line-height: 1.75;
-    font-weight: 300;
-}
-body.boutique .service-list li strong,
-body.boutique .benefits-list li strong,
-body.boutique .features-list li strong {
-    color: var(--ink);
-    font-weight: 500;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.05em;
-}
 
 /* 20.12 · Artículos de blog — acompañan a article-modern.css */
 body.boutique .article-container h1,
@@ -2095,23 +2017,6 @@ body.boutique article p {
     color: var(--ink-soft);
     line-height: 1.8;
     font-weight: 300;
-}
-body.boutique .article-lead,
-body.boutique .article-intro,
-body.boutique .article-subtitle {
-    color: var(--ink-soft);
-    font-style: italic;
-    font-family: var(--serif);
-    font-weight: 400;
-}
-body.boutique .article-meta,
-body.boutique .post-meta,
-body.boutique .article-date {
-    color: var(--ink-muted);
-    font-size: 0.82rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    font-weight: 500;
 }
 body.boutique .article-container a,
 body.boutique article a {
@@ -2161,36 +2066,6 @@ body.boutique #terapeutas-hero {
 }
 
 /* 20.16 · Reseñas legacy — estética boutique */
-body.boutique .review-card {
-    background: var(--surface);
-    padding: 2rem;
-}
-body.boutique .review-text {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--ink);
-    font-size: 1.05rem;
-    line-height: 1.65;
-    font-weight: 400;
-}
-body.boutique .review-stars,
-body.boutique .star-rating {
-    color: var(--gold);
-}
-body.boutique .review-author h5,
-body.boutique .reviewer-name {
-    font-family: var(--serif);
-    color: var(--ink);
-    font-weight: 500;
-}
-body.boutique .review-author span,
-body.boutique .reviewer-role {
-    color: var(--ink-muted);
-    font-size: 0.78rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 500;
-}
 
 /* 20.17 · Navegación principal — tipografía y color */
 body.boutique .main-nav ul li a {
@@ -2234,16 +2109,6 @@ body.boutique .pricing-box {
     box-shadow: var(--shadow-soft);
     margin: 2.5rem 0;
     border-top: 3px solid var(--gold);
-}
-body.boutique .pricing-box h3,
-body.boutique .pricing-box h4 {
-    font-family: var(--serif) !important;
-    font-style: italic;
-    color: var(--gold-dark) !important;
-    font-size: 1.3rem;
-    margin-top: 0 !important;
-    margin-bottom: 1.2rem !important;
-    font-weight: 500;
 }
 body.boutique .price-row {
     display: flex;
@@ -2372,20 +2237,6 @@ body.boutique .source-link {
 body.boutique .source-link:hover { color: var(--ink); }
 
 /* Listas con checks dorados (bono-fonasa) */
-body.boutique ul[style*="list-style: none"] li a[style*="accent-gold"] {
-    background: var(--gold-tint) !important;
-    color: var(--gold-dark) !important;
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    text-decoration: none !important;
-    border: none !important;
-}
-
 /* Variables compat con article-modern.css */
 body.boutique {
     --accent-gold: var(--gold);
@@ -2494,28 +2345,6 @@ body.boutique .main-nav.active + .hamburger-menu {
 }
 
 /* Botón "Agendar" si aparece dentro del menú móvil */
-body.boutique .main-nav .header-agendar-btn,
-body.boutique .main-nav a.btn,
-body.boutique .main-nav button.btn {
-    margin: 1.5rem 2.5rem;
-    background: var(--ink) !important;
-    color: var(--paper) !important;
-    border-radius: var(--r-sm);
-    padding: 0.9rem 1.5rem;
-    font-family: var(--sans);
-    font-size: 0.82rem;
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    font-weight: 500;
-    text-align: center;
-    display: inline-block;
-    text-decoration: none !important;
-}
-body.boutique .main-nav .header-agendar-btn:hover {
-    background: var(--gold) !important;
-    color: #fff !important;
-}
-
 /* En desktop, el nav vuelve a ser fila horizontal sin panel */
 @media (min-width: 769px) {
     body.boutique .main-nav {
