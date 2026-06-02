@@ -163,7 +163,7 @@ body.boutique em,
 
 /* ========== 4. Header ========== */
 body.boutique .main-header {
-    background: transparent !important;
+    background: var(--paper) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border-bottom: 0.5px solid var(--line-soft);
@@ -2872,30 +2872,112 @@ body.boutique #testimonios .testimonio-card cite {
 }
 
 /* Consolidado desde style.css: reglas compartidas no criticas */
-@font-face {
-    font-family: 'Font Awesome 6 Brands';
+.fas,
+.far,
+.fab {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    min-width: 1em;
+    flex: 0 0 auto;
     font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2') format('woff2'),
-         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.ttf') format('truetype');
+    line-height: 1;
+    text-align: center;
+    vertical-align: -0.125em;
 }
-@font-face {
-    font-family: 'Font Awesome 6 Free';
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.woff2') format('woff2'),
-         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.ttf') format('truetype');
+.fas::before,
+.far::before,
+.fab::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    -webkit-mask: var(--fa-local-icon, var(--fa-icon-dot)) center / contain no-repeat;
+    mask: var(--fa-local-icon, var(--fa-icon-dot)) center / contain no-repeat;
 }
-@font-face {
-    font-family: 'Font Awesome 6 Free';
-    font-style: normal;
-    font-weight: 900;
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2'),
-         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.ttf') format('truetype');
+:root {
+    --fa-icon-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3C/svg%3E");
+    --fa-icon-menu: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='5' width='18' height='2.6' rx='1.3'/%3E%3Crect x='3' y='10.7' width='18' height='2.6' rx='1.3'/%3E%3Crect x='3' y='16.4' width='18' height='2.6' rx='1.3'/%3E%3C/svg%3E");
+    --fa-icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5.6 3.8 12 10.4l6.4-6.6 1.8 1.8-6.6 6.4 6.6 6.4-1.8 1.8-6.4-6.6-6.4 6.6-1.8-1.8 6.6-6.4-6.6-6.4z'/%3E%3C/svg%3E");
+    --fa-icon-chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6.2 8.2 12 14l5.8-5.8 1.9 1.9-7.7 7.7-7.7-7.7z'/%3E%3C/svg%3E");
+    --fa-icon-whatsapp: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.2A8.7 8.7 0 0 0 4.6 17.5L3.5 21l3.7-1A8.7 8.7 0 1 0 12 3.2Zm0 2.1a6.6 6.6 0 0 1 5.6 10.1 6.6 6.6 0 0 1-8 2.3l-.5-.2-1.7.5.5-1.6-.3-.5A6.6 6.6 0 0 1 12 5.3Zm-2.6 3.3c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.7 2.8 4.2 3.7 2.1.8 2.5.5 3 .5.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.4l-1.6-.8c-.2-.1-.4-.1-.6.2l-.7.9c-.1.2-.3.2-.6.1-.2-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.4-1.8-.1-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4z'/%3E%3C/svg%3E");
+    --fa-icon-mail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3Zm2.3 2L12 12.2 18.7 7Zm13.4 10V9.3L12 14.8 5.3 9.3V17Z'/%3E%3C/svg%3E");
+    --fa-icon-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5a7 7 0 0 0-7 7c0 5.2 7 12 7 12s7-6.8 7-12a7 7 0 0 0-7-7Zm0 9.8a2.8 2.8 0 1 1 0-5.6 2.8 2.8 0 0 1 0 5.6Z'/%3E%3C/svg%3E");
+    --fa-icon-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm1.1 5v4.1l3.3 2-.9 1.5-5.3-3.1V7.5Z'/%3E%3C/svg%3E");
+    --fa-icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h2v3h8V2h2v3h3v18H3V5h3Zm15 8H5v11h16Z'/%3E%3C/svg%3E");
+    --fa-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9.2 16.6-4.1-4.1-1.8 1.8 5.9 5.9L21 8.4l-1.8-1.8z'/%3E%3C/svg%3E");
+    --fa-icon-card: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3Zm2 3v2h18V8Zm2 5v2h6v-2Zm10 0v1.5h4V13Zm0 3v1.5h4V16Z'/%3E%3C/svg%3E");
+    --fa-icon-doc: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 2h9l5 5v19H6Zm8 2v6h6M8 13h8v2H8Zm0 4h8v2H8Z'/%3E%3C/svg%3E");
+    --fa-icon-user: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 12a4.7 4.7 0 1 0 0-9.4 4.7 4.7 0 0 0 0 9.4Zm0 2c-4.5 0-8 2.3-8 5.1V21h16v-1.9c0-2.8-3.5-5.1-8-5.1Z'/%3E%3C/svg%3E");
+    --fa-icon-heart: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21S3.5 15.7 3.5 8.8A5.1 5.1 0 0 1 12 5a5.1 5.1 0 0 1 8.5 3.8C20.5 15.7 12 21 12 21Z'/%3E%3C/svg%3E");
+    --fa-icon-home: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m12 3 9 8h-3v10h-5v-6h-2v6H6V11H3Z'/%3E%3C/svg%3E");
+    --fa-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V8a5 5 0 0 1 10 0v2h2v11H5V10Zm3 0h4V8a2 2 0 0 0-4 0Z'/%3E%3C/svg%3E");
 }
+.fa-bars { --fa-local-icon: var(--fa-icon-menu); }
+.fa-times { --fa-local-icon: var(--fa-icon-close); }
+.fa-chevron-down { --fa-local-icon: var(--fa-icon-chevron); }
+.fa-whatsapp { --fa-local-icon: var(--fa-icon-whatsapp); }
+.fa-envelope { --fa-local-icon: var(--fa-icon-mail); }
+.fa-map-marker-alt,
+.fa-map-pin,
+.fa-map-marked-alt,
+.fa-map-signs,
+.fa-road,
+.fa-subway { --fa-local-icon: var(--fa-icon-pin); }
+.fa-clock,
+.fa-calendar,
+.fa-calendar-alt,
+.fa-calendar-check,
+.fa-calendar-week,
+.fa-bell { --fa-local-icon: var(--fa-icon-clock); }
+.fa-check,
+.fa-check-circle,
+.fa-clipboard-check,
+.fa-shield-alt,
+.fa-user-shield { --fa-local-icon: var(--fa-icon-check); }
+.fa-address-card,
+.fa-id-card,
+.fa-id-card-alt,
+.fa-tag { --fa-local-icon: var(--fa-icon-card); }
+.fa-file-invoice-dollar,
+.fa-file-pdf,
+.fa-clipboard-list { --fa-local-icon: var(--fa-icon-doc); }
+.fa-user,
+.fa-user-circle,
+.fa-user-friends,
+.fa-users,
+.fa-users-cog,
+.fa-child,
+.fa-baby { --fa-local-icon: var(--fa-icon-user); }
+.fa-heart,
+.fa-heartbeat,
+.fa-heart-broken,
+.fa-hand-holding-heart,
+.fa-hands-helping,
+.fa-handshake { --fa-local-icon: var(--fa-icon-heart); }
+.fa-home,
+.fa-clinic-medical,
+.fa-building,
+.fa-door-open,
+.fa-school { --fa-local-icon: var(--fa-icon-home); }
+.fa-lock,
+.fa-lock-open { --fa-local-icon: var(--fa-icon-lock); }
+.fa-arrow-right { --fa-local-icon: var(--fa-icon-chevron); transform: rotate(-90deg); }
+.fa-facebook::before,
+.fa-instagram::before,
+.fa-linkedin::before {
+    background: none;
+    -webkit-mask: none;
+    mask: none;
+    color: inherit;
+    display: inline;
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+.fa-facebook::before { content: "f"; }
+.fa-instagram::before { content: "ig"; font-size: 0.72em; }
+.fa-linkedin::before { content: "in"; font-size: 0.72em; }
 body.boutique:not(.page-anamnesis) .footer-legal-links {
     display: flex;
     justify-content: center;

@@ -198,7 +198,7 @@ body.boutique #landing-content {
 }
 
 body.boutique .main-header {
-    background: transparent !important;
+    background: var(--paper) !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     border-bottom: 0.5px solid var(--line-soft);
