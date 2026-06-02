@@ -2800,3 +2800,134 @@ body.boutique #testimonios .testimonio-card cite {
         line-height: 1.68 !important;
     }
 }
+
+/* Consolidado desde style.css: reglas compartidas no criticas */
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2') format('woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.woff2') format('woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-regular-400.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2') format('woff2'),
+         url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.ttf') format('truetype');
+}
+body.boutique:not(.page-anamnesis) .footer-legal-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    margin-top: 0.8rem;
+}
+body.boutique:not(.page-anamnesis) .footer-legal-links span {
+    color: #d6d1c5;
+}
+body.boutique:not(.page-anamnesis) .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+body.boutique:not(.page-anamnesis) .modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body.boutique:not(.page-anamnesis) .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+body.boutique:not(.page-anamnesis) .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    background-color: #f1f3f5;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 35px;
+    text-align: center;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+body.boutique:not(.page-anamnesis) .modal-close:hover {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    transform: rotate(90deg);
+}
+body.boutique:not(.page-anamnesis) .contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.5rem;
+}
+body.boutique:not(.page-anamnesis) .form-group {
+    display: flex;
+    flex-direction: column;
+}
+body.boutique:not(.page-anamnesis) .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+body.boutique:not(.page-anamnesis) .form-group input,
+body.boutique:not(.page-anamnesis) .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    background-color: var(--white-color);
+    color: var(--dark-color);
+    font-family: var(--sans);
+    font-size: 1rem;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+body.boutique:not(.page-anamnesis) .form-group input:focus,
+body.boutique:not(.page-anamnesis) .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(91, 124, 153, 0.25);
+}
+body.boutique:not(.page-anamnesis) .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+body.boutique:not(.page-anamnesis) .logo span {
+    color: var(--white-color);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    font-size: 1.05rem;
+}
