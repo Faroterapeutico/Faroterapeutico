@@ -221,6 +221,9 @@ body.boutique .main-nav {
     transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     padding: 80px 0 2rem;
     visibility: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 body.boutique .main-nav.active {
     transform: translateX(0);
@@ -1298,11 +1301,12 @@ body.boutique main.profile-main {
     border-radius: 50px;
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     letter-spacing: 0.5px;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    min-height: 52px;
     box-shadow: 0 8px 24px rgba(37,211,102,.35);
     z-index: 900;
     transition: transform .3s ease, box-shadow .3s ease;
@@ -1313,7 +1317,7 @@ body.boutique main.profile-main {
     box-shadow: 0 12px 32px rgba(37,211,102,.45);
 }
 
-.floating-whatsapp-btn i { font-size: 1.15rem; }
+.floating-whatsapp-btn i { font-size: 1.35rem; }
 
 @media (max-width: 860px) {
     .reviews-grid,
@@ -1328,7 +1332,8 @@ body.boutique main.profile-main {
     .floating-whatsapp-btn {
         right: 18px;
         bottom: 18px;
-        padding: 12px 16px;
+        padding: 12px 18px;
+        min-height: 50px;
     }
 }
 
@@ -1888,6 +1893,9 @@ body.boutique .main-footer .footer-grid a:hover {
 /* Iconos de contacto */
 body.boutique .main-footer .footer-grid a i {
     color: var(--gold) !important;
+    font-size: 1.12em;
+    margin-right: 0.35rem;
+    vertical-align: -0.12em;
 }
 
 /* Íconos sociales */
@@ -1907,7 +1915,7 @@ body.boutique .main-footer .social-links {
 }
 body.boutique .main-footer .social-links a {
     color: #d6d1c5 !important;
-    font-size: 1.5rem;
+    font-size: 1.65rem;
 }
 body.boutique .main-footer .social-links a:hover {
     color: var(--gold) !important;
@@ -2301,9 +2309,29 @@ body.boutique .article-cta-box .btn:hover {
 body.boutique .whatsapp-float {
     background: var(--wa-green-dark) !important;
     box-shadow: 0 8px 24px rgba(15, 122, 82, 0.28) !important;
+    font-size: .95rem !important;
+    gap: 10px !important;
+    min-height: 52px;
+    padding: 15px 24px !important;
 }
 body.boutique .whatsapp-float:hover {
     background: #0b6846 !important;
+}
+body.boutique .whatsapp-float i,
+body.boutique .cta-wa .fa-whatsapp,
+body.boutique .wa-banner-btn .fa-whatsapp {
+    font-size: 1.35em;
+    vertical-align: -0.16em;
+}
+
+@media (max-width: 560px) {
+    body.boutique .whatsapp-float {
+        right: 18px !important;
+        bottom: 18px !important;
+        font-size: .92rem !important;
+        min-height: 50px;
+        padding: 13px 18px !important;
+    }
 }
 /* Lista de referencias bibliograficas */
 body.boutique .reference-list {
@@ -2523,6 +2551,24 @@ body.boutique .main-nav.active + .hamburger-menu {
 
 /* Móvil: muestra al hacer clic (clase .open añadida por JS) */
 @media (max-width: 768px) {
+    body.boutique.menu-open {
+        overflow: hidden;
+    }
+    body.boutique .main-nav {
+        width: min(86vw, 360px);
+        height: 100vh;
+        height: 100dvh;
+        max-height: 100vh;
+        max-height: 100dvh;
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+    body.boutique .main-nav ul {
+        min-height: min-content;
+    }
     body.boutique .main-nav ul li.dropdown .dropdown-menu {
         display: none;
         list-style: none;
@@ -2713,13 +2759,13 @@ body.boutique .main-nav.active + .hamburger-menu {
 .wa-banner-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background: #0f7a40;
     color: #fff;
     font-family: var(--sans);
-    font-size: 0.88rem;
+    font-size: 0.92rem;
     font-weight: 600;
-    padding: 11px 24px;
+    padding: 12px 26px;
     border-radius: 50px;
     text-decoration: none;
     white-space: nowrap;
@@ -2744,7 +2790,7 @@ body.boutique .main-nav.active + .hamburger-menu {
 @media (max-width: 640px) {
     .wa-banner { flex-direction: row; gap: 10px; padding: 10px 16px; justify-content: center; transform: none; animation: none; }
     .wa-banner-text { display: none; }
-    .wa-banner-btn { font-size: .82rem; padding: 9px 16px; }
+    .wa-banner-btn { font-size: .86rem; padding: 10px 18px; }
     .wa-banner-save { font-size: .78rem; padding: 5px 10px; opacity: 1; }
 }
 
