@@ -203,7 +203,7 @@ body.boutique .main-header {
     -webkit-backdrop-filter: none !important;
     border-bottom: 0.5px solid var(--line-soft);
     box-shadow: none !important;
-    position: absolute !important;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;

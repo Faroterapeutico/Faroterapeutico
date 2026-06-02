@@ -168,7 +168,7 @@ body.boutique .main-header {
     -webkit-backdrop-filter: none !important;
     border-bottom: 0.5px solid var(--line-soft);
     box-shadow: none !important;
-    position: absolute !important;
+    position: fixed !important;
     top: 0;
     left: 0;
     width: 100%;
@@ -2994,10 +2994,4 @@ body.boutique:not(.page-anamnesis) .form-group textarea:focus {
 body.boutique:not(.page-anamnesis) .form-group textarea {
     resize: vertical;
     min-height: 120px;
-}
-body.boutique:not(.page-anamnesis) .logo span {
-    color: var(--white-color);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    font-size: 1.05rem;
 }
