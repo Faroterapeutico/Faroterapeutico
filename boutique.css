@@ -2477,6 +2477,8 @@ body.boutique .main-nav.active + .hamburger-menu {
         background: none !important;
         box-shadow: none !important;
         border-left: none;
+        overflow: visible;
+        overscroll-behavior: auto;
     }
     body.boutique .main-nav ul {
         padding-top: 0;
