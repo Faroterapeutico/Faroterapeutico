@@ -582,6 +582,14 @@ body.boutique.page-isapre .agendar-card:hover{transform:translateY(-3px);box-sha
 body.boutique.page-isapre .agendar-card .icon{font-size:2.2rem;margin-bottom:0.8rem}
 body.boutique.page-isapre .agendar-card h3{font-family:var(--serif);font-size:1.2rem;margin:0 0 0.5rem;color:var(--ink);font-weight:500}
 body.boutique.page-isapre .agendar-card p{font-size:0.85rem;color:var(--ink-soft);margin:0 0 1.2rem;line-height:1.6}
+
+/* Estados del equipo clínico */
+.therapist-status{display:inline-flex;align-items:center;gap:.45rem;margin:.15rem 0 .8rem;padding:.38rem .7rem;border-radius:999px;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.therapist-status::before{content:"";width:.48rem;height:.48rem;border-radius:50%;background:currentColor}
+.therapist-status--closed{color:#7a3d35;background:#f4e5e1;border:1px solid #dfc2bb}
+.therapist-status--new{color:#386254;background:#e4efe9;border:1px solid #bdd5ca}
+.therapist-placeholder{height:100%;min-height:390px;display:grid;place-items:center;background:linear-gradient(145deg,#e8e2d8,#cfc5b6);color:#5c5147;font-family:var(--serif);font-size:clamp(3.5rem,8vw,6rem);font-style:italic;letter-spacing:-.06em}
+.cta-disabled{display:inline-flex;align-items:center;justify-content:center;padding:.8rem 1.15rem;border:1px solid var(--line);color:var(--ink-soft);background:var(--paper-deep);cursor:not-allowed;opacity:.9}
 body.boutique.page-isapre .encuadrado-badge{background:var(--gold-tint);border:1px solid var(--gold);border-radius:var(--r-md);padding:1.2rem 1.8rem;display:flex;align-items:flex-start;gap:1rem;margin:0 0 2.5rem}
 
 body.boutique.page-isapre .badge-manual{background:#555;color:#fff;border-radius:2rem;padding:0.3rem 1rem;font-size:0.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:0.15rem}

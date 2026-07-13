@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Tracking de clics en "Ver perfil" de terapeutas (index, fonasa, isapres, sobre-nosotros, etc.)
             document.addEventListener('click', (e) => {
-                const el = e.target.closest('a[href="aaron"], a[href="david"], a[href="isidora"], a[href="aaron.html"], a[href="david.html"], a[href="isidora.html"]');
+                const el = e.target.closest('a[href="aaron"], a[href="david"], a[href="isidora"], a[href="benjamin"], a[href="aaron.html"], a[href="david.html"], a[href="isidora.html"], a[href="benjamin.html"]');
                 if (!el) return;
 
                 const href = el.getAttribute('href').replace('.html', '');
