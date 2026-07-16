@@ -3238,3 +3238,54 @@ body.boutique:not(.page-anamnesis) .form-group textarea {
     resize: vertical;
     min-height: 120px;
 }
+
+/* ========== Módulos compartidos de páginas Isapre ========== */
+body.boutique.page-isapre .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2.5rem}
+@media(max-width:768px){body.boutique.page-isapre .kpi-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){body.boutique.page-isapre .kpi-grid{grid-template-columns:1fr}}
+body.boutique.page-isapre .kpi-card{background:var(--surface);border-radius:var(--r-md);padding:2rem 1.5rem;box-shadow:var(--shadow-soft);text-align:center;border-top:3px solid var(--gold)}
+body.boutique.page-isapre .kpi-icon{font-size:1.8rem;margin-bottom:0.6rem}
+body.boutique.page-isapre .kpi-value{font-family:var(--serif);font-size:1.9rem;color:var(--ink);font-weight:500;line-height:1.1}
+body.boutique.page-isapre .kpi-label{font-size:0.75rem;color:var(--ink-muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:0.4rem}
+body.boutique.page-isapre .modal-cards{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
+@media(max-width:640px){body.boutique.page-isapre .modal-cards{grid-template-columns:1fr}}
+body.boutique.page-isapre .modal-card{background:var(--surface);border-radius:var(--r-lg);padding:2.5rem 2rem;box-shadow:var(--shadow-soft);border:1px solid var(--line)}
+body.boutique.page-isapre .modal-card-icon{width:52px;height:52px;background:var(--gold-tint);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.2rem;color:var(--gold-dark)}
+body.boutique.page-isapre .modal-card h3{font-family:var(--serif);font-size:1.5rem;margin:0 0 0.8rem;color:var(--ink);font-weight:500}
+body.boutique.page-isapre .modal-card p,body.boutique.page-isapre .modal-card li{font-size:0.88rem;color:var(--ink-soft);line-height:1.8}
+body.boutique.page-isapre .modal-card ul{padding-left:1.2rem;margin:0.5rem 0 0}
+body.boutique.page-isapre .le-process{display:flex;flex-direction:column;gap:1.2rem;margin-top:1.5rem}
+body.boutique.page-isapre .le-step{display:flex;gap:1rem;align-items:flex-start}
+body.boutique.page-isapre .le-step-num{width:30px;height:30px;min-width:30px;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;flex-shrink:0;margin-top:2px}
+body.boutique.page-isapre .le-step-text strong{display:block;font-size:0.92rem;color:var(--ink);margin-bottom:0.15rem;font-weight:600}
+body.boutique.page-isapre .le-step-text span{font-size:0.85rem;color:var(--ink-soft);line-height:1.6}
+body.boutique.page-isapre .le-info-box{background:var(--gold-tint);border:1px solid var(--gold);border-radius:var(--r-md);padding:1.5rem;margin-top:1.8rem}
+body.boutique.page-isapre .le-info-box p{font-size:0.87rem;color:var(--ink-soft);line-height:1.7;margin:0}
+body.boutique.page-isapre .le-info-box strong{color:var(--gold-dark)}
+body.boutique.page-isapre .agendar-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+@media(max-width:580px){body.boutique.page-isapre .agendar-grid{grid-template-columns:1fr}}
+body.boutique.page-isapre .agendar-card{background:var(--surface);border-radius:var(--r-md);padding:2rem 1.5rem;box-shadow:var(--shadow-soft);text-align:center;border:1px solid var(--line);transition:transform 0.2s,box-shadow 0.2s}
+body.boutique.page-isapre .agendar-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+body.boutique.page-isapre .agendar-card .icon{font-size:2.2rem;margin-bottom:0.8rem}
+body.boutique.page-isapre .agendar-card h3{font-family:var(--serif);font-size:1.2rem;margin:0 0 0.5rem;color:var(--ink);font-weight:500}
+body.boutique.page-isapre .agendar-card p{font-size:0.85rem;color:var(--ink-soft);margin:0 0 1.2rem;line-height:1.6}
+body.boutique.page-isapre .encuadrado-badge{background:var(--gold-tint);border:1px solid var(--gold);border-radius:var(--r-md);padding:1.2rem 1.8rem;display:flex;align-items:flex-start;gap:1rem;margin:0 0 2.5rem}
+body.boutique.page-isapre .badge-auto{background:#2e7d32;color:#fff;border-radius:2rem;padding:0.3rem 1rem;font-size:0.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:0.15rem}
+body.boutique.page-isapre .badge-manual{background:#555;color:#fff;border-radius:2rem;padding:0.3rem 1rem;font-size:0.82rem;font-weight:600;white-space:nowrap;flex-shrink:0;margin-top:0.15rem}
+body.boutique.page-isapre .encuadrado-badge p{font-size:0.9rem;color:var(--ink-soft);margin:0;line-height:1.6}
+body.boutique.page-isapre .reembolso-guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem}
+@media(max-width:640px){body.boutique.page-isapre .reembolso-guide-grid{grid-template-columns:1fr}}
+@media(max-width:640px){body.boutique.page-isapre .encuadrado-badge{flex-direction:column;align-items:flex-start;padding:1.1rem 1rem;gap:0.75rem}body.boutique.page-isapre .badge-auto,body.boutique.page-isapre .badge-manual{white-space:normal;max-width:100%;line-height:1.35}}
+body.boutique.page-isapre .rg-card{background:var(--surface);border-radius:var(--r-md);padding:2rem;box-shadow:var(--shadow-soft);border:1px solid var(--line)}
+body.boutique.page-isapre .rg-card-header{font-weight:600;font-size:0.92rem;color:var(--ink);margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem}
+body.boutique.page-isapre .rg-card-header i{color:var(--gold-dark)}
+body.boutique.page-isapre .rg-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.7rem}
+body.boutique.page-isapre .rg-list li{font-size:0.87rem;color:var(--ink-soft);line-height:1.6;padding-left:1rem;position:relative}
+body.boutique.page-isapre .rg-list li::before{content:"·";position:absolute;left:0;color:var(--gold);font-weight:700}
+body.boutique.page-isapre .rg-info-box{background:var(--paper-deep);border-radius:var(--r-lg);padding:2.5rem;border:1px solid var(--line)}
+body.boutique.page-isapre .rg-info-box h3{font-family:var(--serif);font-size:1.3rem;color:var(--ink);margin:0 0 1.5rem;font-weight:500;display:flex;align-items:center;gap:0.5rem}
+body.boutique.page-isapre .rg-info-box h3 i{color:var(--gold-dark);font-size:1rem}
+body.boutique.page-isapre .rg-info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:640px){body.boutique.page-isapre .rg-info-grid{grid-template-columns:1fr}}
+body.boutique.page-isapre .rg-info-item strong{display:block;font-size:0.9rem;color:var(--ink);margin-bottom:0.4rem}
+body.boutique.page-isapre .rg-info-item p{font-size:0.85rem;color:var(--ink-soft);line-height:1.6;margin:0}
