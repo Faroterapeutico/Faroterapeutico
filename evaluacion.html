@@ -1062,7 +1062,6 @@
         <p>¿Quieres conocer al equipo completo?</p>
         <div class="other-links">
           <a href="aaron" class="other-link">Ps. Aaron →</a>
-          <a href="david" class="other-link">Ps. David →</a>
           <a href="isidora" class="other-link">Ps. Isidora →</a>
         </div>
       </div>
@@ -1082,6 +1081,7 @@
   <script>
     const THERAPISTS = {
       aaron: {
+        available: true,
         name: 'Aaron',
         fullname: 'Ps. Aaron Millán',
         phone: '56945593808',
@@ -1103,6 +1103,7 @@
         }
       },
       david: {
+        available: false,
         name: 'David',
         fullname: 'Ps. David Walter',
         phone: '56927751595',
@@ -1121,6 +1122,7 @@
         }
       },
       isidora: {
+        available: true,
         name: 'Isidora',
         fullname: 'Ps. Isidora Sanhueza',
         phone: '56932013137',
@@ -1290,7 +1292,9 @@
 
     function showResult() {
       // Determinar ganador
-      const winner = Object.entries(scores).sort((a, b) => b[1] - a[1])[0][0];
+      const winner = Object.entries(scores)
+        .filter(([therapistId]) => THERAPISTS[therapistId].available)
+        .sort((a, b) => b[1] - a[1])[0][0];
       const t = THERAPISTS[winner];
 
       // Buscar mensaje de match más relevante

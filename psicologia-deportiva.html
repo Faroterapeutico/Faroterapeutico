@@ -979,8 +979,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=block">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=block"></noscript>
-    <link rel="stylesheet" href="boutique.css?v=20260603-nav1" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="boutique.css?v=20260603-nav1"></noscript>
+    <link rel="stylesheet" href="boutique.css?v=20260716-david-closed1" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="boutique.css?v=20260716-david-closed1"></noscript>
 <style>
         .areas-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:900px;margin:0 auto;border-top:.5px solid var(--line);border-left:.5px solid var(--line)}
         .areas-grid .area{padding:2.2rem 1.5rem;text-align:center;border-right:.5px solid var(--line);border-bottom:.5px solid var(--line);background:var(--surface);transition:background .3s ease}
@@ -993,13 +993,19 @@
         .sports-hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem;margin-top:-1.4rem}
         .sports-specialists{display:grid;grid-template-columns:minmax(0,480px);justify-content:center;gap:2rem;max-width:980px;margin:2.6rem auto 0}
         .sports-specialist{background:var(--surface);border:.5px solid var(--line);border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-soft);display:grid;grid-template-rows:auto 1fr}
+        .sports-specialist--closed{border-color:#d2b0a8;background:linear-gradient(180deg,#fff 0%,#fbf4f2 100%)}
         .sports-specialist-photo{aspect-ratio:4/4.8;overflow:hidden;background:var(--paper-deep)}
+        .sports-specialist--closed .sports-specialist-photo{position:relative}
+        .sports-specialist--closed .sports-specialist-photo::after{content:"Agenda cerrada temporalmente";position:absolute;right:0;bottom:0;left:0;padding:.9rem 1rem;background:rgba(105,48,41,.94);color:#fff;font-size:.75rem;font-weight:600;letter-spacing:.12em;line-height:1.4;text-align:center;text-transform:uppercase}
         .sports-specialist-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92);transition:transform .8s ease}
         .sports-specialist:hover .sports-specialist-photo img{transform:scale(1.035)}
+        .sports-specialist--closed .sports-specialist-photo img{filter:grayscale(.45) saturate(.55) brightness(.8)}
+        .sports-specialist--closed:hover .sports-specialist-photo img{transform:none}
         .sports-specialist-body{padding:1.8rem;display:flex;flex-direction:column;gap:1rem}
         .sports-specialist-body h3{font-family:var(--serif);font-size:1.65rem;font-weight:500;color:var(--ink);margin:0;line-height:1.15}
         .sports-specialist-role{font-size:.78rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-dark);font-weight:500;margin:0}
         .sports-specialist-body p{font-size:.96rem;color:var(--ink-soft);line-height:1.72;font-weight:300;margin:0}
+        .sports-specialist-body .therapist-availability-note{color:#6f3b34;font-size:.84rem;font-weight:500;margin:0}
         .sports-specialist-tags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.2rem}
         .sports-specialist-tags span{border:.5px solid var(--line);border-radius:999px;padding:.35rem .65rem;font-size:.72rem;color:var(--ink-soft);background:var(--paper)}
         .sports-specialist-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:auto;padding-top:.5rem}
@@ -1077,11 +1083,13 @@
         "itemListElement": [
           {
             "@type": "Offer",
-            "name": "Psicolog\u00eda deportiva online"
+            "name": "Psicolog\u00eda deportiva online",
+            "availability": "https://schema.org/OutOfStock"
           },
           {
             "@type": "Offer",
-            "name": "Psicolog\u00eda deportiva presencial en Providencia"
+            "name": "Psicolog\u00eda deportiva presencial en Providencia",
+            "availability": "https://schema.org/OutOfStock"
           }
         ]
       }
@@ -1191,7 +1199,8 @@
                         <span class="hero-price-note">— consulta por Isapre o Fonasa</span>
                     </div>
                     <div class="sports-hero-actions">
-                        <a href="https://wa.me/56927751595?text=Hola%20David,%20quiero%20consultar%20por%20psicolog%C3%ADa%20deportiva" target="_blank" rel="noopener nofollow" class="cta cta-wa"><i class="fab fa-whatsapp"></i> David</a>
+                        <span class="availability-closed-cta" aria-disabled="true">Agenda cerrada temporalmente</span>
+                        <a href="sobre-nosotros#terapeutas-home" class="cta-outline">Ver terapeutas disponibles</a>
                     </div>
                 </div>
             </div>
@@ -1207,13 +1216,15 @@
                 </div>
 
                 <div class="sports-specialists reveal-up delay-1">
-                    <article class="sports-specialist">
+                    <article class="sports-specialist sports-specialist--closed" aria-label="David Walter Salinas, agenda cerrada temporalmente">
                         <div class="sports-specialist-photo">
                             <img src="images/david.webp" alt="Psicólogo deportivo David Walter Salinas" loading="lazy" width="765" height="1024" srcset="images/david-580.webp?v=20260530-img2 580w, images/david.webp 765w" sizes="(max-width: 700px) calc(100vw - 48px), 580px">
                         </div>
                         <div class="sports-specialist-body">
                             <p class="sports-specialist-role">Psicólogo · Rendimiento deportivo</p>
                             <h3>David Walter Salinas</h3>
+                            <span class="therapist-status therapist-status--closed" role="status">Agenda cerrada temporalmente</span>
+                            <p class="therapist-availability-note">David no está recibiendo pacientes nuevos por el momento.</p>
                             <p>Trabajo enfocado en concentración, presión competitiva, motivación, ansiedad precompetitiva y recuperación de confianza para volver a competir.</p>
                             <div class="sports-specialist-tags" aria-label="Focos de David">
                                 <span>Fútbol</span>
@@ -1222,7 +1233,7 @@
                                 <span>Alto rendimiento</span>
                             </div>
                             <div class="sports-specialist-actions">
-                                <a href="https://wa.me/56927751595?text=Hola%20David,%20quiero%20consultar%20por%20psicolog%C3%ADa%20deportiva" target="_blank" rel="noopener nofollow" class="cta cta-wa"><i class="fab fa-whatsapp"></i> Agendar</a>
+                                <a href="sobre-nosotros#terapeutas-home" class="cta-outline therapist-availability-link">Ver terapeutas disponibles</a>
                                 <a href="david" class="cta-outline">Ver perfil de David</a>
                             </div>
                         </div>
@@ -1290,7 +1301,7 @@
                     </details>
                     <details>
                         <summary>¿Atienden online y presencial en Providencia?</summary>
-                        <p>Sí. Puedes consultar por sesiones online o presenciales en Providencia, Santiago de Chile, según disponibilidad de David.</p>
+                        <p>La agenda de David está cerrada temporalmente y no está recibiendo pacientes nuevos. Si necesitas iniciar ahora, puedes revisar otros terapeutas disponibles del equipo.</p>
                     </details>
                     <details>
                         <summary>¿Cuánto cuesta una sesión?</summary>
@@ -1305,7 +1316,7 @@
                 <div class="section-head reveal-up">
                     <span class="eyebrow">— Hablemos</span>
                     <h2>¿Hablamos? <em>Contáctanos</em>.</h2>
-                    <p class="section-lead">Déjanos tus datos y te orientaremos para agendar con David según tu objetivo deportivo.</p>
+                    <p class="section-lead">La agenda de David está cerrada temporalmente. Si necesitas iniciar ahora, déjanos tus datos y te orientaremos sobre alternativas disponibles.</p>
                 </div>
                 <div class="contact-form-wrap reveal-up delay-1">
                     <form action="https://formspree.io/f/xovpkvwk" method="POST">
@@ -1313,7 +1324,7 @@
                         <div class="form-group"><label for="email">Correo Electrónico</label><input type="email" id="email" name="email" required autocomplete="email"></div>
                         <div class="form-group"><label for="phone">Número de Celular</label><input type="tel" id="phone" name="phone" autocomplete="tel"></div>
                         <div class="form-group"><label for="question">Consulta</label><textarea id="question" name="question"></textarea></div>
-                        <button type="submit" class="cta">Enviar <span class="cta-arrow"></span></button>
+                        <button type="submit" class="cta">Solicitar orientación <span class="cta-arrow"></span></button>
                     </form>
                 </div>
             </div>
