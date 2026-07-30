@@ -107,6 +107,12 @@
       height: 31px;
     }
 
+    .result-icon.neutral {
+      color: var(--ink-soft);
+      background: var(--surface);
+      border: 1px solid var(--line);
+    }
+
     h1 {
       margin: 0;
       color: var(--ink);
@@ -331,7 +337,7 @@
           </a>
           <a class="button button-secondary" href="agendar.html">
             <i data-lucide="arrow-left"></i>
-            Volver al inicio
+            Volver al agendamiento
           </a>
         </div>
 
@@ -376,7 +382,28 @@
 
     function renderConfirmation() {
       const booking = readConfirmation();
-      const status = query.get("status") || booking.status || "confirmed";
+      const requestedStatus = query.get("status");
+      const hasBookingDetails = Boolean(
+        booking.service || booking.therapist || booking.mode || booking.start || booking.email
+      );
+      const status = requestedStatus || booking.status || "";
+
+      if (!hasBookingDetails && !["confirmed", "payment_pending"].includes(requestedStatus)) {
+        const resultIcon = document.querySelector(".result-icon");
+        resultIcon.classList.add("neutral");
+        resultIcon.innerHTML = '<i data-lucide="calendar-search"></i>';
+        document.getElementById("confirmationTitle").textContent =
+          "No encontramos los detalles de la reserva";
+        document.getElementById("confirmationIntro").textContent =
+          "Vuelve al agendamiento o revisa el correo enviado por Encuadrado.";
+        document.getElementById("bookingSummary").hidden = true;
+        document.getElementById("emailNote").hidden = true;
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+        return;
+      }
+
       const values = {
         service: booking.service || "",
         therapist: booking.therapist || "",

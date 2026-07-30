@@ -271,7 +271,7 @@
 
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -445,6 +445,44 @@
     .calendar-shell {
       overflow-x: hidden;
       padding-bottom: 4px;
+    }
+
+    .week-navigation {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+    }
+
+    .week-nav-button {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .week-nav-button:hover:not(:disabled) {
+      border-color: rgba(8, 115, 78, 0.4);
+      background: rgba(8, 115, 78, 0.055);
+      color: var(--green);
+    }
+
+    .week-nav-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.35;
+    }
+
+    .week-nav-button svg {
+      width: 18px;
+      height: 18px;
     }
 
     #availabilityLabel {
@@ -652,6 +690,10 @@
       border-bottom: 1px solid var(--line-soft);
     }
 
+    .reimbursement-panel[hidden] {
+      display: none;
+    }
+
     .reimbursement-copy strong,
     .reimbursement-copy span {
       display: block;
@@ -845,6 +887,19 @@
       margin: 1px 0 0;
       flex: 0 0 auto;
       accent-color: var(--green);
+    }
+
+    .consent-field a {
+      color: var(--green);
+      text-underline-offset: 2px;
+    }
+
+    .booking-website-field {
+      position: absolute !important;
+      left: -10000px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
     }
 
     .summary-panel {
@@ -1339,7 +1394,10 @@
       }
 
       .week-day span {
-        display: none;
+        display: block;
+        font-size: 0.48rem;
+        line-height: 1;
+        white-space: nowrap;
       }
 
       .time-label {
@@ -1462,7 +1520,7 @@
           </div>
           <div class="top-actions">
             <span class="status-pill"><i data-lucide="clock"></i> <span id="durationPill">50 min</span></span>
-            <span class="status-pill"><i data-lucide="badge-dollar-sign"></i> $30.000</span>
+            <span class="status-pill"><i data-lucide="badge-dollar-sign"></i> <span id="pricePill">$30.000</span></span>
           </div>
         </header>
 
@@ -1487,7 +1545,7 @@
               <div class="band-header">
                 <div>
                   <h3 id="service-title">Servicio</h3>
-                  <span>Particular / Isapre</span>
+                  <span>Particular, Isapre y FONASA</span>
                 </div>
               </div>
               <div class="service-grid" id="serviceGrid"></div>
@@ -1519,6 +1577,14 @@
                   <h3 id="calendar-title">Horario</h3>
                   <span id="availabilityLabel">Semana disponible &middot; 11:00 a 20:00</span>
                 </div>
+                <div class="week-navigation" aria-label="Cambiar semana">
+                  <button class="week-nav-button" type="button" id="previousWeekButton" aria-label="Semana anterior" title="Semana anterior">
+                    <i data-lucide="chevron-left"></i>
+                  </button>
+                  <button class="week-nav-button" type="button" id="nextWeekButton" aria-label="Semana siguiente" title="Semana siguiente">
+                    <i data-lucide="chevron-right"></i>
+                  </button>
+                </div>
               </div>
               <div class="calendar-shell" id="calendarShell">
                 <div class="week-calendar" id="weekCalendar" aria-label="Elegir horario semanal"></div>
@@ -1536,7 +1602,7 @@
                 <i data-lucide="receipt-text"></i>
                 Encuadrado utiliza estos datos para crear tu reserva, emitir la boleta y enviar la confirmaci&oacute;n.
               </p>
-              <div class="reimbursement-panel" aria-label="Boleta para reembolso Isapre">
+              <div class="reimbursement-panel" id="reimbursementPanel" aria-label="Boleta para reembolso Isapre">
                 <div class="reimbursement-copy">
                   <strong>Boleta para reembolso Isapre</strong>
                   <span>Sujeto a la cobertura de tu plan</span>
@@ -1583,8 +1649,16 @@
                 </div>
                 <label class="consent-field">
                   <input id="termsAccepted" name="termsAccepted" type="checkbox" required>
-                  <span>Acepto que mis datos sean enviados a Encuadrado para gestionar la reserva, el pago cuando corresponda y la boleta.</span>
+                  <span>
+                    Acepto las <a href="politicas-cancelacion.html" target="_blank" rel="noopener">condiciones de reserva</a>
+                    y la <a href="politica-de-privacidad.html" target="_blank" rel="noopener">pol&iacute;tica de privacidad</a>.
+                    Autorizo el env&iacute;o de mis datos a Encuadrado para gestionar la reserva, el pago cuando corresponda y la boleta.
+                  </span>
                 </label>
+                <div class="booking-website-field" aria-hidden="true">
+                  <label for="patientWebsite">Sitio web</label>
+                  <input id="patientWebsite" name="patientWebsite" type="text" tabindex="-1" autocomplete="off">
+                </div>
               </form>
             </section>
 
@@ -1635,6 +1709,7 @@
       durationMinutes: 50,
       dayId: "",
       slotId: "",
+      source: "",
       confirmed: false
     };
 
@@ -1647,6 +1722,10 @@
     const addressSearchEndpoint = "https://photon.komoot.io/api/";
     const chileBoundingBox = "-109.5,-56,-66.4,-17.5";
     const availabilityCacheMs = 45000;
+    const maxWeekOffset = 12;
+    const isLocalPreview = window.location.protocol === "file:"
+      || ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    let weekOffset = 0;
     let remoteBookings = {};
     let integrationConfig = null;
     const availabilityCache = new Map();
@@ -1667,8 +1746,9 @@
 
     const services = [
       { id: "individual", name: "Terapia individual", detail: "45-50 min", price: 30000 },
-      { id: "pareja", name: "Terapia de pareja", detail: "50 min", price: 30000, therapistId: "aaron", therapistLabel: "Aaron", integrationServiceId: "individual" },
-      { id: "infanto", name: "Terapia infanto juvenil", detail: "45-50 min", price: 30000, therapistIds: ["benjamin", "isidora"], therapistLabel: "Benjam&iacute;n / Isidora" }
+      { id: "pareja", name: "Terapia de pareja", detail: "50 min", price: 30000, therapistId: "aaron", therapistLabel: "Aaron" },
+      { id: "infanto", name: "Terapia infanto juvenil", detail: "45-50 min", price: 30000, therapistIds: ["benjamin", "isidora"], therapistLabel: "Benjam&iacute;n / Isidora" },
+      { id: "fonasa", name: "Psicoterapia FONASA", detail: "50 min", price: 14420, therapistIds: ["aaron", "isidora"], therapistLabel: "Aaron / Isidora" }
     ];
 
     const chileanCommunes = [
@@ -1734,6 +1814,7 @@
       const requestedService = (params.get("service") || "").trim().toLowerCase();
       const requestedTherapist = (params.get("therapist") || "").trim().toLowerCase();
       const requestedMode = (params.get("mode") || "").trim().toLowerCase();
+      state.source = (params.get("source") || "").trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 40);
 
       if (services.some((service) => service.id === requestedService)) {
         state.serviceId = requestedService;
@@ -1759,7 +1840,7 @@
       minute: "2-digit",
       hourCycle: "h23"
     });
-    const weekDays = buildWeekDays();
+    let weekDays = buildWeekDays(weekOffset);
 
     const hours = Array.from({ length: 10 }, (_, index) => 11 + index);
     state.dayId = weekDays[0].id;
@@ -1798,12 +1879,12 @@
       return `${nowParts.year}-${String(nowParts.month).padStart(2, "0")}-${String(nowParts.day).padStart(2, "0")}`;
     }
 
-    function buildWeekDays() {
+    function buildWeekDays(offset = 0) {
       const nowParts = getSantiagoNowParts();
       const start = new Date(Date.UTC(nowParts.year, nowParts.month - 1, nowParts.day, 12));
       const weekday = start.getUTCDay();
       const mondayOffset = weekday === 0 ? 1 : 1 - weekday;
-      start.setUTCDate(start.getUTCDate() + mondayOffset);
+      start.setUTCDate(start.getUTCDate() + mondayOffset + offset * 7);
 
       return Array.from({ length: 6 }, (_, index) => {
         const date = new Date(start);
@@ -1841,15 +1922,15 @@
     }
 
     function integrationServiceIdFor(therapistId, serviceId, mode = state.mode) {
-      const directKey = serviceCombinationKey(therapistId, serviceId, mode);
-      if (integrationConfig?.services?.[directKey] === true) {
-        return serviceId;
-      }
-      const service = services.find((item) => item.id === serviceId);
-      return service?.integrationServiceId || serviceId;
+      return serviceId;
     }
 
     function isIntegrationCombinationConfigured(therapistId, serviceId, mode = state.mode) {
+      if (isLocalPreview
+        && serviceId === "fonasa"
+        && ["aaron", "isidora"].includes(therapistId)) {
+        return true;
+      }
       if (!integrationConfig || !integrationConfig.services) {
         return true;
       }
@@ -1888,6 +1969,40 @@
     function isServiceAvailableWithTherapist(service, therapistId, mode = state.mode) {
       return isBusinessServiceAvailableWithTherapist(service, therapistId)
         && isIntegrationCombinationConfigured(therapistId, service.id, mode);
+    }
+
+    function syncModeControls() {
+      document.querySelectorAll("[data-mode]").forEach((button) => {
+        const selected = button.dataset.mode === state.mode;
+        button.classList.toggle("selected", selected);
+        button.setAttribute("aria-pressed", String(selected));
+      });
+    }
+
+    function syncWeekNavigation() {
+      const previousButton = document.getElementById("previousWeekButton");
+      const nextButton = document.getElementById("nextWeekButton");
+      previousButton.disabled = weekOffset === 0;
+      nextButton.disabled = weekOffset === maxWeekOffset;
+    }
+
+    function changeWeek(direction) {
+      const nextOffset = Math.min(maxWeekOffset, Math.max(0, weekOffset + direction));
+      if (nextOffset === weekOffset) {
+        return;
+      }
+
+      weekOffset = nextOffset;
+      weekDays = buildWeekDays(weekOffset);
+      state.dayId = weekDays[0].id;
+      state.slotId = slotIdFor(state.dayId, hours[0]);
+      availabilityRequestId += 1;
+      resetConfirmation();
+      syncWeekNavigation();
+      setAvailabilityStatus("syncing", null, state.therapistId, state.mode);
+      renderCalendar();
+      updateSummary();
+      refreshRemoteAvailability();
     }
 
     function ensureServiceTherapistCompatibility() {
@@ -2417,6 +2532,8 @@
         mode: state.mode,
         date: state.dayId,
         hour,
+        source: state.source,
+        website: document.getElementById("patientWebsite").value,
         termsAccepted: document.getElementById("termsAccepted").checked,
         patient: getPatientData()
       };
@@ -2424,10 +2541,9 @@
 
     function bookingConfirmationData(payload, result, status) {
       const therapist = getTherapist();
-      const service = getService();
       return {
         status,
-        service: service.integrationServiceId ? payload.service : (result.serviceName || payload.service),
+        service: payload.service,
         therapist: textFromHtml(therapist.name),
         mode: payload.mode,
         start: result.start || `${payload.date}T${payload.hour}:00:00`,
@@ -2754,6 +2870,8 @@
       document.getElementById("summarySlot").innerHTML = `${day.day} ${day.date}, ${slot.label}`;
       document.getElementById("summaryPrice").textContent = money.format(service.price);
       document.getElementById("durationPill").textContent = `${state.durationMinutes} min`;
+      document.getElementById("pricePill").textContent = money.format(service.price);
+      document.getElementById("reimbursementPanel").hidden = service.id === "fonasa";
       updateAvailabilityLabel();
     }
 
@@ -2808,9 +2926,9 @@
         const result = await sendBookingToEncuadrado(payload);
         availabilityCache.clear();
         remoteBookings[bookingKey()] = true;
-        state.confirmed = true;
 
         if (result.requiresPayment && result.paymentUrl) {
+          state.confirmed = true;
           saveBookingConfirmation(payload, result, "payment_pending");
           document.getElementById("summaryState").textContent = "Pago pendiente";
           const badge = document.getElementById("summaryBadge");
@@ -2827,6 +2945,11 @@
           return;
         }
 
+        if (!result.confirmed) {
+          throw new Error("Encuadrado no confirm\u00f3 la reserva. Intenta nuevamente.");
+        }
+
+        state.confirmed = true;
         document.getElementById("summaryState").textContent = "Reserva confirmada";
         const badge = document.getElementById("summaryBadge");
         badge.textContent = "Confirmada";
@@ -2897,11 +3020,7 @@
           state.mode = mode.dataset.mode;
           ensureServiceTherapistCompatibility();
           syncSelectedDuration();
-          document.querySelectorAll("[data-mode]").forEach((button) => {
-            const selected = button === mode;
-            button.classList.toggle("selected", selected);
-            button.setAttribute("aria-pressed", String(selected));
-          });
+          syncModeControls();
           ensureOpenSelection();
           resetConfirmation();
           renderServices();
@@ -2923,6 +3042,14 @@
           updateSummary();
         }
 
+        if (event.target.closest("#previousWeekButton")) {
+          changeWeek(-1);
+        }
+
+        if (event.target.closest("#nextWeekButton")) {
+          changeWeek(1);
+        }
+
         if (event.target.closest("#confirmButton")) {
           confirmEncuadradoBooking();
         }
@@ -2932,6 +3059,8 @@
 
     async function init() {
       applyInitialSelectionFromUrl();
+      syncModeControls();
+      syncWeekNavigation();
       const initialAvailabilityLoaded = await loadIntegrationConfig(true);
       ensureServiceTherapistCompatibility();
       syncSelectedDuration();
