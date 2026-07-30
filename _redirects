@@ -1,5 +1,7 @@
 # Cloudflare Pages — 301 redirects (.html → clean URL)
 /index.html                     /                               301
+/agendar.html                   /agendar                        301
+/confirmacion-reserva.html      /confirmacion-reserva           301
 /isapre.html                    /isapre                         301
 /fonasa.html                    /fonasa                         301
 /banmedica.html                 /banmedica                      301

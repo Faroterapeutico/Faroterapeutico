@@ -1,0 +1,2983 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda online | Faro Terap&eacute;utico</title>
+  <meta name="description" content="Agenda una sesi&oacute;n de psicoterapia en Faro Terap&eacute;utico. Elige servicio, profesional, modalidad y horario disponible.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://faroterapeutico.com/agendar">
+  <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <style>
+    :root {
+      --ink: #17252b;
+      --ink-soft: #43515a;
+      --ink-muted: #6c7780;
+      --paper: #f3f5f4;
+      --paper-cool: #edf3f1;
+      --surface: #ffffff;
+      --surface-soft: #f8faf9;
+      --line: rgba(23, 37, 43, 0.15);
+      --line-soft: rgba(23, 37, 43, 0.09);
+      --gold: #9b5d25;
+      --sage: #64877b;
+      --blue: #527895;
+      --blue-dark: #2d4f68;
+      --green: #08734e;
+      --red: #b84f4f;
+      --shadow: 0 16px 42px -34px rgba(23, 37, 43, 0.46);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink-soft);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      background: transparent;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      box-shadow: 0 8px 26px rgba(154, 95, 40, 0.2);
+    }
+
+    .brand span {
+      display: block;
+      font-size: 0.86rem;
+      color: var(--ink-muted);
+      font-weight: 400;
+      margin-top: 1px;
+    }
+
+    .brand > strong {
+      font-size: 0.96rem;
+      line-height: 1.3;
+    }
+
+    .brand-inline {
+      margin-bottom: 15px;
+    }
+
+    .main {
+      width: min(1460px, 100%);
+      margin: 0 auto;
+      padding: 28px;
+      min-width: 0;
+    }
+
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .topbar h1 {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 3.35rem;
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .topbar h1 em {
+      color: var(--green);
+      font-weight: 500;
+    }
+
+    .topbar p {
+      margin: 10px 0 0;
+      color: var(--ink-soft);
+      max-width: 590px;
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(15, 122, 82, 0.1);
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .status-pill svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .trust-rail {
+      min-height: 54px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin: -4px 0 22px;
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(255, 255, 255, 0.54);
+    }
+
+    .trust-item {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 10px 14px;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .trust-item + .trust-item {
+      border-left: 1px solid var(--line-soft);
+    }
+
+    .trust-item svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      color: var(--green);
+    }
+
+    .trust-item img {
+      width: 21px;
+      height: 21px;
+      flex: 0 0 auto;
+      object-fit: contain;
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.75fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .workspace {
+      display: grid;
+      gap: 18px;
+    }
+
+    .band,
+    .summary-panel {
+      border: 1px solid var(--line-soft);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+
+    .band {
+      padding: 20px;
+    }
+
+    .band-header,
+    .summary-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .band-header h3,
+    .summary-header h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 1.08rem;
+      line-height: 1.25;
+    }
+
+    .band-header span,
+    .summary-header span {
+      color: var(--ink-muted);
+      font-size: 0.82rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .service-card,
+    .therapist-card,
+    .mini-card {
+      border: 1px solid var(--line-soft);
+      background: var(--surface);
+      border-radius: 8px;
+      transition: transform 180ms ease, border 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .service-card {
+      min-height: 104px;
+      padding: 14px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .service-card strong {
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .service-card span {
+      color: var(--ink-muted);
+      font-size: 0.82rem;
+    }
+
+    .service-card b {
+      margin-top: auto;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    .service-card.selected,
+    .therapist-card.selected {
+      border-color: rgba(8, 115, 78, 0.5);
+      background: rgba(8, 115, 78, 0.055);
+      box-shadow: inset 0 0 0 1px rgba(8, 115, 78, 0.05), 0 14px 30px -25px rgba(8, 115, 78, 0.68);
+    }
+
+    .service-card.unavailable,
+    .therapist-card.unavailable {
+      cursor: not-allowed;
+      opacity: 0.46;
+      filter: grayscale(0.3);
+    }
+
+    .therapist-card.closed {
+      opacity: 0.72;
+      filter: grayscale(0.45);
+    }
+
+    .therapist-card .therapist-card-status {
+      display: block;
+      margin-top: 4px;
+      color: #8a4c22;
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .service-card:hover,
+    .therapist-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(91, 124, 153, 0.34);
+    }
+
+    .service-card.unavailable:hover,
+    .therapist-card.unavailable:hover {
+      transform: none;
+      border-color: var(--line-soft);
+      box-shadow: none;
+    }
+
+    .therapist-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .therapist-card {
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .therapist-card .therapist-thumb {
+      width: 100%;
+      height: 132px;
+      display: block;
+      overflow: hidden;
+      background: var(--paper-cool);
+    }
+
+    .therapist-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 22%;
+      display: block;
+    }
+
+    .therapist-card img[data-photo="aaron"] {
+      object-position: center 18%;
+    }
+
+    .therapist-card img[data-photo="david"] {
+      object-position: center 22%;
+    }
+
+    .therapist-card img[data-photo="benjamin"] {
+      width: 135%;
+      height: 135%;
+      max-width: none;
+      margin-top: -8%;
+      margin-left: -17.5%;
+      object-position: center 16%;
+    }
+
+    .therapist-card img[data-photo="isidora"] {
+      object-position: center 14%;
+    }
+
+    .therapist-card div {
+      padding: 12px;
+    }
+
+    .therapist-card strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .therapist-card span {
+      color: var(--ink-muted);
+      font-size: 0.8rem;
+    }
+
+    .toggle-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .mode-toggle {
+      min-height: 44px;
+      border: 1px solid var(--line-soft);
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--ink-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mode-toggle.selected {
+      border-color: rgba(111, 143, 131, 0.56);
+      background: rgba(111, 143, 131, 0.12);
+      color: var(--ink);
+    }
+
+    .mode-toggle svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .calendar-shell {
+      overflow-x: hidden;
+      padding-bottom: 4px;
+    }
+
+    #availabilityLabel {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #availabilityLabel.syncing::before,
+    #availabilityLabel.ready::before,
+    #availabilityLabel.error::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      flex: 0 0 auto;
+    }
+
+    #availabilityLabel.syncing::before {
+      border: 2px solid rgba(91, 124, 153, 0.22);
+      border-top-color: var(--blue);
+      animation: availabilitySpin 800ms linear infinite;
+    }
+
+    #availabilityLabel.ready::before {
+      background: var(--green);
+    }
+
+    #availabilityLabel.error::before {
+      background: var(--red);
+    }
+
+    .calendar-shell.syncing .week-calendar {
+      opacity: 0.72;
+    }
+
+    @keyframes availabilitySpin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .week-calendar {
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.72);
+      overflow: hidden;
+    }
+
+    .desktop-week {
+      display: block;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .week-header,
+    .week-row {
+      display: grid;
+      grid-template-columns: 62px repeat(6, minmax(0, 1fr));
+    }
+
+    .week-corner,
+    .week-day,
+    .time-label,
+    .week-cell {
+      border-right: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      min-width: 0;
+    }
+
+    .week-day {
+      min-height: 54px;
+      display: grid;
+      place-items: center;
+      gap: 2px;
+      text-align: center;
+      background: rgba(248, 250, 250, 0.72);
+    }
+
+    .week-day strong {
+      color: var(--ink);
+      font-size: 0.82rem;
+      line-height: 1;
+    }
+
+    .week-day span {
+      color: var(--ink-muted);
+      font-size: 0.74rem;
+      line-height: 1;
+    }
+
+    .time-label {
+      min-height: 48px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 6px;
+      color: var(--ink-muted);
+      font-size: 0.72rem;
+      background: rgba(248, 250, 250, 0.48);
+    }
+
+    .week-cell {
+      min-height: 48px;
+      padding: 4px;
+    }
+
+    .week-slot {
+      width: 100%;
+      min-width: 0;
+      min-height: 40px;
+      padding: 0;
+      border: 1px solid rgba(91, 124, 153, 0.16);
+      border-radius: 8px;
+      background: rgba(91, 124, 153, 0.08);
+      color: var(--blue-dark);
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: grid;
+      place-items: center;
+      transition: transform 160ms ease, border 160ms ease, background 160ms ease, color 160ms ease;
+    }
+
+    .week-slot:hover {
+      transform: translateY(-1px);
+      border-color: rgba(91, 124, 153, 0.38);
+      background: rgba(91, 124, 153, 0.14);
+    }
+
+    .week-slot.selected {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      box-shadow: 0 8px 18px -14px rgba(49, 79, 104, 0.8);
+    }
+
+    .week-slot.booked {
+      background: rgba(154, 95, 40, 0.13);
+      border-color: rgba(154, 95, 40, 0.34);
+      color: rgba(112, 69, 33, 0.78);
+      cursor: not-allowed;
+    }
+
+    .week-slot.past,
+    .week-slot.checking,
+    .week-slot.unavailable {
+      background: rgba(31, 42, 48, 0.045);
+      border-color: rgba(31, 42, 48, 0.1);
+      color: rgba(77, 88, 96, 0.48);
+      cursor: not-allowed;
+    }
+
+    .week-slot.checking {
+      cursor: progress;
+    }
+
+    .week-slot.selected.booked {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+      cursor: default;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .data-purpose {
+      margin: -2px 0 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--ink-muted);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .data-purpose svg {
+      width: 16px;
+      height: 16px;
+      margin-top: 1px;
+      flex: 0 0 auto;
+      color: var(--green);
+    }
+
+    .reimbursement-panel {
+      display: grid;
+      grid-template-columns: minmax(170px, 0.34fr) minmax(0, 1fr);
+      gap: 16px;
+      align-items: center;
+      margin: 0 0 14px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .reimbursement-copy strong,
+    .reimbursement-copy span {
+      display: block;
+    }
+
+    .reimbursement-copy strong {
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .reimbursement-copy span {
+      margin-top: 2px;
+      color: var(--ink-muted);
+      font-size: 0.68rem;
+      line-height: 1.35;
+    }
+
+    .isapre-logos {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(52px, 1fr));
+      gap: 9px;
+      align-items: center;
+    }
+
+    .isapre-logo {
+      width: 100%;
+      height: 27px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 4px;
+    }
+
+    .isapre-logo img {
+      display: block;
+      max-width: 100%;
+      max-height: 23px;
+      object-fit: contain;
+      filter: saturate(0.78);
+      opacity: 0.86;
+    }
+
+    .reimbursement-note {
+      grid-column: 1 / -1;
+      margin: -7px 0 0;
+      color: var(--ink-muted);
+      font-size: 0.61rem;
+      line-height: 1.35;
+    }
+
+    .form-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+      padding: 10px 12px;
+      outline: none;
+      transition: border 160ms ease, box-shadow 160ms ease;
+    }
+
+    .form-field textarea {
+      min-height: 78px;
+      resize: vertical;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      border-color: rgba(91, 124, 153, 0.52);
+      box-shadow: 0 0 0 3px rgba(91, 124, 153, 0.14);
+    }
+
+    .address-autocomplete {
+      position: relative;
+      min-width: 0;
+    }
+
+    .address-suggestions {
+      position: absolute;
+      z-index: 40;
+      top: calc(100% + 5px);
+      right: 0;
+      left: 0;
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 18px 42px -24px rgba(31, 42, 48, 0.58);
+    }
+
+    .address-suggestions[hidden] {
+      display: none;
+    }
+
+    .address-suggestion {
+      width: 100%;
+      min-height: 52px;
+      display: grid;
+      grid-template-columns: 18px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+      border: 0;
+      border-bottom: 1px solid var(--line-soft);
+      border-radius: 0;
+      padding: 9px 11px;
+      background: var(--surface);
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .address-suggestion:last-child {
+      border-bottom: 0;
+    }
+
+    .address-suggestion:hover,
+    .address-suggestion.active,
+    .address-suggestion[aria-selected="true"] {
+      background: var(--paper-cool);
+    }
+
+    .address-suggestion svg {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      color: var(--green);
+    }
+
+    .address-suggestion strong,
+    .address-suggestion span {
+      display: block;
+      letter-spacing: 0;
+    }
+
+    .address-suggestion strong {
+      overflow-wrap: anywhere;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .address-suggestion span {
+      margin-top: 2px;
+      color: var(--ink-muted);
+      font-size: 0.7rem;
+      line-height: 1.3;
+    }
+
+    .address-suggestion-state {
+      margin: 0;
+      padding: 11px 12px;
+      color: var(--ink-muted);
+      font-size: 0.74rem;
+      line-height: 1.35;
+    }
+
+    .consent-field {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .consent-field input {
+      width: 17px;
+      height: 17px;
+      margin: 1px 0 0;
+      flex: 0 0 auto;
+      accent-color: var(--green);
+    }
+
+    .summary-panel {
+      position: sticky;
+      top: 28px;
+      padding: 20px;
+    }
+
+    .summary-card {
+      display: grid;
+      gap: 2px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 0.9rem;
+    }
+
+    .summary-line span {
+      color: var(--ink-muted);
+    }
+
+    .summary-line strong {
+      color: var(--ink);
+      text-align: right;
+      font-weight: 600;
+    }
+
+    .primary-action,
+    .secondary-action,
+    .ghost-action {
+      min-height: 46px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 15px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .primary-action {
+      width: 100%;
+      color: #fff;
+      background: var(--green);
+      box-shadow: 0 18px 34px -26px rgba(15, 122, 82, 0.8);
+    }
+
+    .secondary-action {
+      color: var(--blue-dark);
+      background: rgba(91, 124, 153, 0.12);
+      border-color: rgba(91, 124, 153, 0.18);
+    }
+
+    .ghost-action {
+      color: var(--ink-soft);
+      background: var(--surface);
+      border-color: var(--line-soft);
+    }
+
+    .primary-action:hover,
+    .secondary-action:hover,
+    .ghost-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary-action:disabled {
+      cursor: wait;
+      opacity: 0.78;
+      transform: none;
+    }
+
+    .primary-action svg,
+    .secondary-action svg,
+    .ghost-action svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .tiny-note {
+      margin: 10px 0 0;
+      color: var(--ink-muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .tiny-note::before {
+      content: "";
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      margin-right: 4px;
+      vertical-align: -2px;
+      background: url("images/isapre-logos/logo-encuadrado.webp") center / contain no-repeat;
+    }
+
+    .badge {
+      min-height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge.ok {
+      background: rgba(15, 122, 82, 0.12);
+      color: var(--green);
+    }
+
+    .badge.wait {
+      background: rgba(154, 95, 40, 0.12);
+      color: var(--gold);
+    }
+
+    .badge.danger {
+      background: rgba(184, 79, 79, 0.12);
+      color: var(--red);
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: min(360px, calc(100vw - 48px));
+      padding: 15px 16px;
+      border-radius: 8px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 122, 82, 0.2);
+      box-shadow: 0 22px 60px -30px rgba(31, 42, 48, 0.55);
+      display: none;
+      gap: 10px;
+      align-items: flex-start;
+      z-index: 20;
+    }
+
+    .toast.active {
+      display: flex;
+    }
+
+    .toast.error {
+      border-color: rgba(184, 79, 79, 0.24);
+    }
+
+    .toast.error svg {
+      color: var(--red);
+    }
+
+    .toast svg {
+      width: 22px;
+      height: 22px;
+      color: var(--green);
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .toast strong {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .toast span {
+      color: var(--ink-muted);
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 1180px) {
+      .app-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-panel {
+        position: static;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .main {
+        padding: 20px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+      }
+
+      .service-grid,
+      .therapist-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .calendar-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .isapre-logos {
+        grid-template-columns: repeat(4, minmax(58px, 1fr));
+      }
+
+    }
+
+    @media (max-width: 620px) {
+      .brand {
+        align-items: flex-start;
+      }
+
+      .main {
+        padding: 10px;
+      }
+
+      .topbar h1 {
+        font-size: 2.35rem;
+        line-height: 1;
+      }
+
+      .topbar {
+        margin-bottom: 14px;
+      }
+
+      .trust-rail {
+        min-height: 48px;
+        margin: -2px 0 12px;
+      }
+
+      .trust-item {
+        flex-direction: column;
+        gap: 3px;
+        padding: 7px 3px;
+        font-size: 0.61rem;
+        line-height: 1.2;
+      }
+
+      .trust-item svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .trust-item img {
+        width: 18px;
+        height: 18px;
+      }
+
+      .top-actions {
+        gap: 8px;
+      }
+
+      .service-grid,
+      .therapist-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .band[aria-labelledby="service-title"] {
+        padding: 10px;
+      }
+
+      .band[aria-labelledby="service-title"] .band-header {
+        margin-bottom: 10px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .service-card {
+        min-width: 0;
+        min-height: 78px;
+        padding: 9px 10px;
+        gap: 3px;
+        overflow: hidden;
+      }
+
+      .service-card strong {
+        font-size: 0.76rem;
+        line-height: 1.18;
+        overflow-wrap: anywhere;
+      }
+
+      .service-card span {
+        font-size: 0.68rem;
+      }
+
+      .service-card b {
+        margin-top: 2px;
+        font-size: 0.82rem;
+      }
+
+      .band[aria-labelledby="therapist-title"] {
+        padding: 10px;
+      }
+
+      .band[aria-labelledby="therapist-title"] .band-header {
+        margin-bottom: 10px;
+      }
+
+      .therapist-grid {
+        gap: 8px;
+      }
+
+      .therapist-card {
+        min-height: 78px;
+        display: grid;
+        grid-template-columns: 76px minmax(0, 1fr);
+        align-items: stretch;
+      }
+
+      .therapist-card .therapist-thumb {
+        width: 76px;
+        height: 78px;
+      }
+
+      .therapist-card div {
+        min-width: 0;
+        padding: 9px 10px;
+        align-self: center;
+      }
+
+      .therapist-card strong {
+        margin-bottom: 1px;
+        font-size: 0.9rem;
+        line-height: 1.18;
+      }
+
+      .therapist-card span {
+        font-size: 0.72rem;
+      }
+
+      .therapist-card .therapist-card-status {
+        margin-top: 2px;
+        font-size: 0.62rem;
+      }
+
+      .toggle-row {
+        gap: 8px;
+      }
+
+      .mode-toggle {
+        min-height: 38px;
+        padding: 8px 11px;
+        font-size: 0.86rem;
+      }
+
+      .band[aria-labelledby="patient-title"] {
+        padding: 10px;
+      }
+
+      .band[aria-labelledby="patient-title"] .band-header {
+        margin-bottom: 10px;
+      }
+
+      .form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .data-purpose {
+        margin-bottom: 9px;
+        font-size: 0.68rem;
+      }
+
+      .reimbursement-panel {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 10px;
+        padding: 9px 0;
+      }
+
+      .reimbursement-copy {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .reimbursement-copy strong {
+        font-size: 0.72rem;
+      }
+
+      .reimbursement-copy span {
+        margin-top: 0;
+        font-size: 0.61rem;
+        text-align: right;
+      }
+
+      .isapre-logos {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 5px 8px;
+      }
+
+      .isapre-logo {
+        height: 22px;
+        padding: 1px 3px;
+      }
+
+      .isapre-logo img {
+        max-height: 19px;
+      }
+
+      .reimbursement-note {
+        margin-top: -2px;
+        font-size: 0.6rem;
+      }
+
+      .form-field {
+        gap: 4px;
+        min-width: 0;
+      }
+
+      .form-field label {
+        font-size: 0.68rem;
+      }
+
+      .form-field input,
+      .form-field select {
+        min-height: 38px;
+        border-radius: 7px;
+        padding: 8px 9px;
+        font-size: 0.82rem;
+      }
+
+      .address-suggestions {
+        right: auto;
+        width: calc(200% + 8px);
+        max-height: 230px;
+      }
+
+      .consent-field {
+        gap: 7px;
+        font-size: 0.68rem;
+      }
+
+      .consent-field input {
+        width: 15px;
+        height: 15px;
+      }
+
+      .band,
+      .summary-panel {
+        padding: 12px;
+      }
+
+      .calendar-shell {
+        overflow-x: hidden;
+      }
+
+      .week-calendar,
+      .desktop-week {
+        max-width: 100%;
+      }
+
+      .week-calendar {
+        height: 258px;
+      }
+
+      .desktop-week {
+        width: calc(100% / 0.82);
+        transform: scale(0.82);
+        transform-origin: top left;
+      }
+
+      .week-header,
+      .week-row {
+        width: 100%;
+        grid-template-columns: 18px repeat(6, calc((100% - 18px) / 6));
+      }
+
+      .week-day {
+        min-height: 30px;
+        gap: 1px;
+        overflow: hidden;
+      }
+
+      .week-day strong {
+        font-size: 0.56rem;
+      }
+
+      .week-day span {
+        display: none;
+      }
+
+      .time-label {
+        min-height: 28px;
+        padding-top: 3px;
+        font-size: 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .time-label::before {
+        content: attr(data-hour);
+        font-size: 0.45rem;
+      }
+
+      .week-cell {
+        min-height: 28px;
+        padding: 1px;
+        overflow: hidden;
+      }
+
+      .week-slot {
+        min-height: 24px;
+        border-radius: 4px;
+        font-size: 0;
+        overflow: hidden;
+      }
+
+      .week-slot::after {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 999px;
+        background: currentColor;
+        opacity: 0.88;
+      }
+
+      .week-slot.booked {
+        background: rgba(154, 95, 40, 0.2);
+        border-color: rgba(154, 95, 40, 0.58);
+        color: #8a4c22;
+      }
+
+      .week-slot.booked::after {
+        content: "\00d7";
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.78rem;
+        line-height: 1;
+        font-weight: 700;
+        opacity: 1;
+      }
+
+      .week-slot.past::after {
+        content: "\2013";
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.7rem;
+        line-height: 1;
+      }
+
+      .week-slot.checking::after {
+        width: 7px;
+        height: 7px;
+        border: 1px solid rgba(91, 124, 153, 0.28);
+        border-top-color: var(--blue);
+        background: transparent;
+        animation: availabilitySpin 800ms linear infinite;
+      }
+
+      .week-slot.unavailable::after {
+        content: "!";
+        width: auto;
+        height: auto;
+        border-radius: 0;
+        background: transparent;
+        font-size: 0.68rem;
+        line-height: 1;
+        font-weight: 700;
+      }
+
+      .week-slot.selected::after {
+        background: #fff;
+      }
+
+      .week-slot.selected.booked::after {
+        content: "";
+        width: 4px;
+        height: 4px;
+        border-radius: 999px;
+        background: #fff;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <main class="main">
+      <section class="panel active" id="panel-paciente">
+        <header class="topbar">
+          <div>
+            <a class="brand brand-inline" href="index.html" aria-label="Volver a Faro Terapeutico">
+              <img src="images/favicon-32x32.webp" alt="">
+              <strong>Faro Terap&eacute;utico <span>Agendamiento en l&iacute;nea</span></strong>
+            </a>
+            <h1>Agenda tu <em>sesi&oacute;n</em></h1>
+            <p>Selecciona el profesional, la modalidad y el horario que mejor se adapten a ti.</p>
+          </div>
+          <div class="top-actions">
+            <span class="status-pill"><i data-lucide="clock"></i> <span id="durationPill">50 min</span></span>
+            <span class="status-pill"><i data-lucide="badge-dollar-sign"></i> $30.000</span>
+          </div>
+        </header>
+
+        <div class="trust-rail" aria-label="Respaldo de la reserva">
+          <div class="trust-item">
+            <i data-lucide="shield-check"></i>
+            <span>Atenci&oacute;n confidencial</span>
+          </div>
+          <div class="trust-item">
+            <i data-lucide="receipt-text"></i>
+            <span>Boleta electr&oacute;nica</span>
+          </div>
+          <div class="trust-item">
+            <img src="images/isapre-logos/logo-encuadrado.webp" alt="">
+            <span>Reserva en Encuadrado</span>
+          </div>
+        </div>
+
+        <div class="booking-layout">
+          <div class="workspace">
+            <section class="band" aria-labelledby="service-title">
+              <div class="band-header">
+                <div>
+                  <h3 id="service-title">Servicio</h3>
+                  <span>Particular / Isapre</span>
+                </div>
+              </div>
+              <div class="service-grid" id="serviceGrid"></div>
+            </section>
+
+            <section class="band" aria-labelledby="therapist-title">
+              <div class="band-header">
+                <div>
+                  <h3 id="therapist-title">Terapeuta</h3>
+                  <span>Presencial u online</span>
+                </div>
+              </div>
+              <div class="therapist-grid" id="therapistGrid"></div>
+              <div class="toggle-row" style="margin-top: 14px;">
+                <button class="mode-toggle selected" type="button" data-mode="Presencial" aria-pressed="true">
+                  <i data-lucide="map-pin"></i>
+                  Presencial
+                </button>
+                <button class="mode-toggle" type="button" data-mode="Online" aria-pressed="false">
+                  <i data-lucide="video"></i>
+                  Online
+                </button>
+              </div>
+            </section>
+
+            <section class="band" aria-labelledby="calendar-title">
+              <div class="band-header">
+                <div>
+                  <h3 id="calendar-title">Horario</h3>
+                  <span id="availabilityLabel">Semana disponible &middot; 11:00 a 20:00</span>
+                </div>
+              </div>
+              <div class="calendar-shell" id="calendarShell">
+                <div class="week-calendar" id="weekCalendar" aria-label="Elegir horario semanal"></div>
+              </div>
+            </section>
+
+            <section class="band" aria-labelledby="patient-title">
+              <div class="band-header">
+                <div>
+                  <h3 id="patient-title">Tus datos</h3>
+                  <span>Para tu boleta y confirmaci&oacute;n</span>
+                </div>
+              </div>
+              <p class="data-purpose">
+                <i data-lucide="receipt-text"></i>
+                Encuadrado utiliza estos datos para crear tu reserva, emitir la boleta y enviar la confirmaci&oacute;n.
+              </p>
+              <div class="reimbursement-panel" aria-label="Boleta para reembolso Isapre">
+                <div class="reimbursement-copy">
+                  <strong>Boleta para reembolso Isapre</strong>
+                  <span>Sujeto a la cobertura de tu plan</span>
+                </div>
+                <div class="isapre-logos">
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-banmedica.png" alt="Banm&eacute;dica"></span>
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-colmena.svg" alt="Colmena"></span>
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-consalud.png" alt="Consalud"></span>
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-cruz-blanca.svg" alt="Cruz Blanca"></span>
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-masvida.png" alt="Nueva Masvida"></span>
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-vida-tres.png" alt="Vida Tres"></span>
+                  <span class="isapre-logo"><img src="images/isapre-logos/logo-esencial.svg" alt="Esencial"></span>
+                </div>
+                <p class="reimbursement-note">Logos referenciales. La cobertura y el reembolso dependen de cada plan; no implica convenio directo.</p>
+              </div>
+              <form class="form-grid" id="patientForm">
+                <div class="form-field">
+                  <label for="patientName">Nombre completo</label>
+                  <input id="patientName" name="patientName" autocomplete="name" placeholder="Nombre completo" minlength="5" maxlength="120" required>
+                </div>
+                <div class="form-field">
+                  <label for="patientRut">RUT</label>
+                  <input id="patientRut" name="patientRut" autocomplete="off" inputmode="text" autocapitalize="characters" maxlength="12" pattern="[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9Kk]" placeholder="12.345.678-9" title="RUT con puntos y guion, por ejemplo 12.345.678-9" required>
+                </div>
+                <div class="form-field">
+                  <label for="patientEmail">Email</label>
+                  <input id="patientEmail" name="patientEmail" type="email" autocomplete="email" placeholder="tu@email.cl" required>
+                </div>
+                <div class="form-field">
+                  <label for="patientPhone">WhatsApp</label>
+                  <input id="patientPhone" name="patientPhone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="15" pattern="\+56 9 [0-9]{4} [0-9]{4}" placeholder="+56 9 1234 5678" title="Celular chileno con formato +56 9 1234 5678" required>
+                </div>
+                <div class="form-field">
+                  <label for="patientAddress">Direcci&oacute;n para la boleta</label>
+                  <div class="address-autocomplete" id="addressAutocomplete">
+                    <input id="patientAddress" name="patientAddress" autocomplete="street-address" placeholder="Calle y n&uacute;mero" minlength="5" maxlength="160" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addressSuggestions" aria-activedescendant="" spellcheck="false" title="Selecciona una dirección de las sugerencias" required>
+                    <div class="address-suggestions" id="addressSuggestions" role="listbox" aria-label="Direcciones sugeridas" hidden></div>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="patientCommune">Comuna</label>
+                  <input id="patientCommune" name="patientCommune" autocomplete="address-level2" list="communeSuggestions" placeholder="Providencia" minlength="2" maxlength="80" spellcheck="false" title="Selecciona una comuna de Chile" required>
+                  <datalist id="communeSuggestions"></datalist>
+                </div>
+                <label class="consent-field">
+                  <input id="termsAccepted" name="termsAccepted" type="checkbox" required>
+                  <span>Acepto que mis datos sean enviados a Encuadrado para gestionar la reserva, el pago cuando corresponda y la boleta.</span>
+                </label>
+              </form>
+            </section>
+
+          </div>
+
+          <aside class="summary-panel" aria-labelledby="summary-title">
+            <div class="summary-header">
+              <div>
+                <h3 id="summary-title">Tu reserva</h3>
+                <span id="summaryState">Reserva pendiente</span>
+              </div>
+              <span class="badge wait" id="summaryBadge">Pendiente</span>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-line"><span>Servicio</span><strong id="summaryService">Terapia individual</strong></div>
+              <div class="summary-line"><span>Profesional</span><strong id="summaryTherapist">Aaron Mill&aacute;n Sol&iacute;s</strong></div>
+              <div class="summary-line"><span>Modalidad</span><strong id="summaryMode">Presencial</strong></div>
+              <div class="summary-line"><span>Horario</span><strong id="summarySlot">Lun, 11:00</strong></div>
+              <div class="summary-line"><span>Valor</span><strong id="summaryPrice">$30.000</strong></div>
+            </div>
+
+            <button class="primary-action" type="button" id="confirmButton">
+              <i data-lucide="calendar-check"></i>
+              Reservar hora
+            </button>
+            <button class="ghost-action" type="button" id="refreshAvailabilityButton" style="width:100%;margin-top:10px;">
+              Actualizar horarios
+            </button>
+            <p class="tiny-note" id="integrationNote">Disponibilidad y reserva gestionadas por Encuadrado.</p>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <i data-lucide="check-circle"></i>
+    <div>
+      <strong>Reserva confirmada</strong>
+      <span>Tu hora qued&oacute; reservada y recibir&aacute;s la confirmaci&oacute;n por correo.</span>
+    </div>
+  </div>
+
+  <script>
+    const state = {
+      serviceId: "individual",
+      therapistId: "aaron",
+      mode: "Presencial",
+      durationMinutes: 50,
+      dayId: "",
+      slotId: "",
+      confirmed: false
+    };
+
+    const bookingApiUrl = "https://script.google.com/macros/s/AKfycbwMeHx0GQmGf35lMKG9nDbEBuhoFLzTltLaHLWBer1oAU-zXc9ciIneptfUIS8ZgnDc/exec";
+    const bookingTimezone = "America/Santiago";
+    const bookingConfirmationStorageKey = "faro-booking-confirmation-v1";
+    const bookingConfirmationPage = "confirmacion-reserva.html";
+    const sessionDurationMinutes = 50;
+    const clinicAddress = "La Concepci&oacute;n 56, Providencia, Santiago, Chile";
+    const addressSearchEndpoint = "https://photon.komoot.io/api/";
+    const chileBoundingBox = "-109.5,-56,-66.4,-17.5";
+    const availabilityCacheMs = 45000;
+    let remoteBookings = {};
+    let integrationConfig = null;
+    const availabilityCache = new Map();
+    let availabilityStatus = {
+      therapistId: state.therapistId,
+      mode: state.mode,
+      status: "idle",
+      syncedAt: null
+    };
+    let availabilityRequestId = 0;
+    const addressSearchCache = new Map();
+    const addressAutocompleteState = {
+      timer: null,
+      controller: null,
+      results: [],
+      activeIndex: -1
+    };
+
+    const services = [
+      { id: "individual", name: "Terapia individual", detail: "45-50 min", price: 30000 },
+      { id: "pareja", name: "Terapia de pareja", detail: "50 min", price: 30000, therapistId: "aaron", therapistLabel: "Aaron", integrationServiceId: "individual" },
+      { id: "infanto", name: "Terapia infanto juvenil", detail: "45-50 min", price: 30000, therapistIds: ["benjamin", "isidora"], therapistLabel: "Benjam&iacute;n / Isidora" }
+    ];
+
+    const chileanCommunes = [
+      "Arica", "Camarones", "Putre", "General Lagos", "Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña",
+      "Colchane", "Huara", "Pica", "Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama",
+      "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena", "Copiapó", "Caldera", "Tierra Amarilla", "Chañaral",
+      "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco", "La Serena", "Coquimbo", "Andacollo",
+      "La Higuera", "Paihuano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle",
+      "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado", "Valparaíso", "Casablanca", "Concón", "Juan Fernández",
+      "Puchuncaví", "Quintero", "Viña del Mar", "Isla de Pascua", "Los Andes", "Calle Larga", "Rinconada", "San Esteban",
+      "La Ligua", "Cabildo", "Papudo", "Petorca", "Zapallar", "Quillota", "La Calera", "Hijuelas",
+      "La Cruz", "Nogales", "San Antonio", "Algarrobo", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo",
+      "San Felipe", "Catemu", "Llaillay", "Panquehue", "Putaendo", "Santa María", "Quilpué", "Limache",
+      "Olmué", "Villa Alemana", "Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros",
+      "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco",
+      "Rengo", "Requínoa", "San Vicente", "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad",
+      "Paredones", "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo",
+      "Placilla", "Pumanque", "Santa Cruz", "Talca", "Constitución", "Curepto", "Empedrado", "Maule",
+      "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Cauquenes", "Chanco", "Pelluhue",
+      "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno",
+      "Vichuquén", "Linares", "Colbún", "Longaví", "Parral", "Retiro", "San Javier", "Villa Alegre",
+      "Yerbas Buenas", "Cobquecura", "Coelemu", "Ninhue", "Portezuelo", "Quirihue", "Ránquil", "Treguaco",
+      "Bulnes", "Chillán Viejo", "Chillán", "El Carmen", "Pemuco", "Pinto", "Quillón", "San Ignacio",
+      "Yungay", "Coihueco", "Ñiquén", "San Carlos", "San Fabián", "San Nicolás", "Concepción", "Coronel",
+      "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano",
+      "Tomé", "Hualpén", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Álamos",
+      "Tirúa", "Los Ángeles", "Antuco", "Cabrero", "Laja", "Mulchén", "Nacimiento", "Negrete",
+      "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Alto Biobío", "Temuco",
+      "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche",
+      "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt",
+      "Toltén", "Vilcún", "Villarrica", "Cholchol", "Angol", "Collipulli", "Curacautín", "Ercilla",
+      "Lonquimay", "Los Sauces", "Lumaco", "Purén", "Renaico", "Traiguén", "Victoria", "Valdivia",
+      "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión",
+      "Futrono", "Lago Ranco", "Río Bueno", "Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar",
+      "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez",
+      "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao", "Osorno", "Puerto Octay",
+      "Purranque", "Puyehue", "Río Negro", "San Juan de la Costa", "San Pablo", "Chaitén", "Futaleufú", "Hualaihué",
+      "Palena", "Coyhaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O’Higgins",
+      "Tortel", "Chile Chico", "Río Ibáñez", "Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos",
+      "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine", "Cerrillos", "Cerro Navia",
+      "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja",
+      "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú",
+      "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta",
+      "Renca", "Santiago", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque",
+      "San José de Maipo", "Colina", "Lampa", "Tiltil", "San Bernardo", "Buin", "Calera de Tango", "Paine",
+      "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo",
+      "Padre Hurtado", "Peñaflor"
+    ];
+
+    const communeByNormalizedName = new Map(
+      chileanCommunes.map((commune) => [normalizeSearchText(commune), commune])
+    );
+
+    const therapists = [
+      { id: "aaron", name: "Aaron Mill&aacute;n Sol&iacute;s", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/aaron-580.webp", photo: "aaron" },
+      { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" },
+      { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
+      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" }
+    ];
+
+    function applyInitialSelectionFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const requestedService = (params.get("service") || "").trim().toLowerCase();
+      const requestedTherapist = (params.get("therapist") || "").trim().toLowerCase();
+      const requestedMode = (params.get("mode") || "").trim().toLowerCase();
+
+      if (services.some((service) => service.id === requestedService)) {
+        state.serviceId = requestedService;
+      }
+
+      if (therapists.some((therapist) => therapist.id === requestedTherapist && !therapist.closed)) {
+        state.therapistId = requestedTherapist;
+      }
+
+      if (requestedMode === "presencial" || requestedMode === "online") {
+        state.mode = requestedMode === "online" ? "Online" : "Presencial";
+      }
+    }
+
+    const dayNames = ["Dom", "Lun", "Mar", "Mi&eacute;", "Jue", "Vie", "S&aacute;b"];
+    const dateFormatter = new Intl.DateTimeFormat("es-CL", { day: "numeric", month: "short", timeZone: "UTC" });
+    const santiagoClockFormatter = new Intl.DateTimeFormat("en-CA", {
+      timeZone: bookingTimezone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    });
+    const weekDays = buildWeekDays();
+
+    const hours = Array.from({ length: 10 }, (_, index) => 11 + index);
+    state.dayId = weekDays[0].id;
+    state.slotId = slotIdFor(state.dayId, hours[0]);
+
+    const money = new Intl.NumberFormat("es-CL", {
+      style: "currency",
+      currency: "CLP",
+      maximumFractionDigits: 0
+    });
+
+    function textFromHtml(html) {
+      const temp = document.createElement("div");
+      temp.innerHTML = html;
+      return temp.textContent || temp.innerText || "";
+    }
+
+    function toDateId(date) {
+      const year = date.getUTCFullYear();
+      const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+      const day = String(date.getUTCDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function getSantiagoNowParts() {
+      const parts = {};
+      santiagoClockFormatter.formatToParts(new Date()).forEach((part) => {
+        if (part.type !== "literal") {
+          parts[part.type] = Number(part.value);
+        }
+      });
+      return parts;
+    }
+
+    function santiagoTodayId(nowParts = getSantiagoNowParts()) {
+      return `${nowParts.year}-${String(nowParts.month).padStart(2, "0")}-${String(nowParts.day).padStart(2, "0")}`;
+    }
+
+    function buildWeekDays() {
+      const nowParts = getSantiagoNowParts();
+      const start = new Date(Date.UTC(nowParts.year, nowParts.month - 1, nowParts.day, 12));
+      const weekday = start.getUTCDay();
+      const mondayOffset = weekday === 0 ? 1 : 1 - weekday;
+      start.setUTCDate(start.getUTCDate() + mondayOffset);
+
+      return Array.from({ length: 6 }, (_, index) => {
+        const date = new Date(start);
+        date.setUTCDate(start.getUTCDate() + index);
+        return {
+          id: toDateId(date),
+          day: dayNames[date.getUTCDay()],
+          date: dateFormatter.format(date).replace(".", "")
+        };
+      });
+    }
+
+    function isPastSlot(dayId, hour) {
+      const nowParts = getSantiagoNowParts();
+      const todayId = santiagoTodayId(nowParts);
+      if (dayId < todayId) {
+        return true;
+      }
+      if (dayId > todayId) {
+        return false;
+      }
+      return nowParts.hour * 60 + nowParts.minute >= Number(hour) * 60;
+    }
+
+    function getService() {
+      return services.find((service) => service.id === state.serviceId);
+    }
+
+    function getTherapist() {
+      return therapists.find((therapist) => therapist.id === state.therapistId);
+    }
+
+    function serviceCombinationKey(therapistId, serviceId, mode = state.mode) {
+      return `${therapistId}|${serviceId}|${mode}`;
+    }
+
+    function integrationServiceIdFor(therapistId, serviceId, mode = state.mode) {
+      const directKey = serviceCombinationKey(therapistId, serviceId, mode);
+      if (integrationConfig?.services?.[directKey] === true) {
+        return serviceId;
+      }
+      const service = services.find((item) => item.id === serviceId);
+      return service?.integrationServiceId || serviceId;
+    }
+
+    function isIntegrationCombinationConfigured(therapistId, serviceId, mode = state.mode) {
+      if (!integrationConfig || !integrationConfig.services) {
+        return true;
+      }
+      const integrationServiceId = integrationServiceIdFor(therapistId, serviceId, mode);
+      return integrationConfig.services[serviceCombinationKey(therapistId, integrationServiceId, mode)] === true;
+    }
+
+    function syncSelectedDuration() {
+      const integrationServiceId = integrationServiceIdFor(
+        state.therapistId,
+        state.serviceId,
+        state.mode
+      );
+      const key = serviceCombinationKey(state.therapistId, integrationServiceId, state.mode);
+      const configuredDuration = Number(integrationConfig?.durations?.[key]);
+      state.durationMinutes = configuredDuration > 0 ? configuredDuration : 50;
+    }
+
+    function isBusinessServiceAvailableWithTherapist(service, therapistId) {
+      const therapist = therapists.find((item) => item.id === therapistId);
+      if (!therapist || therapist.closed) {
+        return false;
+      }
+      if (service.therapistId && service.therapistId !== therapistId) {
+        return false;
+      }
+      if (service.therapistIds && !service.therapistIds.includes(therapistId)) {
+        return false;
+      }
+      if (therapist.serviceIds && !therapist.serviceIds.includes(service.id)) {
+        return false;
+      }
+      return true;
+    }
+
+    function isServiceAvailableWithTherapist(service, therapistId, mode = state.mode) {
+      return isBusinessServiceAvailableWithTherapist(service, therapistId)
+        && isIntegrationCombinationConfigured(therapistId, service.id, mode);
+    }
+
+    function ensureServiceTherapistCompatibility() {
+      const service = getService();
+      if (isServiceAvailableWithTherapist(service, state.therapistId)) {
+        return false;
+      }
+
+      const nextTherapist = therapists.find((therapist) => isServiceAvailableWithTherapist(service, therapist.id));
+      if (!nextTherapist) {
+        return false;
+      }
+
+      state.therapistId = nextTherapist.id;
+      return true;
+    }
+
+    function slotIdFor(dayId, hour) {
+      return `${dayId}-${String(hour).padStart(2, "0")}00`;
+    }
+
+    function bookingKey(therapistId = state.therapistId, dayId = state.dayId, slotId = state.slotId) {
+      return `${therapistId}:${dayId}:${slotId}`;
+    }
+
+    function availabilityCacheKey(therapistId = state.therapistId, serviceId = state.serviceId, mode = state.mode) {
+      return `${therapistId}:${serviceId}:${mode}:${weekDays[0].id}:${weekDays[weekDays.length - 1].id}`;
+    }
+
+    function setAvailabilityStatus(status, syncedAt = null, therapistId = state.therapistId, mode = state.mode) {
+      availabilityStatus = { therapistId, mode, status, syncedAt };
+      updateAvailabilityLabel();
+    }
+
+    function updateAvailabilityLabel() {
+      const label = document.getElementById("availabilityLabel");
+      const shell = document.getElementById("calendarShell");
+      if (!label) {
+        return;
+      }
+
+      const therapist = getTherapist();
+      const isCurrentTherapist = availabilityStatus.therapistId === therapist.id
+        && availabilityStatus.mode === state.mode;
+      let detail = "11:00 a 20:00";
+      let statusClass = "";
+
+      if (isCurrentTherapist) {
+        if (availabilityStatus.status === "syncing") {
+          detail = "Sincronizando horarios...";
+          statusClass = "syncing";
+        }
+
+        if (availabilityStatus.status === "ready") {
+          detail = "Horarios actualizados";
+          statusClass = "ready";
+        }
+
+        if (availabilityStatus.status === "cached") {
+          detail = "Horarios actualizados";
+          statusClass = "ready";
+        }
+
+        if (availabilityStatus.status === "error") {
+          detail = "No se pudo sincronizar";
+          statusClass = "error";
+        }
+      }
+
+      label.classList.remove("syncing", "ready", "error");
+      if (statusClass) {
+        label.classList.add(statusClass);
+      }
+
+      if (shell) {
+        shell.classList.toggle("syncing", statusClass === "syncing");
+      }
+
+      label.innerHTML = `${therapist.name} &middot; ${detail}`;
+    }
+
+    function clearRemoteBookingsFor(therapistId) {
+      const prefix = `${therapistId}:`;
+      Object.keys(remoteBookings).forEach((key) => {
+        if (key.startsWith(prefix)) {
+          delete remoteBookings[key];
+        }
+      });
+    }
+
+    function applyRemoteBusySlots(therapistId, busySlots) {
+      clearRemoteBookingsFor(therapistId);
+      busySlots.forEach((busy) => {
+        const slotId = slotIdFor(busy.date, Number(busy.hour));
+        remoteBookings[bookingKey(therapistId, busy.date, slotId)] = true;
+      });
+    }
+
+    function isBooked(dayId, slotId, therapistId = state.therapistId) {
+      const key = bookingKey(therapistId, dayId, slotId);
+      return Boolean(remoteBookings[key]);
+    }
+
+    function availabilityIsReady(therapistId = state.therapistId) {
+      return availabilityStatus.therapistId === therapistId
+        && availabilityStatus.mode === state.mode
+        && ["ready", "cached"].includes(availabilityStatus.status);
+    }
+
+    function firstOpenSlot() {
+      for (const day of weekDays) {
+        for (const hour of hours) {
+          const slotId = slotIdFor(day.id, hour);
+          if (!isPastSlot(day.id, hour) && !isBooked(day.id, slotId)) {
+            return { dayId: day.id, slotId };
+          }
+        }
+      }
+      return null;
+    }
+
+    function ensureOpenSelection() {
+      const selectedHour = getSelectedHour();
+      if (!isPastSlot(state.dayId, selectedHour)
+        && !isBooked(state.dayId, state.slotId)) {
+        return;
+      }
+      const next = firstOpenSlot();
+      if (next) {
+        state.dayId = next.dayId;
+        state.slotId = next.slotId;
+      }
+    }
+
+    function getSelectedDay() {
+      return weekDays.find((day) => day.id === state.dayId) || weekDays[1];
+    }
+
+    function getSlot() {
+      const day = getSelectedDay();
+      const hour = hours.find((item) => slotIdFor(day.id, item) === state.slotId) || 11;
+      const slot = { id: slotIdFor(day.id, hour), label: `${String(hour).padStart(2, "0")}:00` };
+      return { day, slot };
+    }
+
+    function getSelectedHour() {
+      return Number(state.slotId.slice(-4, -2)) || 11;
+    }
+
+    function isValidChileanRut(value) {
+      const normalized = String(value || "").replace(/\./g, "").replace(/-/g, "").toUpperCase();
+      if (!/^\d{7,8}[0-9K]$/.test(normalized)) {
+        return false;
+      }
+
+      const body = normalized.slice(0, -1);
+      const verifier = normalized.slice(-1);
+      let sum = 0;
+      let multiplier = 2;
+
+      for (let index = body.length - 1; index >= 0; index -= 1) {
+        sum += Number(body[index]) * multiplier;
+        multiplier = multiplier === 7 ? 2 : multiplier + 1;
+      }
+
+      const result = 11 - (sum % 11);
+      const expected = result === 11 ? "0" : result === 10 ? "K" : String(result);
+      return verifier === expected;
+    }
+
+    function formatChileanRut(value) {
+      const normalized = String(value || "").toUpperCase().replace(/[^0-9K]/g, "").slice(0, 9);
+      if (normalized.length <= 1) {
+        return normalized;
+      }
+      const body = normalized.slice(0, -1).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return `${body}-${normalized.slice(-1)}`;
+    }
+
+    function isValidWhatsapp(value) {
+      const digits = String(value || "").replace(/\D/g, "");
+      return /^569\d{8}$/.test(digits);
+    }
+
+    function formatChileanPhone(value) {
+      const originalDigits = String(value || "").replace(/\D/g, "");
+      if (!originalDigits || originalDigits === "56") {
+        return "";
+      }
+
+      let digits = originalDigits.startsWith("56") ? originalDigits.slice(2) : originalDigits;
+      if (digits.startsWith("9")) {
+        digits = digits.slice(1);
+      }
+      const subscriber = digits.slice(0, 8);
+      let formatted = "+56 9";
+      if (subscriber) {
+        formatted += ` ${subscriber.slice(0, 4)}`;
+      }
+      if (subscriber.length > 4) {
+        formatted += ` ${subscriber.slice(4)}`;
+      }
+      return formatted;
+    }
+
+    function normalizeSearchText(value) {
+      return String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[’']/g, "'")
+        .trim()
+        .toLowerCase();
+    }
+
+    function canonicalCommune(value) {
+      return communeByNormalizedName.get(normalizeSearchText(value)) || "";
+    }
+
+    function isValidStreetAddress(value) {
+      const address = String(value || "").trim();
+      return address.length >= 5
+        && address.length <= 160
+        && /[A-Za-z\u00c0-\u00ff\u00d1\u00f1]/.test(address)
+        && /\d/.test(address);
+    }
+
+    function populateAddressOptions() {
+      const communeList = document.getElementById("communeSuggestions");
+      communeList.replaceChildren(...chileanCommunes.map((commune) => {
+        const option = document.createElement("option");
+        option.value = commune;
+        return option;
+      }));
+    }
+
+    function communeFromAddressProperties(properties) {
+      const candidates = [
+        properties.district,
+        properties.city,
+        properties.localadmin,
+        properties.municipality,
+        properties.county
+      ];
+      for (const candidate of candidates) {
+        const cleaned = String(candidate || "")
+          .replace(/^comuna de\s+/i, "")
+          .replace(/^municipalidad de\s+/i, "")
+          .trim();
+        const commune = canonicalCommune(cleaned);
+        if (commune) {
+          return commune;
+        }
+      }
+      return "";
+    }
+
+    function addressResultFromFeature(feature) {
+      const properties = feature && feature.properties ? feature.properties : {};
+      const street = String(properties.street || "").trim();
+      const number = String(properties.housenumber || "").trim();
+      const commune = communeFromAddressProperties(properties);
+      if (!street || !number || !commune) {
+        return null;
+      }
+      return {
+        address: `${street} ${number}`.replace(/\s+/g, " ").trim(),
+        commune,
+        route: street,
+        streetNumber: number
+      };
+    }
+
+    async function fetchAddressSuggestions(query) {
+      const cacheKey = normalizeSearchText(query);
+      if (addressSearchCache.has(cacheKey)) {
+        return addressSearchCache.get(cacheKey);
+      }
+      if (addressAutocompleteState.controller) {
+        addressAutocompleteState.controller.abort();
+      }
+
+      const controller = new AbortController();
+      addressAutocompleteState.controller = controller;
+      const params = new URLSearchParams({
+        q: `${query}, Chile`,
+        limit: "8",
+        bbox: chileBoundingBox
+      });
+      const response = await fetch(`${addressSearchEndpoint}?${params}`, {
+        signal: controller.signal
+      });
+      if (!response.ok) {
+        throw new Error("No se pudo consultar la dirección.");
+      }
+
+      const payload = await response.json();
+      const unique = new Map();
+      (payload.features || []).forEach((feature) => {
+        const result = addressResultFromFeature(feature);
+        if (!result) {
+          return;
+        }
+        const key = `${normalizeSearchText(result.address)}|${normalizeSearchText(result.commune)}`;
+        if (!unique.has(key)) {
+          unique.set(key, result);
+        }
+      });
+      const results = Array.from(unique.values()).slice(0, 6);
+      addressSearchCache.set(cacheKey, results);
+      return results;
+    }
+
+    function setAddressSuggestionsOpen(isOpen) {
+      const input = document.getElementById("patientAddress");
+      const list = document.getElementById("addressSuggestions");
+      list.hidden = !isOpen;
+      input.setAttribute("aria-expanded", String(isOpen));
+      if (!isOpen) {
+        input.setAttribute("aria-activedescendant", "");
+        addressAutocompleteState.activeIndex = -1;
+      }
+    }
+
+    function renderAddressSuggestionState(message) {
+      const list = document.getElementById("addressSuggestions");
+      addressAutocompleteState.results = [];
+      addressAutocompleteState.activeIndex = -1;
+      const stateMessage = document.createElement("p");
+      stateMessage.className = "address-suggestion-state";
+      stateMessage.textContent = message;
+      list.replaceChildren(stateMessage);
+      setAddressSuggestionsOpen(true);
+    }
+
+    function renderAddressSuggestions(results) {
+      const list = document.getElementById("addressSuggestions");
+      addressAutocompleteState.results = results;
+      addressAutocompleteState.activeIndex = -1;
+      if (!results.length) {
+        renderAddressSuggestionState("No encontramos una dirección exacta.");
+        return;
+      }
+
+      list.replaceChildren(...results.map((result, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "address-suggestion";
+        button.id = `address-suggestion-${index}`;
+        button.dataset.index = String(index);
+        button.setAttribute("role", "option");
+        button.setAttribute("aria-selected", "false");
+
+        const icon = document.createElement("i");
+        icon.dataset.lucide = "map-pin";
+        const copy = document.createElement("span");
+        const address = document.createElement("strong");
+        const commune = document.createElement("span");
+        address.textContent = result.address;
+        commune.textContent = result.commune;
+        copy.append(address, commune);
+        button.append(icon, copy);
+        return button;
+      }));
+      setAddressSuggestionsOpen(true);
+      refreshIcons();
+    }
+
+    function updateActiveAddressSuggestion(index) {
+      const results = addressAutocompleteState.results;
+      if (!results.length) {
+        return;
+      }
+      const nextIndex = (index + results.length) % results.length;
+      addressAutocompleteState.activeIndex = nextIndex;
+      document.querySelectorAll(".address-suggestion").forEach((option, optionIndex) => {
+        const active = optionIndex === nextIndex;
+        option.classList.toggle("active", active);
+        option.setAttribute("aria-selected", String(active));
+        if (active) {
+          option.scrollIntoView({ block: "nearest" });
+        }
+      });
+      document.getElementById("patientAddress")
+        .setAttribute("aria-activedescendant", `address-suggestion-${nextIndex}`);
+    }
+
+    function selectAddressSuggestion(index) {
+      const result = addressAutocompleteState.results[index];
+      if (!result) {
+        return;
+      }
+      const addressInput = document.getElementById("patientAddress");
+      const communeInput = document.getElementById("patientCommune");
+      addressInput.value = result.address;
+      addressInput.dataset.verifiedAddress = normalizeSearchText(result.address);
+      addressInput.dataset.route = result.route;
+      addressInput.dataset.streetNumber = result.streetNumber;
+      addressInput.setCustomValidity("");
+      communeInput.value = result.commune;
+      communeInput.dataset.autofilledFromAddress = "true";
+      communeInput.setCustomValidity("");
+      setAddressSuggestionsOpen(false);
+      addressInput.focus();
+    }
+
+    function scheduleAddressSearch(value) {
+      window.clearTimeout(addressAutocompleteState.timer);
+      const query = String(value || "").trim();
+      if (!isValidStreetAddress(query)) {
+        setAddressSuggestionsOpen(false);
+        return;
+      }
+
+      addressAutocompleteState.timer = window.setTimeout(async () => {
+        renderAddressSuggestionState("Buscando direcciones...");
+        try {
+          const results = await fetchAddressSuggestions(query);
+          if (normalizeSearchText(document.getElementById("patientAddress").value) !== normalizeSearchText(query)) {
+            return;
+          }
+          renderAddressSuggestions(results);
+        } catch (error) {
+          if (error && error.name === "AbortError") {
+            return;
+          }
+          renderAddressSuggestionState("No pudimos consultar direcciones.");
+        }
+      }, 450);
+    }
+
+    function bindAddressAutocomplete() {
+      const container = document.getElementById("addressAutocomplete");
+      const input = document.getElementById("patientAddress");
+      const list = document.getElementById("addressSuggestions");
+      const communeInput = document.getElementById("patientCommune");
+
+      input.addEventListener("input", (event) => {
+        const normalized = normalizeSearchText(event.target.value);
+        if (event.target.dataset.verifiedAddress !== normalized) {
+          delete event.target.dataset.verifiedAddress;
+          delete event.target.dataset.route;
+          delete event.target.dataset.streetNumber;
+          if (communeInput.dataset.autofilledFromAddress === "true") {
+            communeInput.value = "";
+            delete communeInput.dataset.autofilledFromAddress;
+          }
+        }
+        event.target.setCustomValidity("");
+        scheduleAddressSearch(event.target.value);
+      });
+      input.addEventListener("keydown", (event) => {
+        if (list.hidden) {
+          return;
+        }
+        if (event.key === "ArrowDown") {
+          event.preventDefault();
+          updateActiveAddressSuggestion(addressAutocompleteState.activeIndex + 1);
+        } else if (event.key === "ArrowUp") {
+          event.preventDefault();
+          updateActiveAddressSuggestion(addressAutocompleteState.activeIndex - 1);
+        } else if (event.key === "Enter" && addressAutocompleteState.activeIndex >= 0) {
+          event.preventDefault();
+          selectAddressSuggestion(addressAutocompleteState.activeIndex);
+        } else if (event.key === "Escape") {
+          setAddressSuggestionsOpen(false);
+        }
+      });
+      list.addEventListener("pointerdown", (event) => event.preventDefault());
+      list.addEventListener("click", (event) => {
+        const option = event.target.closest(".address-suggestion");
+        if (option) {
+          selectAddressSuggestion(Number(option.dataset.index));
+        }
+      });
+      communeInput.addEventListener("input", () => {
+        delete communeInput.dataset.autofilledFromAddress;
+      });
+      document.addEventListener("click", (event) => {
+        if (!container.contains(event.target)) {
+          setAddressSuggestionsOpen(false);
+        }
+      });
+    }
+
+    function validatePatientFields() {
+      const rutInput = document.getElementById("patientRut");
+      const phoneInput = document.getElementById("patientPhone");
+      const addressInput = document.getElementById("patientAddress");
+      const communeInput = document.getElementById("patientCommune");
+      rutInput.setCustomValidity(isValidChileanRut(rutInput.value) ? "" : "Ingresa un RUT chileno v\u00e1lido.");
+      phoneInput.setCustomValidity(isValidWhatsapp(phoneInput.value) ? "" : "Ingresa un WhatsApp chileno v\u00e1lido.");
+      addressInput.setCustomValidity(
+        isValidStreetAddress(addressInput.value)
+          && addressInput.dataset.verifiedAddress === normalizeSearchText(addressInput.value)
+          ? ""
+          : "Selecciona una direcci\u00f3n de las sugerencias."
+      );
+      const commune = canonicalCommune(communeInput.value);
+      communeInput.setCustomValidity(commune ? "" : "Selecciona una comuna de la lista.");
+      if (commune) {
+        communeInput.value = commune;
+      }
+    }
+
+    function getPatientData() {
+      return {
+        name: document.getElementById("patientName").value.trim(),
+        rut: document.getElementById("patientRut").value.trim(),
+        email: document.getElementById("patientEmail").value.trim(),
+        phone: document.getElementById("patientPhone").value.trim(),
+        address: document.getElementById("patientAddress").value.trim(),
+        commune: document.getElementById("patientCommune").value.trim(),
+        addressRoute: document.getElementById("patientAddress").dataset.route || "",
+        addressStreetNumber: document.getElementById("patientAddress").dataset.streetNumber || ""
+      };
+    }
+
+    function createBookingPayload() {
+      const service = getService();
+      const therapist = getTherapist();
+      const hour = String(getSelectedHour()).padStart(2, "0");
+
+      return {
+        therapistId: therapist.id,
+        serviceId: integrationServiceIdFor(therapist.id, service.id, state.mode),
+        service: textFromHtml(service.name),
+        mode: state.mode,
+        date: state.dayId,
+        hour,
+        termsAccepted: document.getElementById("termsAccepted").checked,
+        patient: getPatientData()
+      };
+    }
+
+    function bookingConfirmationData(payload, result, status) {
+      const therapist = getTherapist();
+      const service = getService();
+      return {
+        status,
+        service: service.integrationServiceId ? payload.service : (result.serviceName || payload.service),
+        therapist: textFromHtml(therapist.name),
+        mode: payload.mode,
+        start: result.start || `${payload.date}T${payload.hour}:00:00`,
+        email: payload.patient.email,
+        intakeFormUrl: result.intakeFormUrl || "",
+        expiresAt: result.expiresAt || ""
+      };
+    }
+
+    function saveBookingConfirmation(payload, result, status) {
+      try {
+        sessionStorage.setItem(
+          bookingConfirmationStorageKey,
+          JSON.stringify(bookingConfirmationData(payload, result, status))
+        );
+      } catch (error) {
+        // The confirmation page still works without optional booking details.
+      }
+    }
+
+    function goToBookingConfirmation() {
+      const url = new URL(bookingConfirmationPage, window.location.href);
+      url.searchParams.set("status", "confirmed");
+      window.location.assign(url.href);
+    }
+
+    async function sendBookingToEncuadrado(payload) {
+      if (!bookingApiUrl) {
+        throw new Error("El servicio de reservas no est\u00e1 disponible en este momento.");
+      }
+
+      const response = await fetch(bookingApiUrl, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || !data.ok) {
+        throw new Error(data.message || "Encuadrado no pudo crear la reserva.");
+      }
+
+      return data;
+    }
+
+    async function loadIntegrationConfig(includeAvailability = false) {
+      if (!bookingApiUrl) {
+        return false;
+      }
+
+      try {
+        const params = new URLSearchParams({ action: includeAvailability ? "bootstrap" : "config" });
+        if (includeAvailability) {
+          const integrationServiceId = integrationServiceIdFor(
+            state.therapistId,
+            state.serviceId,
+            state.mode
+          );
+          params.set("therapistId", state.therapistId);
+          params.set("serviceId", integrationServiceId);
+          params.set("mode", state.mode);
+          params.set("from", weekDays[0].id);
+          params.set("to", weekDays[weekDays.length - 1].id);
+        }
+        const response = await fetch(`${bookingApiUrl}?${params.toString()}`);
+        const data = await response.json();
+        if (response.ok && data.ok && data.provider === "Encuadrado") {
+          integrationConfig = data;
+          const availability = data.availability;
+          if (includeAvailability
+            && availability
+            && availability.ok
+            && availability.therapistId === state.therapistId
+            && availability.serviceId === integrationServiceIdFor(
+              state.therapistId,
+              state.serviceId,
+              state.mode
+            )
+            && availability.mode === state.mode) {
+            state.durationMinutes = Number(availability.durationMinutes) || state.durationMinutes;
+            applyRemoteBusySlots(
+              state.therapistId,
+              availability.busySlots || []
+            );
+            const syncedAt = Date.now();
+            availabilityCache.set(availabilityCacheKey(), {
+              syncedAt,
+              durationMinutes: state.durationMinutes,
+              busySlots: availability.busySlots || []
+            });
+            availabilityStatus = {
+              therapistId: state.therapistId,
+              mode: state.mode,
+              status: availability.cached ? "cached" : "ready",
+              syncedAt
+            };
+            ensureOpenSelection();
+            return true;
+          }
+        }
+      } catch (error) {
+        console.warn("No se pudo cargar la configuraci\u00f3n de Encuadrado", error);
+      }
+      return false;
+    }
+
+    async function refreshRemoteAvailability() {
+      if (!bookingApiUrl) {
+        return;
+      }
+
+      const therapist = getTherapist();
+      const requestedServiceId = state.serviceId;
+      const requestedIntegrationServiceId = integrationServiceIdFor(
+        therapist.id,
+        requestedServiceId,
+        state.mode
+      );
+      const requestedMode = state.mode;
+      const cacheKey = availabilityCacheKey(therapist.id, requestedServiceId, requestedMode);
+      const cached = availabilityCache.get(cacheKey);
+      const now = Date.now();
+
+      if (cached && now - cached.syncedAt < availabilityCacheMs) {
+        state.durationMinutes = Number(cached.durationMinutes) || state.durationMinutes;
+        applyRemoteBusySlots(therapist.id, cached.busySlots);
+        setAvailabilityStatus("cached", cached.syncedAt, therapist.id, requestedMode);
+        ensureOpenSelection();
+        renderCalendar();
+        updateSummary();
+        return;
+      }
+
+      const requestId = ++availabilityRequestId;
+      setAvailabilityStatus("syncing", null, therapist.id, requestedMode);
+      renderCalendar();
+
+      const params = new URLSearchParams({
+        action: "availability",
+        therapistId: therapist.id,
+        serviceId: requestedIntegrationServiceId,
+        mode: requestedMode,
+        from: weekDays[0].id,
+        to: weekDays[weekDays.length - 1].id
+      });
+
+      try {
+        const response = await fetch(`${bookingApiUrl}?${params.toString()}`);
+        const data = await response.json();
+        if (requestId !== availabilityRequestId
+          || state.therapistId !== therapist.id
+          || state.serviceId !== requestedServiceId
+          || state.mode !== requestedMode) {
+          return;
+        }
+
+        if (!data.ok) {
+          throw new Error(data.message || "No se pudo leer disponibilidad.");
+        }
+
+        const busySlots = Array.isArray(data.busySlots) ? data.busySlots : [];
+        const durationMinutes = Number(data.durationMinutes) || state.durationMinutes;
+        const syncedAt = Date.now();
+        availabilityCache.set(cacheKey, {
+          busySlots,
+          durationMinutes,
+          syncedAt
+        });
+        state.durationMinutes = durationMinutes;
+        applyRemoteBusySlots(therapist.id, busySlots);
+        setAvailabilityStatus("ready", syncedAt, therapist.id, requestedMode);
+        ensureOpenSelection();
+        renderCalendar();
+        updateSummary();
+      } catch (error) {
+        if (requestId !== availabilityRequestId
+          || state.therapistId !== therapist.id
+          || state.serviceId !== requestedServiceId
+          || state.mode !== requestedMode) {
+          return;
+        }
+
+        setAvailabilityStatus("error", null, therapist.id, requestedMode);
+        renderCalendar();
+        updateSummary();
+        showToast("Prestaci\u00f3n no disponible", error.message, "error");
+        console.warn("No se pudo sincronizar disponibilidad de Encuadrado", error);
+      }
+    }
+
+    function showToast(title, message, type = "ok") {
+      const toast = document.getElementById("toast");
+      toast.classList.toggle("error", type === "error");
+      toast.querySelector("strong").textContent = title;
+      toast.querySelector("span").textContent = message;
+      toast.classList.add("active");
+      window.clearTimeout(window.toastTimer);
+      window.toastTimer = window.setTimeout(() => toast.classList.remove("active"), 4200);
+    }
+
+    function setConfirmLoading(isLoading) {
+      const button = document.getElementById("confirmButton");
+      button.disabled = isLoading;
+      if (isLoading) {
+        button.innerHTML = '<i data-lucide="loader-circle"></i> Conectando';
+        refreshIcons();
+      }
+    }
+
+    function updateIntegrationNote() {
+      const configured = integrationConfig && integrationConfig.apiConfigured;
+      document.getElementById("integrationNote").innerHTML = configured
+        ? "Disponibilidad y reserva gestionadas por Encuadrado."
+        : "Integraci&oacute;n con Encuadrado pendiente de configurar.";
+    }
+
+    function renderServices() {
+      const container = document.getElementById("serviceGrid");
+      container.innerHTML = services.map((service) => {
+        const available = therapists.some((therapist) => isServiceAvailableWithTherapist(service, therapist.id));
+        const detail = available
+          ? `${service.detail}${service.therapistLabel ? ` &middot; ${service.therapistLabel}` : ""}`
+          : "Pr&oacute;ximamente";
+        return `
+        <button class="service-card ${service.id === state.serviceId ? "selected" : ""} ${available ? "" : "unavailable"}" type="button" data-service="${service.id}" aria-pressed="${service.id === state.serviceId}" ${available ? "" : "disabled aria-disabled=\"true\""}>
+          <strong>${service.name}</strong>
+          <span>${detail}</span>
+          <b>${money.format(service.price)}</b>
+        </button>
+      `;
+      }).join("");
+    }
+
+    function renderTherapists() {
+      const container = document.getElementById("therapistGrid");
+      const service = getService();
+      container.innerHTML = therapists.map((therapist) => {
+        const unavailable = !isServiceAvailableWithTherapist(service, therapist.id);
+        const pendingEncuadrado = integrationConfig
+          && isBusinessServiceAvailableWithTherapist(service, therapist.id)
+          && !isIntegrationCombinationConfigured(therapist.id, service.id);
+        const statusText = therapist.status
+          || (pendingEncuadrado ? (therapist.pendingStatus || "Agenda disponible pr&oacute;ximamente") : "");
+        const status = statusText
+          ? `<small class="therapist-card-status">${statusText}</small>`
+          : "";
+        return `
+        <button class="therapist-card ${therapist.id === state.therapistId ? "selected" : ""} ${unavailable ? "unavailable" : ""} ${therapist.closed ? "closed" : ""}" type="button" data-therapist="${therapist.id}" aria-pressed="${therapist.id === state.therapistId}" ${unavailable ? "disabled aria-disabled=\"true\"" : ""}>
+          <span class="therapist-thumb"><img src="${therapist.image}" alt="" data-photo="${therapist.photo}"></span>
+          <div>
+            <strong>${therapist.name}</strong>
+            <span>${therapist.focus}</span>
+            ${status}
+          </div>
+        </button>
+      `;
+      }).join("");
+    }
+
+    function renderCalendar() {
+      const container = document.getElementById("weekCalendar");
+      const header = `
+        <div class="week-header">
+          <div class="week-corner"></div>
+          ${weekDays.map((day) => `
+            <div class="week-day">
+              <strong>${day.day}</strong>
+              <span>${day.date}</span>
+            </div>
+          `).join("")}
+        </div>
+      `;
+      const rows = hours.map((hour) => `
+        <div class="week-row">
+          <div class="time-label" data-hour="${String(hour).padStart(2, "0")}">${String(hour).padStart(2, "0")}:00</div>
+          ${weekDays.map((day) => {
+            const slotId = slotIdFor(day.id, hour);
+            const selected = state.slotId === slotId && state.dayId === day.id;
+            const booked = isBooked(day.id, slotId);
+            const past = isPastSlot(day.id, hour);
+            const checking = availabilityStatus.therapistId !== state.therapistId
+              || availabilityStatus.mode !== state.mode
+              || ["idle", "syncing"].includes(availabilityStatus.status);
+            const unavailable = availabilityStatus.therapistId === state.therapistId
+              && availabilityStatus.mode === state.mode
+              && availabilityStatus.status === "error";
+            const confirmedSelection = selected && booked && state.confirmed;
+            const disabled = booked || past || checking || unavailable;
+            const activeSelection = selected && (!disabled || confirmedSelection);
+            const label = confirmedSelection
+              ? "Reservada"
+              : booked
+                ? "Ocupado"
+                : past
+                    ? "Pasado"
+                    : checking
+                      ? "Revisando"
+                      : unavailable
+                        ? "No disponible"
+                        : "Libre";
+            return `
+              <div class="week-cell">
+                <button class="week-slot ${activeSelection ? "selected" : ""} ${booked ? "booked" : ""} ${past ? "past" : ""} ${checking ? "checking" : ""} ${unavailable ? "unavailable" : ""}" type="button" data-day="${day.id}" data-slot="${slotId}" data-booked="${booked}" data-unavailable="${disabled}" ${disabled ? "disabled" : ""} aria-pressed="${activeSelection}" aria-label="${textFromHtml(day.day)} ${day.date}, ${String(hour).padStart(2, "0")}:00, ${label}">
+                  ${label}
+                </button>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `).join("");
+
+      container.innerHTML = `
+        <div class="desktop-week">${header + rows}</div>
+      `;
+    }
+
+    function updateSummary() {
+      const service = getService();
+      const therapist = getTherapist();
+      const { day, slot } = getSlot();
+      document.getElementById("summaryService").innerHTML = service.name;
+      document.getElementById("summaryTherapist").innerHTML = therapist.name;
+      document.getElementById("summaryMode").textContent = state.mode;
+      document.getElementById("summarySlot").innerHTML = `${day.day} ${day.date}, ${slot.label}`;
+      document.getElementById("summaryPrice").textContent = money.format(service.price);
+      document.getElementById("durationPill").textContent = `${state.durationMinutes} min`;
+      updateAvailabilityLabel();
+    }
+
+    function resetConfirmation() {
+      state.confirmed = false;
+      document.getElementById("summaryState").textContent = "Reserva pendiente";
+      const badge = document.getElementById("summaryBadge");
+      badge.textContent = "Pendiente";
+      badge.className = "badge wait";
+      document.getElementById("confirmButton").innerHTML = '<i data-lucide="calendar-check"></i> Reservar hora';
+      refreshIcons();
+    }
+
+    async function confirmEncuadradoBooking() {
+      if (state.confirmed) {
+        return;
+      }
+
+      const form = document.getElementById("patientForm");
+      validatePatientFields();
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      if (!availabilityIsReady()) {
+        showToast(
+          "Espera un momento",
+          "Todav\u00eda estamos revisando la disponibilidad de Encuadrado.",
+          "error"
+        );
+        return;
+      }
+
+      if (isPastSlot(state.dayId, getSelectedHour())
+        || isBooked(state.dayId, state.slotId)) {
+        ensureOpenSelection();
+        resetConfirmation();
+        renderCalendar();
+        updateSummary();
+        showToast(
+          "Horario no disponible",
+          "Elige otra hora o cambia la modalidad.",
+          "error"
+        );
+        return;
+      }
+
+      const payload = createBookingPayload();
+      setConfirmLoading(true);
+
+      try {
+        const result = await sendBookingToEncuadrado(payload);
+        availabilityCache.clear();
+        remoteBookings[bookingKey()] = true;
+        state.confirmed = true;
+
+        if (result.requiresPayment && result.paymentUrl) {
+          saveBookingConfirmation(payload, result, "payment_pending");
+          document.getElementById("summaryState").textContent = "Pago pendiente";
+          const badge = document.getElementById("summaryBadge");
+          badge.textContent = "Por pagar";
+          badge.className = "badge wait";
+          document.getElementById("confirmButton").innerHTML = '<i data-lucide="external-link"></i> Ir al pago';
+          showToast(
+            "Hora reservada temporalmente",
+            "Te llevaremos al pago seguro de Encuadrado para confirmar."
+          );
+          renderCalendar();
+          refreshIcons();
+          window.setTimeout(() => window.location.assign(result.paymentUrl), 650);
+          return;
+        }
+
+        document.getElementById("summaryState").textContent = "Reserva confirmada";
+        const badge = document.getElementById("summaryBadge");
+        badge.textContent = "Confirmada";
+        badge.className = "badge ok";
+        document.getElementById("confirmButton").innerHTML = '<i data-lucide="check-circle"></i> Confirmada';
+        showToast(
+          "Reserva confirmada",
+          "Encuadrado enviar\u00e1 la confirmaci\u00f3n y la informaci\u00f3n de tu sesi\u00f3n."
+        );
+        saveBookingConfirmation(payload, result, "confirmed");
+        renderCalendar();
+        refreshIcons();
+        window.setTimeout(goToBookingConfirmation, 900);
+      } catch (error) {
+        showToast("No se pudo reservar", error.message, "error");
+        resetConfirmation();
+        availabilityCache.clear();
+        refreshRemoteAvailability();
+      } finally {
+        if (!state.confirmed) {
+          setConfirmLoading(false);
+        }
+      }
+    }
+
+    function refreshIcons() {
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    function bindEvents() {
+      document.addEventListener("click", (event) => {
+        const service = event.target.closest("[data-service]");
+        if (service) {
+          if (service.disabled) {
+            return;
+          }
+          state.serviceId = service.dataset.service;
+          ensureServiceTherapistCompatibility();
+          syncSelectedDuration();
+          ensureOpenSelection();
+          resetConfirmation();
+          renderServices();
+          renderTherapists();
+          renderCalendar();
+          updateSummary();
+          refreshRemoteAvailability();
+        }
+
+        const therapist = event.target.closest("[data-therapist]");
+        if (therapist) {
+          if (therapist.disabled || !isServiceAvailableWithTherapist(getService(), therapist.dataset.therapist)) {
+            return;
+          }
+          state.therapistId = therapist.dataset.therapist;
+          syncSelectedDuration();
+          ensureOpenSelection();
+          resetConfirmation();
+          renderTherapists();
+          renderCalendar();
+          updateSummary();
+          refreshRemoteAvailability();
+        }
+
+        const mode = event.target.closest("[data-mode]");
+        if (mode) {
+          state.mode = mode.dataset.mode;
+          ensureServiceTherapistCompatibility();
+          syncSelectedDuration();
+          document.querySelectorAll("[data-mode]").forEach((button) => {
+            const selected = button === mode;
+            button.classList.toggle("selected", selected);
+            button.setAttribute("aria-pressed", String(selected));
+          });
+          ensureOpenSelection();
+          resetConfirmation();
+          renderServices();
+          renderTherapists();
+          renderCalendar();
+          updateSummary();
+          refreshRemoteAvailability();
+        }
+
+        const slot = event.target.closest("[data-slot]");
+        if (slot) {
+          if (slot.disabled || slot.dataset.booked === "true" || slot.dataset.unavailable === "true") {
+            return;
+          }
+          state.dayId = slot.dataset.day;
+          state.slotId = slot.dataset.slot;
+          resetConfirmation();
+          renderCalendar();
+          updateSummary();
+        }
+
+        if (event.target.closest("#confirmButton")) {
+          confirmEncuadradoBooking();
+        }
+
+        if (event.target.closest("#refreshAvailabilityButton")) {
+          availabilityCache.clear();
+          state.confirmed = false;
+          resetConfirmation();
+          renderCalendar();
+          updateSummary();
+          refreshRemoteAvailability();
+        }
+      });
+    }
+
+    async function init() {
+      applyInitialSelectionFromUrl();
+      const initialAvailabilityLoaded = await loadIntegrationConfig(true);
+      ensureServiceTherapistCompatibility();
+      syncSelectedDuration();
+      if (!initialAvailabilityLoaded) {
+        availabilityStatus = {
+          therapistId: state.therapistId,
+          mode: state.mode,
+          status: bookingApiUrl ? "syncing" : "ready",
+          syncedAt: null
+        };
+      }
+      ensureOpenSelection();
+      renderServices();
+      renderTherapists();
+      renderCalendar();
+      updateSummary();
+      bindEvents();
+      populateAddressOptions();
+      bindAddressAutocomplete();
+      refreshIcons();
+      updateIntegrationNote();
+      if (!initialAvailabilityLoaded) {
+        refreshRemoteAvailability();
+      }
+      const rutInput = document.getElementById("patientRut");
+      const phoneInput = document.getElementById("patientPhone");
+      const communeInput = document.getElementById("patientCommune");
+      rutInput.addEventListener("input", (event) => {
+        event.target.value = formatChileanRut(event.target.value);
+        event.target.setCustomValidity("");
+      });
+      phoneInput.addEventListener("input", (event) => {
+        event.target.value = formatChileanPhone(event.target.value);
+        event.target.setCustomValidity("");
+      });
+      communeInput.addEventListener("change", (event) => {
+        const commune = canonicalCommune(event.target.value);
+        if (commune) {
+          event.target.value = commune;
+        }
+        event.target.setCustomValidity("");
+      });
+      ["patientAddress", "patientCommune"].forEach((inputId) => {
+        document.getElementById(inputId).addEventListener("input", (event) => event.target.setCustomValidity(""));
+      });
+      window.setTimeout(refreshIcons, 250);
+    }
+
+    init();
+  </script>
+</body>
+</html>

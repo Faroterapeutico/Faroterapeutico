@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva confirmada | Faro Terapéutico</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/webp" href="images/favicon-32x32.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <style>
+    :root {
+      --ink: #17252b;
+      --ink-soft: #43515a;
+      --ink-muted: #6c7780;
+      --paper: #f3f5f4;
+      --surface: #ffffff;
+      --line: rgba(23, 37, 43, 0.13);
+      --green: #08734e;
+      --green-soft: #e7f3ed;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Poppins", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(100% - 32px, 760px);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 28px 0 40px;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      width: fit-content;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .brand-mark img {
+      width: 29px;
+      height: 29px;
+      display: block;
+      object-fit: contain;
+    }
+
+    main {
+      display: grid;
+      place-items: center;
+      padding: 36px 0;
+    }
+
+    .confirmation {
+      width: min(100%, 620px);
+      padding: 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 20px 50px -40px rgba(23, 37, 43, 0.42);
+    }
+
+    .result-icon {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .result-icon svg {
+      width: 31px;
+      height: 31px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(38px, 7vw, 54px);
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 16px 0 28px;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    .summary {
+      margin: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .summary-row {
+      min-height: 56px;
+      display: grid;
+      grid-template-columns: 122px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    dt {
+      color: var(--ink-muted);
+      font-size: 13px;
+    }
+
+    dd {
+      min-width: 0;
+      margin: 0;
+      overflow-wrap: anywhere;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .email-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 24px 0;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .email-note svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+      margin-top: 1px;
+      color: var(--green);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .button {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .button svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .button-primary {
+      color: #ffffff;
+      border-color: var(--green);
+      background: var(--green);
+    }
+
+    .button-secondary {
+      color: var(--ink);
+      background: var(--surface);
+    }
+
+    .managed-by {
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-muted);
+      font-size: 12px;
+    }
+
+    .managed-by img {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+      border-radius: 5px;
+      object-fit: contain;
+    }
+
+    .managed-by strong {
+      color: var(--ink-soft);
+      font-weight: 600;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 20px, 760px);
+        padding-top: 16px;
+      }
+
+      main {
+        align-items: start;
+        padding: 22px 0 12px;
+      }
+
+      .confirmation {
+        padding: 24px 20px;
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+
+      .result-icon {
+        margin-bottom: 18px;
+      }
+
+      .email-note {
+        margin: 20px 0;
+      }
+
+      .managed-by {
+        margin-top: 18px;
+        padding-top: 14px;
+      }
+
+      .summary-row {
+        min-height: 51px;
+        grid-template-columns: 92px minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <a class="brand" href="agendar.html" aria-label="Volver al agendamiento">
+      <span class="brand-mark" aria-hidden="true">
+        <img src="images/favicon-32x32.webp" alt="">
+      </span>
+      <span>Faro Terapéutico</span>
+    </a>
+
+    <main>
+      <section class="confirmation" aria-labelledby="confirmationTitle">
+        <div class="result-icon" aria-hidden="true">
+          <i data-lucide="circle-check-big"></i>
+        </div>
+        <h1 id="confirmationTitle">Tu hora quedó confirmada</h1>
+        <p class="intro" id="confirmationIntro">
+          La reserva fue registrada correctamente en Encuadrado.
+        </p>
+
+        <dl class="summary" id="bookingSummary">
+          <div class="summary-row" data-field="service">
+            <dt>Servicio</dt>
+            <dd id="serviceValue"></dd>
+          </div>
+          <div class="summary-row" data-field="therapist">
+            <dt>Profesional</dt>
+            <dd id="therapistValue"></dd>
+          </div>
+          <div class="summary-row" data-field="mode">
+            <dt>Modalidad</dt>
+            <dd id="modeValue"></dd>
+          </div>
+          <div class="summary-row" data-field="start">
+            <dt>Fecha</dt>
+            <dd id="startValue"></dd>
+          </div>
+        </dl>
+
+        <p class="email-note" id="emailNote">
+          <i data-lucide="mail-check"></i>
+          <span id="emailMessage">Recibirás los detalles de tu sesión por correo.</span>
+        </p>
+
+        <div class="actions">
+          <a class="button button-primary" id="intakeButton" href="#" target="_blank" rel="noopener" hidden>
+            <i data-lucide="clipboard-list"></i>
+            Completar formulario
+          </a>
+          <a class="button button-secondary" href="agendar.html">
+            <i data-lucide="arrow-left"></i>
+            Volver al inicio
+          </a>
+        </div>
+
+        <div class="managed-by">
+          <img src="images/isapre-logos/logo-encuadrado.webp" alt="">
+          <span>Confirmación gestionada por <strong>Encuadrado</strong></span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const confirmationStorageKey = "faro-booking-confirmation-v1";
+    const query = new URLSearchParams(window.location.search);
+
+    function readConfirmation() {
+      try {
+        return JSON.parse(sessionStorage.getItem(confirmationStorageKey) || "{}");
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function formatBookingDate(value) {
+      if (!value) {
+        return "";
+      }
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) {
+        return "";
+      }
+      return new Intl.DateTimeFormat("es-CL", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "America/Santiago"
+      }).format(date);
+    }
+
+    function renderConfirmation() {
+      const booking = readConfirmation();
+      const status = query.get("status") || booking.status || "confirmed";
+      const values = {
+        service: booking.service || "",
+        therapist: booking.therapist || "",
+        mode: booking.mode || "",
+        start: formatBookingDate(booking.start)
+      };
+
+      Object.entries(values).forEach(([field, value]) => {
+        const row = document.querySelector(`[data-field="${field}"]`);
+        const output = document.getElementById(`${field}Value`);
+        row.hidden = !value;
+        output.textContent = value;
+      });
+
+      if (status === "payment_pending") {
+        document.getElementById("confirmationTitle").textContent = "Tu hora está reservada";
+        document.getElementById("confirmationIntro").textContent =
+          "Completa el pago en Encuadrado para confirmar definitivamente.";
+      }
+
+      if (booking.email) {
+        document.getElementById("emailMessage").textContent =
+          `Enviaremos los detalles de tu sesión a ${booking.email}.`;
+      }
+
+      if (booking.intakeFormUrl) {
+        const intakeButton = document.getElementById("intakeButton");
+        intakeButton.href = booking.intakeFormUrl;
+        intakeButton.hidden = false;
+      }
+
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", renderConfirmation);
+  </script>
+</body>
+</html>
