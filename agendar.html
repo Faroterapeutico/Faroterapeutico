@@ -878,8 +878,7 @@
     }
 
     .primary-action,
-    .secondary-action,
-    .ghost-action {
+    .secondary-action {
       min-height: 46px;
       border-radius: 8px;
       display: inline-flex;
@@ -905,15 +904,8 @@
       border-color: rgba(91, 124, 153, 0.18);
     }
 
-    .ghost-action {
-      color: var(--ink-soft);
-      background: var(--surface);
-      border-color: var(--line-soft);
-    }
-
     .primary-action:hover,
-    .secondary-action:hover,
-    .ghost-action:hover {
+    .secondary-action:hover {
       transform: translateY(-2px);
     }
 
@@ -924,8 +916,7 @@
     }
 
     .primary-action svg,
-    .secondary-action svg,
-    .ghost-action svg {
+    .secondary-action svg {
       width: 18px;
       height: 18px;
     }
@@ -1619,9 +1610,6 @@
             <button class="primary-action" type="button" id="confirmButton">
               <i data-lucide="calendar-check"></i>
               Reservar hora
-            </button>
-            <button class="ghost-action" type="button" id="refreshAvailabilityButton" style="width:100%;margin-top:10px;">
-              Actualizar horarios
             </button>
             <p class="tiny-note" id="integrationNote">Disponibilidad y reserva gestionadas por Encuadrado.</p>
           </aside>
@@ -2939,14 +2927,6 @@
           confirmEncuadradoBooking();
         }
 
-        if (event.target.closest("#refreshAvailabilityButton")) {
-          availabilityCache.clear();
-          state.confirmed = false;
-          resetConfirmation();
-          renderCalendar();
-          updateSummary();
-          refreshRemoteAvailability();
-        }
       });
     }
 
