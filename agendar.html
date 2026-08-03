@@ -201,29 +201,54 @@
       height: 16px;
     }
 
-    .top-whatsapp-link {
+    .whatsapp-guidance {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin: -4px 0 16px;
+      padding: 11px 14px;
+      border: 1px solid rgba(8, 115, 78, 0.16);
+      border-radius: 8px;
+      background: rgba(8, 115, 78, 0.055);
+    }
+
+    .whatsapp-guidance-copy {
+      min-width: 0;
+      color: var(--ink-soft);
+      font-size: 0.8rem;
+      line-height: 1.45;
+    }
+
+    .whatsapp-guidance-copy strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .whatsapp-guidance-link {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      min-height: 40px;
-      padding: 8px 3px;
+      justify-content: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 8px 12px;
+      border: 1px solid rgba(8, 115, 78, 0.24);
+      border-radius: 7px;
       color: var(--green);
-      font-size: 0.76rem;
-      font-weight: 500;
+      background: #fff;
+      font-size: 0.78rem;
+      font-weight: 600;
       text-decoration: none;
       white-space: nowrap;
-      opacity: 0.82;
     }
 
-    .top-whatsapp-link:hover {
-      opacity: 1;
-      text-decoration: underline;
-      text-underline-offset: 3px;
+    .whatsapp-guidance-link:hover {
+      background: rgba(8, 115, 78, 0.07);
     }
 
-    .top-whatsapp-link svg {
-      width: 15px;
-      height: 15px;
+    .whatsapp-guidance-link svg {
+      width: 16px;
+      height: 16px;
     }
 
     .trust-rail {
@@ -1223,6 +1248,17 @@
         gap: 8px;
       }
 
+      .whatsapp-guidance {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+      }
+
+      .whatsapp-guidance-link {
+        width: 100%;
+      }
+
       .service-grid,
       .therapist-grid,
       .form-grid {
@@ -1589,12 +1625,19 @@
           <div class="top-actions">
             <span class="status-pill"><i data-lucide="clock"></i> <span id="durationPill">50 min</span></span>
             <span class="status-pill"><i data-lucide="badge-dollar-sign"></i> <span id="pricePill">$30.000</span></span>
-            <a class="top-whatsapp-link" data-whatsapp-booking href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20hora." target="_blank" rel="noopener noreferrer">
-              <i data-lucide="message-circle"></i>
-              Agendar por WhatsApp
-            </a>
           </div>
         </header>
+
+        <div class="whatsapp-guidance">
+          <div class="whatsapp-guidance-copy">
+            <strong>&iquest;Prefieres agendar con ayuda?</strong>
+            Tambi&eacute;n puedes escribirnos directamente por WhatsApp y te ayudaremos a encontrar una hora.
+          </div>
+          <a class="whatsapp-guidance-link" data-whatsapp-booking href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20hora." target="_blank" rel="noopener noreferrer">
+            <i data-lucide="message-circle"></i>
+            Escribir por WhatsApp
+          </a>
+        </div>
 
         <div class="trust-rail" aria-label="Respaldo de la reserva">
           <div class="trust-item">
