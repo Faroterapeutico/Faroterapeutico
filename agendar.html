@@ -987,6 +987,21 @@
       border-color: rgba(91, 124, 153, 0.18);
     }
 
+    .whatsapp-action {
+      width: 100%;
+      margin-top: 9px;
+      color: var(--green);
+      background: #fff;
+      border-color: rgba(8, 115, 78, 0.28);
+      font-size: 0.82rem;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .whatsapp-action:hover {
+      background: rgba(8, 115, 78, 0.06);
+    }
+
     .primary-action:hover,
     .secondary-action:hover {
       transform: translateY(-2px);
@@ -1713,6 +1728,10 @@
               <i data-lucide="calendar-check"></i>
               Reservar hora
             </button>
+            <a class="secondary-action whatsapp-action" id="whatsappBookingButton" href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20hora." target="_blank" rel="noopener noreferrer">
+              <i data-lucide="message-circle"></i>
+              Tambi&eacute;n puedes agendar por WhatsApp
+            </a>
             <p class="tiny-note" id="integrationNote">Disponibilidad y reserva gestionadas por Encuadrado.</p>
           </aside>
         </div>
@@ -3117,6 +3136,10 @@
 
         if (event.target.closest("#confirmButton")) {
           confirmEncuadradoBooking();
+        }
+
+        if (event.target.closest("#whatsappBookingButton")) {
+          trackBookingStep("whatsapp_selected");
         }
 
       });
