@@ -12,6 +12,34 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+      if (arguments[0] === "event" && window.loadGtag) {
+        window.loadGtag();
+      }
+    }
+    window.loadGtag = function loadGtag() {
+      if (window._gtagLoaded) {
+        return;
+      }
+      window._gtagLoaded = true;
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836";
+      script.async = true;
+      document.head.appendChild(script);
+      gtag("js", new Date());
+      gtag("config", "GT-5TJMG836", {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+      gtag("config", "AW-17584631597", {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+    };
+  </script>
   <style>
     :root {
       --ink: #17252b;
@@ -1736,6 +1764,7 @@
       syncedAt: null
     };
     let availabilityRequestId = 0;
+    let formStartedTracked = false;
     const addressSearchCache = new Map();
     const addressAutocompleteState = {
       timer: null,
@@ -1808,6 +1837,24 @@
       { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
       { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" }
     ];
+
+    function trackBookingStep(step, extra = {}) {
+      if (isLocalPreview || typeof window.gtag !== "function") {
+        return;
+      }
+      window.gtag("event", "booking_funnel", {
+        funnel_name: "booking",
+        step,
+        source: state.source || "direct",
+        service_code: state.serviceId,
+        therapist_code: state.therapistId,
+        mode: state.mode.toLowerCase(),
+        week_offset: weekOffset,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+        ...extra
+      });
+    }
 
     function applyInitialSelectionFromUrl() {
       const params = new URLSearchParams(window.location.search);
@@ -2920,6 +2967,7 @@
       }
 
       const payload = createBookingPayload();
+      trackBookingStep("booking_submit");
       setConfirmLoading(true);
 
       try {
@@ -2928,6 +2976,7 @@
         remoteBookings[bookingKey()] = true;
 
         if (result.requiresPayment && result.paymentUrl) {
+          trackBookingStep("payment_redirect");
           state.confirmed = true;
           saveBookingConfirmation(payload, result, "payment_pending");
           document.getElementById("summaryState").textContent = "Pago pendiente";
@@ -2950,6 +2999,15 @@
         }
 
         state.confirmed = true;
+        trackBookingStep("booking_confirmed");
+        if (!isLocalPreview && typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            currency: "CLP",
+            value: getService().price,
+            allow_google_signals: false,
+            allow_ad_personalization_signals: false
+          });
+        }
         document.getElementById("summaryState").textContent = "Reserva confirmada";
         const badge = document.getElementById("summaryBadge");
         badge.textContent = "Confirmada";
@@ -2964,6 +3022,7 @@
         refreshIcons();
         window.setTimeout(goToBookingConfirmation, 900);
       } catch (error) {
+        trackBookingStep("booking_error");
         showToast("No se pudo reservar", error.message, "error");
         resetConfirmation();
         availabilityCache.clear();
@@ -2990,6 +3049,7 @@
           }
           state.serviceId = service.dataset.service;
           ensureServiceTherapistCompatibility();
+          trackBookingStep("service_selected");
           syncSelectedDuration();
           ensureOpenSelection();
           resetConfirmation();
@@ -3006,6 +3066,7 @@
             return;
           }
           state.therapistId = therapist.dataset.therapist;
+          trackBookingStep("therapist_selected");
           syncSelectedDuration();
           ensureOpenSelection();
           resetConfirmation();
@@ -3019,6 +3080,7 @@
         if (mode) {
           state.mode = mode.dataset.mode;
           ensureServiceTherapistCompatibility();
+          trackBookingStep("mode_selected");
           syncSelectedDuration();
           syncModeControls();
           ensureOpenSelection();
@@ -3037,6 +3099,7 @@
           }
           state.dayId = slot.dataset.day;
           state.slotId = slot.dataset.slot;
+          trackBookingStep("time_selected");
           resetConfirmation();
           renderCalendar();
           updateSummary();
@@ -3044,10 +3107,12 @@
 
         if (event.target.closest("#previousWeekButton")) {
           changeWeek(-1);
+          trackBookingStep("week_changed", { direction: "previous" });
         }
 
         if (event.target.closest("#nextWeekButton")) {
           changeWeek(1);
+          trackBookingStep("week_changed", { direction: "next" });
         }
 
         if (event.target.closest("#confirmButton")) {
@@ -3059,6 +3124,7 @@
 
     async function init() {
       applyInitialSelectionFromUrl();
+      trackBookingStep("scheduler_view");
       syncModeControls();
       syncWeekNavigation();
       const initialAvailabilityLoaded = await loadIntegrationConfig(true);
@@ -3080,6 +3146,12 @@
       bindEvents();
       populateAddressOptions();
       bindAddressAutocomplete();
+      document.getElementById("patientForm").addEventListener("input", () => {
+        if (!formStartedTracked) {
+          formStartedTracked = true;
+          trackBookingStep("form_started");
+        }
+      });
       refreshIcons();
       updateIntegrationNote();
       if (!initialAvailabilityLoaded) {
