@@ -672,6 +672,30 @@ body.boutique.page-fonasa #hero {
     color: #fff;
     border-color: var(--wa-green-dark);
 }
+.hero-booking-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: min(100%, 600px);
+}
+.hero-booking-actions .cta {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+    padding-inline: 1.25rem;
+}
+.hero-booking-actions .hero-human-help {
+    background: var(--wa-green-dark);
+    color: #fff;
+}
+.hero-booking-actions .hero-human-help:hover {
+    background: #0b6645;
+}
+@media (max-width: 600px) {
+    .hero-booking-actions {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* ========== 8. Tarjeta terapeuta (equipo) ========== */
 .therapist-grid {

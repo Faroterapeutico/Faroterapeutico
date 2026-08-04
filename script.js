@@ -274,16 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const label = el.textContent.trim() || 'Encuadrado';
                 const page = window.location.pathname.replace(/\//g, '').replace('.html', '') || 'inicio';
-                if (el.matches('.encuadrado-inline-link')) {
-                    this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
-                    return;
-                }
-                if (el.matches('[data-encuadrado-center="true"]')) {
-                    this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
-                }
-                this.trackEvent('agendar_encuadrado', 'Encuadrado', `${label} — ${page}`);
-                window.gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
-                if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Encuadrado — ${page}` }, { eventID: crypto.randomUUID() });
+                this.trackEvent('clic_centro_encuadrado', 'Encuadrado', `${label} — ${page}`);
             });
 
             // Seguimiento de todos los clics en enlaces de Calendly
@@ -298,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     const therapist = el.dataset.therapist;
                     const therapistName = therapist ? therapist.charAt(0).toUpperCase() + therapist.slice(1) : 'General';
-                    window.gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
                     if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: `Agendar con ${therapistName}` }, { eventID: crypto.randomUUID() });
                 }
             });

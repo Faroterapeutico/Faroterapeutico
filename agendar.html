@@ -1947,6 +1947,23 @@
       });
     }
 
+    function trackBookingConversion(bookingStatus) {
+      if (isLocalPreview || typeof window.gtag !== "function") {
+        return;
+      }
+      window.gtag("event", "agendar_encuadrado", {
+        currency: "CLP",
+        value: getService().price,
+        source: state.source || "direct",
+        service_code: state.serviceId,
+        therapist_code: state.therapistId,
+        mode: state.mode.toLowerCase(),
+        booking_status: bookingStatus,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+    }
+
     function applyInitialSelectionFromUrl() {
       const params = new URLSearchParams(window.location.search);
       const requestedService = (params.get("service") || "").trim().toLowerCase();
@@ -3068,6 +3085,7 @@
 
         if (result.requiresPayment && result.paymentUrl) {
           trackBookingStep("payment_redirect");
+          trackBookingConversion("reserved_payment_pending");
           state.confirmed = true;
           saveBookingConfirmation(payload, result, "payment_pending");
           document.getElementById("summaryState").textContent = "Pago pendiente";
@@ -3091,6 +3109,7 @@
 
         state.confirmed = true;
         trackBookingStep("booking_confirmed");
+        trackBookingConversion("confirmed");
         if (!isLocalPreview && typeof window.gtag === "function") {
           window.gtag("event", "generate_lead", {
             currency: "CLP",

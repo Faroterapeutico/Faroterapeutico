@@ -1329,13 +1329,6 @@
       if (t.encuadrado) {
         agendaBtn.href = t.encuadrado;
         agendaBtn.style.display = 'flex';
-        agendaBtn.onclick = function() {
-          if (typeof gtag === 'function') {
-            gtag('event', 'agendar_encuadrado', { event_category: 'Encuadrado', event_label: 'Evaluacion — evaluacion' });
-            gtag('event', 'conversion', { 'send_to': 'AW-17584631597/g_YJCL_h_vQZEJq29_oq' });
-          }
-          if (typeof fbq === 'function') fbq('track', 'Schedule', { content_name: 'Encuadrado — evaluacion' }, { eventID: crypto.randomUUID() });
-        };
       } else {
         agendaBtn.style.display = 'none';
       }
