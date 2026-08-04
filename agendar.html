@@ -3241,17 +3241,14 @@
       trackBookingStep("scheduler_view");
       syncModeControls();
       syncWeekNavigation();
-      const initialAvailabilityLoaded = await loadIntegrationConfig(true);
+      availabilityStatus = {
+        therapistId: state.therapistId,
+        mode: state.mode,
+        status: bookingApiUrl ? "syncing" : "ready",
+        syncedAt: null
+      };
       ensureServiceTherapistCompatibility();
       syncSelectedDuration();
-      if (!initialAvailabilityLoaded) {
-        availabilityStatus = {
-          therapistId: state.therapistId,
-          mode: state.mode,
-          status: bookingApiUrl ? "syncing" : "ready",
-          syncedAt: null
-        };
-      }
       ensureOpenSelection();
       renderServices();
       renderTherapists();
@@ -3267,10 +3264,6 @@
         }
       });
       refreshIcons();
-      updateIntegrationNote();
-      if (!initialAvailabilityLoaded) {
-        refreshRemoteAvailability();
-      }
       const rutInput = document.getElementById("patientRut");
       const phoneInput = document.getElementById("patientPhone");
       const communeInput = document.getElementById("patientCommune");
@@ -3293,6 +3286,20 @@
         document.getElementById(inputId).addEventListener("input", (event) => event.target.setCustomValidity(""));
       });
       window.setTimeout(refreshIcons, 250);
+
+      const initialAvailabilityLoaded = await loadIntegrationConfig(true);
+      ensureServiceTherapistCompatibility();
+      syncSelectedDuration();
+      ensureOpenSelection();
+      renderServices();
+      renderTherapists();
+      renderCalendar();
+      updateSummary();
+      updateIntegrationNote();
+      refreshIcons();
+      if (!initialAvailabilityLoaded) {
+        refreshRemoteAvailability();
+      }
     }
 
     init();
