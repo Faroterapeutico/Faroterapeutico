@@ -1823,7 +1823,7 @@
   <script>
     const state = {
       serviceId: "individual",
-      therapistId: "aaron",
+      therapistId: "isidora",
       mode: "Presencial",
       durationMinutes: 50,
       dayId: "",
@@ -1923,10 +1923,10 @@
     );
 
     const therapists = [
+      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" },
       { id: "aaron", name: "Aaron Mill&aacute;n Sol&iacute;s", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/aaron-580.webp", photo: "aaron" },
-      { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" },
       { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
-      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" }
+      { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" }
     ];
 
     function trackBookingStep(step, extra = {}) {
