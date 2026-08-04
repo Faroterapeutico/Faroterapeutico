@@ -2929,8 +2929,12 @@ body.boutique .main-nav.active + .hamburger-menu {
 @media (max-width: 640px) {
     .wa-banner { flex-direction: row; gap: 10px; padding: 10px 16px; justify-content: center; transform: none; animation: none; }
     .wa-banner-text { display: none; }
-    .wa-banner-btn { font-size: .86rem; padding: 10px 18px; }
+    .wa-banner-btn { font-size: .86rem; padding: 10px 14px; }
     .wa-banner-save { font-size: .78rem; padding: 5px 10px; opacity: 1; }
+}
+
+@media (max-width: 380px) {
+    .wa-banner-save { display: none; }
 }
 
 /* Hero typography - lectura mas clara */

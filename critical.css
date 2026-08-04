@@ -901,13 +901,19 @@ body.boutique .reveal-up.revealed {
 
     .wa-banner-btn {
         font-size: .86rem;
-        padding: 10px 18px;
+        padding: 10px 14px;
     }
 
     .wa-banner-save {
         font-size: .78rem;
         padding: 5px 10px;
         opacity: 1;
+    }
+}
+
+@media (max-width: 380px) {
+    .wa-banner-save {
+        display: none;
     }
 }
 
