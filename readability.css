@@ -287,6 +287,96 @@ body .consent-field {
   line-height: 1.6;
 }
 
+/* Reseñas compactas: conserva el contenido y reduce la altura del bloque. */
+body.boutique #testimonios {
+  padding: 2.5rem 0 !important;
+}
+
+body.boutique #testimonios .testimonios-rating-bar {
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+body.boutique #testimonios .testimonios-grid {
+  gap: 1rem;
+}
+
+body.boutique #testimonios .testimonio-card,
+body.boutique #testimonios .testimonios-grid > blockquote {
+  padding: 1.2rem !important;
+}
+
+body.boutique #testimonios .testimonio-stars,
+body.boutique #testimonios .testimonios-grid > blockquote > div:first-child {
+  margin-bottom: 0.5rem !important;
+}
+
+body.boutique #testimonios .testimonio-card p,
+body.boutique #testimonios .testimonios-grid > blockquote p {
+  margin-bottom: 0.75rem !important;
+  font-size: 0.94rem !important;
+  line-height: 1.58 !important;
+}
+
+body.boutique #testimonios .testimonio-card footer,
+body.boutique #testimonios .testimonios-grid > blockquote footer {
+  font-size: 0.76rem !important;
+  line-height: 1.4 !important;
+}
+
+body.boutique .reviews-boutique {
+  padding: 3rem 1.5rem;
+}
+
+body.boutique .reviews-summary {
+  margin-bottom: 1.75rem;
+}
+
+body.boutique .reviews-rating-big {
+  font-size: 3rem;
+}
+
+body.boutique .reviews-stars {
+  margin: 0.35rem 0;
+}
+
+body.boutique .reviews-source {
+  margin-top: 0.45rem;
+  line-height: 1.5;
+}
+
+body.boutique .reviews-grid,
+body.boutique .reviews-grid.two-items {
+  gap: 1rem;
+}
+
+body.boutique .review-card-boutique {
+  padding: 1.25rem;
+}
+
+body.boutique .review-card-stars {
+  margin-bottom: 0.55rem;
+}
+
+body.boutique .review-card-text {
+  margin-bottom: 0.85rem;
+  font-family: var(--sans);
+  font-size: 0.94rem;
+  font-style: normal;
+  line-height: 1.58;
+}
+
+body.boutique .review-card-author {
+  gap: 0.7rem;
+  padding-top: 0.75rem;
+}
+
+body.boutique .review-card-avatar {
+  width: 36px;
+  height: 36px;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
   body h1,
   body.boutique h1 {
@@ -311,6 +401,32 @@ body .consent-field {
   body .article-body-b,
   body .profile-body {
     line-height: 1.8 !important;
+  }
+
+  body.boutique #testimonios .testimonios-grid,
+  body.boutique .reviews-grid,
+  body.boutique .reviews-grid.two-items {
+    display: grid;
+    grid-template-columns: none !important;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(82%, 1fr);
+    gap: 0.8rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 0 0.65rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scrollbar-width: thin;
+  }
+
+  body.boutique #testimonios .testimonios-grid > *,
+  body.boutique .reviews-grid > * {
+    scroll-snap-align: start;
+  }
+
+  body.boutique .reviews-boutique {
+    padding: 2.5rem 1rem;
   }
 }
 
