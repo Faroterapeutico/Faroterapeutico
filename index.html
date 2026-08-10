@@ -880,6 +880,10 @@
             padding: 3rem 0 !important;
         }
 
+        body.boutique.page-index #hero {
+            padding: calc(var(--header-height) + 2rem) 1rem 2.5rem !important;
+        }
+
         body.boutique #hero .eyebrow {
             font-size: 0.76rem;
         }
@@ -944,9 +948,9 @@
     }
 
     @media (max-width: 600px) {
-        body.boutique #hero {
+        body.boutique.page-index #hero {
             min-height: 100svh;
-            padding: calc(var(--header-height) + 3rem) 1rem 2.5rem;
+            padding: calc(var(--header-height) + 3rem) 1rem 2.5rem !important;
         }
 
         .hero-price {
