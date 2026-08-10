@@ -1,0 +1,347 @@
+/*
+ * Faro Terapéutico — capa compartida de lectura y calidez.
+ * Se carga al final para unificar las páginas sin intervenir su funcionamiento.
+ */
+
+:root {
+  --sans: "Poppins", "Segoe UI", Arial, sans-serif;
+  --serif: "Poppins", "Segoe UI", Arial, sans-serif;
+  --font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+  --ink: #252824;
+  --ink-soft: #4c514d;
+  --ink-muted: #686d68;
+  --text-color: #4c514d;
+  --dark-color: #252824;
+  --line: rgba(37, 40, 36, 0.14);
+  --readable-radius: 18px;
+}
+
+html {
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body,
+body.boutique {
+  color: var(--ink-soft);
+  font-family: var(--sans) !important;
+  font-weight: 400;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body p,
+body.boutique p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.76;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body.boutique h1,
+body.boutique h2,
+body.boutique h3,
+body.boutique h4 {
+  color: var(--ink);
+  font-family: var(--sans) !important;
+  font-style: normal;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+body h1,
+body.boutique h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.12 !important;
+}
+
+body h2,
+body.boutique h2 {
+  font-size: clamp(1.75rem, 4vw, 2.55rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.22 !important;
+}
+
+body h3,
+body.boutique h3 {
+  font-size: clamp(1.18rem, 2.5vw, 1.5rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.36 !important;
+}
+
+body h4,
+body.boutique h4 {
+  font-size: 1.06rem !important;
+  font-weight: 600 !important;
+  line-height: 1.45 !important;
+}
+
+body h1 em,
+body h2 em,
+body h3 em,
+body .section-head em,
+body .hero-copy em {
+  color: var(--gold, var(--accent-color, #98602f));
+  font-family: var(--sans) !important;
+  font-style: normal !important;
+  font-weight: 600;
+}
+
+body .eyebrow,
+body.boutique .eyebrow {
+  font-family: var(--sans) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.07em !important;
+  line-height: 1.5 !important;
+}
+
+body .section-lead,
+body.boutique .section-lead,
+body .lead,
+body .intro {
+  font-size: 1.03rem !important;
+  font-weight: 400 !important;
+  line-height: 1.72 !important;
+  max-width: 68ch;
+}
+
+body .article-body-b,
+body .profile-body {
+  color: var(--ink-soft);
+  font-family: var(--sans) !important;
+  font-size: 1.03rem !important;
+  font-weight: 400 !important;
+  line-height: 1.84 !important;
+}
+
+body .article-body-b h2,
+body .article-body-b h3 {
+  text-align: left;
+}
+
+body .article-body-b blockquote {
+  font-family: var(--sans) !important;
+  font-size: 1.02rem !important;
+  font-style: normal !important;
+  line-height: 1.72 !important;
+}
+
+body small,
+body .breadcrumb-list,
+body .article-byline-meta,
+body .article-updated,
+body .therapist-kicker,
+body .therapist-status,
+body .therapist-card-status,
+body .profile-credentials,
+body .legal-date,
+body .status,
+body .note,
+body .email-note,
+body .managed-by,
+body .reimbursement-note,
+body .privacy-pill {
+  font-family: var(--sans) !important;
+  font-size: 0.8rem !important;
+  font-weight: 400;
+  line-height: 1.55 !important;
+}
+
+body button,
+body input,
+body select,
+body textarea {
+  font-family: var(--sans) !important;
+}
+
+body label,
+body .form-field label,
+body .cf-field label {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="hidden"]),
+body select,
+body textarea,
+body .form-field input,
+body .form-field select,
+body .form-field textarea {
+  min-height: 48px;
+  font-size: 1rem !important;
+  line-height: 1.5;
+}
+
+body textarea,
+body .form-field textarea {
+  min-height: 112px;
+}
+
+body .cta,
+body .cta-outline,
+body .btn,
+body .button,
+body .mode-toggle,
+body .week-nav-button,
+body .week-slot,
+body .whatsapp-guidance-link,
+body .cf-submit,
+body button[type="submit"] {
+  align-items: center;
+  display: inline-flex;
+  font-family: var(--sans) !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  justify-content: center;
+  line-height: 1.35 !important;
+  min-height: 48px;
+  text-align: center;
+}
+
+body .cta,
+body .cta-outline,
+body .btn,
+body .button,
+body .whatsapp-guidance-link,
+body .cf-submit,
+body button[type="submit"] {
+  border-radius: 999px;
+}
+
+body :focus-visible {
+  outline: 3px solid rgba(152, 96, 47, 0.38);
+  outline-offset: 3px;
+}
+
+body .therapist,
+body .service-card,
+body .therapist-card,
+body .cf-card,
+body .profile-card,
+body .article-cta-box,
+body .kpi-card,
+body .modal-card,
+body .rg-card,
+body .legal-note,
+body .summary-panel,
+body .summary-card,
+body .confirmation,
+body .band,
+body .insight-panel,
+body .hero-panel {
+  border-color: var(--line);
+  border-radius: var(--readable-radius);
+}
+
+body .therapist-focus,
+body .therapist-availability-note,
+body .profile-card p,
+body .modal-card p,
+body .modal-card li,
+body .rg-list li,
+body .insight-item,
+body .data-purpose,
+body .reimbursement-copy,
+body .summary-line,
+body .email-note {
+  font-size: 0.92rem !important;
+  font-weight: 400;
+  line-height: 1.66 !important;
+}
+
+body .faq-question {
+  font-family: var(--sans) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  min-height: 54px;
+}
+
+body .faq-answer p {
+  font-size: 0.96rem !important;
+  line-height: 1.72 !important;
+}
+
+body .service-card,
+body .therapist-card {
+  min-height: 96px;
+}
+
+body .service-card strong,
+body .therapist-card strong,
+body .summary-line strong,
+body .stat strong {
+  color: var(--ink);
+  font-family: var(--sans) !important;
+  font-weight: 600;
+}
+
+body .service-card span,
+body .therapist-card span,
+body .summary-line span,
+body .stat span {
+  color: var(--ink-muted);
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
+}
+
+body .done-toggle,
+body .consent-field {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 17px;
+  }
+
+  body h1,
+  body.boutique h1 {
+    font-size: clamp(2rem, 11vw, 2.75rem) !important;
+  }
+
+  body h2,
+  body.boutique h2 {
+    font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
+  }
+
+  body .section-lead,
+  body.boutique .section-lead,
+  body .lead,
+  body .intro {
+    font-size: 1rem !important;
+  }
+
+  body .cta,
+  body .cta-outline,
+  body .btn,
+  body .button,
+  body .whatsapp-guidance-link,
+  body .cf-submit,
+  body button[type="submit"] {
+    min-height: 50px;
+  }
+
+  body .article-body-b,
+  body .profile-body {
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
