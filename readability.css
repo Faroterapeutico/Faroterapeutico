@@ -17,6 +17,7 @@
 }
 
 html {
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 
@@ -55,24 +56,28 @@ body.boutique h4 {
 
 body h1,
 body.boutique h1 {
+  font-size: clamp(2rem, 3.4vw, 2.75rem) !important;
   font-weight: 600 !important;
   line-height: 1.12 !important;
 }
 
 body h2,
 body.boutique h2 {
+  font-size: clamp(1.45rem, 2.5vw, 1.9rem) !important;
   font-weight: 600 !important;
   line-height: 1.22 !important;
 }
 
 body h3,
 body.boutique h3 {
+  font-size: clamp(1.15rem, 2vw, 1.3rem) !important;
   font-weight: 600 !important;
   line-height: 1.36 !important;
 }
 
 body h4,
 body.boutique h4 {
+  font-size: 1.05rem !important;
   font-weight: 600 !important;
   line-height: 1.45 !important;
 }
@@ -283,6 +288,16 @@ body .consent-field {
 }
 
 @media (max-width: 768px) {
+  body h1,
+  body.boutique h1 {
+    font-size: clamp(1.85rem, 8vw, 2.2rem) !important;
+  }
+
+  body h2,
+  body.boutique h2 {
+    font-size: clamp(1.4rem, 6vw, 1.65rem) !important;
+  }
+
   body .cta,
   body .cta-outline,
   body .btn,
