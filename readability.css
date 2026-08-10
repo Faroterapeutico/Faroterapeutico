@@ -17,7 +17,6 @@
 }
 
 html {
-  font-size: 17px;
   scroll-behavior: smooth;
 }
 
@@ -33,7 +32,6 @@ body.boutique {
 
 body p,
 body.boutique p {
-  font-size: 1rem;
   font-weight: 400;
   line-height: 1.76;
 }
@@ -57,28 +55,24 @@ body.boutique h4 {
 
 body h1,
 body.boutique h1 {
-  font-size: clamp(2.2rem, 5.5vw, 4rem) !important;
   font-weight: 600 !important;
   line-height: 1.12 !important;
 }
 
 body h2,
 body.boutique h2 {
-  font-size: clamp(1.75rem, 4vw, 2.55rem) !important;
   font-weight: 600 !important;
   line-height: 1.22 !important;
 }
 
 body h3,
 body.boutique h3 {
-  font-size: clamp(1.18rem, 2.5vw, 1.5rem) !important;
   font-weight: 600 !important;
   line-height: 1.36 !important;
 }
 
 body h4,
 body.boutique h4 {
-  font-size: 1.06rem !important;
   font-weight: 600 !important;
   line-height: 1.45 !important;
 }
@@ -97,7 +91,6 @@ body .hero-copy em {
 body .eyebrow,
 body.boutique .eyebrow {
   font-family: var(--sans) !important;
-  font-size: 0.8rem !important;
   font-weight: 600 !important;
   letter-spacing: 0.07em !important;
   line-height: 1.5 !important;
@@ -107,7 +100,6 @@ body .section-lead,
 body.boutique .section-lead,
 body .lead,
 body .intro {
-  font-size: 1.03rem !important;
   font-weight: 400 !important;
   line-height: 1.72 !important;
   max-width: 68ch;
@@ -117,7 +109,6 @@ body .article-body-b,
 body .profile-body {
   color: var(--ink-soft);
   font-family: var(--sans) !important;
-  font-size: 1.03rem !important;
   font-weight: 400 !important;
   line-height: 1.84 !important;
 }
@@ -129,7 +120,6 @@ body .article-body-b h3 {
 
 body .article-body-b blockquote {
   font-family: var(--sans) !important;
-  font-size: 1.02rem !important;
   font-style: normal !important;
   line-height: 1.72 !important;
 }
@@ -150,7 +140,6 @@ body .managed-by,
 body .reimbursement-note,
 body .privacy-pill {
   font-family: var(--sans) !important;
-  font-size: 0.8rem !important;
   font-weight: 400;
   line-height: 1.55 !important;
 }
@@ -166,7 +155,6 @@ body label,
 body .form-field label,
 body .cf-field label {
   color: var(--ink);
-  font-size: 0.88rem;
   font-weight: 600;
   line-height: 1.45;
 }
@@ -178,7 +166,6 @@ body .form-field input,
 body .form-field select,
 body .form-field textarea {
   min-height: 48px;
-  font-size: 1rem !important;
   line-height: 1.5;
 }
 
@@ -200,7 +187,6 @@ body button[type="submit"] {
   align-items: center;
   display: inline-flex;
   font-family: var(--sans) !important;
-  font-size: 0.9rem !important;
   font-weight: 600 !important;
   justify-content: center;
   line-height: 1.35 !important;
@@ -254,21 +240,18 @@ body .data-purpose,
 body .reimbursement-copy,
 body .summary-line,
 body .email-note {
-  font-size: 0.92rem !important;
   font-weight: 400;
   line-height: 1.66 !important;
 }
 
 body .faq-question {
   font-family: var(--sans) !important;
-  font-size: 1rem !important;
   font-weight: 600 !important;
   line-height: 1.5 !important;
   min-height: 54px;
 }
 
 body .faq-answer p {
-  font-size: 0.96rem !important;
   line-height: 1.72 !important;
 }
 
@@ -291,38 +274,15 @@ body .therapist-card span,
 body .summary-line span,
 body .stat span {
   color: var(--ink-muted);
-  font-size: 0.82rem !important;
   line-height: 1.5 !important;
 }
 
 body .done-toggle,
 body .consent-field {
-  font-size: 0.9rem;
   line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  html {
-    font-size: 17px;
-  }
-
-  body h1,
-  body.boutique h1 {
-    font-size: clamp(2rem, 11vw, 2.75rem) !important;
-  }
-
-  body h2,
-  body.boutique h2 {
-    font-size: clamp(1.65rem, 8vw, 2.15rem) !important;
-  }
-
-  body .section-lead,
-  body.boutique .section-lead,
-  body .lead,
-  body .intro {
-    font-size: 1rem !important;
-  }
-
   body .cta,
   body .cta-outline,
   body .btn,
@@ -335,7 +295,6 @@ body .consent-field {
 
   body .article-body-b,
   body .profile-body {
-    font-size: 1rem !important;
     line-height: 1.8 !important;
   }
 }
