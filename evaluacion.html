@@ -9,15 +9,15 @@
   <link rel="canonical" href="https://faroterapeutico.com/evaluacion">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/images/logo-faro-180.png?v=20260801-logo1">
   <meta name="theme-color" content="#f7f3ec">
 
   <style>
     :root {
-      --ink: #20201d;
-      --ink-soft: #565650;
+      --ink: #24231f;
+      --ink-soft: #4e4c46;
       --cream: #f7f3ec;
       --paper: #fffdf9;
       --white: #ffffff;
@@ -26,7 +26,7 @@
       --accent-soft: #f2e4d6;
       --sage: #557269;
       --sage-soft: #e7efeb;
-      --line: #ded8ce;
+      --line: #d5cec3;
       --success: #226547;
       --success-soft: #e9f5ed;
       --warning: #895b12;
@@ -52,8 +52,8 @@
         radial-gradient(circle at 90% 38%, rgba(85, 114, 105, 0.1), transparent 25rem),
         var(--cream);
       font-family: "Poppins", sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 17px;
+      line-height: 1.65;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -84,7 +84,7 @@
       align-items: center;
       gap: 10px;
       color: var(--ink);
-      font-size: 0.94rem;
+      font-size: 1rem;
       font-weight: 600;
       text-decoration: none;
     }
@@ -93,7 +93,7 @@
 
     .header-exit {
       color: var(--ink-soft);
-      font-size: 0.82rem;
+      font-size: 0.86rem;
       font-weight: 500;
       text-decoration: none;
     }
@@ -110,7 +110,7 @@
     .breadcrumb {
       margin-bottom: 22px;
       color: var(--ink-soft);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
     }
 
     .breadcrumb ol {
@@ -142,9 +142,9 @@
       display: block;
       margin-bottom: 10px;
       color: var(--accent-dark);
-      font-size: 0.72rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.13em;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
     }
 
@@ -155,24 +155,28 @@
 
     h1,
     h2,
-    h3 { font-family: "Cormorant Garamond", serif; }
+    h3 {
+      font-family: "Poppins", sans-serif;
+      letter-spacing: -0.02em;
+    }
 
     h1 {
       max-width: 690px;
       margin-bottom: 14px;
-      font-size: clamp(2.65rem, 7vw, 4.8rem);
-      font-weight: 500;
-      line-height: 0.98;
+      font-size: clamp(2.25rem, 6vw, 4rem);
+      font-weight: 600;
+      line-height: 1.12;
       letter-spacing: -0.035em;
     }
 
-    h1 em { color: var(--accent); font-weight: 500; }
+    h1 em { color: var(--accent); font-style: normal; font-weight: 600; }
 
     .hero-copy {
       max-width: 650px;
       margin-bottom: 0;
       color: var(--ink-soft);
-      font-size: clamp(0.96rem, 2vw, 1.08rem);
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      line-height: 1.72;
     }
 
     .privacy-card {
@@ -181,14 +185,15 @@
       border-radius: var(--radius-md);
       background: rgba(231, 239, 235, 0.72);
       color: #3e574f;
-      font-size: 0.83rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
     }
 
     .privacy-card strong {
       display: block;
       margin-bottom: 4px;
       color: #2f4c42;
-      font-size: 0.9rem;
+      font-size: 0.98rem;
     }
 
     .stepper {
@@ -200,14 +205,14 @@
 
     .stepper-item {
       position: relative;
-      min-height: 44px;
-      padding: 12px 12px 12px 42px;
+      min-height: 48px;
+      padding: 13px 13px 13px 44px;
       border: 1px solid var(--line);
       border-radius: 999px;
       color: #77736d;
       background: rgba(255, 255, 255, 0.5);
-      font-size: 0.78rem;
-      font-weight: 500;
+      font-size: 0.82rem;
+      font-weight: 600;
     }
 
     .stepper-item::before {
@@ -222,7 +227,7 @@
       background: #e8e2da;
       color: #736d65;
       content: attr(data-step);
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       transform: translateY(-50%);
     }
 
@@ -261,15 +266,16 @@
 
     .panel-heading h2 {
       margin-bottom: 8px;
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(1.85rem, 4vw, 2.55rem);
       font-weight: 600;
-      line-height: 1.05;
+      line-height: 1.2;
     }
 
     .panel-heading p {
       margin-bottom: 0;
       color: var(--ink-soft);
-      font-size: 0.92rem;
+      font-size: 0.98rem;
+      line-height: 1.7;
     }
 
     .topics-grid {
@@ -285,9 +291,9 @@
       gap: 14px;
       align-items: center;
       width: 100%;
-      min-height: 104px;
-      padding: 18px;
-      border: 1px solid var(--line);
+      min-height: 112px;
+      padding: 20px;
+      border: 1.5px solid var(--line);
       border-radius: var(--radius-md);
       color: var(--ink);
       background: var(--white);
@@ -319,12 +325,18 @@
     .topic-copy strong {
       display: block;
       margin-bottom: 2px;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.3rem;
-      line-height: 1.1;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.08rem;
+      line-height: 1.35;
     }
 
-    .topic-copy small { color: var(--ink-soft); font-size: 0.75rem; }
+    .topic-copy small {
+      display: block;
+      margin-top: 5px;
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
 
     .topic-arrow { color: var(--accent); font-size: 1.2rem; }
 
@@ -337,7 +349,8 @@
       border-radius: 13px;
       background: #f4f0e9;
       color: var(--ink-soft);
-      font-size: 0.78rem;
+      font-size: 0.86rem;
+      line-height: 1.6;
     }
 
     .note-row strong { color: var(--ink); }
@@ -357,7 +370,7 @@
       color: var(--accent-dark);
       background: transparent;
       cursor: pointer;
-      font-size: 0.82rem;
+      font-size: 0.88rem;
       font-weight: 600;
     }
 
@@ -368,7 +381,7 @@
 
     .test-count {
       color: var(--ink-soft);
-      font-size: 0.76rem;
+      font-size: 0.82rem;
     }
 
     .instrument-chip {
@@ -379,7 +392,7 @@
       border-radius: 999px;
       color: var(--sage);
       background: var(--sage-soft);
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.04em;
       text-transform: uppercase;
@@ -387,16 +400,17 @@
 
     .test-title {
       margin-bottom: 8px;
-      font-size: clamp(2rem, 5vw, 3.1rem);
+      font-size: clamp(1.85rem, 4vw, 2.6rem);
       font-weight: 600;
-      line-height: 1;
+      line-height: 1.2;
     }
 
     .test-intro {
       max-width: 730px;
       margin-bottom: 24px;
       color: var(--ink-soft);
-      font-size: 0.9rem;
+      font-size: 0.98rem;
+      line-height: 1.7;
     }
 
     .question-list { display: grid; gap: 16px; }
@@ -404,8 +418,8 @@
     .question-block {
       min-width: 0;
       margin: 0;
-      padding: 20px;
-      border: 1px solid var(--line);
+      padding: 24px;
+      border: 1.5px solid var(--line);
       border-radius: var(--radius-md);
       background: var(--white);
     }
@@ -421,10 +435,10 @@
       margin-bottom: 14px;
       padding: 0;
       color: var(--ink);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 1.2rem;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.05rem;
       font-weight: 600;
-      line-height: 1.28;
+      line-height: 1.55;
     }
 
     .question-number {
@@ -432,9 +446,9 @@
       margin-bottom: 4px;
       color: var(--accent);
       font-family: "Poppins", sans-serif;
-      font-size: 0.68rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
@@ -456,7 +470,7 @@
 
     .option-label span {
       display: flex;
-      min-height: 64px;
+      min-height: 72px;
       align-items: center;
       justify-content: center;
       padding: 10px 8px;
@@ -465,8 +479,8 @@
       color: var(--ink-soft);
       background: #fbfaf7;
       cursor: pointer;
-      font-size: 0.75rem;
-      line-height: 1.25;
+      font-size: 0.86rem;
+      line-height: 1.4;
       text-align: center;
       transition: 0.17s ease;
     }
@@ -488,7 +502,7 @@
       min-height: 22px;
       margin: 12px 0 0;
       color: var(--urgent);
-      font-size: 0.78rem;
+      font-size: 0.84rem;
       font-weight: 500;
     }
 
@@ -566,18 +580,18 @@
 
     .score-ring strong {
       display: block;
-      font-family: "Cormorant Garamond", serif;
-      font-size: 2rem;
-      line-height: 0.85;
+      font-family: "Poppins", sans-serif;
+      font-size: 1.7rem;
+      line-height: 1;
     }
 
-    .score-ring small { color: var(--ink-soft); font-size: 0.65rem; }
+    .score-ring small { color: var(--ink-soft); font-size: 0.8rem; }
 
     .result-title {
       margin-bottom: 7px;
-      font-size: clamp(1.8rem, 4vw, 2.55rem);
+      font-size: clamp(1.65rem, 4vw, 2.25rem);
       font-weight: 600;
-      line-height: 1.02;
+      line-height: 1.25;
     }
 
     .severity-badge {
@@ -586,7 +600,7 @@
       border-radius: 999px;
       color: var(--success);
       background: var(--success-soft);
-      font-size: 0.72rem;
+      font-size: 0.78rem;
       font-weight: 600;
     }
 
@@ -596,7 +610,8 @@
     .result-explanation {
       margin-bottom: 18px;
       color: var(--ink-soft);
-      font-size: 0.9rem;
+      font-size: 0.96rem;
+      line-height: 1.72;
     }
 
     .next-step {
@@ -605,7 +620,8 @@
       border-radius: 0 12px 12px 0;
       background: var(--sage-soft);
       color: #334c44;
-      font-size: 0.84rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
     }
 
     .next-step strong { display: block; margin-bottom: 3px; }
@@ -613,7 +629,8 @@
     .result-disclaimer {
       margin: 17px 0 0;
       color: #77716a;
-      font-size: 0.73rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
     }
 
     .result-side { display: grid; gap: 18px; }
@@ -640,7 +657,7 @@
       display: block;
       margin-bottom: 4px;
       color: var(--accent);
-      font-size: 0.67rem;
+      font-size: 0.8rem;
       font-weight: 600;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -648,23 +665,23 @@
 
     .therapist-name {
       margin-bottom: 4px;
-      font-size: 1.7rem;
+      font-size: 1.42rem;
       font-weight: 600;
-      line-height: 1;
+      line-height: 1.25;
     }
 
     .therapist-focus {
       margin-bottom: 10px;
       color: var(--ink-soft);
-      font-size: 0.78rem;
-      line-height: 1.45;
+      font-size: 0.86rem;
+      line-height: 1.6;
     }
 
     .therapist-reason {
       margin-bottom: 0;
       color: #40544e;
-      font-size: 0.78rem;
-      line-height: 1.45;
+      font-size: 0.86rem;
+      line-height: 1.6;
     }
 
     .therapist-actions {
@@ -680,7 +697,7 @@
       border: 1px solid var(--ink);
       color: white;
       background: var(--ink);
-      font-size: 0.76rem;
+      font-size: 0.84rem;
     }
 
     .secondary-button.outline {
@@ -693,21 +710,22 @@
 
     .save-card h3 {
       margin-bottom: 4px;
-      font-size: 1.45rem;
-      line-height: 1.1;
+      font-size: 1.3rem;
+      line-height: 1.35;
     }
 
     .save-card > p {
       margin-bottom: 14px;
       color: var(--ink-soft);
-      font-size: 0.78rem;
+      font-size: 0.86rem;
+      line-height: 1.6;
     }
 
     .phone-field label {
       display: block;
       margin-bottom: 6px;
       color: var(--ink);
-      font-size: 0.75rem;
+      font-size: 0.82rem;
       font-weight: 600;
     }
 
@@ -748,20 +766,21 @@
       border: 1px solid var(--whatsapp);
       color: white;
       background: var(--whatsapp);
-      font-size: 0.8rem;
+      font-size: 0.88rem;
     }
 
     .phone-error {
       min-height: 18px;
       margin: 6px 0 0;
       color: var(--urgent);
-      font-size: 0.7rem;
+      font-size: 0.78rem;
     }
 
     .save-note {
       margin: 8px 0 0 !important;
       color: #7a746c !important;
-      font-size: 0.69rem !important;
+      font-size: 0.8rem !important;
+      line-height: 1.55 !important;
     }
 
     .source-card,
@@ -770,7 +789,7 @@
       padding: 20px 22px;
     }
 
-    .source-card details { color: var(--ink-soft); font-size: 0.78rem; }
+    .source-card details { color: var(--ink-soft); font-size: 0.86rem; line-height: 1.65; }
 
     .source-card summary {
       color: var(--ink);
@@ -794,13 +813,14 @@
       margin-bottom: 2px;
       color: #7e2a25;
       font-family: "Poppins", sans-serif;
-      font-size: 0.84rem;
+      font-size: 0.92rem;
     }
 
     .crisis-card p {
       margin-bottom: 0;
       color: #69433f;
-      font-size: 0.76rem;
+      font-size: 0.84rem;
+      line-height: 1.6;
     }
 
     .crisis-links {
@@ -815,7 +835,7 @@
       border-radius: 999px;
       color: #7e2a25;
       background: white;
-      font-size: 0.73rem;
+      font-size: 0.8rem;
       font-weight: 600;
       text-decoration: none;
     }
@@ -831,7 +851,7 @@
     footer {
       padding: 0 20px 38px;
       color: #837e77;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       text-align: center;
     }
 
@@ -852,8 +872,8 @@
     @media (max-width: 760px) {
       .page-shell { width: min(100% - 24px, 980px); padding-top: 22px; }
       .hero { grid-template-columns: 1fr; gap: 18px; align-items: start; }
-      .hero-copy { font-size: 0.92rem; }
-      .stepper-item { padding-left: 34px; font-size: 0.69rem; }
+      .hero-copy { font-size: 1rem; }
+      .stepper-item { padding-left: 36px; font-size: 0.8rem; }
       .stepper-item::before { left: 9px; }
       .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .result-layout { grid-template-columns: 1fr; }
@@ -866,7 +886,7 @@
 
     @media (max-width: 580px) {
       .app-header { padding: 11px 15px; }
-      .header-exit { font-size: 0.73rem; }
+      .header-exit { font-size: 0.8rem; }
       .topics-grid { grid-template-columns: 1fr; }
       .topic-card { min-height: 92px; }
       .stepper { gap: 5px; }
@@ -874,7 +894,7 @@
       .stepper-item::before { display: none; }
       .panel { padding: 20px 15px; border-radius: 20px; }
       .question-block { padding: 17px 13px; }
-      .option-label span { min-height: 58px; }
+      .option-label span { min-height: 66px; }
       .test-topbar { margin-bottom: 18px; }
       .result-header { align-items: flex-start; }
       .score-ring { width: 82px; height: 82px; flex-basis: 82px; }
@@ -959,13 +979,13 @@
 
     <section class="hero" aria-labelledby="page-title">
       <div>
-        <span class="eyebrow">Una orientación inicial · 1 a 3 minutos</span>
-        <h1 id="page-title">Haz una pausa. Revisa <em>cómo estás.</em></h1>
-        <p class="hero-copy">Elige lo que más te preocupa y responde un instrumento breve reconocido. Obtendrás una lectura clara de tu puntaje, un próximo paso posible y un profesional del equipo que trabaja esa área.</p>
+        <span class="eyebrow">Autoevaluación breve y privada</span>
+        <h1 id="page-title">Revisa cómo te has sentido, <em>con calma.</em></h1>
+        <p class="hero-copy">Elige un tema y responde cinco preguntas. Al terminar recibirás una explicación sencilla, una recomendación práctica y un profesional del equipo que puede acompañarte.</p>
       </div>
       <aside class="privacy-card">
-        <strong>Privado por diseño</strong>
-        Tus respuestas se calculan en este dispositivo. No pedimos tu nombre ni correo y no enviamos el resultado a Faro.
+        <strong>Tus respuestas son privadas</strong>
+        Todo se calcula en tu dispositivo. No te pediremos nombre ni correo, y Faro no recibirá tus respuestas.
       </aside>
     </section>
 
@@ -977,9 +997,9 @@
 
     <section class="panel active" id="choose-panel" aria-labelledby="choose-title">
       <div class="panel-heading">
-        <span class="eyebrow">Primero, elige una opción</span>
-        <h2 id="choose-title">¿Qué quieres revisar hoy?</h2>
-        <p>Puedes hacer una evaluación a la vez y volver después para revisar otra área.</p>
+        <span class="eyebrow">Elige un tema para comenzar</span>
+        <h2 id="choose-title">¿Qué te gustaría revisar hoy?</h2>
+        <p>Elige la opción que más se acerque a lo que estás viviendo. Después podrás volver y revisar otra área.</p>
       </div>
 
       <div class="topics-grid">
@@ -1012,7 +1032,7 @@
 
       <div class="note-row">
         <span aria-hidden="true">ⓘ</span>
-        <span><strong>Importante:</strong> esta herramienta está orientada a personas de 18 años o más. Es un tamizaje, no entrega diagnósticos ni reemplaza una evaluación profesional.</span>
+        <span><strong>Antes de comenzar:</strong> esta guía está pensada para personas de 18 años o más. Te entrega una orientación inicial, no un diagnóstico, y no reemplaza una evaluación profesional.</span>
       </div>
     </section>
 
@@ -1054,7 +1074,7 @@
             <div class="therapist-card-top">
               <img class="therapist-photo" id="therapist-photo" src="" alt="" width="104" height="126">
               <div>
-                <span class="therapist-label">Profesional recomendado</span>
+              <span class="therapist-label">Una opción para acompañarte</span>
                 <h3 class="therapist-name" id="therapist-name"></h3>
                 <p class="therapist-focus" id="therapist-focus"></p>
                 <p class="therapist-reason" id="therapist-reason"></p>
@@ -1067,8 +1087,8 @@
           </article>
 
           <article class="save-card">
-            <h3>Guarda este resultado en tu WhatsApp</h3>
-            <p>Escribe tu propio número. Prepararemos un mensaje con el puntaje, la lectura, el profesional recomendado y su enlace directo de agendamiento.</p>
+            <h3>Lleva el resultado contigo</h3>
+            <p>Escribe tu propio número y prepararemos un mensaje para tu WhatsApp con el resultado, la recomendación y el enlace directo para agendar.</p>
             <div class="phone-field">
               <label for="patient-phone">Tu número de WhatsApp</label>
               <div class="phone-input-wrap">
@@ -1077,15 +1097,15 @@
               </div>
               <p class="phone-error" id="phone-error" role="alert"></p>
             </div>
-            <button class="whatsapp-button" id="save-whatsapp" type="button">Guardar en mi WhatsApp</button>
-            <p class="save-note" id="save-note">Tu número no se guarda ni se envía a Faro. Por seguridad, WhatsApp abrirá el mensaje y tú deberás tocar “Enviar”.</p>
+            <button class="whatsapp-button" id="save-whatsapp" type="button">Enviar a mi WhatsApp</button>
+            <p class="save-note" id="save-note">Tu número no se guarda ni se envía a Faro. WhatsApp abrirá el mensaje listo y tú solo tendrás que tocar “Enviar”.</p>
           </article>
         </div>
 
         <article class="crisis-card">
           <div>
-            <h3>Si estás en riesgo o sientes que podrías hacerte daño</h3>
-            <p>No esperes este resultado ni una hora de terapia. Llama ahora a la línea de prevención del suicidio o acude a la urgencia más cercana.</p>
+            <h3>Si sientes que podrías hacerte daño, busca ayuda ahora</h3>
+            <p>No esperes una hora de terapia. Llama a la línea de prevención del suicidio o acude a la urgencia más cercana.</p>
           </div>
           <div class="crisis-links">
             <a href="tel:*4141">Llamar al *4141</a>
@@ -1095,7 +1115,7 @@
 
         <article class="source-card">
           <details>
-            <summary>Sobre el instrumento y la interpretación</summary>
+            <summary>Cómo se calculó este resultado</summary>
             <p id="source-copy"></p>
           </details>
         </article>
@@ -1177,7 +1197,7 @@
         area: "Ánimo y depresión",
         name: "PHQ-2",
         title: "Cinco preguntas sobre tu estado de ánimo",
-        intro: "Pensando en las últimas 2 semanas, responde las cinco preguntas. Las dos primeras forman el puntaje PHQ-2; las otras tres aportan contexto clínico sin modificar su punto de corte.",
+        intro: "Piensa en cómo te has sentido durante las últimas dos semanas. Las dos primeras respuestas calculan el PHQ-2; las otras tres nos ayudan a comprender mejor el contexto y no cambian el puntaje.",
         maxScore: 6,
         scoredItems: 2,
         options: STANDARD_FREQUENCY,
@@ -1217,7 +1237,7 @@
         area: "Ansiedad",
         name: "GAD-2",
         title: "Cinco preguntas sobre ansiedad y preocupación",
-        intro: "Pensando en las últimas 2 semanas, responde las cinco preguntas. Las dos primeras forman el puntaje GAD-2; las otras tres aportan contexto clínico sin modificar su punto de corte.",
+        intro: "Piensa en cómo te has sentido durante las últimas dos semanas. Las dos primeras respuestas calculan el GAD-2; las otras tres nos ayudan a comprender mejor el contexto y no cambian el puntaje.",
         maxScore: 6,
         scoredItems: 2,
         options: STANDARD_FREQUENCY,
@@ -1257,7 +1277,7 @@
         area: "Estrés y sobrecarga",
         name: "PSS-4",
         title: "Cinco preguntas sobre estrés percibido",
-        intro: "Pensando en el último mes, responde las cinco preguntas. Las cuatro primeras forman el puntaje PSS-4; la última aporta contexto sobre el impacto cotidiano.",
+        intro: "Piensa en cómo te has sentido durante el último mes. Las cuatro primeras respuestas calculan la PSS-4; la última ayuda a comprender cómo el estrés está afectando tu día a día.",
         maxScore: 16,
         scoredItems: 4,
         options: PSS_FREQUENCY,
@@ -1490,7 +1510,7 @@
 
       document.getElementById("result-explanation").textContent = result.explanation;
       document.getElementById("result-next-step").innerHTML = `<strong>Próximo paso sugerido</strong>${result.next}`;
-      document.getElementById("result-disclaimer").textContent = "Este resultado no es un diagnóstico ni indica por sí solo que necesites psicoterapia. Debe leerse junto con tu historia, contexto y funcionamiento cotidiano.";
+      document.getElementById("result-disclaimer").textContent = "Recuerda: este resultado es una orientación, no un diagnóstico. Para comprenderlo bien también es importante considerar tu historia y lo que estás viviendo actualmente.";
 
       const photo = document.getElementById("therapist-photo");
       photo.src = therapist.photo;
@@ -1560,7 +1580,7 @@
       const test = TESTS[activeTestId];
       const { values, firstMissing } = getAnswers(test);
       if (firstMissing) {
-        document.getElementById("form-error").textContent = "Responde todas las preguntas para calcular tu resultado.";
+        document.getElementById("form-error").textContent = "Te falta responder una o más preguntas. Complétalas para ver tu resultado.";
         firstMissing.scrollIntoView({ behavior: "smooth", block: "center" });
         const firstInput = firstMissing.querySelector("input");
         if (firstInput) firstInput.focus({ preventScroll: true });
