@@ -2,1381 +2,1593 @@
 <html lang="es-CL">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Evaluación gratuita de psicólogo | Faro Terapéutico</title>
-  <meta name="description" content="Evaluación gratuita y confidencial. Responde 5 preguntas y descubre qué psicólogo de Faro Terapéutico es el más adecuado para ti.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autoevaluación breve de salud mental | Faro Terapéutico</title>
+  <meta name="description" content="Autoevaluación breve y privada con instrumentos reconocidos para ánimo, ansiedad, estrés, duelo y bienestar. Recibe una orientación y un profesional recomendado.">
   <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://faroterapeutico.com/evaluacion" />
+  <link rel="canonical" href="https://faroterapeutico.com/evaluacion">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=block">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=block"></noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500;600&display=swap">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/images/logo-faro-180.png?v=20260801-logo1">
+  <meta name="theme-color" content="#f7f3ec">
 
   <style>
-    .fas,
-    .fab {
-      display: inline-block;
-      width: 1em;
-      height: 1em;
-      min-width: 1em;
-      flex: 0 0 auto;
-      font-style: normal;
-      line-height: 1;
-      vertical-align: -0.125em;
-    }
-
-    .fas::before,
-    .fab::before {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 100%;
-      background: currentColor;
-      -webkit-mask: var(--eval-icon, var(--eval-icon-dot)) center / contain no-repeat;
-      mask: var(--eval-icon, var(--eval-icon-dot)) center / contain no-repeat;
-    }
-
     :root {
-      --eval-icon-dot: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3C/svg%3E");
-      --eval-icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m9.2 16.6-4.1-4.1-1.8 1.8 5.9 5.9L21 8.4l-1.8-1.8z'/%3E%3C/svg%3E");
-      --eval-icon-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12.5 5 20 12l-7.5 7-1.7-1.8 4.2-4.1H4v-2.2h11l-4.2-4.1z'/%3E%3C/svg%3E");
-      --eval-icon-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19Zm1.1 5v4.1l3.3 2-.9 1.5-5.3-3.1V7.5Z'/%3E%3C/svg%3E");
-      --eval-icon-lock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 10V8a5 5 0 0 1 10 0v2h2v11H5V10Zm3 0h4V8a2 2 0 0 0-4 0Z'/%3E%3C/svg%3E");
-      --eval-icon-mail: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 5h18v14H3Zm2.3 2L12 12.2 18.7 7Zm13.4 10V9.3L12 14.8 5.3 9.3V17Z'/%3E%3C/svg%3E");
-      --eval-icon-whatsapp: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3.2A8.7 8.7 0 0 0 4.6 17.5L3.5 21l3.7-1A8.7 8.7 0 1 0 12 3.2Zm0 2.1a6.6 6.6 0 0 1 5.6 10.1 6.6 6.6 0 0 1-8 2.3l-.5-.2-1.7.5.5-1.6-.3-.5A6.6 6.6 0 0 1 12 5.3Zm-2.6 3.3c-.2 0-.5.1-.7.4-.3.3-.9.9-.9 2.1 0 1.2.9 2.4 1 2.6.1.2 1.7 2.8 4.2 3.7 2.1.8 2.5.5 3 .5.4 0 1.4-.6 1.6-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.5-.4l-1.6-.8c-.2-.1-.4-.1-.6.2l-.7.9c-.1.2-.3.2-.6.1-.2-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.4-1.8-.1-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.7-1.7c-.2-.4-.4-.4-.6-.4z'/%3E%3C/svg%3E");
+      --ink: #20201d;
+      --ink-soft: #565650;
+      --cream: #f7f3ec;
+      --paper: #fffdf9;
+      --white: #ffffff;
+      --accent: #98602f;
+      --accent-dark: #71431f;
+      --accent-soft: #f2e4d6;
+      --sage: #557269;
+      --sage-soft: #e7efeb;
+      --line: #ded8ce;
+      --success: #226547;
+      --success-soft: #e9f5ed;
+      --warning: #895b12;
+      --warning-soft: #fff4d9;
+      --urgent: #a33a32;
+      --urgent-soft: #fff0ee;
+      --whatsapp: #137a43;
+      --shadow: 0 18px 50px rgba(44, 37, 29, 0.09);
+      --radius-lg: 26px;
+      --radius-md: 17px;
     }
 
-    .fa-check,
-    .fa-check-circle,
-    .fa-shield-alt { --eval-icon: var(--eval-icon-check); }
-    .fa-arrow-right { --eval-icon: var(--eval-icon-arrow); }
-    .fa-clock,
-    .fa-calendar-check,
-    .fa-calendar-week { --eval-icon: var(--eval-icon-clock); }
-    .fa-lock { --eval-icon: var(--eval-icon-lock); }
-    .fa-envelope { --eval-icon: var(--eval-icon-mail); }
-    .fa-whatsapp { --eval-icon: var(--eval-icon-whatsapp); }
+    * { box-sizing: border-box; }
 
-    :root {
-      --accent: #9A5F28;
-      --accent-light: rgba(154,95,40,0.1);
-      --green: #25D366;
-      --ink: #1a1a1a;
-      --muted: #666;
-      --bg: #faf9f5;
-      --white: #fff;
-      --radius: 14px;
-      --shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
+      margin: 0;
       min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(152, 96, 47, 0.1), transparent 27rem),
+        radial-gradient(circle at 90% 38%, rgba(85, 114, 105, 0.1), transparent 25rem),
+        var(--cream);
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* HEADER */
+    button,
+    input { font: inherit; }
+
+    button,
+    a { -webkit-tap-highlight-color: transparent; }
+
+    a { color: inherit; }
+
     .app-header {
-      background: var(--white);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
       position: sticky;
       top: 0;
-      z-index: 100;
-    }
-    .logo-link {
+      z-index: 20;
       display: flex;
       align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-      color: var(--ink);
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px clamp(18px, 4vw, 48px);
+      border-bottom: 1px solid rgba(80, 67, 52, 0.09);
+      background: rgba(255, 253, 249, 0.92);
+      backdrop-filter: blur(14px);
     }
-    .logo-link img { height: 30px; }
 
-    /* PROGRESS */
-    .progress-wrap {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 20px 20px 0;
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration: none;
     }
-    .progress-label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-bottom: 6px;
+
+    .logo-link img { width: 32px; height: 32px; }
+
+    .header-exit {
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .header-exit:hover,
+    .header-exit:focus-visible { color: var(--accent-dark); }
+
+    .page-shell {
+      width: min(100% - 32px, 980px);
+      margin: 0 auto;
+      padding: 34px 0 70px;
+    }
+
+    .breadcrumb {
+      margin-bottom: 22px;
+      color: var(--ink-soft);
+      font-size: 0.75rem;
+    }
+
+    .breadcrumb ol {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .breadcrumb li + li::before {
+      margin-right: 6px;
+      color: var(--accent);
+      content: "›";
+    }
+
+    .breadcrumb a { color: var(--accent-dark); text-decoration: none; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+      gap: clamp(24px, 5vw, 56px);
+      align-items: end;
+      margin: 16px 0 30px;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1,
+    h2,
+    h3 { font-family: "Cormorant Garamond", serif; }
+
+    h1 {
+      max-width: 690px;
+      margin-bottom: 14px;
+      font-size: clamp(2.65rem, 7vw, 4.8rem);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    h1 em { color: var(--accent); font-weight: 500; }
+
+    .hero-copy {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: var(--ink-soft);
+      font-size: clamp(0.96rem, 2vw, 1.08rem);
+    }
+
+    .privacy-card {
+      padding: 20px;
+      border: 1px solid rgba(85, 114, 105, 0.2);
+      border-radius: var(--radius-md);
+      background: rgba(231, 239, 235, 0.72);
+      color: #3e574f;
+      font-size: 0.83rem;
+    }
+
+    .privacy-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #2f4c42;
+      font-size: 0.9rem;
+    }
+
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .stepper-item {
+      position: relative;
+      min-height: 44px;
+      padding: 12px 12px 12px 42px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #77736d;
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .stepper-item::before {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      display: grid;
+      width: 22px;
+      height: 22px;
+      place-items: center;
+      border-radius: 50%;
+      background: #e8e2da;
+      color: #736d65;
+      content: attr(data-step);
+      font-size: 0.7rem;
+      transform: translateY(-50%);
+    }
+
+    .stepper-item.active {
+      border-color: rgba(152, 96, 47, 0.35);
+      color: var(--accent-dark);
+      background: var(--paper);
+    }
+
+    .stepper-item.active::before,
+    .stepper-item.done::before { background: var(--accent); color: white; }
+
+    .stepper-item.done { color: var(--ink-soft); }
+
+    .panel {
+      display: none;
+      padding: clamp(22px, 4vw, 42px);
+      border: 1px solid rgba(112, 94, 73, 0.13);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 253, 249, 0.95);
+      box-shadow: var(--shadow);
+      animation: rise 0.34s ease;
+    }
+
+    .panel.active { display: block; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-heading {
+      max-width: 710px;
+      margin-bottom: 26px;
+    }
+
+    .panel-heading h2 {
+      margin-bottom: 8px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      line-height: 1.05;
+    }
+
+    .panel-heading p {
+      margin-bottom: 0;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .topic-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 46px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      width: 100%;
+      min-height: 104px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      color: var(--ink);
+      background: var(--white);
+      cursor: pointer;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .topic-card:hover,
+    .topic-card:focus-visible {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 12px 28px rgba(89, 64, 40, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .topic-icon {
+      display: grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      font-size: 1.35rem;
+    }
+
+    .topic-card:nth-child(even) .topic-icon { background: var(--sage-soft); }
+
+    .topic-copy strong {
+      display: block;
+      margin-bottom: 2px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.3rem;
+      line-height: 1.1;
+    }
+
+    .topic-copy small { color: var(--ink-soft); font-size: 0.75rem; }
+
+    .topic-arrow { color: var(--accent); font-size: 1.2rem; }
+
+    .note-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-radius: 13px;
+      background: #f4f0e9;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+    }
+
+    .note-row strong { color: var(--ink); }
+
+    .test-topbar {
       display: flex;
       justify-content: space-between;
-    }
-    .progress-bar {
-      height: 5px;
-      background: #e0e0e0;
-      border-radius: 3px;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 3px;
-      transition: width 0.4s ease;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 22px;
     }
 
-    /* CONTAINER */
-    .eval-container {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 20px 20px 60px;
-    }
-
-    /* STEPS */
-    .step { display: none; animation: fadeUp 0.35s ease; }
-    .step.active { display: block; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* LEAD CAPTURE STEP */
-    .lead-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 32px 28px;
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-    .lead-card .badge {
-      display: inline-block;
-      background: var(--accent-light);
-      color: var(--accent);
-      font-size: 0.75rem;
+    .back-button,
+    .text-button {
+      padding: 0;
+      border: 0;
+      color: var(--accent-dark);
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.82rem;
       font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 20px;
-      margin-bottom: 14px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
     }
-    .lead-card h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.9rem;
-      line-height: 1.25;
-      color: var(--ink);
-      margin-bottom: 8px;
+
+    .back-button:hover,
+    .back-button:focus-visible,
+    .text-button:hover,
+    .text-button:focus-visible { text-decoration: underline; }
+
+    .test-count {
+      color: var(--ink-soft);
+      font-size: 0.76rem;
     }
-    .lead-card h1 em { color: var(--accent); font-style: italic; }
-    .lead-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-    .trust-pills {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-    .trust-pill {
-      font-size: 0.75rem;
-      color: var(--muted);
-      background: #f4f4f0;
-      padding: 4px 10px;
-      border-radius: 20px;
-      display: flex;
+
+    .instrument-chip {
+      display: inline-flex;
       align-items: center;
-      gap: 4px;
-    }
-    .trust-pill i { color: var(--accent); font-size: 0.7rem; }
-
-    /* FORM */
-    .form-group { margin-bottom: 16px; text-align: left; }
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 6px;
-      color: var(--ink);
-    }
-    .form-group input,
-    .form-group select {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-family: inherit;
-      background: #fdfdfd;
-      transition: border-color 0.2s;
-      color: var(--ink);
-    }
-    .form-group input:focus,
-    .form-group select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(154,95,40,0.1);
-    }
-    .form-group input.error { border-color: #e53935; }
-
-    /* QUESTION STEP */
-    .question-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      padding: 28px 24px;
-      box-shadow: var(--shadow);
-    }
-    .q-number {
-      font-size: 0.75rem;
-      color: var(--accent);
+      margin-bottom: 10px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      color: var(--sage);
+      background: var(--sage-soft);
+      font-size: 0.7rem;
       font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+    }
+
+    .test-title {
       margin-bottom: 8px;
-    }
-    .q-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
+      font-size: clamp(2rem, 5vw, 3.1rem);
       font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 6px;
-      color: var(--ink);
+      line-height: 1;
     }
-    .q-hint {
-      font-size: 0.8rem;
-      color: var(--muted);
+
+    .test-intro {
+      max-width: 730px;
+      margin-bottom: 24px;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+    }
+
+    .question-list { display: grid; gap: 16px; }
+
+    .question-block {
+      min-width: 0;
+      margin: 0;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--white);
+    }
+
+    .question-block.missing {
+      border-color: var(--urgent);
+      box-shadow: 0 0 0 3px rgba(163, 58, 50, 0.08);
+    }
+
+    .question-block legend {
+      display: block;
+      width: 100%;
+      margin-bottom: 14px;
+      padding: 0;
+      color: var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.28;
+    }
+
+    .question-number {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+      font-family: "Poppins", sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--option-count, 4), minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .option-label { position: relative; display: block; }
+
+    .option-label input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-label span {
+      display: flex;
+      min-height: 64px;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 8px;
+      border: 1px solid #e1dcd4;
+      border-radius: 12px;
+      color: var(--ink-soft);
+      background: #fbfaf7;
+      cursor: pointer;
+      font-size: 0.75rem;
+      line-height: 1.25;
+      text-align: center;
+      transition: 0.17s ease;
+    }
+
+    .option-label input:focus-visible + span {
+      outline: 3px solid rgba(152, 96, 47, 0.2);
+      outline-offset: 2px;
+    }
+
+    .option-label input:checked + span {
+      border-color: var(--accent);
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px var(--accent);
+      font-weight: 600;
+    }
+
+    .form-error {
+      min-height: 22px;
+      margin: 12px 0 0;
+      color: var(--urgent);
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .whatsapp-button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 22px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s ease;
+    }
+
+    .primary-button {
+      width: 100%;
+      margin-top: 22px;
+      border: 1px solid var(--ink);
+      color: white;
+      background: var(--ink);
+    }
+
+    .primary-button:hover,
+    .primary-button:focus-visible,
+    .secondary-button:hover,
+    .secondary-button:focus-visible,
+    .whatsapp-button:hover,
+    .whatsapp-button:focus-visible { outline: none; transform: translateY(-2px); }
+
+    .primary-button:hover { background: #000; }
+
+    .result-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .result-card,
+    .therapist-card,
+    .save-card,
+    .source-card,
+    .crisis-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: var(--white);
+    }
+
+    .result-card { padding: clamp(22px, 4vw, 34px); }
+
+    .result-header {
+      display: flex;
+      gap: 18px;
+      align-items: center;
       margin-bottom: 20px;
     }
 
-    /* ANSWER CARDS */
-    .answers-grid {
+    .score-ring {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
-    .answers-grid.single-col { grid-template-columns: 1fr; }
-
-    .answer-card {
-      cursor: pointer;
-      border: 1.5px solid #e8e8e4;
-      border-radius: 12px;
-      padding: 14px 12px;
-      background: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-    .answer-card:hover { border-color: var(--accent); background: var(--accent-light); }
-    .answer-card.selected {
-      border-color: var(--accent);
-      background: var(--accent-light);
-      box-shadow: 0 0 0 2px rgba(154,95,40,0.2);
-    }
-    .answer-card.selected .answer-check { opacity: 1; }
-    .answer-emoji { font-size: 1.3rem; flex-shrink: 0; }
-    .answer-text { font-size: 0.88rem; font-weight: 500; color: var(--ink); line-height: 1.3; flex: 1; }
-    .answer-check {
-      width: 18px;
-      height: 18px;
+      width: 96px;
+      height: 96px;
+      flex: 0 0 96px;
+      place-items: center;
+      border: 8px solid var(--accent-soft);
       border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-      flex-shrink: 0;
+      color: var(--accent-dark);
+      background: var(--paper);
+      text-align: center;
     }
-    .answer-check i { color: white; font-size: 0.6rem; }
 
-    /* BUTTONS */
-    .btn-primary {
-      width: 100%;
-      padding: 15px;
-      background: var(--ink);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-size: 1rem;
+    .score-ring strong {
+      display: block;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2rem;
+      line-height: 0.85;
+    }
+
+    .score-ring small { color: var(--ink-soft); font-size: 0.65rem; }
+
+    .result-title {
+      margin-bottom: 7px;
+      font-size: clamp(1.8rem, 4vw, 2.55rem);
       font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
+      line-height: 1.02;
     }
-    .btn-primary:hover { background: #000; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
-    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-    /* RESULT */
-    .result-step { text-align: center; }
-    .result-label {
+    .severity-badge {
       display: inline-block;
-      background: #e8f5e9;
-      color: #2e7d32;
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-bottom: 14px;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    .result-intro {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .result-intro em { color: var(--accent); font-style: italic; }
-    .result-sub {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    .therapist-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      margin-bottom: 16px;
-      border: 2px solid var(--accent);
-    }
-    .therapist-info { padding: 22px 20px 20px; }
-    .therapist-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 2px;
-    }
-    .therapist-role { font-size: 0.8rem; color: var(--muted); margin-bottom: 10px; }
-
-    .prevision-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-    .badge-prevision {
+      padding: 5px 11px;
+      border-radius: 999px;
+      color: var(--success);
+      background: var(--success-soft);
       font-size: 0.72rem;
       font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-      letter-spacing: 0.3px;
     }
-    .badge-fonasa  { background: #e3f2fd; color: #1565c0; }
-    .badge-isapre  { background: #f3e5f5; color: #6a1b9a; }
-    .badge-particular { background: #fff8e1; color: #e65100; }
 
-    .therapist-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
+    .severity-badge.medium { color: var(--warning); background: var(--warning-soft); }
+    .severity-badge.high { color: var(--urgent); background: var(--urgent-soft); }
+
+    .result-explanation {
+      margin-bottom: 18px;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
     }
-    .tag {
-      font-size: 0.75rem;
-      background: var(--accent-light);
+
+    .next-step {
+      padding: 15px 16px;
+      border-left: 3px solid var(--sage);
+      border-radius: 0 12px 12px 0;
+      background: var(--sage-soft);
+      color: #334c44;
+      font-size: 0.84rem;
+    }
+
+    .next-step strong { display: block; margin-bottom: 3px; }
+
+    .result-disclaimer {
+      margin: 17px 0 0;
+      color: #77716a;
+      font-size: 0.73rem;
+    }
+
+    .result-side { display: grid; gap: 18px; }
+
+    .therapist-card { overflow: hidden; }
+
+    .therapist-card-top {
+      display: grid;
+      grid-template-columns: 104px 1fr;
+      gap: 17px;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .therapist-photo {
+      width: 104px;
+      height: 126px;
+      border-radius: 14px;
+      object-fit: cover;
+      object-position: center 22%;
+    }
+
+    .therapist-label {
+      display: block;
+      margin-bottom: 4px;
       color: var(--accent);
-      padding: 3px 10px;
-      border-radius: 20px;
-      font-weight: 500;
+      font-size: 0.67rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-    .therapist-match {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 10px;
+
+    .therapist-name {
+      margin-bottom: 4px;
+      font-size: 1.7rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .therapist-focus {
+      margin-bottom: 10px;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .therapist-reason {
+      margin-bottom: 0;
+      color: #40544e;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+
+    .therapist-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 9px;
+      padding: 0 20px 20px;
+    }
+
+    .secondary-button {
+      min-height: 46px;
       padding: 10px 14px;
-      font-size: 0.82rem;
-      color: #166534;
-      margin-bottom: 16px;
-      text-align: left;
-      line-height: 1.5;
-    }
-    .therapist-match i { margin-right: 5px; }
-
-    .contact-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .contact-row { display: flex; gap: 10px; }
-    .btn-agenda {
-      width: 100%;
-      padding: 14px;
+      border: 1px solid var(--ink);
+      color: white;
       background: var(--ink);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: all 0.2s;
-      text-decoration: none;
+      font-size: 0.76rem;
     }
-    .btn-agenda:hover { background: #000; transform: translateY(-2px); }
-    .btn-whatsapp {
-      flex: 1;
-      padding: 13px;
-      background: var(--green);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
-    .btn-email {
-      padding: 13px 16px;
-      background: none;
-      border: 1.5px solid #ddd;
-      border-radius: 50px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      cursor: pointer;
-      font-family: inherit;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .btn-email:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* PLAN CARD */
-    .plan-card {
-      background: var(--white);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 24px 22px;
-      margin-bottom: 16px;
-      border-top: 3px solid var(--accent);
+    .secondary-button.outline {
+      border-color: var(--line);
+      color: var(--accent-dark);
+      background: transparent;
     }
-    .plan-card-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 600;
+
+    .save-card { padding: 22px; }
+
+    .save-card h3 {
+      margin-bottom: 4px;
+      font-size: 1.45rem;
+      line-height: 1.1;
+    }
+
+    .save-card > p {
+      margin-bottom: 14px;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+    }
+
+    .phone-field label {
+      display: block;
+      margin-bottom: 6px;
       color: var(--ink);
-      margin-bottom: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .phone-input-wrap {
       display: flex;
       align-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfaf7;
+    }
+
+    .phone-prefix {
+      padding: 12px 0 12px 14px;
+      color: var(--ink-soft);
+      font-size: 0.88rem;
+    }
+
+    .phone-input-wrap input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    .phone-input-wrap:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(152, 96, 47, 0.1);
+    }
+
+    .whatsapp-button {
+      width: 100%;
+      min-height: 49px;
+      margin-top: 10px;
+      border: 1px solid var(--whatsapp);
+      color: white;
+      background: var(--whatsapp);
+      font-size: 0.8rem;
+    }
+
+    .phone-error {
+      min-height: 18px;
+      margin: 6px 0 0;
+      color: var(--urgent);
+      font-size: 0.7rem;
+    }
+
+    .save-note {
+      margin: 8px 0 0 !important;
+      color: #7a746c !important;
+      font-size: 0.69rem !important;
+    }
+
+    .source-card,
+    .crisis-card {
+      grid-column: 1 / -1;
+      padding: 20px 22px;
+    }
+
+    .source-card details { color: var(--ink-soft); font-size: 0.78rem; }
+
+    .source-card summary {
+      color: var(--ink);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .source-card p { margin: 12px 0 0; }
+    .source-card a { color: var(--accent-dark); }
+
+    .crisis-card {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      border-color: rgba(163, 58, 50, 0.2);
+      background: var(--urgent-soft);
+    }
+
+    .crisis-card h3 {
+      margin-bottom: 2px;
+      color: #7e2a25;
+      font-family: "Poppins", sans-serif;
+      font-size: 0.84rem;
+    }
+
+    .crisis-card p {
+      margin-bottom: 0;
+      color: #69433f;
+      font-size: 0.76rem;
+    }
+
+    .crisis-links {
+      display: flex;
+      flex: 0 0 auto;
       gap: 8px;
     }
-    .plan-card-title i { color: var(--accent); font-size: 1rem; }
-    .plan-rows { display: flex; flex-direction: column; gap: 12px; }
-    .plan-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #f0f0eb;
-    }
-    .plan-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .plan-icon {
-      width: 36px; height: 36px; min-width: 36px;
-      background: var(--accent-light);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.85rem;
-      color: var(--accent);
-    }
-    .plan-text strong {
-      display: block;
-      font-size: 0.88rem;
-      color: var(--ink);
+
+    .crisis-links a {
+      padding: 9px 13px;
+      border: 1px solid rgba(126, 42, 37, 0.22);
+      border-radius: 999px;
+      color: #7e2a25;
+      background: white;
+      font-size: 0.73rem;
       font-weight: 600;
-      margin-bottom: 2px;
-    }
-    .plan-text span {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .plan-highlight {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 0.82rem;
-      color: #166534;
-      margin-top: 14px;
-      line-height: 1.5;
-    }
-    .plan-highlight i { margin-right: 5px; }
-    .cost-badge {
-      display: inline-block;
-      background: var(--accent-light);
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 1rem;
-      padding: 2px 8px;
-      border-radius: 6px;
-    }
-
-    .other-therapists {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .other-therapists p {
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .other-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-    .other-link {
-      font-size: 0.82rem;
-      color: var(--accent);
       text-decoration: none;
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
     }
-    .other-link:hover { border-color: var(--accent); }
 
-    footer {
-      text-align: center;
-      padding: 24px 20px;
-      font-size: 0.78rem;
-      color: #aaa;
-    }
-    .legal-links {
+    .result-footer-actions {
+      grid-column: 1 / -1;
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 6px 12px;
-      margin-top: 8px;
-    }
-    .legal-links a {
-      color: #8c6a46;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .legal-links a:hover { border-color: #8c6a46; }
-
-    @media (max-width: 420px) {
-      .answers-grid { grid-template-columns: 1fr; }
-      .lead-card { padding: 24px 20px; }
-      .question-card { padding: 22px 18px; }
-      .contact-buttons { flex-direction: column; }
+      gap: 20px;
+      padding-top: 4px;
     }
 
-    .breadcrumb{max-width:560px;margin:10px auto 0;padding:0 20px;background:transparent;border:0;}
-    .breadcrumb .container{padding:0;}
-    .breadcrumb-list{display:inline-flex;flex-wrap:nowrap;max-width:100%;gap:.32rem;list-style:none;margin:0;padding:.36rem .62rem;font-size:.64rem;letter-spacing:0;text-transform:none;color:var(--muted);background:rgba(255,255,255,.78);border:1px solid rgba(0,0,0,.06);border-radius:999px;box-shadow:0 10px 28px -24px rgba(0,0,0,.28);white-space:nowrap;overflow:hidden;}
-    .breadcrumb-list li{display:inline-flex;align-items:center;min-width:0;}
-    .breadcrumb-list li+li::before{content:"\203A";margin-right:.32rem;color:var(--accent);opacity:.72;}
-    .breadcrumb-list a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap;}
-    .breadcrumb-list [aria-current="page"]{display:block;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    footer {
+      padding: 0 20px 38px;
+      color: #837e77;
+      font-size: 0.7rem;
+      text-align: center;
+    }
+
+    footer a { color: var(--accent-dark); }
+
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    @media (max-width: 760px) {
+      .page-shell { width: min(100% - 24px, 980px); padding-top: 22px; }
+      .hero { grid-template-columns: 1fr; gap: 18px; align-items: start; }
+      .hero-copy { font-size: 0.92rem; }
+      .stepper-item { padding-left: 34px; font-size: 0.69rem; }
+      .stepper-item::before { left: 9px; }
+      .option-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .result-layout { grid-template-columns: 1fr; }
+      .source-card,
+      .crisis-card,
+      .result-footer-actions { grid-column: 1; }
+      .crisis-card { display: block; }
+      .crisis-links { margin-top: 12px; flex-wrap: wrap; }
+    }
+
+    @media (max-width: 580px) {
+      .app-header { padding: 11px 15px; }
+      .header-exit { font-size: 0.73rem; }
+      .topics-grid { grid-template-columns: 1fr; }
+      .topic-card { min-height: 92px; }
+      .stepper { gap: 5px; }
+      .stepper-item { min-height: 38px; padding: 9px 6px; text-align: center; }
+      .stepper-item::before { display: none; }
+      .panel { padding: 20px 15px; border-radius: 20px; }
+      .question-block { padding: 17px 13px; }
+      .option-label span { min-height: 58px; }
+      .test-topbar { margin-bottom: 18px; }
+      .result-header { align-items: flex-start; }
+      .score-ring { width: 82px; height: 82px; flex-basis: 82px; }
+      .therapist-card-top { grid-template-columns: 84px 1fr; padding: 16px; }
+      .therapist-photo { width: 84px; height: 108px; }
+      .therapist-actions { padding: 0 16px 16px; }
+    }
+
+    @media (max-width: 390px) {
+      .logo-link span { display: none; }
+      .result-header { display: block; }
+      .score-ring { margin-bottom: 16px; }
+      .therapist-actions { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
   </style>
+
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); if (arguments[0] === 'event' && window.loadGtag) loadGtag(); }
-    function loadGtag() {
+    function gtag() {
+      dataLayer.push(arguments);
+      if (arguments[0] === "event" && window.loadGtag) window.loadGtag();
+    }
+    window.loadGtag = function loadGtag() {
       if (window._gtagLoaded) return;
       window._gtagLoaded = true;
-      var s = document.createElement('script');
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836';
-      s.async = true;
-      document.head.appendChild(s);
-      gtag('js', new Date());
-      gtag('config', 'GT-5TJMG836');
-      gtag('config', 'AW-17584631597');
-    }
-    window.FARO_TRACKING_AUTO_DELAY = window.FARO_TRACKING_AUTO_DELAY || 10000;
-    function scheduleGtagLoad() {
-        var runWhenIdle = function() {
-            var load = function() { loadGtag(); };
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(load, { timeout: 2000 });
-            } else {
-                setTimeout(load, 0);
-            }
-        };
-        var schedule = function() { setTimeout(runWhenIdle, window.FARO_TRACKING_AUTO_DELAY); };
-        if (document.readyState === 'complete') schedule();
-        else window.addEventListener('load', schedule, { once: true });
-    }
-    scheduleGtagLoad();
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836";
+      script.async = true;
+      document.head.appendChild(script);
+      gtag("js", new Date());
+      gtag("config", "GT-5TJMG836");
+      gtag("config", "AW-17584631597");
+    };
+    window.addEventListener("load", () => {
+      const schedule = () => window.loadGtag();
+      if ("requestIdleCallback" in window) requestIdleCallback(schedule, { timeout: 2500 });
+      else setTimeout(schedule, 2500);
+    }, { once: true });
   </script>
-    <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="apple-touch-icon" href="/images/logo-faro-180.png?v=20260801-logo1">
-    <meta name="theme-color" content="#faf8f3">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "@id": "https://faroterapeutico.com/evaluacion#service",
-      "name": "Evaluaci\u00f3n gratuita para orientaci\u00f3n psicol\u00f3gica",
-      "serviceType": "Orientaci\u00f3n psicol\u00f3gica inicial",
-      "url": "https://faroterapeutico.com/evaluacion",
-      "description": "Evaluaci\u00f3n gratuita y confidencial para orientar qu\u00e9 psic\u00f3logo de Faro Terap\u00e9utico puede ser m\u00e1s adecuado para iniciar un proceso terap\u00e9utico.",
-      "image": "https://faroterapeutico.com/images/hero-index.escritorio.webp",
-      "provider": {
-        "@type": "MedicalBusiness",
-        "@id": "https://faroterapeutico.com/#business",
-        "name": "Faro Terap\u00e9utico",
-        "url": "https://faroterapeutico.com",
-        "telephone": "+56937477600",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Avenida Tobalaba 155, oficina 1004, piso 10",
-          "addressLocality": "Providencia",
-          "addressRegion": "Regi\u00f3n Metropolitana",
-          "addressCountry": "CL"
-        }
-      },
-      "areaServed": [
-        {
-          "@type": "City",
-          "name": "Providencia"
-        },
-        {
-          "@type": "Country",
-          "name": "Chile"
-        }
-      ],
-      "inLanguage": "es-CL",
-      "offers": {
-        "@type": "Offer",
-        "name": "Evaluaci\u00f3n inicial gratuita",
-        "price": "0",
-        "priceCurrency": "CLP",
-        "availability": "https://schema.org/InStock",
-        "url": "https://faroterapeutico.com/evaluacion"
-      },
-      "availableChannel": {
-        "@type": "ServiceChannel",
-        "name": "Formulario web",
-        "serviceUrl": "https://faroterapeutico.com/evaluacion"
-      }
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Autoevaluación breve de salud mental",
+    "url": "https://faroterapeutico.com/evaluacion",
+    "description": "Tamizaje orientativo para ánimo, ansiedad, estrés, duelo y bienestar con instrumentos breves reconocidos.",
+    "inLanguage": "es-CL",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Salud mental"
+    },
+    "publisher": {
+      "@type": "MedicalBusiness",
+      "@id": "https://faroterapeutico.com/#business",
+      "name": "Faro Terapéutico"
     }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Inicio",
-          "item": "https://faroterapeutico.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Evaluación gratuita",
-          "item": "https://faroterapeutico.com/evaluacion"
-        }
-      ]
-    }
-    </script>
+  }
+  </script>
 </head>
 
 <body>
   <header class="app-header">
     <a href="/" class="logo-link">
-      <img src="images/logo-faro-64.png?v=20260801-logo1" alt="Faro Terapéutico" width="32" height="32">
+      <img src="images/logo-faro-64.png?v=20260801-logo1" alt="" width="32" height="32">
       <span>Faro Terapéutico</span>
     </a>
+    <a class="header-exit" href="/">Salir de la autoevaluación</a>
   </header>
 
+  <main class="page-shell">
     <nav class="breadcrumb" aria-label="Miga de pan">
-        <div class="container">
-            <ol class="breadcrumb-list">
-                <li><a href="/">Inicio</a></li>
-                <li aria-current="page">Evaluación gratuita</li>
-            </ol>
-        </div>
+      <ol>
+        <li><a href="/">Inicio</a></li>
+        <li aria-current="page">Autoevaluación</li>
+      </ol>
     </nav>
 
-  <!-- PROGRESS BAR (oculta en step 0 y resultado) -->
-  <div class="progress-wrap" id="progressWrap" style="display:none;">
-    <div class="progress-label">
-      <span>Pregunta <span id="qNum">1</span> de 5</span>
-      <span id="qPct">0%</span>
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <span class="eyebrow">Una orientación inicial · 1 a 3 minutos</span>
+        <h1 id="page-title">Haz una pausa. Revisa <em>cómo estás.</em></h1>
+        <p class="hero-copy">Elige lo que más te preocupa y responde un instrumento breve reconocido. Obtendrás una lectura clara de tu puntaje, un próximo paso posible y un profesional del equipo que trabaja esa área.</p>
+      </div>
+      <aside class="privacy-card">
+        <strong>Privado por diseño</strong>
+        Tus respuestas se calculan en este dispositivo. No pedimos tu nombre ni correo y no enviamos el resultado a Faro.
+      </aside>
+    </section>
+
+    <div class="stepper" aria-label="Progreso de la autoevaluación">
+      <div class="stepper-item active" id="stepper-choose" data-step="1">Elige un área</div>
+      <div class="stepper-item" id="stepper-answer" data-step="2">Responde</div>
+      <div class="stepper-item" id="stepper-result" data-step="3">Tu resultado</div>
     </div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill" style="width:0%"></div>
-    </div>
-  </div>
 
-  <div class="eval-container">
+    <section class="panel active" id="choose-panel" aria-labelledby="choose-title">
+      <div class="panel-heading">
+        <span class="eyebrow">Primero, elige una opción</span>
+        <h2 id="choose-title">¿Qué quieres revisar hoy?</h2>
+        <p>Puedes hacer una evaluación a la vez y volver después para revisar otra área.</p>
+      </div>
 
-    <!-- STEP 0: CAPTURA DE LEADS -->
-    <div class="step active" id="step-0">
-      <div class="lead-card">
-        <span class="badge"><i class="fas fa-lock"></i> &nbsp;Gratuito y confidencial</span>
-        <h1>¿Necesito un <em>psicólogo</em>?</h1>
-        <p>Responde 5 preguntas rápidas y te diremos qué terapeuta de nuestro equipo puede ayudarte mejor.</p>
-        <div class="trust-pills">
-          <span class="trust-pill"><i class="fas fa-clock"></i> 2 minutos</span>
-          <span class="trust-pill"><i class="fas fa-shield-alt"></i> 100% privado</span>
-          <span class="trust-pill"><i class="fas fa-star"></i> +500 pacientes</span>
-        </div>
-
-        <div class="form-group">
-          <label for="lead-nombre">Tu nombre</label>
-          <input type="text" id="lead-nombre" placeholder="¿Cómo te llamas?" autocomplete="given-name">
-        </div>
-        <div class="form-group">
-          <label for="lead-email">Tu correo electrónico</label>
-          <input type="email" id="lead-email" placeholder="nombre@correo.com" autocomplete="email">
-        </div>
-        <div class="form-group">
-          <label for="lead-prevision">Previsión de salud</label>
-          <select id="lead-prevision">
-            <option value="">Selecciona...</option>
-            <option value="Fonasa">FONASA</option>
-            <option value="Isapre">Isapre</option>
-            <option value="Particular">Particular / Sin previsión</option>
-          </select>
-        </div>
-
-        <button class="btn-primary" id="btnStart">
-          Comenzar evaluación <i class="fas fa-arrow-right"></i>
+      <div class="topics-grid">
+        <button class="topic-card" type="button" data-test="depression">
+          <span class="topic-icon" aria-hidden="true">☁️</span>
+          <span class="topic-copy"><strong>Ánimo y depresión</strong><small>PHQ-2 · 2 preguntas · últimas 2 semanas</small></span>
+          <span class="topic-arrow" aria-hidden="true">→</span>
         </button>
-        <p style="font-size:0.72rem;color:#888;margin-top:12px;line-height:1.6;">
-          No enviamos spam. Tus datos son confidenciales.
-          Al continuar aceptas nuestra <a href="politica-de-privacidad" target="_blank" rel="noopener noreferrer" style="color:#8c6a46;">pol&iacute;tica de privacidad</a>
-          y el compromiso de <a href="confidencialidad-y-secreto-profesional" target="_blank" rel="noopener noreferrer" style="color:#8c6a46;">confidencialidad</a>.
-        </p>
+        <button class="topic-card" type="button" data-test="anxiety">
+          <span class="topic-icon" aria-hidden="true">≈</span>
+          <span class="topic-copy"><strong>Ansiedad</strong><small>GAD-2 · 2 preguntas · últimas 2 semanas</small></span>
+          <span class="topic-arrow" aria-hidden="true">→</span>
+        </button>
+        <button class="topic-card" type="button" data-test="stress">
+          <span class="topic-icon" aria-hidden="true">↯</span>
+          <span class="topic-copy"><strong>Estrés y sobrecarga</strong><small>PSS-4 · 4 preguntas · último mes</small></span>
+          <span class="topic-arrow" aria-hidden="true">→</span>
+        </button>
+        <button class="topic-card" type="button" data-test="grief">
+          <span class="topic-icon" aria-hidden="true">◇</span>
+          <span class="topic-copy"><strong>Duelo por fallecimiento</strong><small>BGQ-5 · 5 preguntas · pérdida significativa</small></span>
+          <span class="topic-arrow" aria-hidden="true">→</span>
+        </button>
+        <button class="topic-card" type="button" data-test="wellbeing">
+          <span class="topic-icon" aria-hidden="true">○</span>
+          <span class="topic-copy"><strong>Bienestar general</strong><small>OMS-5 · 5 preguntas · últimas 2 semanas</small></span>
+          <span class="topic-arrow" aria-hidden="true">→</span>
+        </button>
       </div>
-    </div>
 
-    <!-- STEP 1: MOTIVO PRINCIPAL -->
-    <div class="step" id="step-1">
-      <div class="question-card">
-        <div class="q-number">Pregunta 1 de 5</div>
-        <div class="q-title">¿Qué te trae hoy?</div>
-        <div class="q-hint">Puedes elegir hasta 2 opciones.</div>
-        <div class="answers-grid" id="q1-grid">
-          <div class="answer-card" data-value="tristeza" data-scores='{"david":3,"isidora":2}'>
-            <span class="answer-emoji">😔</span>
-            <span class="answer-text">Tristeza o bajo ánimo</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="ansiedad" data-scores='{"david":2,"isidora":3}'>
-            <span class="answer-emoji">😰</span>
-            <span class="answer-text">Ansiedad o nerviosismo</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="pareja" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">💔</span>
-            <span class="answer-text">Pareja o familia</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="duelo" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">🕊️</span>
-            <span class="answer-text">Duelo o pérdida</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="consumo" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">🍷</span>
-            <span class="answer-text">Consumo de sustancias</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="autoestima" data-scores='{"isidora":3}'>
-            <span class="answer-emoji">🪞</span>
-            <span class="answer-text">Autoestima o inseguridad</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="estres" data-scores='{"david":3}'>
-            <span class="answer-emoji">😤</span>
-            <span class="answer-text">Estrés o agotamiento</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="emociones" data-scores='{"isidora":3}'>
-            <span class="answer-emoji">🌊</span>
-            <span class="answer-text">Emociones difíciles de manejar</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="rendimiento" data-scores='{"david":3,"isidora":1}'>
-            <span class="answer-emoji">🏆</span>
-            <span class="answer-text">Rendimiento deportivo o académico</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-        </div>
-        <button class="btn-primary" id="btnQ1">Siguiente <i class="fas fa-arrow-right"></i></button>
+      <div class="note-row">
+        <span aria-hidden="true">ⓘ</span>
+        <span><strong>Importante:</strong> esta herramienta está orientada a personas de 18 años o más. Es un tamizaje, no entrega diagnósticos ni reemplaza una evaluación profesional.</span>
       </div>
-    </div>
+    </section>
 
-    <!-- STEP 2: ESTADO DE ÁNIMO -->
-    <div class="step" id="step-2">
-      <div class="question-card">
-        <div class="q-number">Pregunta 2 de 5</div>
-        <div class="q-title">¿Cómo está tu estado de ánimo esta semana?</div>
-        <div class="q-hint">Elige la opción que más te represente.</div>
-        <div class="answers-grid single-col" id="q2-grid">
-          <div class="answer-card" data-value="triste" data-scores='{"david":3,"isidora":1}'>
-            <span class="answer-emoji">😞</span>
-            <span class="answer-text">Triste, sin energía o apagado/a</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="ansioso" data-scores='{"david":2,"isidora":3}'>
-            <span class="answer-emoji">😬</span>
-            <span class="answer-text">Ansioso/a, tenso/a o con miedo</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="irritable" data-scores='{"isidora":3,"aaron":1}'>
-            <span class="answer-emoji">😠</span>
-            <span class="answer-text">Irritable o que exploto fácil</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="vacio" data-scores='{"david":3}'>
-            <span class="answer-emoji">🌫️</span>
-            <span class="answer-text">Vacío/a o sin motivación</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="confundido" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">🌀</span>
-            <span class="answer-text">Confundido/a sobre mi vida o identidad</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="bien" data-scores='{"aaron":2,"david":1}'>
-            <span class="answer-emoji">🤔</span>
-            <span class="answer-text">Bien en general, pero algo no cierra</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-        </div>
-        <button class="btn-primary" id="btnQ2">Siguiente <i class="fas fa-arrow-right"></i></button>
+    <section class="panel" id="test-panel" aria-labelledby="test-title">
+      <div class="test-topbar">
+        <button class="back-button" id="back-to-choose" type="button">← Elegir otra área</button>
+        <span class="test-count" id="test-count"></span>
       </div>
-    </div>
+      <span class="instrument-chip" id="instrument-chip"></span>
+      <h2 class="test-title" id="test-title"></h2>
+      <p class="test-intro" id="test-intro"></p>
+      <form id="assessment-form" novalidate>
+        <div class="question-list" id="question-list"></div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button class="primary-button" type="submit">Ver mi resultado <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
 
-    <!-- STEP 3: DURACIÓN -->
-    <div class="step" id="step-3">
-      <div class="question-card">
-        <div class="q-number">Pregunta 3 de 5</div>
-        <div class="q-title">¿Cuánto tiempo llevas sintiéndote así?</div>
-        <div class="q-hint">Elige una opción.</div>
-        <div class="answers-grid single-col" id="q3-grid">
-          <div class="answer-card" data-value="reciente" data-scores='{"isidora":2}'>
-            <span class="answer-emoji">⚡</span>
-            <span class="answer-text">Menos de un mes — comenzó de pronto</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="meses" data-scores='{"david":2,"isidora":1}'>
-            <span class="answer-emoji">📅</span>
-            <span class="answer-text">Entre 1 y 6 meses</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="largo" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">🗓️</span>
-            <span class="answer-text">Más de 6 meses</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="siempre" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">♾️</span>
-            <span class="answer-text">Siempre ha sido así — es parte de mí</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-        </div>
-        <button class="btn-primary" id="btnQ3">Siguiente <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- STEP 4: ÁREAS AFECTADAS -->
-    <div class="step" id="step-4">
-      <div class="question-card">
-        <div class="q-number">Pregunta 4 de 5</div>
-        <div class="q-title">¿Qué áreas de tu vida está afectando?</div>
-        <div class="q-hint">Puedes elegir varias.</div>
-        <div class="answers-grid" id="q4-grid">
-          <div class="answer-card" data-value="trabajo" data-scores='{"david":2}'>
-            <span class="answer-emoji">💼</span>
-            <span class="answer-text">Trabajo o estudios</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="relaciones" data-scores='{"aaron":2}'>
-            <span class="answer-emoji">👥</span>
-            <span class="answer-text">Relaciones personales</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="familia" data-scores='{"aaron":2}'>
-            <span class="answer-emoji">🏠</span>
-            <span class="answer-text">Pareja o familia</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="sueno" data-scores='{"david":1,"isidora":1}'>
-            <span class="answer-emoji">😴</span>
-            <span class="answer-text">Sueño o descanso</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="cuerpo" data-scores='{"david":1}'>
-            <span class="answer-emoji">🫀</span>
-            <span class="answer-text">Cuerpo (tensión, dolores)</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="autoimg" data-scores='{"isidora":2}'>
-            <span class="answer-emoji">💭</span>
-            <span class="answer-text">Cómo me veo a mí mismo/a</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="deporte" data-scores='{"david":3}'>
-            <span class="answer-emoji">🏅</span>
-            <span class="answer-text">Rendimiento deportivo</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="todo" data-scores='{"aaron":1,"david":1,"isidora":1}'>
-            <span class="answer-emoji">🌐</span>
-            <span class="answer-text">Todas las anteriores</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-        </div>
-        <button class="btn-primary" id="btnQ4">Siguiente <i class="fas fa-arrow-right"></i></button>
-      </div>
-    </div>
-
-    <!-- STEP 5: TERAPIA PREVIA -->
-    <div class="step" id="step-5">
-      <div class="question-card">
-        <div class="q-number">Pregunta 5 de 5</div>
-        <div class="q-title">¿Has tenido terapia psicológica antes?</div>
-        <div class="q-hint">Elige una opción.</div>
-        <div class="answers-grid single-col" id="q5-grid">
-          <div class="answer-card" data-value="primera" data-scores='{"david":2}'>
-            <span class="answer-emoji">🌱</span>
-            <span class="answer-text">No, es mi primera vez</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="util" data-scores='{"isidora":2}'>
-            <span class="answer-emoji">✅</span>
-            <span class="answer-text">Sí, y me fue útil — quiero continuar</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="nofunciono" data-scores='{"aaron":3}'>
-            <span class="answer-emoji">🔁</span>
-            <span class="answer-text">Sí, pero no funcionó — quiero algo diferente</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-          <div class="answer-card" data-value="crisis" data-scores='{"isidora":3}'>
-            <span class="answer-emoji">🆘</span>
-            <span class="answer-text">Estoy en un momento de crisis o urgencia</span>
-            <div class="answer-check"><i class="fas fa-check"></i></div>
-          </div>
-        </div>
-        <button class="btn-primary" id="btnQ5">Ver mi resultado <i class="fas fa-sparkles"></i></button>
-      </div>
-    </div>
-
-    <!-- STEP 6: RESULTADO -->
-    <div class="step result-step" id="step-result">
-      <div class="result-label"><i class="fas fa-check-circle"></i> &nbsp;Evaluación completada</div>
-      <div class="result-intro">Tu terapeuta ideal es <em id="result-name">—</em></div>
-      <div class="result-sub" id="result-sub">Basado en tus respuestas, este profesional se ajusta mejor a lo que necesitas.</div>
-
-      <div class="therapist-card">
-        <div class="therapist-info">
-          <div class="therapist-name" id="result-fullname">—</div>
-          <div class="therapist-role">Psicólogo/a · Faro Terapéutico</div>
-          <div class="prevision-badges" id="result-prevision"></div>
-          <div class="therapist-tags" id="result-tags"></div>
-          <div class="therapist-match" id="result-match"></div>
-          <div class="contact-buttons">
-            <a class="btn-agenda" id="result-agenda" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">
-              <i class="fas fa-calendar-check"></i> Agendar hora en línea
-            </a>
-            <div class="contact-row">
-              <a class="btn-whatsapp" id="result-wa" href="#" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-              </a>
-              <a class="btn-email" id="result-email" href="#" target="_blank">
-                <i class="fas fa-envelope"></i>
-              </a>
+    <section class="panel" id="result-panel" aria-labelledby="result-title">
+      <div class="result-layout">
+        <article class="result-card">
+          <div class="result-header">
+            <div class="score-ring" aria-label="Puntaje obtenido">
+              <div><strong id="result-score">—</strong><small id="result-scale">de —</small></div>
+            </div>
+            <div>
+              <span class="eyebrow" id="result-instrument">Resultado</span>
+              <h2 class="result-title" id="result-title">Tu resultado</h2>
+              <span class="severity-badge" id="result-badge"></span>
             </div>
           </div>
+          <p class="result-explanation" id="result-explanation"></p>
+          <div class="next-step" id="result-next-step"></div>
+          <p class="result-disclaimer" id="result-disclaimer"></p>
+        </article>
+
+        <div class="result-side">
+          <article class="therapist-card" aria-labelledby="therapist-name">
+            <div class="therapist-card-top">
+              <img class="therapist-photo" id="therapist-photo" src="" alt="" width="104" height="126">
+              <div>
+                <span class="therapist-label">Profesional recomendado</span>
+                <h3 class="therapist-name" id="therapist-name"></h3>
+                <p class="therapist-focus" id="therapist-focus"></p>
+                <p class="therapist-reason" id="therapist-reason"></p>
+              </div>
+            </div>
+            <div class="therapist-actions">
+              <a class="secondary-button" id="therapist-book" href="#">Agendar una hora</a>
+              <a class="secondary-button outline" id="therapist-profile" href="#">Ver su perfil</a>
+            </div>
+          </article>
+
+          <article class="save-card">
+            <h3>Guarda este resultado en tu WhatsApp</h3>
+            <p>Escribe tu propio número. Prepararemos un mensaje con el puntaje, la lectura, el profesional recomendado y su enlace directo de agendamiento.</p>
+            <div class="phone-field">
+              <label for="patient-phone">Tu número de WhatsApp</label>
+              <div class="phone-input-wrap">
+                <span class="phone-prefix">+56</span>
+                <input id="patient-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="9 1234 5678" aria-describedby="phone-error save-note">
+              </div>
+              <p class="phone-error" id="phone-error" role="alert"></p>
+            </div>
+            <button class="whatsapp-button" id="save-whatsapp" type="button">Guardar en mi WhatsApp</button>
+            <p class="save-note" id="save-note">Tu número no se guarda ni se envía a Faro. Por seguridad, WhatsApp abrirá el mensaje y tú deberás tocar “Enviar”.</p>
+          </article>
+        </div>
+
+        <article class="crisis-card">
+          <div>
+            <h3>Si estás en riesgo o sientes que podrías hacerte daño</h3>
+            <p>No esperes este resultado ni una hora de terapia. Llama ahora a la línea de prevención del suicidio o acude a la urgencia más cercana.</p>
+          </div>
+          <div class="crisis-links">
+            <a href="tel:*4141">Llamar al *4141</a>
+            <a href="tel:6003607777">Salud Responde</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <details>
+            <summary>Sobre el instrumento y la interpretación</summary>
+            <p id="source-copy"></p>
+          </details>
+        </article>
+
+        <div class="result-footer-actions">
+          <button class="text-button" id="repeat-test" type="button">Repetir esta evaluación</button>
+          <button class="text-button" id="choose-another" type="button">Evaluar otra área</button>
         </div>
       </div>
+    </section>
 
-      <!-- PLAN TERAPÉUTICO -->
-      <div class="plan-card">
-        <div class="plan-card-title"><i class="fas fa-map-signs"></i> Tu plan terapéutico</div>
-        <div class="plan-rows">
-
-          <div class="plan-row">
-            <div class="plan-icon"><i class="fas fa-tag"></i></div>
-            <div class="plan-text">
-              <strong>Costo por sesión</strong>
-              <span id="plan-costo">—</span>
-            </div>
-          </div>
-
-          <div class="plan-row">
-            <div class="plan-icon"><i class="fas fa-calendar-week"></i></div>
-            <div class="plan-text">
-              <strong>Frecuencia recomendada</strong>
-              <span>Una sesión semanal de 50 minutos. La regularidad es clave para avanzar.</span>
-            </div>
-          </div>
-
-          <div class="plan-row">
-            <div class="plan-icon"><i class="fas fa-search"></i></div>
-            <div class="plan-text">
-              <strong>Fase inicial: evaluación en profundidad</strong>
-              <span>Las primeras <strong>4 sesiones</strong> (aprox. 1 mes) se dedican a entender tu historia, establecer el diagnóstico y diseñar un plan de tratamiento personalizado.</span>
-            </div>
-          </div>
-
-          <div class="plan-row">
-            <div class="plan-icon"><i class="fas fa-road"></i></div>
-            <div class="plan-text">
-              <strong>Duración estimada del tratamiento</strong>
-              <span>Un proceso terapéutico completo tiene una duración aproximada de <strong>6 meses</strong>, aunque esto varía según cada persona y su evolución.</span>
-            </div>
-          </div>
-
-        </div>
-        <div class="plan-highlight" id="plan-highlight"></div>
-      </div>
-
-      <div class="other-therapists">
-        <p>¿Quieres conocer al equipo completo?</p>
-        <div class="other-links">
-          <a href="aaron" class="other-link">Ps. Aaron →</a>
-          <a href="isidora" class="other-link">Ps. Isidora →</a>
-        </div>
-      </div>
-    </div>
-
-  </div>
+    <p class="sr-only" id="screen-status" aria-live="polite"></p>
+  </main>
 
   <footer>
-    <p>© 2026 Faro Terapéutico · Todos los derechos reservados</p>
-    <p class="legal-links">
-      <a href="politica-de-privacidad">Pol&iacute;tica de privacidad</a>
-      <span aria-hidden="true">|</span>
-      <a href="confidencialidad-y-secreto-profesional">Confidencialidad y secreto profesional</a>
-    </p>
+    <p>© 2026 Faro Terapéutico · <a href="politica-de-privacidad">Política de privacidad</a> · <a href="confidencialidad-y-secreto-profesional">Confidencialidad</a></p>
   </footer>
 
   <script>
+    const STANDARD_FREQUENCY = [
+      { label: "Nunca", value: 0 },
+      { label: "Varios días", value: 1 },
+      { label: "Más de la mitad de los días", value: 2 },
+      { label: "Casi todos los días", value: 3 }
+    ];
+
+    const PSS_FREQUENCY = [
+      { label: "Nunca", value: 0 },
+      { label: "Casi nunca", value: 1 },
+      { label: "De vez en cuando", value: 2 },
+      { label: "A menudo", value: 3 },
+      { label: "Muy a menudo", value: 4 }
+    ];
+
+    const GRIEF_FREQUENCY = [
+      { label: "Nada", value: 0 },
+      { label: "Algo", value: 1 },
+      { label: "Mucho", value: 2 }
+    ];
+
+    const WELLBEING_FREQUENCY = [
+      { label: "Nunca", value: 0 },
+      { label: "De vez en cuando", value: 1 },
+      { label: "Menos de la mitad del tiempo", value: 2 },
+      { label: "Más de la mitad del tiempo", value: 3 },
+      { label: "La mayor parte del tiempo", value: 4 },
+      { label: "Todo el tiempo", value: 5 }
+    ];
+
     const THERAPISTS = {
       aaron: {
-        available: true,
-        name: 'Aaron',
-        fullname: 'Ps. Aaron Millán',
-        phone: '56945593808',
-        email: 'psicologo.aams@gmail.com',
-        encuadrado: 'https://encuadrado.com/p/ps-aaron-millan',
-        prevision: ['fonasa', 'isapre', 'particular'],
-        tags: ['Psicodinámica', 'Duelo', 'Adicciones', 'Pareja', 'Personalidad'],
-        match: {
-          tristeza:    'Su enfoque psicodinámico profundiza en el origen del malestar, no solo en los síntomas.',
-          ansiedad:    'Trabaja la ansiedad explorando sus raíces, ideal cuando llevas tiempo sintiéndote así.',
-          pareja:      'Con experiencia en terapia de pareja y conflictos familiares.',
-          duelo:       'Especialista en acompañamiento en procesos de pérdida y duelo.',
-          consumo:     'Atiende regularmente pacientes con adicciones y consumo problemático.',
-          emociones:   'Explora el trasfondo de los patrones emocionales que se repiten.',
-          nofunciono:  'Su enfoque profundo es ideal cuando otras terapias no han dado resultado.',
-          siempre:     'Para patrones que llevan toda la vida, la mirada psicodinámica es especialmente efectiva.',
-          largo:       'Cuando el malestar es crónico, un trabajo de profundidad marca la diferencia.',
-          default:     'Su mirada psicodinámica aborda la raíz del malestar para un cambio duradero.'
-        }
-      },
-      david: {
-        available: false,
-        name: 'David',
-        fullname: 'Ps. David Walter',
-        phone: '56927751595',
-        email: 'ps.waltersalinas@gmail.com',
-        encuadrado: null,
-        prevision: ['fonasa', 'isapre', 'particular'],
-        tags: ['Trastornos del ánimo', 'Ansiedad', 'Estrés', 'Desarrollo personal', 'Deportiva'],
-        match: {
-          tristeza:   'Especialista en trastornos del ánimo con enfoque clínico y estructurado.',
-          ansiedad:   'Con formación en abordaje de ansiedad y estrategias de intervención efectivas.',
-          estres:     'Especialista en manejo del estrés laboral y agotamiento profesional.',
-          vacio:      'Su enfoque estructurado es muy efectivo para la falta de motivación y vacío.',
-          primera:    'Perfecto para una primera experiencia terapéutica: claro, cercano y estructurado.',
-          rendimiento:'Tiene formación en psicología deportiva y rendimiento.',
-          default:    'Su enfoque en trastornos del ánimo y ansiedad se ajusta bien a tu situación.'
-        }
+        name: "Ps. Aaron Millán",
+        photo: "images/aaron-580.webp",
+        photoAlt: "Psicólogo Aaron Millán",
+        focus: "Psicoterapia psicodinámica · duelo, pérdidas y vínculos",
+        profile: "aaron",
+        booking: "agendar.html?service=individual&therapist=aaron&source=autoevaluacion"
       },
       isidora: {
-        available: true,
-        name: 'Isidora',
-        fullname: 'Ps. Isidora Sanhueza',
-        phone: '56932013137',
-        email: 'Psi.isidorasanhueza@gmail.com',
-        encuadrado: 'https://encuadrado.com/p/psicologa-isidora-sanhueza',
-        prevision: ['fonasa', 'isapre', 'particular'],
-        tags: ['Terapia DBT', 'Cognitivo-Conductual', 'Autoestima', 'Depresión', 'Regulación emocional'],
-        match: {
-          ansiedad:   'Con terapia DBT y cognitivo-conductual, altamente efectiva para la ansiedad.',
-          autoestima: 'Especialista en fortalecimiento de la autoestima e identidad.',
-          emociones:  'La terapia DBT está específicamente diseñada para regular emociones intensas.',
-          crisis:     'Con habilidades DBT de manejo de crisis, ideal para momentos de urgencia.',
-          autoimg:    'Trabaja en profundidad la imagen personal y la autoestima.',
-          deporte:    'Puede ayudar a trabajar autoconfianza, regulación emocional y presión personal.',
-          default:    'Su formación en DBT y terapia cognitivo-conductual se adapta muy bien a tu perfil.'
+        name: "Ps. Isidora Sanhueza",
+        photo: "images/isidora-420.webp",
+        photoAlt: "Psicóloga Isidora Sanhueza",
+        focus: "Terapia cognitivo-conductual y DBT · ansiedad, ánimo y regulación emocional",
+        profile: "isidora",
+        booking: "agendar.html?service=individual&therapist=isidora&source=autoevaluacion"
+      },
+      benjamin: {
+        name: "Ps. Benjamín Reyes",
+        photo: "images/Benjamin%20Reyes.webp",
+        photoAlt: "Psicólogo Benjamín Reyes",
+        focus: "Terapia cognitivo-conductual, mindfulness, aceptación y autocompasión",
+        profile: "benjamin",
+        booking: "agendar.html?service=individual&therapist=benjamin&source=autoevaluacion"
+      }
+    };
+
+    const TESTS = {
+      depression: {
+        area: "Ánimo y depresión",
+        name: "PHQ-2",
+        title: "Dos preguntas sobre tu estado de ánimo",
+        intro: "Pensando en las últimas 2 semanas, indica con qué frecuencia te han molestado las siguientes situaciones.",
+        maxScore: 6,
+        options: STANDARD_FREQUENCY,
+        questions: [
+          "Poco interés o placer en hacer cosas.",
+          "Sentirte decaído/a, deprimido/a o sin esperanza."
+        ],
+        therapist: "isidora",
+        therapistReason: "Isidora trabaja con bajo ánimo, ansiedad y regulación emocional desde herramientas cognitivo-conductuales y DBT.",
+        sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/14583691/",
+        sourceLabel: "estudio original de validación del PHQ-2",
+        sourceNote: "El PHQ-2 es un tamizaje de 2 ítems. Un puntaje de 3 o más es el punto de corte habitual para indicar una evaluación más completa; no confirma por sí solo una depresión.",
+        evaluate(values) {
+          const score = values.reduce((sum, value) => sum + value, 0);
+          if (score >= 3) {
+            return {
+              score,
+              level: "Señal que conviene evaluar",
+              tone: score >= 5 ? "high" : "medium",
+              explanation: "Tu puntaje alcanza el punto de corte del PHQ-2. Esto indica presencia frecuente de síntomas centrales de depresión durante las últimas dos semanas, pero no establece un diagnóstico.",
+              next: "Conversa con un/a profesional para ampliar la evaluación —por ejemplo, con el PHQ-9 y una entrevista clínica— y revisar cuánto está afectando tu vida diaria."
+            };
+          }
+          return {
+            score,
+            level: "Sin señal elevada en este tamizaje",
+            tone: "low",
+            explanation: "Tu puntaje está bajo el punto de corte habitual del PHQ-2. En estas dos preguntas no aparece una señal elevada de síntomas depresivos.",
+            next: "Si el malestar persiste, empeora o afecta tu funcionamiento, pedir orientación sigue siendo válido aunque el puntaje sea bajo."
+          };
+        }
+      },
+      anxiety: {
+        area: "Ansiedad",
+        name: "GAD-2",
+        title: "Dos preguntas sobre ansiedad y preocupación",
+        intro: "Pensando en las últimas 2 semanas, indica con qué frecuencia te han molestado las siguientes situaciones.",
+        maxScore: 6,
+        options: STANDARD_FREQUENCY,
+        questions: [
+          "Sentirte nervioso/a, ansioso/a o con los nervios de punta.",
+          "No poder detener o controlar la preocupación."
+        ],
+        therapist: "isidora",
+        therapistReason: "Isidora integra TCC y DBT para comprender la ansiedad y desarrollar recursos de regulación emocional.",
+        sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/17339617/",
+        sourceLabel: "estudio original de validación del GAD-2",
+        sourceNote: "El GAD-2 es un tamizaje de 2 ítems. Un puntaje de 3 o más sugiere que conviene una evaluación más completa; no confirma por sí solo un trastorno de ansiedad.",
+        evaluate(values) {
+          const score = values.reduce((sum, value) => sum + value, 0);
+          if (score >= 3) {
+            return {
+              score,
+              level: "Señal que conviene evaluar",
+              tone: score >= 5 ? "high" : "medium",
+              explanation: "Tu puntaje alcanza el punto de corte del GAD-2. Esto sugiere síntomas frecuentes de ansiedad y preocupación durante las últimas dos semanas, pero no establece un diagnóstico.",
+              next: "Una evaluación profesional puede explorar los detonantes, síntomas físicos, evitación e impacto cotidiano, y ayudarte a definir un plan de apoyo."
+            };
+          }
+          return {
+            score,
+            level: "Sin señal elevada en este tamizaje",
+            tone: "low",
+            explanation: "Tu puntaje está bajo el punto de corte habitual del GAD-2. En estas dos preguntas no aparece una señal elevada de ansiedad general.",
+            next: "Si hay crisis de pánico, evitación, tensión persistente u otras formas de ansiedad, una conversación clínica puede ser útil aunque este puntaje sea bajo."
+          };
+        }
+      },
+      stress: {
+        area: "Estrés y sobrecarga",
+        name: "PSS-4",
+        title: "Cuatro preguntas sobre estrés percibido",
+        intro: "Pensando en el último mes, indica con qué frecuencia te has sentido o has pensado de esta manera.",
+        maxScore: 16,
+        options: PSS_FREQUENCY,
+        reverseItems: [1, 2],
+        questions: [
+          "¿Con qué frecuencia has sentido que no podías controlar las cosas importantes de tu vida?",
+          "¿Con qué frecuencia has sentido confianza en tu capacidad para manejar tus problemas personales?",
+          "¿Con qué frecuencia has sentido que las cosas te iban bien?",
+          "¿Con qué frecuencia has sentido que las dificultades se acumulaban tanto que no podías superarlas?"
+        ],
+        therapist: "benjamin",
+        therapistReason: "Benjamín integra TCC, mindfulness, aceptación y autocompasión, recursos especialmente pertinentes para estrés y sobrecarga.",
+        sourceUrl: "https://www.cmu.edu/dietrich/psychology/stress-immunity-disease-lab/scales/html/pssscoring.html",
+        sourceLabel: "instrucciones oficiales de puntuación de la PSS-4",
+        sourceNote: "La PSS-4 mide estrés percibido en un rango de 0 a 16. No tiene puntos de corte clínicos oficiales; las franjas mostradas aquí son descriptivas y sirven solo para facilitar la lectura.",
+        evaluate(values) {
+          const adjusted = values.map((value, index) => this.reverseItems.includes(index) ? 4 - value : value);
+          const score = adjusted.reduce((sum, value) => sum + value, 0);
+          if (score >= 11) {
+            return {
+              score,
+              level: "Carga percibida alta",
+              tone: "high",
+              explanation: "Tu puntaje se ubica en la zona alta del rango posible. Durante el último mes parece haber existido una sensación importante de sobrecarga o bajo control frente a las dificultades.",
+              next: "Puede ser útil revisar fuentes de estrés, descanso, límites, apoyos disponibles y señales físicas o emocionales con un/a profesional."
+            };
+          }
+          if (score >= 6) {
+            return {
+              score,
+              level: "Carga percibida intermedia",
+              tone: "medium",
+              explanation: "Tu puntaje se ubica en la zona media del rango posible. Hay señales de estrés que vale la pena observar, especialmente si se sostienen o afectan el sueño, el ánimo o el funcionamiento.",
+              next: "Identificar qué situaciones consumen más energía y qué apoyos o cambios concretos son posibles puede evitar que la sobrecarga aumente."
+            };
+          }
+          return {
+            score,
+            level: "Carga percibida menor",
+            tone: "low",
+            explanation: "Tu puntaje se ubica en la zona baja del rango posible de la PSS-4. En este momento no aparece una percepción intensa de sobrecarga general.",
+            next: "Mantén los recursos que te ayudan a recuperar energía. Si existe un problema puntual importante, su impacto puede requerir atención aunque el puntaje global sea bajo."
+          };
+        }
+      },
+      grief: {
+        area: "Duelo por fallecimiento",
+        name: "BGQ-5",
+        title: "Cinco preguntas sobre una pérdida significativa",
+        intro: "Responde pensando en el fallecimiento de una persona cercana. Este instrumento no está diseñado para rupturas de pareja u otras pérdidas no asociadas a una muerte.",
+        maxScore: 10,
+        options: GRIEF_FREQUENCY,
+        questions: [
+          "¿Qué tanta dificultad has tenido para aceptar el fallecimiento?",
+          "¿Qué tanto interfiere todavía el duelo en tu vida diaria?",
+          "¿Qué tanto te afectan imágenes o pensamientos sobre el momento de la muerte u otros pensamientos relacionados con el fallecimiento?",
+          "¿Qué tanto evitas lugares, actividades, conversaciones o recuerdos vinculados con la persona que falleció?",
+          "¿Qué tan distante o desconectado/a te sientes de otras personas desde el fallecimiento, incluso de familiares o amistades cercanas?"
+        ],
+        therapist: "aaron",
+        therapistReason: "Aaron acompaña especialmente duelos por muerte, separaciones y otras pérdidas desde una mirada psicodinámica.",
+        sourceUrl: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8475918/",
+        sourceLabel: "revisión clínica del instrumento BGQ",
+        sourceNote: "Esta es una adaptación al español del BGQ de 5 ítems. Los rangos publicados suelen describir 5–7 como señal subumbral y 8–10 como probable duelo complicado; una entrevista debe considerar el tiempo desde la pérdida y el contexto cultural.",
+        evaluate(values) {
+          const score = values.reduce((sum, value) => sum + value, 0);
+          if (score >= 8) {
+            return {
+              score,
+              level: "Señal elevada de duelo persistente",
+              tone: "high",
+              explanation: "Tu puntaje se encuentra en el rango descrito como probable duelo complicado. Esto no convierte el dolor en una enfermedad ni establece un diagnóstico: señala que la pérdida podría estar interfiriendo de manera importante.",
+              next: "Buscar apoyo profesional puede ayudarte a comprender el proceso, recuperar conexión con tu vida y acompañar la pérdida sin apresurarla ni minimizarla."
+            };
+          }
+          if (score >= 5) {
+            return {
+              score,
+              level: "Señal subumbral",
+              tone: "medium",
+              explanation: "Tu puntaje muestra varias dificultades asociadas al duelo. Se ubica en un rango subumbral: no indica por sí solo un trastorno, pero sí un malestar que merece atención.",
+              next: "Considera conversar con un/a profesional si el duelo está afectando tu vida diaria, tus vínculos o tu capacidad de retomar actividades importantes."
+            };
+          }
+          return {
+            score,
+            level: "Sin señal elevada en este tamizaje",
+            tone: "low",
+            explanation: "Tu puntaje está bajo los rangos de alerta habituales del BGQ. Esto no mide cuánto querías a la persona ni cuánto debería durar tu duelo.",
+            next: "No existe una única forma correcta de vivir una pérdida. Si necesitas un espacio para hablar o el malestar aumenta, pedir acompañamiento sigue siendo una opción válida."
+          };
+        }
+      },
+      wellbeing: {
+        area: "Bienestar general",
+        name: "OMS-5",
+        title: "Cinco preguntas sobre tu bienestar reciente",
+        intro: "Pensando en las últimas 2 semanas, indica con qué frecuencia cada afirmación describe cómo te has sentido.",
+        maxScore: 100,
+        options: WELLBEING_FREQUENCY,
+        questions: [
+          "Me he sentido alegre y de buen humor.",
+          "Me he sentido tranquilo/a y relajado/a.",
+          "Me he sentido activo/a y enérgico/a.",
+          "Me he despertado fresco/a y descansado/a.",
+          "Mi vida cotidiana ha estado llena de cosas que me interesan."
+        ],
+        therapist: "benjamin",
+        therapistReason: "Benjamín trabaja bienestar, hábitos y relación con el malestar desde mindfulness, aceptación, compromiso y autocompasión.",
+        sourceUrl: "https://www.who.int/es/publications/m/item/WHO-UCN-MSD-MHE-2024.01",
+        sourceLabel: "versión oficial en español del índice OMS-5",
+        sourceNote: "La OMS-5 suma 5 respuestas (0–25) y multiplica el resultado por 4. Un puntaje bruto menor de 13 —equivalente a menos de 52 sobre 100— o una respuesta de 0 o 1 sugiere ampliar la evaluación del bienestar.",
+        evaluate(values) {
+          const rawScore = values.reduce((sum, value) => sum + value, 0);
+          const score = rawScore * 4;
+          const lowItem = values.some(value => value <= 1);
+          if (rawScore < 13 || lowItem) {
+            return {
+              score,
+              level: "Bienestar bajo: conviene profundizar",
+              tone: rawScore <= 7 ? "high" : "medium",
+              explanation: "Tu resultado sugiere un nivel bajo de bienestar en las últimas dos semanas. La OMS recomienda ampliar la evaluación cuando el puntaje bruto es menor de 13 o alguna respuesta es 0 o 1.",
+              next: "Una conversación profesional puede ayudar a distinguir si influyen el ánimo, ansiedad, estrés, sueño, salud física u otras circunstancias de vida."
+            };
+          }
+          return {
+            score,
+            level: "Sin señal de bajo bienestar",
+            tone: "low",
+            explanation: "Tu resultado no cumple los criterios de la OMS-5 para señalar bajo bienestar en este momento. Las respuestas reflejan presencia de recursos positivos durante las últimas dos semanas.",
+            next: "Sigue cuidando las rutinas, relaciones y actividades que sostienen tu bienestar. Si algo específico te preocupa, puedes pedir orientación aunque el resultado global sea favorable."
+          };
         }
       }
     };
 
-    // Estado
-    const scores = { aaron: 0, david: 0, isidora: 0 };
-    const answers = {};
-    let leadData = {};
-    let currentStep = 0;
+    const panels = {
+      choose: document.getElementById("choose-panel"),
+      answer: document.getElementById("test-panel"),
+      result: document.getElementById("result-panel")
+    };
 
-    // Utilidades
-    function getSelected(gridId) {
-      return Array.from(document.querySelectorAll(`#${gridId} .answer-card.selected`));
-    }
+    const stepper = {
+      choose: document.getElementById("stepper-choose"),
+      answer: document.getElementById("stepper-answer"),
+      result: document.getElementById("stepper-result")
+    };
 
-    function addScores(cards) {
-      cards.forEach(card => {
-        const s = JSON.parse(card.dataset.scores || '{}');
-        Object.entries(s).forEach(([k, v]) => { scores[k] = (scores[k] || 0) + v; });
+    const statusNode = document.getElementById("screen-status");
+    let activeTestId = null;
+    let activeResult = null;
+
+    function showPanel(panelName) {
+      Object.entries(panels).forEach(([name, panel]) => panel.classList.toggle("active", name === panelName));
+      const order = ["choose", "answer", "result"];
+      const activeIndex = order.indexOf(panelName);
+      order.forEach((name, index) => {
+        stepper[name].classList.toggle("active", index === activeIndex);
+        stepper[name].classList.toggle("done", index < activeIndex);
       });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function showStep(n) {
-      document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-      document.getElementById(`step-${n}`).classList.add('active');
-      currentStep = n;
-      const pw = document.getElementById('progressWrap');
-      if (n === 0 || n === 'result') {
-        pw.style.display = 'none';
-      } else {
-        pw.style.display = 'block';
-        const pct = Math.round(((n - 1) / 5) * 100);
-        document.getElementById('progressFill').style.width = pct + '%';
-        document.getElementById('qNum').textContent = n;
-        document.getElementById('qPct').textContent = pct + '%';
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    function trackEvent(name, parameters = {}) {
+      if (typeof gtag === "function") gtag("event", name, parameters);
     }
 
-    // Multi-select con límite
-    function setupGrid(gridId, maxSelect) {
-      const grid = document.getElementById(gridId);
-      grid.querySelectorAll('.answer-card').forEach(card => {
-        card.addEventListener('click', () => {
-          const selected = grid.querySelectorAll('.answer-card.selected');
-          if (card.classList.contains('selected')) {
-            card.classList.remove('selected');
-          } else {
-            if (maxSelect === 1) {
-              selected.forEach(c => c.classList.remove('selected'));
-            } else if (selected.length >= maxSelect) {
-              return;
-            }
-            card.classList.add('selected');
-          }
-        });
+    function renderTest(testId) {
+      const test = TESTS[testId];
+      activeTestId = testId;
+      activeResult = null;
+      document.getElementById("instrument-chip").textContent = `${test.name} · instrumento breve`;
+      document.getElementById("test-title").textContent = test.title;
+      document.getElementById("test-intro").textContent = test.intro;
+      document.getElementById("test-count").textContent = `${test.questions.length} ${test.questions.length === 1 ? "pregunta" : "preguntas"}`;
+      document.getElementById("form-error").textContent = "";
+
+      const questionList = document.getElementById("question-list");
+      questionList.innerHTML = test.questions.map((question, questionIndex) => {
+        const options = test.options.map(option => `
+          <label class="option-label">
+            <input type="radio" name="question-${questionIndex}" value="${option.value}">
+            <span>${option.label}</span>
+          </label>
+        `).join("");
+        return `
+          <fieldset class="question-block" data-question="${questionIndex}">
+            <legend><span class="question-number">Pregunta ${questionIndex + 1}</span>${question}</legend>
+            <div class="option-grid" style="--option-count:${test.options.length}">${options}</div>
+          </fieldset>
+        `;
+      }).join("");
+
+      showPanel("answer");
+      statusNode.textContent = `Comenzaste ${test.name}, ${test.questions.length} preguntas.`;
+      trackEvent("assessment_started");
+    }
+
+    function getAnswers(test) {
+      const values = [];
+      let firstMissing = null;
+      test.questions.forEach((_, index) => {
+        const block = document.querySelector(`[data-question="${index}"]`);
+        const selected = document.querySelector(`input[name="question-${index}"]:checked`);
+        block.classList.toggle("missing", !selected);
+        if (!selected && !firstMissing) firstMissing = block;
+        if (selected) values.push(Number(selected.value));
       });
+      return { values, firstMissing };
     }
 
-    // Inicializar grids
-    setupGrid('q1-grid', 2);
-    setupGrid('q2-grid', 1);
-    setupGrid('q3-grid', 1);
-    setupGrid('q4-grid', 6);
-    setupGrid('q5-grid', 1);
+    function renderResult(testId, result) {
+      const test = TESTS[testId];
+      const therapist = THERAPISTS[test.therapist];
+      activeResult = result;
 
-    // STEP 0: Lead capture
-    document.getElementById('btnStart').addEventListener('click', async () => {
-      const nombre = document.getElementById('lead-nombre').value.trim();
-      const email  = document.getElementById('lead-email').value.trim();
-      const prev   = document.getElementById('lead-prevision').value;
+      document.getElementById("result-score").textContent = result.score;
+      document.getElementById("result-scale").textContent = `de ${test.maxScore}`;
+      document.getElementById("result-instrument").textContent = `${test.area} · ${test.name}`;
+      document.getElementById("result-title").textContent = "Tu lectura orientativa";
 
-      let ok = true;
-      ['lead-nombre','lead-email','lead-prevision'].forEach(id => {
-        document.getElementById(id).classList.remove('error');
-      });
+      const badge = document.getElementById("result-badge");
+      badge.textContent = result.level;
+      badge.className = `severity-badge ${result.tone === "low" ? "" : result.tone}`.trim();
 
-      if (!nombre) { document.getElementById('lead-nombre').classList.add('error'); ok = false; }
-      if (!email || !email.includes('@')) { document.getElementById('lead-email').classList.add('error'); ok = false; }
-      if (!prev) { document.getElementById('lead-prevision').classList.add('error'); ok = false; }
+      document.getElementById("result-explanation").textContent = result.explanation;
+      document.getElementById("result-next-step").innerHTML = `<strong>Próximo paso sugerido</strong>${result.next}`;
+      document.getElementById("result-disclaimer").textContent = "Este resultado no es un diagnóstico ni indica por sí solo que necesites psicoterapia. Debe leerse junto con tu historia, contexto y funcionamiento cotidiano.";
 
-      if (!ok) return;
+      const photo = document.getElementById("therapist-photo");
+      photo.src = therapist.photo;
+      photo.alt = therapist.photoAlt;
+      document.getElementById("therapist-name").textContent = therapist.name;
+      document.getElementById("therapist-focus").textContent = therapist.focus;
+      document.getElementById("therapist-reason").textContent = test.therapistReason;
+      document.getElementById("therapist-profile").href = therapist.profile;
+      document.getElementById("therapist-book").href = therapist.booking;
 
-      leadData = { nombre, email, prevision: prev };
+      document.getElementById("source-copy").innerHTML = `${test.sourceNote} Consulta el <a href="${test.sourceUrl}" target="_blank" rel="noopener noreferrer">${test.sourceLabel}</a>.`;
+      document.getElementById("patient-phone").value = "";
+      document.getElementById("phone-error").textContent = "";
 
-      // Enviar lead a Formspree en segundo plano
-      fetch('https://formspree.io/f/xovpkvwk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _subject: `Nuevo lead evaluación — ${nombre}`,
-          nombre,
-          email,
-          prevision: prev,
-          origen: 'Evaluador de síntomas'
-        })
-      }).catch(() => {}); // silencioso si falla
-
-      if (typeof gtag === 'function') {
-        gtag('event', 'formulario_contacto', { event_category: 'Submit', event_label: `Evaluador de síntomas — ${prev}` });
-        gtag('event', 'conversion', { 'send_to': 'AW-17584631597/euI3CNy83rgbEK3egMFB' });
-      }
-      if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: `Evaluador de síntomas — ${prev}` }, { eventID: crypto.randomUUID() });
-
-      showStep(1);
-    });
-
-    // STEP 1
-    document.getElementById('btnQ1').addEventListener('click', () => {
-      const sel = getSelected('q1-grid');
-      if (!sel.length) { alert('Elige al menos una opción.'); return; }
-      addScores(sel);
-      answers.q1 = sel.map(c => c.dataset.value);
-      showStep(2);
-    });
-
-    // STEP 2
-    document.getElementById('btnQ2').addEventListener('click', () => {
-      const sel = getSelected('q2-grid');
-      if (!sel.length) { alert('Elige una opción.'); return; }
-      addScores(sel);
-      answers.q2 = sel[0].dataset.value;
-      showStep(3);
-    });
-
-    // STEP 3
-    document.getElementById('btnQ3').addEventListener('click', () => {
-      const sel = getSelected('q3-grid');
-      if (!sel.length) { alert('Elige una opción.'); return; }
-      addScores(sel);
-      answers.q3 = sel[0].dataset.value;
-      showStep(4);
-    });
-
-    // STEP 4
-    document.getElementById('btnQ4').addEventListener('click', () => {
-      const sel = getSelected('q4-grid');
-      if (!sel.length) { alert('Elige al menos una opción.'); return; }
-      addScores(sel);
-      answers.q4 = sel.map(c => c.dataset.value);
-      showStep(5);
-    });
-
-    // STEP 5 → RESULTADO
-    document.getElementById('btnQ5').addEventListener('click', () => {
-      const sel = getSelected('q5-grid');
-      if (!sel.length) { alert('Elige una opción.'); return; }
-      addScores(sel);
-      answers.q5 = sel[0].dataset.value;
-      showResult();
-    });
-
-    function showResult() {
-      // Determinar ganador
-      const winner = Object.entries(scores)
-        .filter(([therapistId]) => THERAPISTS[therapistId].available)
-        .sort((a, b) => b[1] - a[1])[0][0];
-      const t = THERAPISTS[winner];
-
-      // Buscar mensaje de match más relevante
-      const allAnswers = [
-        ...(answers.q1 || []),
-        answers.q2,
-        answers.q3,
-        answers.q5
-      ].filter(Boolean);
-
-      let matchMsg = t.match.default;
-      for (const key of allAnswers) {
-        if (t.match[key]) { matchMsg = t.match[key]; break; }
-      }
-
-      // Rellenar resultado
-      document.getElementById('result-name').textContent = t.name;
-      document.getElementById('result-fullname').textContent = t.fullname;
-      document.getElementById('result-match').innerHTML = `<i class="fas fa-lightbulb"></i> ${matchMsg}`;
-
-      // Tags de especialidad
-      document.getElementById('result-tags').innerHTML =
-        t.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-
-      // Badges de previsión
-      const prevLabels = { fonasa: 'FONASA', isapre: 'Isapre', particular: 'Particular' };
-      document.getElementById('result-prevision').innerHTML =
-        t.prevision.map(p => `<span class="badge-prevision badge-${p}">${prevLabels[p]}</span>`).join('');
-
-      // Botón Encuadrado
-      const agendaBtn = document.getElementById('result-agenda');
-      if (t.encuadrado) {
-        agendaBtn.href = t.encuadrado;
-        agendaBtn.style.display = 'flex';
-      } else {
-        agendaBtn.style.display = 'none';
-      }
-
-      // WhatsApp
-      const motivos = (answers.q1 || []).join(', ');
-      const waText = `Hola ${t.name}, hice la evaluación en tu web y me recomendaron contigo.\n\n` +
-        `👤 *Mi nombre:* ${leadData.nombre}\n` +
-        `✉️ *Correo:* ${leadData.email}\n` +
-        `🏥 *Previsión:* ${leadData.prevision}\n\n` +
-        `💬 *Motivo:* ${motivos}\n\n` +
-        `Me gustaría agendar una primera sesión. ¿Tienes disponibilidad?`;
-      const waBtn = document.getElementById('result-wa');
-      waBtn.href = `https://wa.me/${t.phone}?text=${encodeURIComponent(waText)}`;
-      waBtn.onclick = function() {
-        if (typeof gtag === 'function') {
-          gtag('event', 'contacto_whatsapp', { event_category: 'WhatsApp', event_label: 'WhatsApp — evaluacion' });
-          gtag('event', 'conversion', { 'send_to': 'AW-17584631597/xJYeCMuY2qYbEK3egMFB' });
-        }
-        if (typeof fbq === 'function') fbq('track', 'Contact', { content_name: 'WhatsApp — evaluacion' }, { eventID: crypto.randomUUID() });
-      };
-
-      // Email
-      const emailSubject = `Consulta - ${leadData.nombre} (evaluación web)`;
-      const emailBody = `Hola ${t.name},\n\nHice la evaluación en el sitio web y me recomendaron contigo.\n\nNombre: ${leadData.nombre}\nCorreo: ${leadData.email}\nPrevisión: ${leadData.prevision}\nMotivo: ${motivos}\n\nMe gustaría agendar una primera sesión.`;
-      document.getElementById('result-email').href = `mailto:${t.email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-
-      // Plan terapéutico según previsión
-      const prev = leadData.prevision;
-      let costoHtml = '';
-      let highlightHtml = '';
-
-      if (prev === 'Fonasa') {
-        costoHtml = `Valor sesión: $30.000 · Tu copago con FONASA Nivel 3: <span class="cost-badge">$14.420</span>`;
-        highlightHtml = `<i class="fas fa-info-circle"></i> Con tu bono FONASA puedes comprar la hora directamente en Encuadrado al momento de agendar, o en Mi FONASA con el RUT del terapeuta. Sin trámites adicionales.`;
-      } else if (prev === 'Isapre') {
-        costoHtml = `Valor sesión: $30.000 · Tu reembolso Isapre estimado: 40–80% según tu plan → copago aproximado desde <span class="cost-badge">$6.000</span>`;
-        highlightHtml = `<i class="fas fa-info-circle"></i> Al agendar por Encuadrado recibirás la boleta electrónica automáticamente. Solo sube el documento a la app de tu Isapre para solicitar el reembolso — el proceso toma menos de 5 minutos.`;
-      } else {
-        costoHtml = `Valor sesión: <span class="cost-badge">$30.000</span> · Sin previsión ni trámites adicionales.`;
-        highlightHtml = `<i class="fas fa-info-circle"></i> El pago se realiza directamente a través de Encuadrado con tarjeta de débito, crédito o transferencia. Recibirás la boleta electrónica de forma automática.`;
-      }
-
-      document.getElementById('plan-costo').innerHTML = costoHtml;
-      document.getElementById('plan-highlight').innerHTML = highlightHtml;
-
-      showStep('result');
+      showPanel("result");
+      statusNode.textContent = `Resultado de ${test.name}: ${result.score} de ${test.maxScore}. ${result.level}.`;
+      trackEvent("assessment_completed");
     }
+
+    function normalizeWhatsappNumber(value) {
+      let digits = String(value || "").replace(/\D/g, "");
+      if (digits.startsWith("00")) digits = digits.slice(2);
+      if (digits.startsWith("56")) return digits.length === 11 ? digits : null;
+      if (digits.length === 9 && digits.startsWith("9")) return `56${digits}`;
+      return null;
+    }
+
+    function buildWhatsappMessage() {
+      const test = TESTS[activeTestId];
+      const therapist = THERAPISTS[test.therapist];
+      const date = new Intl.DateTimeFormat("es-CL", { day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date());
+      const bookingUrl = `https://faroterapeutico.com/agendar?service=individual&therapist=${test.therapist}&source=autoevaluacion-whatsapp`;
+      return [
+        "Mi autoevaluación — Faro Terapéutico",
+        `Fecha: ${date}`,
+        "",
+        `Área: ${test.area}`,
+        `Instrumento: ${test.name}`,
+        `Puntaje: ${activeResult.score} de ${test.maxScore}`,
+        `Lectura: ${activeResult.level}`,
+        "",
+        activeResult.explanation,
+        "",
+        `Próximo paso sugerido: ${activeResult.next}`,
+        "",
+        `Profesional recomendado: ${therapist.name}`,
+        test.therapistReason,
+        `Agendar con ${therapist.name}: ${bookingUrl}`,
+        "",
+        "Este tamizaje es orientativo: no entrega un diagnóstico ni reemplaza una evaluación profesional.",
+        "Si estoy en riesgo o podría hacerme daño: llamar al *4141 o acudir a una urgencia."
+      ].join("\n");
+    }
+
+    document.querySelectorAll("[data-test]").forEach(button => {
+      button.addEventListener("click", () => renderTest(button.dataset.test));
+    });
+
+    document.getElementById("assessment-form").addEventListener("change", event => {
+      const block = event.target.closest(".question-block");
+      if (block) block.classList.remove("missing");
+      document.getElementById("form-error").textContent = "";
+    });
+
+    document.getElementById("assessment-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const test = TESTS[activeTestId];
+      const { values, firstMissing } = getAnswers(test);
+      if (firstMissing) {
+        document.getElementById("form-error").textContent = "Responde todas las preguntas para calcular tu resultado.";
+        firstMissing.scrollIntoView({ behavior: "smooth", block: "center" });
+        const firstInput = firstMissing.querySelector("input");
+        if (firstInput) firstInput.focus({ preventScroll: true });
+        return;
+      }
+      renderResult(activeTestId, test.evaluate(values));
+    });
+
+    document.getElementById("back-to-choose").addEventListener("click", () => {
+      showPanel("choose");
+      statusNode.textContent = "Volviste a la selección de área.";
+    });
+
+    document.getElementById("repeat-test").addEventListener("click", () => renderTest(activeTestId));
+
+    document.getElementById("choose-another").addEventListener("click", () => {
+      showPanel("choose");
+      statusNode.textContent = "Elige otra área para evaluar.";
+    });
+
+    document.getElementById("save-whatsapp").addEventListener("click", () => {
+      const phoneInput = document.getElementById("patient-phone");
+      const phone = normalizeWhatsappNumber(phoneInput.value);
+      const error = document.getElementById("phone-error");
+      if (!phone) {
+        error.textContent = "Ingresa un celular chileno válido, por ejemplo 9 1234 5678.";
+        phoneInput.focus();
+        return;
+      }
+      error.textContent = "";
+      const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(buildWhatsappMessage())}`;
+      trackEvent("assessment_saved_whatsapp");
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    });
+
+    document.getElementById("patient-phone").addEventListener("input", () => {
+      document.getElementById("phone-error").textContent = "";
+    });
+
+    document.getElementById("therapist-book").addEventListener("click", () => {
+      trackEvent("assessment_booking_clicked");
+    });
   </script>
 </body>
 </html>
