@@ -287,12 +287,12 @@
     .topic-card {
       position: relative;
       display: grid;
-      grid-template-columns: 46px 1fr auto;
-      gap: 14px;
+      grid-template-columns: 42px 1fr auto;
+      gap: 12px;
       align-items: center;
       width: 100%;
-      min-height: 112px;
-      padding: 20px;
+      min-height: 96px;
+      padding: 16px;
       border: 1.5px solid var(--line);
       border-radius: var(--radius-md);
       color: var(--ink);
@@ -312,8 +312,8 @@
 
     .topic-icon {
       display: grid;
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
       place-items: center;
       border-radius: 14px;
       background: var(--accent-soft);
@@ -407,13 +407,30 @@
 
     .test-intro {
       max-width: 730px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       color: var(--ink-soft);
       font-size: 0.98rem;
       line-height: 1.7;
     }
 
-    .question-list { display: grid; gap: 16px; }
+    .question-progress {
+      height: 6px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8e3da;
+    }
+
+    .question-progress span {
+      display: block;
+      width: 20%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--accent);
+      transition: width 0.18s ease;
+    }
+
+    .question-list { display: grid; }
 
     .question-block {
       min-width: 0;
@@ -423,6 +440,10 @@
       border-radius: var(--radius-md);
       background: var(--white);
     }
+
+    .question-block[hidden] { display: none !important; }
+
+    .question-block:focus { outline: none; }
 
     .question-block.missing {
       border-color: var(--urgent);
@@ -470,7 +491,7 @@
 
     .option-label span {
       display: flex;
-      min-height: 72px;
+      min-height: 60px;
       align-items: center;
       justify-content: center;
       padding: 10px 8px;
@@ -505,6 +526,40 @@
       font-size: 0.84rem;
       font-weight: 500;
     }
+
+    .question-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .question-actions > button { flex: 1; }
+
+    .question-actions [hidden] { display: none !important; }
+
+    .question-nav-button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--ink);
+      background: var(--white);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .question-nav-button:hover,
+    .question-nav-button:focus-visible {
+      border-color: var(--accent);
+      outline: none;
+      background: var(--accent-soft);
+    }
+
+    .question-actions .primary-button { margin-top: 0; }
 
     .primary-button,
     .secondary-button,
@@ -888,13 +943,18 @@
       .app-header { padding: 11px 15px; }
       .header-exit { font-size: 0.8rem; }
       .topics-grid { grid-template-columns: 1fr; }
-      .topic-card { min-height: 92px; }
+      .topic-card {
+        grid-template-columns: 40px 1fr auto;
+        min-height: 76px;
+        padding: 13px;
+      }
+      .topic-icon { width: 40px; height: 40px; }
       .stepper { gap: 5px; }
       .stepper-item { min-height: 38px; padding: 9px 6px; text-align: center; }
       .stepper-item::before { display: none; }
       .panel { padding: 20px 15px; border-radius: 20px; }
       .question-block { padding: 17px 13px; }
-      .option-label span { min-height: 66px; }
+      .option-label span { min-height: 58px; }
       .test-topbar { margin-bottom: 18px; }
       .result-header { align-items: flex-start; }
       .score-ring { width: 82px; height: 82px; flex-basis: 82px; }
@@ -1045,9 +1105,16 @@
       <h2 class="test-title" id="test-title"></h2>
       <p class="test-intro" id="test-intro"></p>
       <form id="assessment-form" novalidate>
+        <div class="question-progress" id="question-progress" role="progressbar" aria-label="Progreso de las preguntas" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+          <span id="question-progress-bar"></span>
+        </div>
         <div class="question-list" id="question-list"></div>
         <p class="form-error" id="form-error" role="alert"></p>
-        <button class="primary-button" type="submit">Ver mi resultado <span aria-hidden="true">→</span></button>
+        <div class="question-actions" id="question-actions">
+          <button class="question-nav-button" id="previous-question" type="button" hidden><span aria-hidden="true">←</span> Anterior</button>
+          <button class="primary-button" id="next-question" type="button">Continuar <span aria-hidden="true">→</span></button>
+          <button class="primary-button" id="submit-assessment" type="submit" hidden>Ver mi resultado <span aria-hidden="true">→</span></button>
+        </div>
       </form>
     </section>
 
@@ -1433,6 +1500,8 @@
     const statusNode = document.getElementById("screen-status");
     let activeTestId = null;
     let activeResult = null;
+    let activeQuestionIndex = 0;
+    let advanceTimer = null;
 
     function showPanel(panelName) {
       Object.entries(panels).forEach(([name, panel]) => panel.classList.toggle("active", name === panelName));
@@ -1449,14 +1518,46 @@
       if (typeof gtag === "function") gtag("event", name, parameters);
     }
 
+    function showQuestion(questionIndex, focusQuestion = false) {
+      const test = TESTS[activeTestId];
+      if (!test) return;
+
+      const lastIndex = test.questions.length - 1;
+      activeQuestionIndex = Math.max(0, Math.min(questionIndex, lastIndex));
+      document.querySelectorAll(".question-block").forEach((block, index) => {
+        block.hidden = index !== activeQuestionIndex;
+      });
+
+      const currentNumber = activeQuestionIndex + 1;
+      const progress = document.getElementById("question-progress");
+      document.getElementById("test-count").textContent = `Pregunta ${currentNumber} de ${test.questions.length}`;
+      document.getElementById("question-progress-bar").style.width = `${(currentNumber / test.questions.length) * 100}%`;
+      progress.setAttribute("aria-valuemax", test.questions.length);
+      progress.setAttribute("aria-valuenow", currentNumber);
+      progress.setAttribute("aria-valuetext", `Pregunta ${currentNumber} de ${test.questions.length}`);
+
+      document.getElementById("previous-question").hidden = activeQuestionIndex === 0;
+      document.getElementById("next-question").hidden = activeQuestionIndex === lastIndex;
+      document.getElementById("submit-assessment").hidden = activeQuestionIndex !== lastIndex;
+      document.getElementById("form-error").textContent = "";
+
+      if (focusQuestion) {
+        const currentBlock = document.querySelector(`[data-question="${activeQuestionIndex}"]`);
+        if (currentBlock) currentBlock.focus({ preventScroll: true });
+      }
+
+      statusNode.textContent = `Pregunta ${currentNumber} de ${test.questions.length} de ${test.name}.`;
+    }
+
     function renderTest(testId) {
       const test = TESTS[testId];
+      window.clearTimeout(advanceTimer);
       activeTestId = testId;
       activeResult = null;
+      activeQuestionIndex = 0;
       document.getElementById("instrument-chip").textContent = `${test.name} · instrumento breve`;
       document.getElementById("test-title").textContent = test.title;
       document.getElementById("test-intro").textContent = test.intro;
-      document.getElementById("test-count").textContent = `${test.questions.length} ${test.questions.length === 1 ? "pregunta" : "preguntas"}`;
       document.getElementById("form-error").textContent = "";
 
       const questionList = document.getElementById("question-list");
@@ -1469,7 +1570,7 @@
           </label>
         `).join("");
         return `
-          <fieldset class="question-block" data-question="${questionIndex}">
+          <fieldset class="question-block" data-question="${questionIndex}" tabindex="-1" ${questionIndex === 0 ? "" : "hidden"}>
             <legend><span class="question-number">Pregunta ${questionIndex + 1}${contextLabel}</span>${question}</legend>
             <div class="option-grid" style="--option-count:${test.options.length}">${options}</div>
           </fieldset>
@@ -1477,6 +1578,7 @@
       }).join("");
 
       showPanel("answer");
+      showQuestion(0);
       statusNode.textContent = `Comenzaste ${test.name}, ${test.questions.length} preguntas.`;
       trackEvent("assessment_started");
     }
@@ -1573,6 +1675,34 @@
       const block = event.target.closest(".question-block");
       if (block) block.classList.remove("missing");
       document.getElementById("form-error").textContent = "";
+
+      if (block) {
+        window.clearTimeout(advanceTimer);
+        const answeredIndex = Number(block.dataset.question);
+        const test = TESTS[activeTestId];
+        if (answeredIndex < test.questions.length - 1) {
+          advanceTimer = window.setTimeout(() => showQuestion(answeredIndex + 1, true), 180);
+        }
+      }
+    });
+
+    document.getElementById("previous-question").addEventListener("click", () => {
+      window.clearTimeout(advanceTimer);
+      showQuestion(activeQuestionIndex - 1, true);
+    });
+
+    document.getElementById("next-question").addEventListener("click", () => {
+      window.clearTimeout(advanceTimer);
+      const currentBlock = document.querySelector(`[data-question="${activeQuestionIndex}"]`);
+      const selected = currentBlock.querySelector(`input[name="question-${activeQuestionIndex}"]:checked`);
+      if (!selected) {
+        currentBlock.classList.add("missing");
+        document.getElementById("form-error").textContent = "Selecciona una respuesta para continuar.";
+        const firstInput = currentBlock.querySelector("input");
+        if (firstInput) firstInput.focus({ preventScroll: true });
+        return;
+      }
+      showQuestion(activeQuestionIndex + 1, true);
     });
 
     document.getElementById("assessment-form").addEventListener("submit", event => {
@@ -1580,6 +1710,7 @@
       const test = TESTS[activeTestId];
       const { values, firstMissing } = getAnswers(test);
       if (firstMissing) {
+        showQuestion(Number(firstMissing.dataset.question), true);
         document.getElementById("form-error").textContent = "Te falta responder una o más preguntas. Complétalas para ver tu resultado.";
         firstMissing.scrollIntoView({ behavior: "smooth", block: "center" });
         const firstInput = firstMissing.querySelector("input");
@@ -1590,6 +1721,7 @@
     });
 
     document.getElementById("back-to-choose").addEventListener("click", () => {
+      window.clearTimeout(advanceTimer);
       showPanel("choose");
       statusNode.textContent = "Volviste a la selección de área.";
     });
