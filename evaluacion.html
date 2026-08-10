@@ -985,17 +985,17 @@
       <div class="topics-grid">
         <button class="topic-card" type="button" data-test="depression">
           <span class="topic-icon" aria-hidden="true">☁️</span>
-          <span class="topic-copy"><strong>Ánimo y depresión</strong><small>PHQ-2 · 2 preguntas · últimas 2 semanas</small></span>
+          <span class="topic-copy"><strong>Ánimo y depresión</strong><small>PHQ-2 + contexto · 5 preguntas</small></span>
           <span class="topic-arrow" aria-hidden="true">→</span>
         </button>
         <button class="topic-card" type="button" data-test="anxiety">
           <span class="topic-icon" aria-hidden="true">≈</span>
-          <span class="topic-copy"><strong>Ansiedad</strong><small>GAD-2 · 2 preguntas · últimas 2 semanas</small></span>
+          <span class="topic-copy"><strong>Ansiedad</strong><small>GAD-2 + contexto · 5 preguntas</small></span>
           <span class="topic-arrow" aria-hidden="true">→</span>
         </button>
         <button class="topic-card" type="button" data-test="stress">
           <span class="topic-icon" aria-hidden="true">↯</span>
-          <span class="topic-copy"><strong>Estrés y sobrecarga</strong><small>PSS-4 · 4 preguntas · último mes</small></span>
+          <span class="topic-copy"><strong>Estrés y sobrecarga</strong><small>PSS-4 + contexto · 5 preguntas</small></span>
           <span class="topic-arrow" aria-hidden="true">→</span>
         </button>
         <button class="topic-card" type="button" data-test="grief">
@@ -1176,21 +1176,25 @@
       depression: {
         area: "Ánimo y depresión",
         name: "PHQ-2",
-        title: "Dos preguntas sobre tu estado de ánimo",
-        intro: "Pensando en las últimas 2 semanas, indica con qué frecuencia te han molestado las siguientes situaciones.",
+        title: "Cinco preguntas sobre tu estado de ánimo",
+        intro: "Pensando en las últimas 2 semanas, responde las cinco preguntas. Las dos primeras forman el puntaje PHQ-2; las otras tres aportan contexto clínico sin modificar su punto de corte.",
         maxScore: 6,
+        scoredItems: 2,
         options: STANDARD_FREQUENCY,
         questions: [
           "Poco interés o placer en hacer cosas.",
-          "Sentirte decaído/a, deprimido/a o sin esperanza."
+          "Sentirte decaído/a, deprimido/a o sin esperanza.",
+          "Tener dificultad para dormir, permanecer dormido/a o dormir demasiado.",
+          "Sentirte cansado/a o con poca energía.",
+          "Sentirte mal contigo mismo/a, como si hubieras fallado o decepcionado a otras personas."
         ],
         therapist: "isidora",
         therapistReason: "Isidora trabaja con bajo ánimo, ansiedad y regulación emocional desde herramientas cognitivo-conductuales y DBT.",
         sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/14583691/",
         sourceLabel: "estudio original de validación del PHQ-2",
-        sourceNote: "El PHQ-2 es un tamizaje de 2 ítems. Un puntaje de 3 o más es el punto de corte habitual para indicar una evaluación más completa; no confirma por sí solo una depresión.",
+        sourceNote: "Esta evaluación contiene 5 preguntas. Las dos primeras corresponden al PHQ-2 y determinan el puntaje de 0 a 6; las otras tres provienen de áreas exploradas por el PHQ-9 y solo entregan contexto. Un puntaje PHQ-2 de 3 o más indica que conviene una evaluación más completa, pero no confirma por sí solo una depresión.",
         evaluate(values) {
-          const score = values.reduce((sum, value) => sum + value, 0);
+          const score = values.slice(0, this.scoredItems).reduce((sum, value) => sum + value, 0);
           if (score >= 3) {
             return {
               score,
@@ -1212,21 +1216,25 @@
       anxiety: {
         area: "Ansiedad",
         name: "GAD-2",
-        title: "Dos preguntas sobre ansiedad y preocupación",
-        intro: "Pensando en las últimas 2 semanas, indica con qué frecuencia te han molestado las siguientes situaciones.",
+        title: "Cinco preguntas sobre ansiedad y preocupación",
+        intro: "Pensando en las últimas 2 semanas, responde las cinco preguntas. Las dos primeras forman el puntaje GAD-2; las otras tres aportan contexto clínico sin modificar su punto de corte.",
         maxScore: 6,
+        scoredItems: 2,
         options: STANDARD_FREQUENCY,
         questions: [
           "Sentirte nervioso/a, ansioso/a o con los nervios de punta.",
-          "No poder detener o controlar la preocupación."
+          "No poder detener o controlar la preocupación.",
+          "Preocuparte demasiado por diferentes cosas.",
+          "Tener dificultad para relajarte.",
+          "Enfadarte o irritarte con facilidad."
         ],
         therapist: "isidora",
         therapistReason: "Isidora integra TCC y DBT para comprender la ansiedad y desarrollar recursos de regulación emocional.",
         sourceUrl: "https://pubmed.ncbi.nlm.nih.gov/17339617/",
         sourceLabel: "estudio original de validación del GAD-2",
-        sourceNote: "El GAD-2 es un tamizaje de 2 ítems. Un puntaje de 3 o más sugiere que conviene una evaluación más completa; no confirma por sí solo un trastorno de ansiedad.",
+        sourceNote: "Esta evaluación contiene 5 preguntas. Las dos primeras corresponden al GAD-2 y determinan el puntaje de 0 a 6; las otras tres son síntomas explorados por el GAD-7 y solo entregan contexto. Un puntaje GAD-2 de 3 o más sugiere una evaluación más completa, pero no confirma por sí solo un trastorno de ansiedad.",
         evaluate(values) {
-          const score = values.reduce((sum, value) => sum + value, 0);
+          const score = values.slice(0, this.scoredItems).reduce((sum, value) => sum + value, 0);
           if (score >= 3) {
             return {
               score,
@@ -1248,24 +1256,26 @@
       stress: {
         area: "Estrés y sobrecarga",
         name: "PSS-4",
-        title: "Cuatro preguntas sobre estrés percibido",
-        intro: "Pensando en el último mes, indica con qué frecuencia te has sentido o has pensado de esta manera.",
+        title: "Cinco preguntas sobre estrés percibido",
+        intro: "Pensando en el último mes, responde las cinco preguntas. Las cuatro primeras forman el puntaje PSS-4; la última aporta contexto sobre el impacto cotidiano.",
         maxScore: 16,
+        scoredItems: 4,
         options: PSS_FREQUENCY,
         reverseItems: [1, 2],
         questions: [
           "¿Con qué frecuencia has sentido que no podías controlar las cosas importantes de tu vida?",
           "¿Con qué frecuencia has sentido confianza en tu capacidad para manejar tus problemas personales?",
           "¿Con qué frecuencia has sentido que las cosas te iban bien?",
-          "¿Con qué frecuencia has sentido que las dificultades se acumulaban tanto que no podías superarlas?"
+          "¿Con qué frecuencia has sentido que las dificultades se acumulaban tanto que no podías superarlas?",
+          "¿Con qué frecuencia el estrés ha afectado tu sueño, concentración o actividades diarias?"
         ],
         therapist: "benjamin",
         therapistReason: "Benjamín integra TCC, mindfulness, aceptación y autocompasión, recursos especialmente pertinentes para estrés y sobrecarga.",
         sourceUrl: "https://www.cmu.edu/dietrich/psychology/stress-immunity-disease-lab/scales/html/pssscoring.html",
         sourceLabel: "instrucciones oficiales de puntuación de la PSS-4",
-        sourceNote: "La PSS-4 mide estrés percibido en un rango de 0 a 16. No tiene puntos de corte clínicos oficiales; las franjas mostradas aquí son descriptivas y sirven solo para facilitar la lectura.",
+        sourceNote: "Esta evaluación contiene 5 preguntas. Las cuatro primeras corresponden a la PSS-4 y determinan el puntaje de 0 a 16; la quinta solo aporta contexto sobre el funcionamiento. La PSS-4 no tiene puntos de corte clínicos oficiales: las franjas mostradas son descriptivas.",
         evaluate(values) {
-          const adjusted = values.map((value, index) => this.reverseItems.includes(index) ? 4 - value : value);
+          const adjusted = values.slice(0, this.scoredItems).map((value, index) => this.reverseItems.includes(index) ? 4 - value : value);
           const score = adjusted.reduce((sum, value) => sum + value, 0);
           if (score >= 11) {
             return {
@@ -1300,6 +1310,7 @@
         title: "Cinco preguntas sobre una pérdida significativa",
         intro: "Responde pensando en el fallecimiento de una persona cercana. Este instrumento no está diseñado para rupturas de pareja u otras pérdidas no asociadas a una muerte.",
         maxScore: 10,
+        scoredItems: 5,
         options: GRIEF_FREQUENCY,
         questions: [
           "¿Qué tanta dificultad has tenido para aceptar el fallecimiento?",
@@ -1348,6 +1359,7 @@
         title: "Cinco preguntas sobre tu bienestar reciente",
         intro: "Pensando en las últimas 2 semanas, indica con qué frecuencia cada afirmación describe cómo te has sentido.",
         maxScore: 100,
+        scoredItems: 5,
         options: WELLBEING_FREQUENCY,
         questions: [
           "Me he sentido alegre y de buen humor.",
@@ -1362,9 +1374,10 @@
         sourceLabel: "versión oficial en español del índice OMS-5",
         sourceNote: "La OMS-5 suma 5 respuestas (0–25) y multiplica el resultado por 4. Un puntaje bruto menor de 13 —equivalente a menos de 52 sobre 100— o una respuesta de 0 o 1 sugiere ampliar la evaluación del bienestar.",
         evaluate(values) {
-          const rawScore = values.reduce((sum, value) => sum + value, 0);
+          const scoredValues = values.slice(0, this.scoredItems);
+          const rawScore = scoredValues.reduce((sum, value) => sum + value, 0);
           const score = rawScore * 4;
-          const lowItem = values.some(value => value <= 1);
+          const lowItem = scoredValues.some(value => value <= 1);
           if (rawScore < 13 || lowItem) {
             return {
               score,
@@ -1428,6 +1441,7 @@
 
       const questionList = document.getElementById("question-list");
       questionList.innerHTML = test.questions.map((question, questionIndex) => {
+        const contextLabel = questionIndex >= test.scoredItems ? " · contexto" : "";
         const options = test.options.map(option => `
           <label class="option-label">
             <input type="radio" name="question-${questionIndex}" value="${option.value}">
@@ -1436,7 +1450,7 @@
         `).join("");
         return `
           <fieldset class="question-block" data-question="${questionIndex}">
-            <legend><span class="question-number">Pregunta ${questionIndex + 1}</span>${question}</legend>
+            <legend><span class="question-number">Pregunta ${questionIndex + 1}${contextLabel}</span>${question}</legend>
             <div class="option-grid" style="--option-count:${test.options.length}">${options}</div>
           </fieldset>
         `;
