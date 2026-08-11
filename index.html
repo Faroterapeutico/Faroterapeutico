@@ -1164,124 +1164,40 @@
     </script>
 
     <style>
-        /* Hero options (dos caminos: Fonasa / Isapre) */
+        /* Accesos principales del hero */
         .hero-paths {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.65rem;
-            max-width: 380px;
+            grid-template-columns: 1fr;
+            gap: 0.55rem;
+            width: min(100%, 280px);
             margin: 1.5rem auto 0;
         }
-        @media (max-width: 600px) { .hero-paths { max-width: 340px; } }
         .hero-path {
+            display: flex;
+            width: 100%;
             min-height: 48px;
-            padding: 0.55rem 0.7rem;
+            align-items: center;
+            justify-content: center;
+            padding: 0.55rem 0.8rem;
             border: 1px solid var(--ink);
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.88);
+            color: var(--ink);
+            box-sizing: border-box;
+            font-family: var(--sans);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            line-height: 1.2;
+            text-align: center;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            text-transform: uppercase;
             transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            text-align: left;
         }
         .hero-path:hover {
             color: var(--paper);
             background: var(--ink);
             border-color: var(--ink);
-        }
-        .hero-path-icon {
-            display: none;
-        }
-        .hero-path:hover .hero-path-icon,
-        .hero-path:hover .hero-path-arrow { color: var(--paper); }
-        .hero-path-text strong {
-            display: block;
-            font-family: var(--sans);
-            font-size: 0.82rem;
-            color: var(--ink);
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            line-height: 1.2;
-            text-transform: uppercase;
-        }
-        .hero-path:hover .hero-path-text strong { color: var(--paper); }
-        .hero-path-text span {
-            display: none;
-        }
-        .hero-path-arrow {
-            color: var(--gold);
-            font-size: 0.9rem;
-            margin-left: auto;
-        }
-        .hero-eval-btn {
-            display: inline-flex;
-            min-height: 48px;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 12px;
-            padding: 0.65rem 1rem;
-            background: rgba(255,255,255,0.88);
-            border: 1px solid var(--ink);
-            border-radius: 999px;
-            color: var(--ink);
-            font-family: var(--sans);
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: none;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-        .hero-eval-btn:hover {
-            color: var(--paper);
-            background: var(--ink);
-        }
-        .hero-eval-btn:hover i,
-        .hero-eval-btn:hover .hero-eval-arrow { color: var(--paper); }
-        .hero-eval-btn i {
-            width: 20px;
-            height: 20px;
-            border-radius: 0;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            color: var(--gold-dark);
-            font-size: 0.78rem;
-            flex-shrink: 0;
-        }
-        .hero-eval-copy {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 1px;
-            line-height: 1.15;
-        }
-        .hero-eval-copy strong {
-            font-size: 0.82rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-        .hero-eval-copy span {
-            display: none;
-        }
-        .hero-eval-arrow {
-            color: var(--gold-dark);
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        @media (max-width: 600px) {
-            .hero-eval-btn {
-                width: auto;
-                max-width: 100%;
-                justify-content: center;
-                padding: 0.65rem 1rem;
-            }
-            .hero-eval-arrow { margin-left: auto; }
-        }
-        @media (max-width: 360px) {
-            .hero-path-arrow { display: none; }
         }
 
         /* Proceso terapéutico timeline */
@@ -1602,32 +1518,10 @@
                     <p class="hero-lead">Atención profesional cerca del Metro Tobalaba. Lunes a sábado, de 11:00 a 20:00 hrs.</p>
 
                     <div class="hero-paths">
-                        <a href="isapre" class="hero-path">
-                            <div class="hero-path-icon"><i class="fas fa-clinic-medical"></i></div>
-                            <div class="hero-path-text">
-                                <strong>Isapre</strong>
-                                <span>Reembolso hasta 80%</span>
-                            </div>
-                            <span class="hero-path-arrow">→</span>
-                        </a>
-                        <a href="fonasa" class="hero-path">
-                            <div class="hero-path-icon"><i class="fas fa-id-card"></i></div>
-                            <div class="hero-path-text">
-                                <strong>FONASA</strong>
-                                <span>Valor Nivel 3</span>
-                            </div>
-                            <span class="hero-path-arrow">→</span>
-                        </a>
+                        <a href="isapre" class="hero-path">Isapre</a>
+                        <a href="fonasa" class="hero-path">FONASA</a>
+                        <a href="evaluacion" class="hero-path">Autoevalúate gratis</a>
                     </div>
-
-                    <a href="evaluacion" class="hero-eval-btn">
-                        <i class="fas fa-clipboard-check"></i>
-                        <span class="hero-eval-copy">
-                            <strong>Autoevalúate gratis</strong>
-                            <span>2 minutos · orientación inicial</span>
-                        </span>
-                        <span class="hero-eval-arrow">→</span>
-                    </a>
 
                     <div class="hero-meta">
                         <span><span class="dot"></span>Lunes a sábado</span>
