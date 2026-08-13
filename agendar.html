@@ -300,11 +300,56 @@
       display: block;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
+    .booking-progress {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .booking-progress li {
+      min-width: 0;
+      padding: 10px 12px;
+      border-bottom: 3px solid var(--line-soft);
+      color: var(--ink-muted);
+      font-size: 0.76rem;
+      font-weight: 500;
+    }
+
+    .booking-progress li span {
+      display: block;
+      margin-bottom: 2px;
+      color: inherit;
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .booking-progress li.active {
+      border-color: var(--green);
+      color: var(--ink);
+    }
+
+    .booking-progress li.complete {
+      border-color: rgba(8, 115, 78, 0.42);
+      color: var(--green);
+    }
+
     .booking-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.75fr);
       gap: 22px;
       align-items: start;
+    }
+
+    .booking-layout:not([data-current-step="4"]) {
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .workspace {
@@ -322,6 +367,41 @@
 
     .band {
       padding: 20px;
+    }
+
+    .step-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .step-button {
+      min-height: 44px;
+      padding: 10px 16px;
+      border: 1px solid var(--line-soft);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .step-button.primary {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .step-button svg {
+      width: 17px;
+      height: 17px;
     }
 
     .band-header,
@@ -489,6 +569,14 @@
     .therapist-card span {
       color: var(--ink-muted);
       font-size: 0.8rem;
+    }
+
+    .therapist-card .therapist-help {
+      display: block;
+      margin-top: 7px;
+      color: var(--ink-soft);
+      font-size: 0.74rem;
+      line-height: 1.4;
     }
 
     .toggle-row {
@@ -1248,6 +1336,21 @@
         gap: 8px;
       }
 
+      .booking-progress {
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+
+      .booking-progress li {
+        padding: 7px 3px;
+        text-align: center;
+        font-size: 0.62rem;
+      }
+
+      .booking-progress li span {
+        font-size: 0.58rem;
+      }
+
       .whatsapp-guidance {
         align-items: stretch;
         flex-direction: column;
@@ -1339,6 +1442,12 @@
 
       .therapist-card span {
         font-size: 0.72rem;
+      }
+
+      .therapist-card .therapist-help {
+        margin-top: 4px;
+        font-size: 0.66rem;
+        line-height: 1.3;
       }
 
       .therapist-card .therapist-card-status {
@@ -1465,13 +1574,60 @@
       }
 
       .week-calendar {
-        height: 258px;
+        height: auto;
       }
 
       .desktop-week {
-        width: calc(100% / 0.82);
-        transform: scale(0.82);
-        transform-origin: top left;
+        width: 100%;
+        transform: none;
+      }
+
+      .week-header,
+      .week-row {
+        grid-template-columns: 42px repeat(6, minmax(0, 1fr));
+      }
+
+      .week-day {
+        min-height: 46px;
+      }
+
+      .week-day strong {
+        font-size: 0.68rem;
+      }
+
+      .week-day span,
+      .week-corner {
+        font-size: 0.58rem;
+      }
+
+      .time-label,
+      .week-cell {
+        min-height: 42px;
+      }
+
+      .time-label {
+        padding-top: 5px;
+        font-size: 0.62rem;
+      }
+
+      .week-cell {
+        padding: 3px;
+      }
+
+      .week-slot {
+        min-height: 36px;
+        border-radius: 6px;
+        font-size: 0.6rem;
+      }
+
+      .step-actions {
+        margin-top: 14px;
+        padding-top: 12px;
+      }
+
+      .step-button {
+        min-height: 42px;
+        padding: 9px 12px;
       }
 
       .week-header,
@@ -1621,7 +1777,7 @@
               <strong>Faro Terap&eacute;utico <span>Agendamiento en l&iacute;nea</span></strong>
             </a>
             <h1>Agenda tu <em>sesi&oacute;n</em></h1>
-            <p>Selecciona el profesional, la modalidad y el horario que mejor se adapten a ti.</p>
+            <p>Te guiaremos paso a paso para encontrar una atenci&oacute;n y un horario que se adapten a ti.</p>
           </div>
           <div class="top-actions">
             <span class="status-pill"><i data-lucide="clock"></i> <span id="durationPill">50 min</span></span>
@@ -1655,23 +1811,33 @@
           </div>
         </div>
 
-        <div class="booking-layout">
+        <ol class="booking-progress" id="bookingProgress" aria-label="Progreso del agendamiento">
+          <li class="active" data-progress-step="1" aria-current="step"><span>Paso 1</span>Prestaci&oacute;n</li>
+          <li data-progress-step="2"><span>Paso 2</span>Profesional</li>
+          <li data-progress-step="3"><span>Paso 3</span>Horario</li>
+          <li data-progress-step="4"><span>Paso 4</span>Confirmar</li>
+        </ol>
+
+        <div class="booking-layout" id="bookingLayout" data-current-step="1">
           <div class="workspace">
-            <section class="band" aria-labelledby="service-title">
+            <section class="band" aria-labelledby="service-title" data-booking-step="1">
               <div class="band-header">
                 <div>
-                  <h3 id="service-title">Servicio</h3>
-                  <span>Particular, Isapre y FONASA</span>
+                  <h3 id="service-title" tabindex="-1">&iquest;Qu&eacute; tipo de atenci&oacute;n necesitas?</h3>
+                  <span>Elige la opci&oacute;n que mejor represente lo que buscas. Podr&aacute;s volver y cambiarla.</span>
                 </div>
               </div>
               <div class="service-grid" id="serviceGrid"></div>
+              <div class="step-actions">
+                <button class="step-button primary" type="button" data-step-next="2">Continuar <i data-lucide="arrow-right"></i></button>
+              </div>
             </section>
 
-            <section class="band" aria-labelledby="therapist-title">
+            <section class="band" aria-labelledby="therapist-title" data-booking-step="2" hidden>
               <div class="band-header">
                 <div>
-                  <h3 id="therapist-title">Terapeuta</h3>
-                  <span>Presencial u online</span>
+                  <h3 id="therapist-title" tabindex="-1">Elige a tu profesional</h3>
+                  <span>Revisa brevemente en qu&eacute; puede ayudarte cada integrante del equipo.</span>
                 </div>
               </div>
               <div class="therapist-grid" id="therapistGrid"></div>
@@ -1685,13 +1851,17 @@
                   Online
                 </button>
               </div>
+              <div class="step-actions">
+                <button class="step-button" type="button" data-step-back="1"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="3">Ver horarios <i data-lucide="arrow-right"></i></button>
+              </div>
             </section>
 
-            <section class="band" aria-labelledby="calendar-title">
+            <section class="band" aria-labelledby="calendar-title" data-booking-step="3" hidden>
               <div class="band-header">
                 <div>
-                  <h3 id="calendar-title">Horario</h3>
-                  <span id="availabilityLabel">Semana disponible &middot; 11:00 a 20:00</span>
+                  <h3 id="calendar-title" tabindex="-1">Elige un d&iacute;a y una hora</h3>
+                  <span id="availabilityLabel">Estamos revisando la agenda &middot; 11:00 a 20:00</span>
                 </div>
                 <div class="week-navigation" aria-label="Cambiar semana">
                   <button class="week-nav-button" type="button" id="previousWeekButton" aria-label="Semana anterior" title="Semana anterior">
@@ -1705,13 +1875,17 @@
               <div class="calendar-shell" id="calendarShell">
                 <div class="week-calendar" id="weekCalendar" aria-label="Elegir horario semanal"></div>
               </div>
+              <div class="step-actions">
+                <button class="step-button" type="button" data-step-back="2"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="4">Continuar con mis datos <i data-lucide="arrow-right"></i></button>
+              </div>
             </section>
 
-            <section class="band" aria-labelledby="patient-title">
+            <section class="band" aria-labelledby="patient-title" data-booking-step="4" hidden>
               <div class="band-header">
                 <div>
-                  <h3 id="patient-title">Tus datos</h3>
-                  <span>Para tu boleta y confirmaci&oacute;n</span>
+                  <h3 id="patient-title" tabindex="-1">Completa tus datos</h3>
+                  <span>Solo falta esta informaci&oacute;n para confirmar tu hora.</span>
                 </div>
               </div>
               <p class="data-purpose">
@@ -1776,11 +1950,14 @@
                   <input id="patientWebsite" name="patientWebsite" type="text" tabindex="-1" autocomplete="off">
                 </div>
               </form>
+              <div class="step-actions">
+                <button class="step-button" type="button" data-step-back="3"><i data-lucide="arrow-left"></i> Anterior</button>
+              </div>
             </section>
 
           </div>
 
-          <aside class="summary-panel" aria-labelledby="summary-title">
+          <aside class="summary-panel" aria-labelledby="summary-title" data-booking-step="4" hidden>
             <div class="summary-header">
               <div>
                 <h3 id="summary-title">Tu reserva</h3>
@@ -1857,6 +2034,7 @@
     };
     let availabilityRequestId = 0;
     let formStartedTracked = false;
+    let currentBookingStep = 1;
     const addressSearchCache = new Map();
     const addressAutocompleteState = {
       timer: null,
@@ -1924,10 +2102,10 @@
     );
 
     const therapists = [
-      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" },
-      { id: "aaron", name: "Aaron Mill&aacute;n Sol&iacute;s", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/aaron-580.webp", photo: "aaron" },
-      { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
-      { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" }
+      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", help: "Ansiedad, autoestima, v&iacute;nculos y regulaci&oacute;n emocional con enfoque DBT y TCC.", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" },
+      { id: "aaron", name: "Aaron Mill&aacute;n Sol&iacute;s", focus: "Psic&oacute;logo cl&iacute;nico", help: "Duelo, adicciones, v&iacute;nculos, terapia de pareja y procesos emocionales profundos.", image: "images/aaron-580.webp", photo: "aaron" },
+      { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", help: "Mindfulness, autocompasi&oacute;n, aceptaci&oacute;n y herramientas cognitivo-conductuales.", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
+      { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", help: "Ansiedad, estr&eacute;s, estado de &aacute;nimo, desarrollo personal y psicolog&iacute;a deportiva.", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" }
     ];
 
     function trackBookingStep(step, extra = {}) {
@@ -2916,6 +3094,39 @@
         : "Integraci&oacute;n con Encuadrado pendiente de configurar.";
     }
 
+    function showBookingStep(step, options = {}) {
+      const nextStep = Math.min(4, Math.max(1, Number(step) || 1));
+      currentBookingStep = nextStep;
+      document.getElementById("bookingLayout").dataset.currentStep = String(nextStep);
+      document.querySelectorAll("[data-booking-step]").forEach((element) => {
+        element.hidden = Number(element.dataset.bookingStep) !== nextStep;
+      });
+      document.querySelectorAll("[data-progress-step]").forEach((item) => {
+        const itemStep = Number(item.dataset.progressStep);
+        item.classList.toggle("active", itemStep === nextStep);
+        item.classList.toggle("complete", itemStep < nextStep);
+        if (itemStep === nextStep) {
+          item.setAttribute("aria-current", "step");
+        } else {
+          item.removeAttribute("aria-current");
+        }
+      });
+
+      if (nextStep === 3) {
+        renderCalendar();
+      }
+      refreshIcons();
+
+      if (options.focus !== false) {
+        const activePanel = document.querySelector(`[data-booking-step="${nextStep}"]`);
+        activePanel?.scrollIntoView({ behavior: "smooth", block: "start" });
+        activePanel?.querySelector("h3")?.focus?.({ preventScroll: true });
+      }
+      if (options.track !== false) {
+        trackBookingStep("step_viewed", { step_number: nextStep });
+      }
+    }
+
     function renderServices() {
       const container = document.getElementById("serviceGrid");
       container.innerHTML = services.map((service) => {
@@ -2952,6 +3163,7 @@
           <div>
             <strong>${therapist.name}</strong>
             <span>${therapist.focus}</span>
+            <span class="therapist-help">${therapist.help}</span>
             ${status}
           </div>
         </button>
@@ -3230,6 +3442,16 @@
           confirmEncuadradoBooking();
         }
 
+        const nextStepButton = event.target.closest("[data-step-next]");
+        if (nextStepButton) {
+          showBookingStep(nextStepButton.dataset.stepNext);
+        }
+
+        const previousStepButton = event.target.closest("[data-step-back]");
+        if (previousStepButton) {
+          showBookingStep(previousStepButton.dataset.stepBack);
+        }
+
         if (event.target.closest("[data-whatsapp-booking]")) {
           trackBookingStep("whatsapp_selected");
         }
@@ -3255,6 +3477,7 @@
       renderTherapists();
       renderCalendar();
       updateSummary();
+      showBookingStep(1, { focus: false, track: false });
       bindEvents();
       populateAddressOptions();
       bindAddressAutocomplete();
