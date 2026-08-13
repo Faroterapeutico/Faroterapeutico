@@ -308,8 +308,17 @@ body.boutique .hamburger-menu {
     border-bottom: 0;
 }
 
-.main-header + .breadcrumb {
-    margin-top: var(--header-height);
+body.boutique .main-header + .breadcrumb {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    margin-top: 0;
+    padding-top: 0.75rem;
+}
+
+body.boutique .main-header + .breadcrumb + main:not(.profile-main) {
+    padding-top: 1.75rem;
 }
 
 .breadcrumb .container {
@@ -331,9 +340,10 @@ body.boutique .hamburger-menu {
     font-size: 0.68rem;
     letter-spacing: 0.02em;
     color: var(--ink-muted);
-    background: rgba(250, 248, 243, 0.76);
-    border: 0.5px solid rgba(31, 42, 48, 0.08);
+    background: rgba(255, 255, 255, 0.92);
+    border: 0.5px solid rgba(31, 42, 48, 0.1);
     border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(31, 42, 48, 0.09);
     white-space: nowrap;
     overflow: hidden;
 }
@@ -870,6 +880,10 @@ body.boutique .reveal-up.revealed {
 @media (max-width: 640px) {
     .breadcrumb {
         padding-top: 0.38rem;
+    }
+
+    body.boutique .main-header + .breadcrumb {
+        padding-top: 0.55rem;
     }
 
     .breadcrumb .container {

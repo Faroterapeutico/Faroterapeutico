@@ -114,12 +114,20 @@
     }
 
     .breadcrumb ol {
-      display: flex;
-      flex-wrap: wrap;
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
       gap: 6px;
       margin: 0;
-      padding: 0;
+      max-width: 100%;
+      padding: 7px 12px;
       list-style: none;
+      white-space: nowrap;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(31, 42, 48, 0.1);
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(31, 42, 48, 0.09);
     }
 
     .breadcrumb li + li::before {
