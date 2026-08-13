@@ -231,6 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.initIsapreRows();
             this.initProofCounters();
             this.initIsapreRequestModal();
+            this.initFloatingWhatsapp();
 
             // Función de callback para el seguimiento de eventos de contacto
             const contactConversionCallback = (url) => {
@@ -430,6 +431,119 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.classList.remove('active');
             });
             document.body.style.overflow = '';
+        },
+
+        initFloatingWhatsapp() {
+            const MAIN_WHATSAPP = '56945593808';
+            const slug = decodeURIComponent(window.location.pathname)
+                .split('/')
+                .pop()
+                .replace(/\.html$/i, '') || 'index';
+
+            const pageContexts = {
+                index: 'la página de inicio',
+                aaron: 'el perfil de Aaron Millán',
+                isidora: 'el perfil de Isidora Sanhueza',
+                benjamin: 'el perfil de Benjamín Reyes',
+                david: 'el perfil de David Walter',
+                blog: 'el blog de psicología',
+                'sobre-nosotros': 'la página de nuestro equipo clínico',
+                'servicios-clinicos': 'la página de servicios clínicos',
+                fonasa: 'la página de atención con Fonasa',
+                isapre: 'la página de atención con Isapre',
+                banmedica: 'la página de Banmédica',
+                colmena: 'la página de Colmena',
+                consalud: 'la página de Consalud',
+                'cruz-blanca': 'la página de Cruz Blanca',
+                'nueva-masvida': 'la página de Nueva Másvida',
+                'vida-tres': 'la página de Vida Tres',
+                'terapia-individual': 'la página de terapia individual',
+                'terapia-pareja': 'la página de terapia de pareja',
+                'terapia-familiar': 'la página de terapia familiar',
+                'terapia-infanto-juvenil': 'la página de terapia infantojuvenil',
+                'terapia-online': 'la página de terapia online',
+                'terapia-presencial': 'la página de terapia presencial',
+                'psicologia-deportiva': 'la página de psicología deportiva',
+                'certificado-mascota': 'la página de certificado para mascota de apoyo emocional',
+                'sesion-orientacion': 'la página de orientación y match terapéutico',
+                'psicoterapia-profunda': 'la página de psicoterapia profunda',
+                'primera-sesion-psicologo': 'el artículo sobre la primera sesión con un psicólogo',
+                'que-es-la-psicoterapia': 'el artículo sobre qué es la psicoterapia',
+                'ansiedad-cuerpo-mente': 'el artículo sobre ansiedad, cuerpo y mente',
+                'herramientas-ansiedad': 'el artículo sobre herramientas para la ansiedad',
+                'higiene-sueno': 'el artículo sobre higiene del sueño',
+                'depresion-que-es-sintomas-tratamiento': 'el artículo sobre depresión, síntomas y tratamiento',
+                'duelo-como-superar-una-perdida': 'el artículo sobre duelo y cómo superar una pérdida',
+                'como-superar-ruptura-de-pareja': 'el artículo sobre cómo superar una ruptura de pareja',
+                'delirios-y-obsesiones': 'el artículo sobre delirios y obsesiones',
+                'bono-fonasa-paso-a-paso': 'la guía para comprar un bono Fonasa',
+                'psicologo-fonasa-valores-horarios-agenda': 'la guía de valores y agenda para psicología Fonasa',
+                'psicologia-isapre-cobertura-reembolso-agendar': 'la guía de cobertura y reembolso Isapre',
+                'reembolso-colmena-psicologo-guia': 'la guía de reembolso Colmena',
+                'confidencialidad-y-secreto-profesional': 'la página sobre confidencialidad y secreto profesional',
+                'politica-de-privacidad': 'la política de privacidad',
+                'politicas-cancelacion': 'la página de políticas de cancelación'
+            };
+
+            const directMessages = {
+                aaron: 'Hola, vi el perfil de Aaron Millán en Faro Terapéutico y quisiera consultar por una hora.',
+                isidora: 'Hola, vi el perfil de Isidora Sanhueza en Faro Terapéutico y quisiera consultar por una hora.',
+                benjamin: 'Hola, vi el perfil de Benjamín Reyes en Faro Terapéutico y quisiera consultar por una hora.',
+                david: 'Hola, vi el perfil de David Walter en Faro Terapéutico y quisiera orientación sobre los profesionales disponibles.',
+                'certificado-mascota': 'Hola, vengo desde la página de certificado para mascota de apoyo emocional de Faro Terapéutico y quisiera agendar una evaluación.',
+                'bono-fonasa-paso-a-paso': 'Hola, vengo desde la guía para comprar un bono Fonasa de Faro Terapéutico y necesito ayuda con el proceso.',
+                'psicologia-isapre-cobertura-reembolso-agendar': 'Hola, vengo desde la guía de cobertura Isapre de Faro Terapéutico y quisiera orientación para agendar y solicitar reembolso.',
+                'reembolso-colmena-psicologo-guia': 'Hola, vengo desde la guía de reembolso Colmena de Faro Terapéutico y quisiera resolver una duda.'
+            };
+
+            const consultationPages = new Set([
+                'blog',
+                'sobre-nosotros',
+                'sesion-orientacion',
+                'primera-sesion-psicologo',
+                'que-es-la-psicoterapia',
+                'ansiedad-cuerpo-mente',
+                'herramientas-ansiedad',
+                'higiene-sueno',
+                'depresion-que-es-sintomas-tratamiento',
+                'duelo-como-superar-una-perdida',
+                'como-superar-ruptura-de-pareja',
+                'delirios-y-obsesiones',
+                'confidencialidad-y-secreto-profesional',
+                'politica-de-privacidad',
+                'politicas-cancelacion',
+                'david'
+            ]);
+
+            const heading = document.querySelector('h1')?.textContent
+                .replace(/\s+/g, ' ')
+                .trim();
+            const context = pageContexts[slug] || (heading ? `la página “${heading}”` : 'esta página');
+            const isConsultation = consultationPages.has(slug);
+            const message = directMessages[slug]
+                || `Hola, vengo desde ${context} de Faro Terapéutico y quisiera ${isConsultation ? 'hacer una consulta sobre atención psicológica' : 'agendar una sesión'}.`;
+
+            const phoneByPage = {
+                isidora: '56932013137',
+                benjamin: '56977982227'
+            };
+            const phone = phoneByPage[slug] || MAIN_WHATSAPP;
+            const label = isConsultation ? 'Consultar por WhatsApp' : 'Agendar por WhatsApp';
+            const candidates = Array.from(document.querySelectorAll('.floating-whatsapp-btn, .whatsapp-float'));
+            const button = candidates.shift() || document.createElement('a');
+
+            candidates.forEach(candidate => candidate.remove());
+            document.querySelectorAll('.wa-banner').forEach(banner => banner.remove());
+
+            button.classList.remove('whatsapp-float');
+            button.classList.add('floating-whatsapp-btn');
+            button.href = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            button.target = '_blank';
+            button.rel = 'noopener noreferrer';
+            button.setAttribute('aria-label', `${label}. Mensaje relacionado con ${context}.`);
+            button.dataset.whatsappSource = slug;
+            button.innerHTML = `<i class="fab fa-whatsapp" aria-hidden="true"></i><span>${label}</span>`;
+            document.body.appendChild(button);
         },
 
         initRevealEffects() {

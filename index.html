@@ -1006,8 +1006,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=block">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=block"></noscript>
-    <link rel="stylesheet" href="boutique.css?v=20260804-whatsapp-banner1" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="boutique.css?v=20260804-whatsapp-banner1"></noscript>
+    <link rel="stylesheet" href="boutique.css?v=20260812-global-whatsapp1" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="boutique.css?v=20260812-global-whatsapp1"></noscript>
     <script>
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); if (arguments[0] === 'event' && window.loadGtag) loadGtag(); }
@@ -1167,37 +1167,106 @@
         /* Accesos principales del hero */
         .hero-paths {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 0.55rem;
-            width: min(100%, 280px);
-            margin: 1.5rem auto 0;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.75rem;
+            width: min(100%, 780px);
+            margin: 1.8rem auto 0;
         }
         .hero-path {
-            display: flex;
+            display: grid;
+            grid-template-columns: 38px minmax(0, 1fr) auto;
             width: 100%;
-            min-height: 48px;
+            min-height: 72px;
             align-items: center;
-            justify-content: center;
-            padding: 0.55rem 0.8rem;
-            border: 1px solid var(--ink);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.88);
+            gap: 0.7rem;
+            padding: 0.72rem 0.9rem;
+            border: 1px solid rgba(176, 141, 85, 0.42);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.78);
             color: var(--ink);
             box-sizing: border-box;
             font-family: var(--sans);
-            font-size: 0.82rem;
             font-weight: 600;
-            letter-spacing: 0.06em;
-            line-height: 1.2;
-            text-align: center;
+            line-height: 1.15;
+            text-align: left;
             text-decoration: none;
-            text-transform: uppercase;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 8px 24px rgba(31, 42, 48, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
-        .hero-path:hover {
-            color: var(--paper);
-            background: var(--ink);
-            border-color: var(--ink);
+        .hero-path:hover,
+        .hero-path:focus-visible {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.96);
+            border-color: var(--gold);
+            box-shadow: 0 12px 30px rgba(31, 42, 48, 0.13), inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+            transform: translateY(-3px);
+        }
+        .hero-path:focus-visible {
+            outline: 2px solid var(--gold-dark);
+            outline-offset: 3px;
+        }
+        .hero-path-icon {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--gold-tint);
+            color: var(--gold-dark);
+            font-size: 0.92rem;
+        }
+        .hero-path-icon svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.8;
+        }
+        .hero-path-copy {
+            display: flex;
+            min-width: 0;
+            flex-direction: column;
+            gap: 3px;
+        }
+        .hero-path-main {
+            font-size: 0.88rem;
+            letter-spacing: 0.01em;
+        }
+        .hero-path-note {
+            color: var(--ink-muted);
+            font-size: 0.66rem;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+        .hero-path-arrow {
+            color: var(--gold-dark);
+            font-size: 1rem;
+            transition: transform 0.25s ease;
+        }
+        .hero-path:hover .hero-path-arrow,
+        .hero-path:focus-visible .hero-path-arrow {
+            transform: translateX(3px);
+        }
+        @media (max-width: 760px) {
+            .hero-paths {
+                grid-template-columns: 1fr;
+                width: min(100%, 330px);
+                gap: 0.55rem;
+                margin-top: 1.35rem;
+            }
+            .hero-path {
+                min-height: 62px;
+                padding: 0.58rem 0.78rem;
+            }
+            .hero-path-icon {
+                width: 34px;
+                height: 34px;
+            }
         }
 
         /* Proceso terapéutico timeline */
@@ -1518,9 +1587,21 @@
                     <p class="hero-lead">Atención profesional cerca del Metro Tobalaba. Lunes a sábado, de 11:00 a 20:00 hrs.</p>
 
                     <div class="hero-paths">
-                        <a href="isapre" class="hero-path">Isapre</a>
-                        <a href="fonasa" class="hero-path">FONASA</a>
-                        <a href="evaluacion" class="hero-path">Autoevalúate gratis</a>
+                        <a href="isapre" class="hero-path">
+                            <span class="hero-path-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5.5 5.8v5.1c0 4.1 2.7 7.8 6.5 9.1 3.8-1.3 6.5-5 6.5-9.1V5.8L12 3Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                            <span class="hero-path-copy"><span class="hero-path-main">Isapre</span><span class="hero-path-note">Reembolso de hasta 80%</span></span>
+                            <span class="hero-path-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a href="fonasa" class="hero-path">
+                            <span class="hero-path-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4.5" y="3" width="15" height="18" rx="2.5"/><path d="M12 7v6M9 10h6M8.5 17h7"/></svg></span>
+                            <span class="hero-path-copy"><span class="hero-path-main">FONASA</span><span class="hero-path-note">$14.420 por sesión</span></span>
+                            <span class="hero-path-arrow" aria-hidden="true">→</span>
+                        </a>
+                        <a href="evaluacion" class="hero-path">
+                            <span class="hero-path-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4.5" width="14" height="16" rx="2.5"/><path d="M9 4.5V3h6v1.5M9 13.5l2 2 4-4"/></svg></span>
+                            <span class="hero-path-copy"><span class="hero-path-main">Evaluación gratuita</span><span class="hero-path-note">2 minutos · orientación inicial</span></span>
+                            <span class="hero-path-arrow" aria-hidden="true">→</span>
+                        </a>
                     </div>
 
                     <div class="hero-meta">
@@ -1882,13 +1963,9 @@
         </div>
     </footer>
 
-    <div class="wa-banner" role="complementary" aria-label="Agendar cita">
-        <span class="wa-banner-text">¿Listo para comenzar? Agenda tu primera sesión hoy.</span>
-        <a href="faro-terapeutico.vcf" download class="wa-banner-save"><i class="fas fa-address-card"></i> Guardar contacto</a>
-        <a href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n." class="wa-banner-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> Agendar por WhatsApp</a>
-    </div>
+    <a href="https://wa.me/56945593808?text=Hola%2C%20quisiera%20agendar%20una%20sesi%C3%B3n." class="floating-whatsapp-btn" target="_blank" rel="noopener noreferrer" aria-label="Agendar por WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i> Agendar por WhatsApp</a>
 
-    <script src="script.js?v=20260804-booking-conversion1" defer></script>
+    <script src="script.js?v=20260812-global-whatsapp1" defer></script>
 
 </body>
 </html>

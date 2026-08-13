@@ -713,6 +713,18 @@ body.boutique.page-fonasa #hero {
     }
 }
 
+/* Las páginas de Isapres muestran cuatro perfiles en una cuadrícula equilibrada. */
+body.boutique.page-isapre .therapist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 900px;
+}
+@media (max-width: 900px) {
+    body.boutique.page-isapre .therapist-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+    }
+}
+
 .therapist {
     background: var(--surface);
     border-radius: var(--r-lg);
@@ -1432,7 +1444,7 @@ body.boutique main.profile-main {
     position: fixed;
     bottom: 28px;
     right: 28px;
-    background: #25D366;
+    background: var(--wa-green-dark);
     color: #fff;
     padding: 14px 22px;
     border-radius: 50px;
@@ -1450,6 +1462,7 @@ body.boutique main.profile-main {
 }
 
 .floating-whatsapp-btn:hover {
+    background: #0b6846;
     transform: translateY(-3px);
     box-shadow: 0 12px 32px rgba(37,211,102,.45);
 }
@@ -2442,7 +2455,8 @@ body.boutique .article-cta-box .btn:hover {
     box-shadow: var(--shadow-lift);
 }
 
-/* Boton flotante de WhatsApp */
+/* Botón flotante global de WhatsApp */
+body.boutique .floating-whatsapp-btn,
 body.boutique .whatsapp-float {
     background: var(--wa-green-dark) !important;
     box-shadow: 0 8px 24px rgba(15, 122, 82, 0.28) !important;
@@ -2451,6 +2465,7 @@ body.boutique .whatsapp-float {
     min-height: 52px;
     padding: 15px 24px !important;
 }
+body.boutique .floating-whatsapp-btn:hover,
 body.boutique .whatsapp-float:hover {
     background: #0b6846 !important;
 }
