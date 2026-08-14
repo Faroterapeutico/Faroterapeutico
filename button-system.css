@@ -1,0 +1,243 @@
+/*
+ * Sistema compartido de botones de Faro Terapéutico.
+ * Replica la estética y las dimensiones de los accesos del hero del inicio.
+ */
+
+:root {
+    --faro-button-ink: var(--ink, #1f2a30);
+    --faro-button-muted: var(--ink-muted, #667176);
+    --faro-button-gold: var(--gold, #b08d55);
+    --faro-button-gold-dark: var(--gold-dark, #8a6a37);
+    --faro-button-gold-tint: var(--gold-tint, #f4ecdf);
+}
+
+body :is(
+    .cta,
+    .cta-outline,
+    .cta-eval-link,
+    .btn,
+    .s-cta,
+    .request-isapre-btn,
+    .btn-therapist,
+    .btn-pdf-secondary,
+    .step-button,
+    .primary-action,
+    .secondary-action,
+    .button-primary,
+    .button-secondary,
+    .primary-button,
+    .secondary-button,
+    .whatsapp-button
+) {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.7rem !important;
+    min-width: 240px;
+    max-width: 100%;
+    min-height: 72px;
+    box-sizing: border-box !important;
+    padding: 0.72rem 0.9rem !important;
+    border: 1px solid rgba(176, 141, 85, 0.42) !important;
+    border-radius: 50px !important;
+    background: rgba(255, 255, 255, 0.78) !important;
+    color: var(--faro-button-ink) !important;
+    box-shadow: 0 8px 24px rgba(31, 42, 48, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.55) !important;
+    font-family: var(--sans, "Montserrat", Arial, sans-serif) !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    line-height: 1.15 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+body :is(
+    .cta,
+    .cta-outline,
+    .cta-eval-link,
+    .btn,
+    .s-cta,
+    .request-isapre-btn,
+    .btn-therapist,
+    .btn-pdf-secondary,
+    .step-button,
+    .primary-action,
+    .secondary-action,
+    .button-primary,
+    .button-secondary,
+    .primary-button,
+    .secondary-button,
+    .whatsapp-button
+):is(:hover, :focus-visible) {
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-color: var(--faro-button-gold) !important;
+    color: var(--faro-button-ink) !important;
+    box-shadow: 0 12px 30px rgba(31, 42, 48, 0.13), inset 0 0 0 1px rgba(255, 255, 255, 0.7) !important;
+    transform: translateY(-3px);
+}
+
+body :is(
+    .cta,
+    .cta-outline,
+    .cta-eval-link,
+    .btn,
+    .s-cta,
+    .request-isapre-btn,
+    .btn-therapist,
+    .btn-pdf-secondary,
+    .step-button,
+    .primary-action,
+    .secondary-action,
+    .button-primary,
+    .button-secondary,
+    .primary-button,
+    .secondary-button,
+    .whatsapp-button
+):focus-visible {
+    outline: 2px solid var(--faro-button-gold-dark) !important;
+    outline-offset: 3px !important;
+}
+
+body :is(
+    .cta,
+    .cta-outline,
+    .cta-eval-link,
+    .btn,
+    .s-cta,
+    .request-isapre-btn,
+    .btn-therapist,
+    .btn-pdf-secondary,
+    .step-button,
+    .primary-action,
+    .secondary-action,
+    .button-primary,
+    .button-secondary,
+    .primary-button,
+    .secondary-button,
+    .whatsapp-button
+) > i:first-child {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    flex: 0 0 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--faro-button-gold-tint);
+    color: var(--faro-button-gold-dark);
+}
+
+body :is(.cta, .cta-outline, .btn, .s-cta) .cta-arrow,
+body :is(.cta-eval-link) .eval-arrow {
+    margin-left: 0.2rem;
+    color: var(--faro-button-gold-dark) !important;
+    transition: transform 0.25s ease;
+}
+
+body :is(.cta, .cta-outline, .btn, .s-cta):is(:hover, :focus-visible) .cta-arrow,
+body .cta-eval-link:is(:hover, :focus-visible) .eval-arrow {
+    transform: translateX(3px);
+}
+
+body :is(
+    .cta,
+    .cta-outline,
+    .cta-eval-link,
+    .btn,
+    .s-cta,
+    .request-isapre-btn,
+    .btn-therapist,
+    .btn-pdf-secondary,
+    .step-button,
+    .primary-action,
+    .secondary-action,
+    .button-primary,
+    .button-secondary,
+    .primary-button,
+    .secondary-button,
+    .whatsapp-button
+):is(:disabled, [aria-disabled="true"]),
+body :is(.cta-disabled, .availability-closed-cta) {
+    opacity: 0.58;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: 0 4px 14px rgba(31, 42, 48, 0.06) !important;
+}
+
+@media (max-width: 760px) {
+    body :is(
+        .cta,
+        .cta-outline,
+        .cta-eval-link,
+        .btn,
+        .s-cta,
+        .request-isapre-btn,
+        .btn-therapist,
+        .btn-pdf-secondary,
+        .step-button,
+        .primary-action,
+        .secondary-action,
+        .button-primary,
+        .button-secondary,
+        .primary-button,
+        .secondary-button,
+        .whatsapp-button
+    ) {
+        width: min(100%, 330px);
+        min-width: 0;
+        min-height: 62px;
+        padding: 0.58rem 0.78rem !important;
+    }
+
+    body :is(
+        .cta,
+        .cta-outline,
+        .cta-eval-link,
+        .btn,
+        .s-cta,
+        .request-isapre-btn,
+        .btn-therapist,
+        .btn-pdf-secondary,
+        .step-button,
+        .primary-action,
+        .secondary-action,
+        .button-primary,
+        .button-secondary,
+        .primary-button,
+        .secondary-button,
+        .whatsapp-button
+    ) > i:first-child {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body :is(
+        .cta,
+        .cta-outline,
+        .cta-eval-link,
+        .btn,
+        .s-cta,
+        .request-isapre-btn,
+        .btn-therapist,
+        .btn-pdf-secondary,
+        .step-button,
+        .primary-action,
+        .secondary-action,
+        .button-primary,
+        .button-secondary,
+        .primary-button,
+        .secondary-button,
+        .whatsapp-button
+    ) {
+        transition: none !important;
+    }
+}
