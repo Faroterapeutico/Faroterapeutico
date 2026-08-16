@@ -6,16 +6,28 @@ const assessmentCookie = "ft_clinical_access";
 const maxAssessmentBodyBytes = 32_000;
 
 const ASRS = {
-  name: "ASRS-v1.1 (6 preguntas) · TDAH en adultos",
+  name: "ASRS-v1.1 completo (18 preguntas) · TDAH en adultos",
   questions: [
     "¿Con qué frecuencia tiene usted dificultad para acabar los detalles finales de un proyecto, una vez que ha terminado con las partes difíciles?",
     "¿Con qué frecuencia tiene usted dificultad para ordenar las cosas cuando está realizando una tarea que requiere organización?",
     "¿Con qué frecuencia tiene usted problemas para recordar citas u obligaciones?",
     "Cuando tiene que realizar una tarea que requiere pensar mucho, ¿con qué frecuencia evita o retrasa empezarla?",
     "¿Con qué frecuencia mueve continuamente o retuerce las manos o los pies cuando tiene que permanecer sentado por mucho tiempo?",
-    "¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?"
+    "¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?",
+    "¿Con qué frecuencia comete errores por descuido cuando tiene que trabajar en un proyecto difícil o aburrido?",
+    "¿Con qué frecuencia le cuesta mantener la atención cuando está haciendo un trabajo aburrido o repetitivo?",
+    "¿Con qué frecuencia le cuesta concentrarse en lo que otras personas le dicen, incluso cuando le están hablando directamente a usted?",
+    "¿Con qué frecuencia pierde o tiene dificultad para encontrar cosas en la casa o en el trabajo?",
+    "¿Con qué frecuencia se distrae por ruidos o actividades a su alrededor?",
+    "¿Con qué frecuencia se levanta de su asiento en reuniones o en otras situaciones en las que se supone debe permanecer sentado?",
+    "¿Con qué frecuencia se siente inquieto o nervioso?",
+    "¿Con qué frecuencia tiene dificultades para relajarse cuando tiene tiempo libre para dedicárselo a usted mismo?",
+    "¿Con qué frecuencia siente que habla demasiado cuando está en reuniones sociales?",
+    "Cuando está en una conversación, ¿con qué frecuencia se descubre terminando las frases de la persona que está hablando antes de que ella termine?",
+    "¿Con qué frecuencia tiene dificultad para esperar su turno en situaciones en que debe hacerlo?",
+    "¿Con qué frecuencia interrumpe a otros cuando están ocupados?"
   ],
-  ids: ["asrs1", "asrs2", "asrs3", "asrs4", "asrs5", "asrs6"],
+  ids: Array.from({ length: 18 }, (_, index) => `asrs${index + 1}`),
   labels: ["Nunca", "Rara vez", "A veces", "A menudo", "Muy a menudo"],
   originalThresholds: [2, 3, 2, 3, 3, 2]
 };
@@ -195,8 +207,10 @@ function getChoiceAnswer(answers, id, allowed) {
 
 function scoreAsrs(answers) {
   const values = ASRS.ids.map((id) => getIntegerAnswer(answers, id, 0, 4));
-  const score24 = values.reduce((total, value) => total + value, 0);
-  const shadedCount = values.reduce((total, value, index) => total + Number(value >= ASRS.originalThresholds[index]), 0);
+  const partAValues = values.slice(0, 6);
+  const score24 = partAValues.reduce((total, value) => total + value, 0);
+  const shadedCount = partAValues.reduce((total, value, index) => total + Number(value >= ASRS.originalThresholds[index]), 0);
+  const partBFrequentCount = values.slice(6).filter((value) => value >= 3).length;
   let rangeLabel = "Intervalo negativo bajo";
   if (score24 >= 18) rangeLabel = "Intervalo positivo alto";
   else if (score24 >= 14) rangeLabel = "Intervalo positivo bajo";
@@ -208,6 +222,7 @@ function scoreAsrs(answers) {
     updatedPositive: score24 >= 14,
     shadedCount,
     originalPositive: shadedCount >= 4,
+    partBFrequentCount,
     riskFlag: false,
     values
   };
@@ -257,7 +272,7 @@ function answerRows(instrument, answers) {
       question,
       answer: ASRS.labels[answers[ASRS.ids[index]]],
       score: answers[ASRS.ids[index]],
-      keyResponse: answers[ASRS.ids[index]] >= ASRS.originalThresholds[index]
+      keyResponse: index < 6 && answers[ASRS.ids[index]] >= ASRS.originalThresholds[index]
     }));
   }
 
@@ -294,8 +309,9 @@ function buildAssessmentEmail(record) {
   const subject = `[Evaluación clínica] ${instrument === "asrs" ? "ASRS-v1.1" : "PHQ-A"} · ${patient.name}${alertLabel}`;
   const scoreLines = instrument === "asrs"
     ? [
-        `Puntaje actualizado: ${result.score24}/24 (${result.rangeLabel})`,
-        `Regla clínica original: ${result.shadedCount}/6 respuestas sombreadas (${result.originalPositive ? "positiva" : "negativa"}; corte 4)`
+        `Parte A — puntaje actualizado: ${result.score24}/24 (${result.rangeLabel})`,
+        `Parte A — regla clínica original: ${result.shadedCount}/6 respuestas sombreadas (${result.originalPositive ? "positiva" : "negativa"}; corte 4)`,
+        `Parte B — respuestas A menudo o Muy a menudo: ${result.partBFrequentCount}/12 (información complementaria, sin punto de corte propio)`
       ]
     : [
         `Puntaje PHQ-A: ${result.total}/27 (${result.severityLabel})`,
@@ -330,7 +346,9 @@ function buildAssessmentEmail(record) {
     textRows,
     "",
     "IMPORTANTE",
-    "El resultado corresponde a un tamizaje y no constituye por sí solo un diagnóstico. Las respuestas de seguridad positivas requieren entrevista clínica."
+    instrument === "asrs"
+      ? "El resultado corresponde a un tamizaje. La Parte B es complementaria y no tiene un punto de corte propio. El cuestionario no constituye por sí solo un diagnóstico."
+      : "El resultado corresponde a un tamizaje y no constituye por sí solo un diagnóstico. Las respuestas de seguridad positivas requieren entrevista clínica."
   ].filter((line, index, list) => line !== "" || list[index - 1] !== "").join("\n");
 
   const htmlRows = rows.map((row) => `

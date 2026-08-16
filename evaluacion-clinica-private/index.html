@@ -441,7 +441,7 @@
           <span>
             <span class="test-chip">Adultos · 18 años o más</span>
             <h3>Tamizaje de TDAH</h3>
-            <p>ASRS‑v1.1 de 6 preguntas. Considera cómo te has sentido y comportado durante los últimos 6 meses.</p>
+            <p>ASRS‑v1.1 completo: Parte A de 6 preguntas y Parte B de 12 preguntas complementarias sobre los últimos 6 meses.</p>
           </span>
           <span class="arrow">Continuar →</span>
         </button>
@@ -545,7 +545,7 @@
     </section>
 
     <p class="disclaimer">En una emergencia, esta página no reemplaza la atención presencial. En Chile puedes llamar al <strong>*4141</strong> desde un celular las 24 horas.</p>
-    <p class="disclaimer">Fuentes clínicas: <a href="https://www.hcp.med.harvard.edu/ncs/asrs.php" target="_blank" rel="noopener noreferrer nofollow">ASRS‑v1.1 de la OMS</a>, incluida su actualización oficial de puntuación de 2024, y <a href="https://www.nimh.nih.gov/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/phq-9-modified-for-adolescents-phq-a" target="_blank" rel="noopener noreferrer nofollow">PHQ‑A publicado por NIMH</a>. ASRS‑v1.1 Screener © Organización Mundial de la Salud 2003. Todos los derechos reservados.</p>
+    <p class="disclaimer">Fuentes clínicas: <a href="https://www.hcp.med.harvard.edu/ncs/asrs.php" target="_blank" rel="noopener noreferrer nofollow">lista completa ASRS‑v1.1 de la OMS</a>, incluida su actualización oficial de puntuación de 2024, y <a href="https://www.nimh.nih.gov/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/phq-9-modified-for-adolescents-phq-a" target="_blank" rel="noopener noreferrer nofollow">PHQ‑A publicado por NIMH</a>. ASRS‑v1.1 © Organización Mundial de la Salud. Reproducido con autorización confirmada por el responsable del sitio. Todos los derechos reservados.</p>
   </main>
 
   <div id="screen-status" class="honeypot" aria-live="polite"></div>
@@ -554,7 +554,7 @@
     const TESTS = {
       asrs: {
         id: "asrs",
-        name: "ASRS‑v1.1 · TDAH en adultos",
+        name: "ASRS‑v1.1 completo · TDAH en adultos",
         ageLabel: "adultos de 18 años o más",
         context: "Durante los últimos 6 meses",
         options: [
@@ -570,7 +570,19 @@
           { id: "asrs3", text: "¿Con qué frecuencia tiene usted problemas para recordar citas u obligaciones?" },
           { id: "asrs4", text: "Cuando tiene que realizar una tarea que requiere pensar mucho, ¿con qué frecuencia evita o retrasa empezarla?" },
           { id: "asrs5", text: "¿Con qué frecuencia mueve continuamente o retuerce las manos o los pies cuando tiene que permanecer sentado por mucho tiempo?" },
-          { id: "asrs6", text: "¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?" }
+          { id: "asrs6", text: "¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?" },
+          { id: "asrs7", section: "Parte B · Información complementaria", text: "¿Con qué frecuencia comete errores por descuido cuando tiene que trabajar en un proyecto difícil o aburrido?" },
+          { id: "asrs8", text: "¿Con qué frecuencia le cuesta mantener la atención cuando está haciendo un trabajo aburrido o repetitivo?" },
+          { id: "asrs9", text: "¿Con qué frecuencia le cuesta concentrarse en lo que otras personas le dicen, incluso cuando le están hablando directamente a usted?" },
+          { id: "asrs10", text: "¿Con qué frecuencia pierde o tiene dificultad para encontrar cosas en la casa o en el trabajo?" },
+          { id: "asrs11", text: "¿Con qué frecuencia se distrae por ruidos o actividades a su alrededor?" },
+          { id: "asrs12", text: "¿Con qué frecuencia se levanta de su asiento en reuniones o en otras situaciones en las que se supone debe permanecer sentado?" },
+          { id: "asrs13", text: "¿Con qué frecuencia se siente inquieto o nervioso?" },
+          { id: "asrs14", text: "¿Con qué frecuencia tiene dificultades para relajarse cuando tiene tiempo libre para dedicárselo a usted mismo?" },
+          { id: "asrs15", text: "¿Con qué frecuencia siente que habla demasiado cuando está en reuniones sociales?" },
+          { id: "asrs16", text: "Cuando está en una conversación, ¿con qué frecuencia se descubre terminando las frases de la persona que está hablando antes de que ella termine?" },
+          { id: "asrs17", text: "¿Con qué frecuencia tiene dificultad para esperar su turno en situaciones en que debe hacerlo?" },
+          { id: "asrs18", text: "¿Con qué frecuencia interrumpe a otros cuando están ocupados?" }
         ]
       },
       phqa: {
@@ -759,8 +771,8 @@
       if (result.instrument === "asrs") {
         document.getElementById("result-score").textContent = `${result.score24} / 24`;
         document.getElementById("result-title").textContent = result.rangeLabel;
-        document.getElementById("result-summary").textContent = `Regla actualizada: ${result.rangeLabel}. Regla clínica original: ${result.shadedCount} de 6 respuestas clave (${result.originalPositive ? "tamizaje positivo" : "tamizaje negativo"}; punto de corte: 4).`;
-        document.getElementById("result-detail").textContent = "Un resultado de tamizaje no confirma ni descarta por sí solo TDAH. La evaluación debe revisar inicio en la infancia, presencia en más de un contexto, deterioro funcional y otras posibles explicaciones.";
+        document.getElementById("result-summary").textContent = `Parte A: ${result.shadedCount} de 6 respuestas clave (${result.originalPositive ? "tamizaje positivo" : "tamizaje negativo"}; punto de corte: 4). Parte B: ${result.partBFrequentCount} de 12 respuestas marcadas A menudo o Muy a menudo.`;
+        document.getElementById("result-detail").textContent = "La Parte B amplía el perfil de síntomas, pero no posee un punto de corte propio. Un resultado de tamizaje no confirma ni descarta por sí solo TDAH: debe revisarse el inicio en la infancia, la presencia en más de un contexto, el deterioro funcional y otras posibles explicaciones.";
       } else {
         document.getElementById("result-score").textContent = `${result.total} / 27`;
         document.getElementById("result-title").textContent = result.severityLabel;
