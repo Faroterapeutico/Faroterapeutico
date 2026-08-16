@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluación clínica por invitación | Faro Terapéutico</title>
+  <meta name="description" content="Evaluación clínica privada indicada por un profesional de Faro Terapéutico.">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f6f1e9">
+  <link rel="stylesheet" href="/button-system.css">
+  <link rel="icon" href="/images/favicon-32x32.webp" type="image/webp">
+  <style>
+    :root {
+      --ink: #202826;
+      --ink-soft: #57615e;
+      --paper: #fffdf9;
+      --cream: #f6f1e9;
+      --line: #d8d0c4;
+      --accent: #936039;
+      --accent-dark: #6f4325;
+      --accent-soft: #f2e3d5;
+      --sage: #456b60;
+      --sage-soft: #e4efeb;
+      --danger: #9b302b;
+      --danger-soft: #fff0ee;
+      --success: #226547;
+      --success-soft: #e8f5ed;
+      --shadow: 0 22px 60px rgba(55, 43, 31, 0.10);
+      --radius-lg: 28px;
+      --radius-md: 17px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 7%, rgba(147, 96, 57, 0.11), transparent 28rem),
+        radial-gradient(circle at 92% 42%, rgba(69, 107, 96, 0.10), transparent 25rem),
+        var(--cream);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    input { font: inherit; }
+
+    button { -webkit-tap-highlight-color: transparent; }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px clamp(18px, 4vw, 48px);
+      border-bottom: 1px solid rgba(72, 59, 46, 0.1);
+      background: rgba(255, 253, 249, 0.88);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .brand img { width: 34px; height: 34px; }
+
+    .invite-label {
+      color: var(--sage);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .shell {
+      width: min(100% - 30px, 920px);
+      margin: 0 auto;
+      padding: clamp(30px, 6vw, 62px) 0 72px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(230px, 0.7fr);
+      gap: clamp(24px, 5vw, 54px);
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.075em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1,
+    h2,
+    h3 { letter-spacing: -0.025em; }
+
+    h1 {
+      max-width: 650px;
+      margin-bottom: 14px;
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      line-height: 1.08;
+    }
+
+    h1 em { color: var(--accent); font-style: normal; }
+
+    .hero-copy {
+      max-width: 650px;
+      margin-bottom: 0;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+    }
+
+    .privacy-note {
+      padding: 19px;
+      border: 1px solid rgba(69, 107, 96, 0.22);
+      border-radius: var(--radius-md);
+      color: #3d5a52;
+      background: rgba(228, 239, 235, 0.76);
+      font-size: 0.87rem;
+    }
+
+    .privacy-note strong { display: block; margin-bottom: 4px; color: #294a40; }
+
+    .stepper {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    .step {
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #79746d;
+      background: rgba(255, 255, 255, 0.5);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .step.active { border-color: rgba(147, 96, 57, 0.42); color: var(--accent-dark); background: var(--paper); }
+    .step.done { border-color: rgba(69, 107, 96, 0.25); color: var(--sage); background: var(--sage-soft); }
+
+    .panel {
+      display: none;
+      padding: clamp(22px, 4.5vw, 42px);
+      border: 1px solid rgba(101, 82, 62, 0.14);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 253, 249, 0.96);
+      box-shadow: var(--shadow);
+    }
+
+    .panel.active { display: block; animation: rise 0.3s ease; }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-heading { max-width: 720px; margin-bottom: 24px; }
+    .panel-heading h2 { margin-bottom: 8px; font-size: clamp(1.65rem, 4vw, 2.35rem); line-height: 1.18; }
+    .panel-heading p { margin-bottom: 0; color: var(--ink-soft); }
+
+    .test-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; }
+
+    .test-card {
+      display: flex;
+      min-height: 188px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-between;
+      padding: 21px;
+      border: 1.5px solid var(--line);
+      border-radius: var(--radius-md);
+      color: var(--ink);
+      background: white;
+      cursor: pointer;
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .test-card:hover,
+    .test-card:focus-visible {
+      border-color: var(--accent);
+      outline: 0;
+      box-shadow: 0 13px 30px rgba(76, 55, 34, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .test-chip {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      font-size: 0.73rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .test-card:nth-child(2) .test-chip { color: var(--sage); background: var(--sage-soft); }
+    .test-card h3 { margin: 17px 0 7px; font-size: 1.28rem; line-height: 1.3; }
+    .test-card p { margin-bottom: 0; color: var(--ink-soft); font-size: 0.88rem; }
+    .test-card .arrow { margin-top: 18px; color: var(--accent-dark); font-weight: 800; }
+
+    .fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      color: #343b38;
+      font-size: 0.84rem;
+      font-weight: 750;
+    }
+
+    .field input {
+      width: 100%;
+      min-height: 50px;
+      padding: 11px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--ink);
+      background: white;
+    }
+
+    .field input:focus { border-color: var(--accent); outline: 3px solid rgba(147, 96, 57, 0.13); }
+    .field small { display: block; margin-top: 5px; color: var(--ink-soft); font-size: 0.77rem; }
+
+    .consent {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      margin-top: 18px;
+      padding: 15px;
+      border-radius: 13px;
+      background: #f4f0e9;
+      color: var(--ink-soft);
+      font-size: 0.84rem;
+    }
+
+    .consent input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--accent); }
+    .consent strong { color: var(--ink); }
+
+    .actions { display: flex; gap: 10px; margin-top: 22px; }
+
+    .primary,
+    .secondary {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 21px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 750;
+      transition: 0.18s ease;
+    }
+
+    .primary { flex: 1; border: 1px solid var(--ink); color: white; background: var(--ink); }
+    .primary:hover,
+    .primary:focus-visible { outline: 0; background: var(--accent-dark); transform: translateY(-1px); }
+    .primary:disabled { cursor: wait; opacity: 0.65; transform: none; }
+
+    .secondary { border: 1px solid var(--line); color: var(--ink); background: white; }
+    .secondary:hover,
+    .secondary:focus-visible { border-color: var(--accent); outline: 0; background: var(--accent-soft); }
+
+    .error {
+      min-height: 23px;
+      margin: 12px 0 0;
+      color: var(--danger);
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    .test-topbar { display: flex; justify-content: space-between; gap: 15px; margin-bottom: 20px; }
+    .test-label { color: var(--sage); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    .question-count { color: var(--ink-soft); font-size: 0.82rem; }
+
+    .progress {
+      height: 7px;
+      margin-bottom: 24px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8e1d8;
+    }
+
+    .progress span { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--accent); transition: width 0.2s ease; }
+
+    .question-block { margin: 0; padding: 0; border: 0; }
+    .question-block legend { width: 100%; margin-bottom: 20px; padding: 0; font-size: clamp(1.2rem, 3vw, 1.55rem); font-weight: 750; line-height: 1.45; }
+    .question-context { display: block; margin-bottom: 7px; color: var(--accent-dark); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .options { display: grid; gap: 9px; }
+    .option { position: relative; display: block; }
+    .option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    .option span {
+      display: flex;
+      min-height: 54px;
+      align-items: center;
+      padding: 12px 15px;
+      border: 1.5px solid var(--line);
+      border-radius: 13px;
+      color: var(--ink-soft);
+      background: white;
+      cursor: pointer;
+      transition: 0.16s ease;
+    }
+
+    .option input:focus-visible + span { outline: 3px solid rgba(147, 96, 57, 0.17); outline-offset: 2px; }
+    .option input:checked + span { border-color: var(--accent); color: var(--accent-dark); background: var(--accent-soft); box-shadow: inset 0 0 0 1px var(--accent); font-weight: 750; }
+
+    .urgent {
+      margin: 0 0 18px;
+      padding: 18px;
+      border: 1px solid rgba(155, 48, 43, 0.35);
+      border-radius: var(--radius-md);
+      color: #78241f;
+      background: var(--danger-soft);
+    }
+
+    .urgent[hidden] { display: none; }
+    .urgent h3 { margin-bottom: 7px; font-size: 1.14rem; }
+    .urgent p { margin-bottom: 8px; font-size: 0.9rem; }
+    .urgent p:last-child { margin-bottom: 0; }
+    .urgent a { color: #78241f; font-weight: 800; }
+
+    .result-card {
+      padding: 22px;
+      border: 1px solid rgba(69, 107, 96, 0.2);
+      border-radius: var(--radius-md);
+      background: var(--sage-soft);
+    }
+
+    .result-score { margin-bottom: 8px; color: var(--sage); font-size: clamp(2.2rem, 8vw, 4.3rem); font-weight: 850; line-height: 1; }
+    .result-card h3 { margin-bottom: 8px; font-size: 1.35rem; }
+    .result-card p { margin-bottom: 8px; color: #405750; }
+    .result-card p:last-child { margin-bottom: 0; }
+
+    .delivered {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 16px;
+      padding: 15px;
+      border-radius: 13px;
+      color: var(--success);
+      background: var(--success-soft);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    .disclaimer { margin: 18px 0 0; color: var(--ink-soft); font-size: 0.8rem; }
+
+    .sending {
+      display: none;
+      margin-top: 15px;
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+    }
+
+    .sending.active { display: block; }
+
+    .honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+
+    @media (max-width: 720px) {
+      .hero,
+      .test-grid,
+      .fields { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .test-card { min-height: 166px; }
+      .step { padding: 9px 7px; font-size: 0.7rem; }
+      .actions { flex-direction: column-reverse; }
+      .actions button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand"><img src="/images/logo-faro-64.png" alt="">Faro Terapéutico</div>
+    <span class="invite-label">Acceso por invitación</span>
+  </header>
+
+  <main class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <span class="eyebrow">Evaluación clínica</span>
+        <h1 id="page-title">Un espacio breve para <em>responder con calma.</em></h1>
+        <p class="hero-copy">Elige la evaluación indicada por tu psicólogo. Tus respuestas se calcularán automáticamente y se enviarán al profesional junto con tu identificación.</p>
+      </div>
+      <aside class="privacy-note">
+        <strong>Información confidencial</strong>
+        Esta página no aparece en buscadores ni en el menú del sitio. Evita completarla en un dispositivo compartido.
+      </aside>
+    </section>
+
+    <nav class="stepper" aria-label="Progreso de la evaluación">
+      <span class="step active" id="step-identify">1 · Identificación</span>
+      <span class="step" id="step-answer">2 · Respuestas</span>
+      <span class="step" id="step-result">3 · Envío</span>
+    </nav>
+
+    <section class="panel active" id="choose-panel">
+      <div class="panel-heading">
+        <span class="eyebrow">Paso 1</span>
+        <h2>¿Qué evaluación te indicó el profesional?</h2>
+        <p>Selecciona solo la evaluación que corresponde. Cada instrumento utiliza su periodo y reglas oficiales de puntuación.</p>
+      </div>
+      <div class="test-grid">
+        <button class="test-card" type="button" data-test="asrs">
+          <span>
+            <span class="test-chip">Adultos · 18 años o más</span>
+            <h3>Tamizaje de TDAH</h3>
+            <p>ASRS‑v1.1 de 6 preguntas. Considera cómo te has sentido y comportado durante los últimos 6 meses.</p>
+          </span>
+          <span class="arrow">Continuar →</span>
+        </button>
+        <button class="test-card" type="button" data-test="phqa">
+          <span>
+            <span class="test-chip">Adolescencia · 16 años</span>
+            <h3>Evaluación de depresión</h3>
+            <p>PHQ‑9 modificado para adolescentes (PHQ‑A), con preguntas de funcionamiento y seguridad.</p>
+          </span>
+          <span class="arrow">Continuar →</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="panel" id="identity-panel">
+      <div class="panel-heading">
+        <span class="eyebrow" id="identity-test-label">Evaluación seleccionada</span>
+        <h2>Antes de responder</h2>
+        <p>Estos datos permiten que el profesional identifique correctamente tus respuestas. No se solicita RUT.</p>
+      </div>
+      <form id="identity-form" novalidate>
+        <div class="fields">
+          <div class="field full">
+            <label for="patient-name">Nombre completo</label>
+            <input id="patient-name" name="patientName" type="text" autocomplete="name" maxlength="100" required>
+          </div>
+          <div class="field">
+            <label for="birth-date">Fecha de nacimiento</label>
+            <input id="birth-date" name="birthDate" type="date" autocomplete="bday" required>
+          </div>
+          <div class="field">
+            <label for="patient-code">Código o iniciales acordadas <span aria-hidden="true">(opcional)</span></label>
+            <input id="patient-code" name="patientCode" type="text" maxlength="30" autocomplete="off">
+          </div>
+          <div class="field full">
+            <label for="patient-contact">Correo o teléfono de contacto <span aria-hidden="true">(opcional)</span></label>
+            <input id="patient-contact" name="patientContact" type="text" maxlength="120" autocomplete="email">
+            <small>Solo para facilitar la identificación; no recibirás mensajes automáticos desde esta página.</small>
+          </div>
+          <div class="honeypot" aria-hidden="true">
+            <label for="company">Empresa</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+        </div>
+        <label class="consent">
+          <input id="consent" name="consent" type="checkbox" required>
+          <span><strong>Autorizo el envío.</strong> Entiendo que mis respuestas y el resultado se enviarán a psicologo.aams@gmail.com para revisión clínica. Este cuestionario orienta la evaluación y no entrega por sí solo un diagnóstico.</span>
+        </label>
+        <p class="error" id="identity-error" role="alert"></p>
+        <div class="actions">
+          <button class="secondary" id="back-to-tests" type="button">Volver</button>
+          <button class="primary" type="submit">Comenzar evaluación</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" id="question-panel">
+      <div class="test-topbar">
+        <span class="test-label" id="active-test-label"></span>
+        <span class="question-count" id="question-count"></span>
+      </div>
+      <div class="progress" role="progressbar" id="question-progress" aria-valuemin="1" aria-valuenow="1">
+        <span id="progress-bar"></span>
+      </div>
+      <form id="assessment-form" novalidate>
+        <div id="question-container"></div>
+        <p class="error" id="question-error" role="alert"></p>
+        <div class="urgent" id="urgent-notice" hidden>
+          <h3>Tu seguridad es lo primero</h3>
+          <p>Esta respuesta necesita conversación clínica, aunque el puntaje total sea bajo. El correo no es un servicio de emergencia ni garantiza lectura inmediata.</p>
+          <p>Si existe riesgo ahora, no te quedes a solas: avisa a un adulto de confianza, llama gratis desde un celular al <a href="tel:*4141">*4141</a> o acude al servicio de urgencia más cercano.</p>
+        </div>
+        <div class="actions">
+          <button class="secondary" id="previous-question" type="button">Anterior</button>
+          <button class="primary" id="next-question" type="button">Siguiente</button>
+          <button class="primary" id="submit-assessment" type="submit" hidden>Calcular y enviar al profesional</button>
+        </div>
+        <p class="sending" id="sending-status" role="status">Calculando el resultado y enviando tus respuestas de forma segura…</p>
+      </form>
+    </section>
+
+    <section class="panel" id="result-panel" aria-live="polite">
+      <div class="panel-heading">
+        <span class="eyebrow">Evaluación enviada</span>
+        <h2>Tu resultado orientativo</h2>
+        <p>El profesional recibirá el detalle de cada pregunta y de la respuesta que seleccionaste.</p>
+      </div>
+      <div class="urgent" id="result-urgent" hidden>
+        <h3>Es importante conversar hoy</h3>
+        <p>Al menos una respuesta relacionada con seguridad requiere seguimiento mediante entrevista clínica. No esperes una respuesta por correo si necesitas ayuda ahora.</p>
+        <p>Llama gratis desde un celular al <a href="tel:*4141">*4141</a>, cuéntaselo a un adulto de confianza o acude a urgencias si hay riesgo inmediato.</p>
+      </div>
+      <div class="result-card">
+        <div class="result-score" id="result-score"></div>
+        <h3 id="result-title"></h3>
+        <p id="result-summary"></p>
+        <p id="result-detail"></p>
+      </div>
+      <div class="delivered"><span aria-hidden="true">✓</span><span id="delivery-copy">Respuestas enviadas a psicologo.aams@gmail.com.</span></div>
+      <p class="disclaimer" id="result-disclaimer">El resultado es un tamizaje y debe interpretarse junto con entrevista clínica, antecedentes, funcionamiento y diagnóstico diferencial.</p>
+    </section>
+
+    <p class="disclaimer">En una emergencia, esta página no reemplaza la atención presencial. En Chile puedes llamar al <strong>*4141</strong> desde un celular las 24 horas.</p>
+    <p class="disclaimer">Fuentes clínicas: <a href="https://www.hcp.med.harvard.edu/ncs/asrs.php" target="_blank" rel="noopener noreferrer nofollow">ASRS‑v1.1 de la OMS</a>, incluida su actualización oficial de puntuación de 2024, y <a href="https://www.nimh.nih.gov/research/research-conducted-at-nimh/asq-toolkit-materials/asq-tool/phq-9-modified-for-adolescents-phq-a" target="_blank" rel="noopener noreferrer nofollow">PHQ‑A publicado por NIMH</a>. ASRS‑v1.1 Screener © Organización Mundial de la Salud 2003. Todos los derechos reservados.</p>
+  </main>
+
+  <div id="screen-status" class="honeypot" aria-live="polite"></div>
+
+  <script>
+    const TESTS = {
+      asrs: {
+        id: "asrs",
+        name: "ASRS‑v1.1 · TDAH en adultos",
+        ageLabel: "adultos de 18 años o más",
+        context: "Durante los últimos 6 meses",
+        options: [
+          { value: 0, label: "Nunca" },
+          { value: 1, label: "Rara vez" },
+          { value: 2, label: "A veces" },
+          { value: 3, label: "A menudo" },
+          { value: 4, label: "Muy a menudo" }
+        ],
+        questions: [
+          { id: "asrs1", text: "¿Con qué frecuencia tiene usted dificultad para acabar los detalles finales de un proyecto, una vez que ha terminado con las partes difíciles?" },
+          { id: "asrs2", text: "¿Con qué frecuencia tiene usted dificultad para ordenar las cosas cuando está realizando una tarea que requiere organización?" },
+          { id: "asrs3", text: "¿Con qué frecuencia tiene usted problemas para recordar citas u obligaciones?" },
+          { id: "asrs4", text: "Cuando tiene que realizar una tarea que requiere pensar mucho, ¿con qué frecuencia evita o retrasa empezarla?" },
+          { id: "asrs5", text: "¿Con qué frecuencia mueve continuamente o retuerce las manos o los pies cuando tiene que permanecer sentado por mucho tiempo?" },
+          { id: "asrs6", text: "¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?" }
+        ]
+      },
+      phqa: {
+        id: "phqa",
+        name: "PHQ‑A · Depresión en adolescentes",
+        ageLabel: "adolescentes",
+        context: "Durante las últimas 2 semanas",
+        options: [
+          { value: 0, label: "En ningún momento" },
+          { value: 1, label: "Varios días" },
+          { value: 2, label: "Más de la mitad de los días" },
+          { value: 3, label: "Casi todos los días" }
+        ],
+        questions: [
+          { id: "phq1", text: "¿Se ha sentido deprimido, irritable o sin esperanza?" },
+          { id: "phq2", text: "¿Ha tenido poco interés o placer al hacer cosas?" },
+          { id: "phq3", text: "¿Ha tenido dificultad para dormirse, permanecer dormido o ha dormido demasiado?" },
+          { id: "phq4", text: "¿Ha tenido poco apetito, pérdida de peso o ha comido demasiado?" },
+          { id: "phq5", text: "¿Se ha sentido cansado o con poca energía?" },
+          { id: "phq6", text: "¿Se ha sentido mal consigo mismo, como si fuera un fracaso o como si se hubiera fallado a sí mismo o a su familia?" },
+          { id: "phq7", text: "¿Ha tenido problemas para concentrarse en cosas como tareas escolares, leer o ver televisión?" },
+          { id: "phq8", text: "¿Se ha movido o hablado tan lentamente que otras personas podrían haberlo notado? O, por el contrario, ¿ha estado tan inquieto que se mueve más de lo habitual?" },
+          { id: "phq9", text: "¿Ha tenido pensamientos de que estaría mejor muerto o de hacerse daño de alguna manera?" },
+          {
+            id: "phq10",
+            context: "Durante el último año",
+            text: "¿Se ha sentido deprimido o triste la mayoría de los días, incluso si algunas veces se sentía bien?",
+            options: [{ value: "no", label: "No" }, { value: "si", label: "Sí" }]
+          },
+          {
+            id: "phq11",
+            context: "Impacto en la vida diaria",
+            text: "Si ha tenido alguno de estos problemas, ¿qué tan difícil le han hecho realizar sus tareas, encargarse de las cosas en casa o relacionarse con otras personas?",
+            options: [
+              { value: "nada", label: "Nada difícil" },
+              { value: "algo", label: "Un poco difícil" },
+              { value: "muy", label: "Muy difícil" },
+              { value: "extremo", label: "Sumamente difícil" }
+            ]
+          },
+          {
+            id: "phq12",
+            context: "Durante el último mes",
+            text: "¿Hubo algún momento en que pensó seriamente en terminar con su vida?",
+            options: [{ value: "no", label: "No" }, { value: "si", label: "Sí" }]
+          },
+          {
+            id: "phq13",
+            context: "A lo largo de la vida",
+            text: "¿Alguna vez intentó matarse o intentó suicidarse?",
+            options: [{ value: "no", label: "No" }, { value: "si", label: "Sí" }]
+          }
+        ]
+      }
+    };
+
+    const panels = {
+      choose: document.getElementById("choose-panel"),
+      identity: document.getElementById("identity-panel"),
+      question: document.getElementById("question-panel"),
+      result: document.getElementById("result-panel")
+    };
+    const steps = {
+      identify: document.getElementById("step-identify"),
+      answer: document.getElementById("step-answer"),
+      result: document.getElementById("step-result")
+    };
+
+    let selectedTestId = null;
+    let patient = null;
+    let answers = {};
+    let questionIndex = 0;
+    let startedAt = Date.now();
+
+    function showPanel(name) {
+      Object.entries(panels).forEach(([key, panel]) => panel.classList.toggle("active", key === name));
+      const phase = name === "question" ? 1 : name === "result" ? 2 : 0;
+      [steps.identify, steps.answer, steps.result].forEach((step, index) => {
+        step.classList.toggle("active", index === phase);
+        step.classList.toggle("done", index < phase);
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function calculateAge(dateString) {
+      const birth = new Date(`${dateString}T12:00:00`);
+      if (Number.isNaN(birth.getTime())) return null;
+      const today = new Date();
+      let age = today.getFullYear() - birth.getFullYear();
+      const monthDifference = today.getMonth() - birth.getMonth();
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birth.getDate())) age -= 1;
+      return age;
+    }
+
+    function selectTest(testId) {
+      selectedTestId = testId;
+      const test = TESTS[testId];
+      document.getElementById("identity-test-label").textContent = test.name;
+      document.getElementById("identity-error").textContent = "";
+      showPanel("identity");
+      document.getElementById("patient-name").focus({ preventScroll: true });
+    }
+
+    function renderQuestion() {
+      const test = TESTS[selectedTestId];
+      const question = test.questions[questionIndex];
+      const options = question.options || test.options;
+      const selectedValue = answers[question.id];
+      const optionHtml = options.map((option) => {
+        const checked = String(selectedValue) === String(option.value) ? "checked" : "";
+        return `
+          <label class="option">
+            <input type="radio" name="current-answer" value="${option.value}" ${checked}>
+            <span>${option.label}</span>
+          </label>
+        `;
+      }).join("");
+
+      document.getElementById("question-container").innerHTML = `
+        <fieldset class="question-block">
+          <legend><span class="question-context">${question.context || test.context}</span>${question.text}</legend>
+          <div class="options">${optionHtml}</div>
+        </fieldset>
+      `;
+      const current = questionIndex + 1;
+      const total = test.questions.length;
+      document.getElementById("active-test-label").textContent = test.name;
+      document.getElementById("question-count").textContent = `Pregunta ${current} de ${total}`;
+      document.getElementById("question-progress").setAttribute("aria-valuemax", total);
+      document.getElementById("question-progress").setAttribute("aria-valuenow", current);
+      document.getElementById("progress-bar").style.width = `${(current / total) * 100}%`;
+      document.getElementById("previous-question").hidden = questionIndex === 0;
+      document.getElementById("next-question").hidden = questionIndex === total - 1;
+      document.getElementById("submit-assessment").hidden = questionIndex !== total - 1;
+      document.getElementById("question-error").textContent = "";
+      document.getElementById("urgent-notice").hidden = !hasRiskResponse();
+      document.getElementById("screen-status").textContent = `Pregunta ${current} de ${total}.`;
+    }
+
+    function saveCurrentAnswer() {
+      const selected = document.querySelector('input[name="current-answer"]:checked');
+      if (!selected) return false;
+      const question = TESTS[selectedTestId].questions[questionIndex];
+      answers[question.id] = /^\d+$/.test(selected.value) ? Number(selected.value) : selected.value;
+      return true;
+    }
+
+    function hasRiskResponse() {
+      return selectedTestId === "phqa" && (
+        Number(answers.phq9 || 0) > 0 || answers.phq12 === "si" || answers.phq13 === "si"
+      );
+    }
+
+    function goToQuestion(nextIndex) {
+      const total = TESTS[selectedTestId].questions.length;
+      questionIndex = Math.max(0, Math.min(nextIndex, total - 1));
+      renderQuestion();
+      const legend = document.querySelector(".question-block legend");
+      if (legend) legend.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function validateIdentity(formData) {
+      const name = String(formData.get("patientName") || "").trim();
+      const birthDate = String(formData.get("birthDate") || "");
+      const age = calculateAge(birthDate);
+      if (name.length < 3) return "Escribe el nombre completo del paciente.";
+      if (age === null || age < 0 || age > 110) return "Ingresa una fecha de nacimiento válida.";
+      if (selectedTestId === "asrs" && age < 18) return "El ASRS‑v1.1 de esta página corresponde a personas adultas de 18 años o más.";
+      if (selectedTestId === "phqa" && (age < 12 || age > 17)) return "El PHQ‑A de esta página corresponde a adolescentes de 12 a 17 años.";
+      if (!formData.get("consent")) return "Debes autorizar el envío de las respuestas para continuar.";
+      if (String(formData.get("company") || "").trim()) return "No se pudo iniciar la evaluación.";
+      return "";
+    }
+
+    function showSubmissionError(message) {
+      const error = document.getElementById("question-error");
+      error.textContent = message || "No fue posible enviar las respuestas. Revisa tu conexión e inténtalo nuevamente.";
+      document.getElementById("sending-status").classList.remove("active");
+      const submit = document.getElementById("submit-assessment");
+      submit.disabled = false;
+      submit.textContent = "Reintentar envío";
+    }
+
+    function renderResult(result) {
+      document.getElementById("result-urgent").hidden = !result.riskFlag;
+      if (result.instrument === "asrs") {
+        document.getElementById("result-score").textContent = `${result.score24} / 24`;
+        document.getElementById("result-title").textContent = result.rangeLabel;
+        document.getElementById("result-summary").textContent = `Regla actualizada: ${result.rangeLabel}. Regla clínica original: ${result.shadedCount} de 6 respuestas clave (${result.originalPositive ? "tamizaje positivo" : "tamizaje negativo"}; punto de corte: 4).`;
+        document.getElementById("result-detail").textContent = "Un resultado de tamizaje no confirma ni descarta por sí solo TDAH. La evaluación debe revisar inicio en la infancia, presencia en más de un contexto, deterioro funcional y otras posibles explicaciones.";
+      } else {
+        document.getElementById("result-score").textContent = `${result.total} / 27`;
+        document.getElementById("result-title").textContent = result.severityLabel;
+        document.getElementById("result-summary").textContent = `Puntaje PHQ‑A: ${result.total}. Nivel de síntomas: ${result.severityLabel.toLowerCase()}.`;
+        document.getElementById("result-detail").textContent = result.mddAidPattern
+          ? "Las respuestas cumplen el patrón del PHQ‑A que requiere evaluación clínica de posible trastorno depresivo mayor; esto no equivale a un diagnóstico."
+          : "Las respuestas no cumplen por sí solas el patrón completo de ayuda diagnóstica del PHQ‑A. Toda respuesta positiva y el funcionamiento deben revisarse en entrevista.";
+      }
+      showPanel("result");
+      document.getElementById("screen-status").textContent = "Evaluación calculada y enviada al profesional.";
+    }
+
+    document.querySelectorAll("[data-test]").forEach((button) => {
+      button.addEventListener("click", () => selectTest(button.dataset.test));
+    });
+
+    document.getElementById("back-to-tests").addEventListener("click", () => {
+      selectedTestId = null;
+      showPanel("choose");
+    });
+
+    document.getElementById("identity-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const validationError = validateIdentity(formData);
+      if (validationError) {
+        document.getElementById("identity-error").textContent = validationError;
+        return;
+      }
+      patient = {
+        name: String(formData.get("patientName") || "").trim(),
+        birthDate: String(formData.get("birthDate") || ""),
+        patientCode: String(formData.get("patientCode") || "").trim(),
+        contact: String(formData.get("patientContact") || "").trim()
+      };
+      answers = {};
+      questionIndex = 0;
+      startedAt = Date.now();
+      showPanel("question");
+      renderQuestion();
+    });
+
+    document.getElementById("question-container").addEventListener("change", () => {
+      saveCurrentAnswer();
+      document.getElementById("question-error").textContent = "";
+      document.getElementById("urgent-notice").hidden = !hasRiskResponse();
+    });
+
+    document.getElementById("next-question").addEventListener("click", () => {
+      if (!saveCurrentAnswer()) {
+        document.getElementById("question-error").textContent = "Selecciona una respuesta para continuar.";
+        return;
+      }
+      goToQuestion(questionIndex + 1);
+    });
+
+    document.getElementById("previous-question").addEventListener("click", () => {
+      saveCurrentAnswer();
+      goToQuestion(questionIndex - 1);
+    });
+
+    document.getElementById("assessment-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!saveCurrentAnswer()) {
+        document.getElementById("question-error").textContent = "Selecciona una respuesta antes de enviar.";
+        return;
+      }
+      const test = TESTS[selectedTestId];
+      if (test.questions.some((question) => answers[question.id] === undefined)) {
+        document.getElementById("question-error").textContent = "Falta una o más respuestas. Vuelve atrás para completarlas.";
+        return;
+      }
+
+      document.getElementById("urgent-notice").hidden = !hasRiskResponse();
+      const submit = document.getElementById("submit-assessment");
+      submit.disabled = true;
+      submit.textContent = "Enviando…";
+      document.getElementById("sending-status").classList.add("active");
+      document.getElementById("question-error").textContent = "";
+
+      try {
+        const response = await fetch("/api/evaluacion-clinica", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify({
+            instrument: selectedTestId,
+            patient,
+            answers,
+            consent: true,
+            startedAt,
+            submittedAt: Date.now()
+          })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok) throw new Error(data.message || "No se pudo confirmar la entrega del correo.");
+        renderResult(data.result);
+      } catch (error) {
+        showSubmissionError(error && error.message ? error.message : "No se pudo enviar la evaluación.");
+      }
+    });
+  </script>
+</body>
+</html>

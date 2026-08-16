@@ -33,3 +33,10 @@
 
 /images/*
   Cache-Control: public, max-age=31536000, immutable
+
+/evaluacion-clinica*
+  Cache-Control: private, no-store, max-age=0
+  Pragma: no-cache
+  X-Robots-Tag: noindex, nofollow, noarchive, nosnippet, noimageindex
+  Referrer-Policy: no-referrer
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests

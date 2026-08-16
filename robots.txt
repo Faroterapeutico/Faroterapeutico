@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /evaluacion-clinica
 
 Sitemap: https://faroterapeutico.com/sitemap.xml
