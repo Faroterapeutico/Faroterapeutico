@@ -1,5 +1,6 @@
 const extensionPattern = /\.[a-z0-9]+$/i;
 const assessmentPaths = new Set(["/evaluacion-clinica", "/evaluacion-clinica.html"]);
+const assessmentAssetPath = "/evaluacion-clinica-private/";
 const assessmentRecipient = "psicologo.aams@gmail.com";
 const assessmentCookie = "ft_clinical_access";
 const maxAssessmentBodyBytes = 32_000;
@@ -171,7 +172,7 @@ async function handleClinicalPage(request, env, url) {
   }
 
   if (!(await hasAssessmentAccess(request, env))) return textResponse("Página no encontrada.", 404);
-  const pageResponse = await fetchAsset(request, env, "/evaluacion-clinica.html");
+  const pageResponse = await fetchAsset(request, env, assessmentAssetPath);
   return addClinicalPageHeaders(pageResponse);
 }
 
@@ -457,6 +458,10 @@ async function handleAssessmentSubmission(request, env) {
 const worker = {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (url.pathname.startsWith("/evaluacion-clinica-private")) {
+      return textResponse("Página no encontrada.", 404);
+    }
 
     if (assessmentPaths.has(url.pathname) && (request.method === "GET" || request.method === "HEAD")) {
       return handleClinicalPage(request, env, url);
