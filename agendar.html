@@ -131,7 +131,7 @@
     }
 
     .brand-inline {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     .main {
@@ -142,21 +142,21 @@
     }
 
     .topbar {
-      min-height: 76px;
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
 
     .topbar h1 {
       margin: 0;
       color: var(--ink);
       font-family: var(--serif);
-      font-size: 3.35rem;
-      font-weight: 500;
-      line-height: 0.98;
+      font-size: 2.55rem;
+      font-weight: 600;
+      line-height: 1;
       letter-spacing: 0;
       text-wrap: balance;
     }
@@ -306,7 +306,7 @@
 
     .booking-progress {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 8px;
       margin: 0 0 18px;
       padding: 0;
@@ -348,7 +348,7 @@
       align-items: start;
     }
 
-    .booking-layout:not([data-current-step="4"]) {
+    .booking-layout:not([data-current-step="5"]) {
       grid-template-columns: minmax(0, 1fr);
     }
 
@@ -443,16 +443,32 @@
     }
 
     .service-card {
+      position: relative;
       min-height: 104px;
-      padding: 14px;
+      padding: 16px 14px 14px;
+      overflow: hidden;
+      border-width: 2px;
+      border-color: rgba(8, 115, 78, 0.24);
+      background: #fbfdfc;
+      box-shadow: 0 8px 18px -16px rgba(20, 52, 43, 0.7);
       text-align: left;
       display: flex;
       flex-direction: column;
       gap: 7px;
     }
 
+    .service-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 4px;
+      background: var(--green);
+    }
+
     .service-card strong {
       color: var(--ink);
+      font-size: 0.96rem;
+      font-weight: 700;
       line-height: 1.25;
     }
 
@@ -464,7 +480,7 @@
     .service-card b {
       margin-top: auto;
       color: var(--gold);
-      font-size: 1rem;
+      font-size: 1.04rem;
     }
 
     .service-card.selected,
@@ -472,6 +488,25 @@
       border-color: rgba(8, 115, 78, 0.5);
       background: rgba(8, 115, 78, 0.055);
       box-shadow: inset 0 0 0 1px rgba(8, 115, 78, 0.05), 0 14px 30px -25px rgba(8, 115, 78, 0.68);
+    }
+
+    .service-card.selected {
+      border-color: var(--green);
+      background: var(--green);
+      box-shadow: 0 12px 24px -18px rgba(8, 115, 78, 0.9);
+    }
+
+    .service-card.selected::before {
+      background: #d5ad62;
+    }
+
+    .service-card.selected strong,
+    .service-card.selected b {
+      color: #fff;
+    }
+
+    .service-card.selected span {
+      color: rgba(255, 255, 255, 0.82);
     }
 
     .service-card.unavailable,
@@ -515,8 +550,39 @@
     }
 
     .therapist-card {
+      position: relative;
       overflow: hidden;
+      border-width: 2px;
+      border-color: rgba(8, 115, 78, 0.2);
+      box-shadow: 0 8px 18px -16px rgba(20, 52, 43, 0.7);
       text-align: left;
+    }
+
+    .therapist-card.selected {
+      border-color: var(--green);
+      background: #fbfdfc;
+      box-shadow: 0 0 0 2px rgba(8, 115, 78, 0.12), 0 14px 26px -20px rgba(8, 115, 78, 0.85);
+    }
+
+    .therapist-selection-check {
+      position: absolute;
+      top: 9px;
+      right: 9px;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: var(--green);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 3px 10px rgba(20, 52, 43, 0.24);
+    }
+
+    .therapist-selection-check svg {
+      width: 14px;
+      height: 14px;
+      stroke-width: 3;
     }
 
     .therapist-card .therapist-thumb {
@@ -585,27 +651,39 @@
       gap: 10px;
     }
 
+    .mode-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
     .mode-toggle {
-      min-height: 44px;
-      border: 1px solid var(--line-soft);
-      background: var(--surface);
+      min-height: 92px;
+      border: 2px solid rgba(8, 115, 78, 0.22);
+      background: #fbfdfc;
       border-radius: 8px;
-      padding: 10px 14px;
+      padding: 16px;
       color: var(--ink-soft);
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: 0 8px 18px -16px rgba(20, 52, 43, 0.7);
     }
 
     .mode-toggle.selected {
-      border-color: rgba(111, 143, 131, 0.56);
-      background: rgba(111, 143, 131, 0.12);
-      color: var(--ink);
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 12px 24px -18px rgba(8, 115, 78, 0.9);
     }
 
     .mode-toggle svg {
-      width: 17px;
-      height: 17px;
+      width: 23px;
+      height: 23px;
     }
 
     .calendar-shell {
@@ -952,6 +1030,48 @@
       box-shadow: 0 0 0 3px rgba(91, 124, 153, 0.14);
     }
 
+    .form-error-summary {
+      grid-column: 1 / -1;
+      margin: 0 0 2px;
+      padding: 10px 12px;
+      border: 1px solid rgba(177, 48, 48, 0.38);
+      border-left: 4px solid #b13030;
+      border-radius: 7px;
+      background: #fff7f7;
+      color: #812525;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .form-field.has-error input,
+    .form-field.has-error select,
+    .form-field.has-error textarea {
+      border-color: #b13030;
+      background: #fffafa;
+      box-shadow: 0 0 0 2px rgba(177, 48, 48, 0.08);
+    }
+
+    .field-error {
+      margin: -1px 0 0;
+      color: #9b2929;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .consent-field.has-error {
+      padding: 9px;
+      border: 1px solid rgba(177, 48, 48, 0.38);
+      border-radius: 7px;
+      background: #fff7f7;
+    }
+
+    .consent-field .field-error {
+      flex-basis: calc(100% - 26px);
+      margin-left: 26px;
+    }
+
     .address-autocomplete {
       position: relative;
       min-width: 0;
@@ -1040,6 +1160,7 @@
     .consent-field {
       grid-column: 1 / -1;
       display: flex;
+      flex-wrap: wrap;
       align-items: flex-start;
       gap: 9px;
       color: var(--ink-soft);
@@ -1058,6 +1179,11 @@
     .consent-field a {
       color: var(--green);
       text-underline-offset: 2px;
+    }
+
+    .consent-field > span:not(.field-error) {
+      flex: 1;
+      min-width: 0;
     }
 
     .booking-website-field {
@@ -1134,6 +1260,25 @@
       font-size: 0.82rem;
       line-height: 1.25;
       text-align: center;
+    }
+
+    .summary-panel .primary-action,
+    .summary-panel .whatsapp-action {
+      position: relative;
+      width: 100% !important;
+      max-width: none !important;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 56px !important;
+      padding-right: 56px !important;
+      text-align: center !important;
+    }
+
+    .summary-panel .primary-action > :is(i, svg):first-child,
+    .summary-panel .whatsapp-action > :is(i, svg):first-child {
+      position: absolute;
+      left: 14px;
+      margin: 0;
     }
 
     .whatsapp-action:hover {
@@ -1301,7 +1446,7 @@
       }
 
       .topbar h1 {
-        font-size: 2.35rem;
+        font-size: 1.95rem;
         line-height: 1;
       }
 
@@ -1384,7 +1529,7 @@
       .service-card {
         min-width: 0;
         min-height: 78px;
-        padding: 9px 10px;
+        padding: 11px 10px 9px;
         gap: 3px;
         overflow: hidden;
       }
@@ -1460,8 +1605,8 @@
       }
 
       .mode-toggle {
-        min-height: 38px;
-        padding: 8px 11px;
+        min-height: 76px;
+        padding: 11px;
         font-size: 0.86rem;
       }
 
@@ -1541,6 +1686,15 @@
         border-radius: 7px;
         padding: 8px 9px;
         font-size: 0.82rem;
+      }
+
+      .form-error-summary {
+        padding: 8px 9px;
+        font-size: 0.68rem;
+      }
+
+      .field-error {
+        font-size: 0.64rem;
       }
 
       .address-suggestions {
@@ -1777,8 +1931,7 @@
               <img src="images/logo-faro-64.png?v=20260801-logo1" alt="">
               <strong>Faro Terap&eacute;utico <span>Agendamiento en l&iacute;nea</span></strong>
             </a>
-            <h1>Agenda tu <em>sesi&oacute;n</em></h1>
-            <p>Te guiaremos paso a paso para encontrar una atenci&oacute;n y un horario que se adapten a ti.</p>
+            <h1>Agenda tu <em>hora</em></h1>
           </div>
           <div class="top-actions">
             <span class="status-pill"><i data-lucide="clock"></i> <span id="durationPill">50 min</span></span>
@@ -1804,8 +1957,9 @@
         <ol class="booking-progress" id="bookingProgress" aria-label="Progreso del agendamiento">
           <li class="active" data-progress-step="1" aria-current="step"><span>Paso 1</span>Prestaci&oacute;n</li>
           <li data-progress-step="2"><span>Paso 2</span>Profesional</li>
-          <li data-progress-step="3"><span>Paso 3</span>Horario</li>
-          <li data-progress-step="4"><span>Paso 4</span>Confirmar</li>
+          <li data-progress-step="3"><span>Paso 3</span>Modalidad</li>
+          <li data-progress-step="4"><span>Paso 4</span>Horario</li>
+          <li data-progress-step="5"><span>Paso 5</span>Confirmar</li>
         </ol>
 
         <div class="booking-layout" id="bookingLayout" data-current-step="1">
@@ -1814,7 +1968,7 @@
               <div class="band-header">
                 <div>
                   <h3 id="service-title" tabindex="-1">&iquest;Qu&eacute; tipo de atenci&oacute;n necesitas?</h3>
-                  <span>Elige la opci&oacute;n que mejor represente lo que buscas. Podr&aacute;s volver y cambiarla.</span>
+                  <span>Selecciona una opci&oacute;n.</span>
                 </div>
               </div>
               <div class="service-grid" id="serviceGrid"></div>
@@ -1831,7 +1985,20 @@
                 </div>
               </div>
               <div class="therapist-grid" id="therapistGrid"></div>
-              <div class="toggle-row" style="margin-top: 14px;">
+              <div class="step-actions">
+                <button class="step-button" type="button" data-step-back="1"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="3">Continuar <i data-lucide="arrow-right"></i></button>
+              </div>
+            </section>
+
+            <section class="band" aria-labelledby="mode-title" data-booking-step="3" hidden>
+              <div class="band-header">
+                <div>
+                  <h3 id="mode-title" tabindex="-1">Elige la modalidad</h3>
+                  <span>Selecciona c&oacute;mo prefieres realizar tu sesi&oacute;n.</span>
+                </div>
+              </div>
+              <div class="mode-choice-grid">
                 <button class="mode-toggle selected" type="button" data-mode="Presencial" aria-pressed="true">
                   <i data-lucide="map-pin"></i>
                   Presencial
@@ -1842,12 +2009,12 @@
                 </button>
               </div>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="1"><i data-lucide="arrow-left"></i> Anterior</button>
-                <button class="step-button primary" type="button" data-step-next="3">Ver horarios <i data-lucide="arrow-right"></i></button>
+                <button class="step-button" type="button" data-step-back="2"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="4">Ver horarios <i data-lucide="arrow-right"></i></button>
               </div>
             </section>
 
-            <section class="band" aria-labelledby="calendar-title" data-booking-step="3" hidden>
+            <section class="band" aria-labelledby="calendar-title" data-booking-step="4" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="calendar-title" tabindex="-1">Elige un d&iacute;a y una hora</h3>
@@ -1866,12 +2033,12 @@
                 <div class="week-calendar" id="weekCalendar" aria-label="Elegir horario semanal"></div>
               </div>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="2"><i data-lucide="arrow-left"></i> Anterior</button>
-                <button class="step-button primary" type="button" data-step-next="4">Continuar <i data-lucide="arrow-right"></i></button>
+                <button class="step-button" type="button" data-step-back="3"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="5">Continuar <i data-lucide="arrow-right"></i></button>
               </div>
             </section>
 
-            <section class="band" aria-labelledby="patient-title" data-booking-step="4" hidden>
+            <section class="band" aria-labelledby="patient-title" data-booking-step="5" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="patient-title" tabindex="-1">Completa tus datos</h3>
@@ -1899,41 +2066,51 @@
                 <p class="reimbursement-note">Logos referenciales. La cobertura y el reembolso dependen de cada plan; no implica convenio directo.</p>
               </div>
               <form class="form-grid" id="patientForm">
+                <div class="form-error-summary" id="formErrorSummary" role="alert" tabindex="-1" hidden>
+                  Revisa los campos marcados para continuar.
+                </div>
                 <div class="form-field">
                   <label for="patientName">Nombre completo</label>
-                  <input id="patientName" name="patientName" autocomplete="name" placeholder="Nombre completo" minlength="5" maxlength="120" required>
+                  <input id="patientName" name="patientName" autocomplete="name" placeholder="Nombre completo" minlength="5" maxlength="120" aria-describedby="patientNameError" required>
+                  <p class="field-error" id="patientNameError" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="patientRut">RUT</label>
-                  <input id="patientRut" name="patientRut" autocomplete="off" inputmode="text" autocapitalize="characters" maxlength="12" pattern="[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9Kk]" placeholder="12.345.678-9" title="RUT con puntos y guion, por ejemplo 12.345.678-9" required>
+                  <input id="patientRut" name="patientRut" autocomplete="off" inputmode="text" autocapitalize="characters" maxlength="12" pattern="[0-9]{1,2}\.[0-9]{3}\.[0-9]{3}-[0-9Kk]" placeholder="12.345.678-9" title="RUT con puntos y guion, por ejemplo 12.345.678-9" aria-describedby="patientRutError" required>
+                  <p class="field-error" id="patientRutError" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="patientEmail">Email</label>
-                  <input id="patientEmail" name="patientEmail" type="email" autocomplete="email" placeholder="tu@email.cl" required>
+                  <input id="patientEmail" name="patientEmail" type="email" autocomplete="email" placeholder="tu@email.cl" aria-describedby="patientEmailError" required>
+                  <p class="field-error" id="patientEmailError" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="patientPhone">WhatsApp</label>
-                  <input id="patientPhone" name="patientPhone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="15" pattern="\+56 9 [0-9]{4} [0-9]{4}" placeholder="+56 9 1234 5678" title="Celular chileno con formato +56 9 1234 5678" required>
+                  <input id="patientPhone" name="patientPhone" type="tel" autocomplete="tel" inputmode="numeric" maxlength="15" pattern="\+56 9 [0-9]{4} [0-9]{4}" placeholder="+56 9 1234 5678" title="Celular chileno con formato +56 9 1234 5678" aria-describedby="patientPhoneError" required>
+                  <p class="field-error" id="patientPhoneError" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="patientAddress">Direcci&oacute;n para la boleta</label>
                   <div class="address-autocomplete" id="addressAutocomplete">
-                    <input id="patientAddress" name="patientAddress" autocomplete="street-address" placeholder="Calle y n&uacute;mero" minlength="5" maxlength="160" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addressSuggestions" aria-activedescendant="" spellcheck="false" title="Selecciona una dirección de las sugerencias" required>
+                    <input id="patientAddress" name="patientAddress" autocomplete="street-address" placeholder="Calle y n&uacute;mero" minlength="5" maxlength="160" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addressSuggestions" aria-activedescendant="" aria-describedby="patientAddressError" spellcheck="false" title="Selecciona una dirección de las sugerencias" required>
                     <div class="address-suggestions" id="addressSuggestions" role="listbox" aria-label="Direcciones sugeridas" hidden></div>
                   </div>
+                  <p class="field-error" id="patientAddressError" hidden></p>
                 </div>
                 <div class="form-field">
                   <label for="patientCommune">Comuna</label>
-                  <input id="patientCommune" name="patientCommune" autocomplete="address-level2" list="communeSuggestions" placeholder="Providencia" minlength="2" maxlength="80" spellcheck="false" title="Selecciona una comuna de Chile" required>
+                  <input id="patientCommune" name="patientCommune" autocomplete="address-level2" list="communeSuggestions" placeholder="Providencia" minlength="2" maxlength="80" aria-describedby="patientCommuneError" spellcheck="false" title="Selecciona una comuna de Chile" required>
                   <datalist id="communeSuggestions"></datalist>
+                  <p class="field-error" id="patientCommuneError" hidden></p>
                 </div>
                 <label class="consent-field">
-                  <input id="termsAccepted" name="termsAccepted" type="checkbox" required>
+                  <input id="termsAccepted" name="termsAccepted" type="checkbox" aria-describedby="termsAcceptedError" required>
                   <span>
                     Acepto las <a href="politicas-cancelacion.html" target="_blank" rel="noopener">condiciones de reserva</a>
                     y la <a href="politica-de-privacidad.html" target="_blank" rel="noopener">pol&iacute;tica de privacidad</a>.
                     Autorizo el env&iacute;o de mis datos a Encuadrado para gestionar la reserva, el pago cuando corresponda y la boleta.
                   </span>
+                  <span class="field-error" id="termsAcceptedError" hidden></span>
                 </label>
                 <div class="booking-website-field" aria-hidden="true">
                   <label for="patientWebsite">Sitio web</label>
@@ -1941,13 +2118,13 @@
                 </div>
               </form>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="3"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button" type="button" data-step-back="4"><i data-lucide="arrow-left"></i> Anterior</button>
               </div>
             </section>
 
           </div>
 
-          <aside class="summary-panel" aria-labelledby="summary-title" data-booking-step="4" hidden>
+          <aside class="summary-panel" aria-labelledby="summary-title" data-booking-step="5" hidden>
             <div class="summary-header">
               <div>
                 <h3 id="summary-title">Tu reserva</h3>
@@ -2024,6 +2201,7 @@
     };
     let availabilityRequestId = 0;
     let formStartedTracked = false;
+    let formValidationAttempted = false;
     let currentBookingStep = 1;
     const addressSearchCache = new Map();
     const addressAutocompleteState = {
@@ -2729,6 +2907,11 @@
       communeInput.dataset.autofilledFromAddress = "true";
       communeInput.setCustomValidity("");
       setAddressSuggestionsOpen(false);
+      updateWhatsAppBookingLink();
+      if (formValidationAttempted) {
+        validatePatientInput(addressInput);
+        validatePatientInput(communeInput);
+      }
       addressInput.focus();
     }
 
@@ -2829,6 +3012,111 @@
       if (commune) {
         communeInput.value = commune;
       }
+    }
+
+    const patientFieldIds = [
+      "patientName",
+      "patientRut",
+      "patientEmail",
+      "patientPhone",
+      "patientAddress",
+      "patientCommune",
+      "termsAccepted"
+    ];
+
+    const whatsappPatientFieldIds = [
+      "patientName",
+      "patientRut",
+      "patientEmail",
+      "patientAddress",
+      "patientCommune"
+    ];
+
+    function patientFieldErrorMessage(input) {
+      const value = input.type === "checkbox" ? "" : input.value.trim();
+      if (input.id === "patientName") {
+        if (!value) return "Ingresa tu nombre completo.";
+        if (value.split(/\s+/).filter((part) => part.length >= 2).length < 2) {
+          return "Incluye al menos tu nombre y apellido.";
+        }
+      }
+      if (input.id === "patientRut") {
+        if (!value) return "Ingresa tu RUT.";
+        if (!isValidChileanRut(value)) return "El RUT o su dígito verificador no es válido.";
+      }
+      if (input.id === "patientEmail") {
+        if (!value) return "Ingresa tu email.";
+        if (input.validity.typeMismatch) return "Escribe un email válido, por ejemplo nombre@email.cl.";
+      }
+      if (input.id === "patientPhone") {
+        if (!value) return "Ingresa tu número de WhatsApp.";
+        if (!isValidWhatsapp(value)) return "Usa un celular chileno con formato +56 9 1234 5678.";
+      }
+      if (input.id === "patientAddress") {
+        if (!value) return "Ingresa la calle y el número de tu dirección.";
+        if (!isValidStreetAddress(value)) return "Incluye una calle y un número válidos.";
+        if (input.dataset.verifiedAddress !== normalizeSearchText(value)) {
+          return "Selecciona tu dirección desde las sugerencias.";
+        }
+      }
+      if (input.id === "patientCommune") {
+        if (!value) return "Selecciona tu comuna.";
+        if (!canonicalCommune(value)) return "Selecciona una comuna válida de la lista.";
+      }
+      if (input.id === "termsAccepted" && !input.checked) {
+        return "Debes aceptar las condiciones y la política de privacidad.";
+      }
+      return "";
+    }
+
+    function setPatientFieldError(input, message) {
+      const container = input.closest(".form-field, .consent-field");
+      const error = document.getElementById(`${input.id}Error`);
+      input.setCustomValidity(message);
+      input.setAttribute("aria-invalid", String(Boolean(message)));
+      container?.classList.toggle("has-error", Boolean(message));
+      if (error) {
+        error.textContent = message;
+        error.hidden = !message;
+      }
+      return Boolean(message);
+    }
+
+    function updateFormErrorSummary() {
+      const summary = document.getElementById("formErrorSummary");
+      const errorCount = document.querySelectorAll("#patientForm .has-error").length;
+      summary.hidden = errorCount === 0;
+      summary.textContent = errorCount === 1
+        ? "Revisa el campo marcado para continuar."
+        : `Revisa los ${errorCount} campos marcados para continuar.`;
+    }
+
+    function validatePatientInput(input) {
+      const hasError = setPatientFieldError(input, patientFieldErrorMessage(input));
+      updateFormErrorSummary();
+      return !hasError;
+    }
+
+    function validatePatientForm(fieldIds = patientFieldIds, options = {}) {
+      formValidationAttempted = true;
+      patientFieldIds.forEach((fieldId) => {
+        const input = document.getElementById(fieldId);
+        setPatientFieldError(input, "");
+      });
+
+      validatePatientFields();
+      const invalidInputs = fieldIds
+        .map((fieldId) => document.getElementById(fieldId))
+        .filter((input) => !validatePatientInput(input));
+      updateFormErrorSummary();
+
+      if (invalidInputs.length && options.focus !== false) {
+        const firstInvalidInput = invalidInputs[0];
+        firstInvalidInput.closest(".form-field, .consent-field")
+          ?.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstInvalidInput.focus({ preventScroll: true });
+      }
+      return invalidInputs.length === 0;
     }
 
     function getPatientData() {
@@ -3085,7 +3373,7 @@
     }
 
     function showBookingStep(step, options = {}) {
-      const nextStep = Math.min(4, Math.max(1, Number(step) || 1));
+      const nextStep = Math.min(5, Math.max(1, Number(step) || 1));
       currentBookingStep = nextStep;
       document.getElementById("bookingLayout").dataset.currentStep = String(nextStep);
       document.querySelectorAll("[data-booking-step]").forEach((element) => {
@@ -3102,7 +3390,7 @@
         }
       });
 
-      if (nextStep === 3) {
+      if (nextStep === 4) {
         renderCalendar();
       }
       refreshIcons();
@@ -3147,8 +3435,12 @@
         const status = statusText
           ? `<small class="therapist-card-status">${statusText}</small>`
           : "";
+        const selectionCheck = therapist.id === state.therapistId
+          ? '<span class="therapist-selection-check" aria-hidden="true"><i data-lucide="check"></i></span>'
+          : "";
         return `
         <button class="therapist-card ${therapist.id === state.therapistId ? "selected" : ""} ${unavailable ? "unavailable" : ""} ${therapist.closed ? "closed" : ""}" type="button" data-therapist="${therapist.id}" aria-pressed="${therapist.id === state.therapistId}" ${unavailable ? "disabled aria-disabled=\"true\"" : ""}>
+          ${selectionCheck}
           <span class="therapist-thumb"><img src="${therapist.image}" alt="" data-photo="${therapist.photo}"></span>
           <div>
             <strong>${therapist.name}</strong>
@@ -3230,7 +3522,49 @@
       document.getElementById("durationPill").textContent = `${state.durationMinutes} min`;
       document.getElementById("pricePill").textContent = money.format(service.price);
       document.getElementById("reimbursementPanel").hidden = service.id === "fonasa";
+      updateWhatsAppBookingLink(service, therapist, day, slot);
       updateAvailabilityLabel();
+    }
+
+    function patientWhatsAppDetails() {
+      const address = document.getElementById("patientAddress").value.trim();
+      const commune = document.getElementById("patientCommune").value.trim();
+      return {
+        name: document.getElementById("patientName").value.trim(),
+        rut: document.getElementById("patientRut").value.trim(),
+        email: document.getElementById("patientEmail").value.trim(),
+        address: [address, commune].filter(Boolean).join(", ")
+      };
+    }
+
+    function updateWhatsAppBookingLink(
+      service = getService(),
+      therapist = getTherapist(),
+      day = getSlot().day,
+      slot = getSlot().slot
+    ) {
+      const patient = patientWhatsAppDetails();
+      const message = [
+        "Hola, quisiera agendar esta hora con Faro Terapéutico:",
+        "",
+        `Prestación: ${textFromHtml(service.name)}`,
+        `Profesional: ${textFromHtml(therapist.name)}`,
+        `Modalidad: ${state.mode}`,
+        `Fecha: ${textFromHtml(day.day)} ${textFromHtml(day.date)}`,
+        `Hora: ${slot.label}`,
+        `Valor: ${money.format(service.price)}`,
+        "",
+        "Datos del paciente:",
+        `Nombre completo: ${patient.name}`,
+        `RUT: ${patient.rut}`,
+        `Email: ${patient.email}`,
+        `Dirección: ${patient.address}`,
+        "",
+        "¿Me pueden ayudar a confirmar la reserva?"
+      ].join("\n");
+
+      document.getElementById("whatsappBookingButton").href =
+        `https://wa.me/56945593808?text=${encodeURIComponent(message)}`;
     }
 
     function resetConfirmation() {
@@ -3248,16 +3582,20 @@
         return;
       }
 
-      const form = document.getElementById("patientForm");
-      validatePatientFields();
-      if (!form.reportValidity()) {
+      if (!validatePatientForm()) {
+        showToast(
+          "Revisa tus datos",
+          "Corrige los campos marcados antes de reservar.",
+          "error"
+        );
         return;
       }
 
       if (!availabilityIsReady()) {
+        showBookingStep(4);
         showToast(
-          "Espera un momento",
-          "Todav\u00eda estamos revisando la disponibilidad de Encuadrado.",
+          "Estamos revisando los horarios",
+          "Espera a que termine la carga antes de continuar.",
           "error"
         );
         return;
@@ -3269,9 +3607,10 @@
         resetConfirmation();
         renderCalendar();
         updateSummary();
+        showBookingStep(4);
         showToast(
           "Horario no disponible",
-          "Elige otra hora o cambia la modalidad.",
+          "La hora elegida ya no est\u00e1 disponible. Selecciona otra.",
           "error"
         );
         return;
@@ -3434,6 +3773,27 @@
 
         const nextStepButton = event.target.closest("[data-step-next]");
         if (nextStepButton) {
+          if (Number(nextStepButton.dataset.stepNext) === 5) {
+            if (!availabilityIsReady()) {
+              showToast(
+                "Estamos revisando los horarios",
+                "Espera a que termine la carga antes de continuar.",
+                "error"
+              );
+              return;
+            }
+            if (isPastSlot(state.dayId, getSelectedHour()) || isBooked(state.dayId, state.slotId)) {
+              ensureOpenSelection();
+              renderCalendar();
+              updateSummary();
+              showToast(
+                "Selecciona un horario",
+                "Elige una hora disponible o avanza a la semana siguiente.",
+                "error"
+              );
+              return;
+            }
+          }
           showBookingStep(nextStepButton.dataset.stepNext);
         }
 
@@ -3443,6 +3803,39 @@
         }
 
         if (event.target.closest("[data-whatsapp-booking]")) {
+          if (!validatePatientForm(whatsappPatientFieldIds)) {
+            event.preventDefault();
+            showToast(
+              "Completa tus datos",
+              "Corrige los campos marcados antes de abrir WhatsApp.",
+              "error"
+            );
+            return;
+          }
+          if (!availabilityIsReady()) {
+            event.preventDefault();
+            showBookingStep(4);
+            showToast(
+              "Estamos revisando los horarios",
+              "Espera a que termine la carga antes de continuar.",
+              "error"
+            );
+            return;
+          }
+          if (isPastSlot(state.dayId, getSelectedHour()) || isBooked(state.dayId, state.slotId)) {
+            event.preventDefault();
+            ensureOpenSelection();
+            renderCalendar();
+            updateSummary();
+            showBookingStep(4);
+            showToast(
+              "Horario no disponible",
+              "La hora elegida ya no est\u00e1 disponible. Selecciona otra.",
+              "error"
+            );
+            return;
+          }
+          updateWhatsAppBookingLink();
           trackBookingStep("whatsapp_selected");
         }
 
@@ -3471,10 +3864,21 @@
       bindEvents();
       populateAddressOptions();
       bindAddressAutocomplete();
-      document.getElementById("patientForm").addEventListener("input", () => {
+      document.getElementById("patientForm").addEventListener("input", (event) => {
         if (!formStartedTracked) {
           formStartedTracked = true;
           trackBookingStep("form_started");
+        }
+        window.setTimeout(() => {
+          updateWhatsAppBookingLink();
+          if (formValidationAttempted && patientFieldIds.includes(event.target.id)) {
+            validatePatientInput(event.target);
+          }
+        }, 0);
+      });
+      document.getElementById("termsAccepted").addEventListener("change", (event) => {
+        if (formValidationAttempted) {
+          validatePatientInput(event.target);
         }
       });
       refreshIcons();
