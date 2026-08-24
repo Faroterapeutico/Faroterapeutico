@@ -306,7 +306,7 @@
 
     .booking-progress {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 8px;
       margin: 0 0 18px;
       padding: 0;
@@ -348,7 +348,7 @@
       align-items: start;
     }
 
-    .booking-layout:not([data-current-step="5"]) {
+    .booking-layout:not([data-current-step="6"]) {
       grid-template-columns: minmax(0, 1fr);
     }
 
@@ -427,10 +427,105 @@
       font-size: 0.82rem;
     }
 
+    .coverage-grid,
     .service-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
+    }
+
+    .coverage-card {
+      min-height: 104px;
+      padding: 16px;
+      border: 2px solid rgba(8, 115, 78, 0.2);
+      border-radius: 8px;
+      background: #fbfdfc;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      transition: transform 180ms ease, border 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .coverage-card svg {
+      width: 25px;
+      height: 25px;
+      flex: 0 0 auto;
+      color: var(--green);
+    }
+
+    .coverage-card strong,
+    .coverage-card span {
+      display: block;
+    }
+
+    .coverage-card strong {
+      margin-bottom: 3px;
+      font-size: 0.96rem;
+    }
+
+    .coverage-card span {
+      color: var(--ink-muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .coverage-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(8, 115, 78, 0.42);
+    }
+
+    .coverage-card.selected {
+      border-color: var(--green);
+      background: rgba(8, 115, 78, 0.065);
+      box-shadow: 0 0 0 2px rgba(8, 115, 78, 0.1);
+    }
+
+    .isapre-choice {
+      margin-top: 16px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .isapre-choice > strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--ink);
+      font-size: 0.86rem;
+    }
+
+    .isapre-choice-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .isapre-choice-button {
+      min-height: 46px;
+      padding: 9px 10px;
+      border: 1px solid var(--line-soft);
+      border-radius: 7px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 650;
+    }
+
+    .isapre-choice-button.selected {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+
+    .coverage-notice {
+      margin: 14px 0 0;
+      padding: 10px 12px;
+      border-left: 3px solid rgba(8, 115, 78, 0.45);
+      background: rgba(8, 115, 78, 0.045);
+      color: var(--ink-muted);
+      font-size: 0.76rem;
+      line-height: 1.45;
     }
 
     .service-card,
@@ -1426,6 +1521,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .coverage-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
       .calendar-shell {
         grid-template-columns: 1fr;
       }
@@ -1511,6 +1610,52 @@
       .therapist-grid,
       .form-grid {
         grid-template-columns: 1fr;
+      }
+
+      .coverage-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+
+      .coverage-card {
+        min-width: 0;
+        min-height: 82px;
+        padding: 9px 6px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        text-align: center;
+      }
+
+      .coverage-card svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .coverage-card strong {
+        margin: 0;
+        font-size: 0.75rem;
+      }
+
+      .coverage-card span {
+        font-size: 0.62rem;
+        line-height: 1.2;
+      }
+
+      .isapre-choice-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .isapre-choice-button {
+        min-height: 40px;
+        padding: 7px;
+        font-size: 0.7rem;
+      }
+
+      .coverage-notice {
+        margin-top: 10px;
+        padding: 8px 9px;
+        font-size: 0.66rem;
       }
 
       .band[aria-labelledby="service-title"] {
@@ -1955,16 +2100,50 @@
         </div>
 
         <ol class="booking-progress" id="bookingProgress" aria-label="Progreso del agendamiento">
-          <li class="active" data-progress-step="1" aria-current="step"><span>Paso 1</span>Prestaci&oacute;n</li>
-          <li data-progress-step="2"><span>Paso 2</span>Profesional</li>
-          <li data-progress-step="3"><span>Paso 3</span>Modalidad</li>
-          <li data-progress-step="4"><span>Paso 4</span>Horario</li>
-          <li data-progress-step="5"><span>Paso 5</span>Confirmar</li>
+          <li class="active" data-progress-step="1" aria-current="step"><span>Paso 1</span>Previsi&oacute;n</li>
+          <li data-progress-step="2"><span>Paso 2</span>Atenci&oacute;n</li>
+          <li data-progress-step="3"><span>Paso 3</span>Profesional</li>
+          <li data-progress-step="4"><span>Paso 4</span>Modalidad</li>
+          <li data-progress-step="5"><span>Paso 5</span>Horario</li>
+          <li data-progress-step="6"><span>Paso 6</span>Confirmar</li>
         </ol>
 
         <div class="booking-layout" id="bookingLayout" data-current-step="1">
           <div class="workspace">
-            <section class="band" aria-labelledby="service-title" data-booking-step="1">
+            <section class="band" aria-labelledby="coverage-title" data-booking-step="1">
+              <div class="band-header">
+                <div>
+                  <h3 id="coverage-title" tabindex="-1">&iquest;Cu&aacute;l es tu previsi&oacute;n?</h3>
+                  <span>As&iacute; podremos mostrarte el valor y las opciones correctas.</span>
+                </div>
+              </div>
+              <div class="coverage-grid" id="coverageGrid">
+                <button class="coverage-card" type="button" data-coverage="fonasa" aria-pressed="false">
+                  <i data-lucide="landmark"></i>
+                  <span><strong>Fonasa</strong><span>Bono nivel 3</span></span>
+                </button>
+                <button class="coverage-card" type="button" data-coverage="isapre" aria-pressed="false">
+                  <i data-lucide="shield-check"></i>
+                  <span><strong>Isapre</strong><span>Boleta para reembolso</span></span>
+                </button>
+                <button class="coverage-card" type="button" data-coverage="particular" aria-pressed="false">
+                  <i data-lucide="user-round"></i>
+                  <span><strong>Particular</strong><span>Atenci&oacute;n privada</span></span>
+                </button>
+              </div>
+              <div class="isapre-choice" id="isapreChoice" hidden>
+                <strong>&iquest;Cu&aacute;l es tu Isapre?</strong>
+                <div class="isapre-choice-grid" id="isapreChoiceGrid"></div>
+              </div>
+              <p class="coverage-notice" id="fonasaNotice" hidden>
+                Los cupos Fonasa de Isidora est&aacute;n completos por el momento. Actualmente atiende nuevas horas con Isapre.
+              </p>
+              <div class="step-actions">
+                <button class="step-button primary" type="button" data-step-next="2" id="coverageContinueButton">Continuar <i data-lucide="arrow-right"></i></button>
+              </div>
+            </section>
+
+            <section class="band" aria-labelledby="service-title" data-booking-step="2" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="service-title" tabindex="-1">&iquest;Qu&eacute; tipo de atenci&oacute;n necesitas?</h3>
@@ -1973,11 +2152,12 @@
               </div>
               <div class="service-grid" id="serviceGrid"></div>
               <div class="step-actions">
-                <button class="step-button primary" type="button" data-step-next="2">Continuar <i data-lucide="arrow-right"></i></button>
+                <button class="step-button" type="button" data-step-back="1"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="3">Continuar <i data-lucide="arrow-right"></i></button>
               </div>
             </section>
 
-            <section class="band" aria-labelledby="therapist-title" data-booking-step="2" hidden>
+            <section class="band" aria-labelledby="therapist-title" data-booking-step="3" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="therapist-title" tabindex="-1">Elige a tu profesional</h3>
@@ -1986,12 +2166,12 @@
               </div>
               <div class="therapist-grid" id="therapistGrid"></div>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="1"><i data-lucide="arrow-left"></i> Anterior</button>
-                <button class="step-button primary" type="button" data-step-next="3">Continuar <i data-lucide="arrow-right"></i></button>
+                <button class="step-button" type="button" data-step-back="2"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="4">Continuar <i data-lucide="arrow-right"></i></button>
               </div>
             </section>
 
-            <section class="band" aria-labelledby="mode-title" data-booking-step="3" hidden>
+            <section class="band" aria-labelledby="mode-title" data-booking-step="4" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="mode-title" tabindex="-1">Elige la modalidad</h3>
@@ -2009,12 +2189,12 @@
                 </button>
               </div>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="2"><i data-lucide="arrow-left"></i> Anterior</button>
-                <button class="step-button primary" type="button" data-step-next="4">Ver horarios <i data-lucide="arrow-right"></i></button>
+                <button class="step-button" type="button" data-step-back="3"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="5">Ver horarios <i data-lucide="arrow-right"></i></button>
               </div>
             </section>
 
-            <section class="band" aria-labelledby="calendar-title" data-booking-step="4" hidden>
+            <section class="band" aria-labelledby="calendar-title" data-booking-step="5" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="calendar-title" tabindex="-1">Elige un d&iacute;a y una hora</h3>
@@ -2033,12 +2213,12 @@
                 <div class="week-calendar" id="weekCalendar" aria-label="Elegir horario semanal"></div>
               </div>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="3"><i data-lucide="arrow-left"></i> Anterior</button>
-                <button class="step-button primary" type="button" data-step-next="5">Continuar <i data-lucide="arrow-right"></i></button>
+                <button class="step-button" type="button" data-step-back="4"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button primary" type="button" data-step-next="6">Continuar <i data-lucide="arrow-right"></i></button>
               </div>
             </section>
 
-            <section class="band" aria-labelledby="patient-title" data-booking-step="5" hidden>
+            <section class="band" aria-labelledby="patient-title" data-booking-step="6" hidden>
               <div class="band-header">
                 <div>
                   <h3 id="patient-title" tabindex="-1">Completa tus datos</h3>
@@ -2118,13 +2298,13 @@
                 </div>
               </form>
               <div class="step-actions">
-                <button class="step-button" type="button" data-step-back="4"><i data-lucide="arrow-left"></i> Anterior</button>
+                <button class="step-button" type="button" data-step-back="5"><i data-lucide="arrow-left"></i> Anterior</button>
               </div>
             </section>
 
           </div>
 
-          <aside class="summary-panel" aria-labelledby="summary-title" data-booking-step="5" hidden>
+          <aside class="summary-panel" aria-labelledby="summary-title" data-booking-step="6" hidden>
             <div class="summary-header">
               <div>
                 <h3 id="summary-title">Tu reserva</h3>
@@ -2134,6 +2314,7 @@
             </div>
 
             <div class="summary-card">
+              <div class="summary-line"><span>Previsi&oacute;n</span><strong id="summaryCoverage">Particular</strong></div>
               <div class="summary-line"><span>Servicio</span><strong id="summaryService">Terapia individual</strong></div>
               <div class="summary-line"><span>Profesional</span><strong id="summaryTherapist">Isidora Sanhueza</strong></div>
               <div class="summary-line"><span>Modalidad</span><strong id="summaryMode">Presencial</strong></div>
@@ -2167,6 +2348,8 @@
 
   <script>
     const state = {
+      coverageId: "",
+      isapreId: "",
       serviceId: "individual",
       therapistId: "isidora",
       mode: "Presencial",
@@ -2214,8 +2397,22 @@
     const services = [
       { id: "individual", name: "Terapia individual", detail: "45-50 min", price: 30000 },
       { id: "pareja", name: "Terapia de pareja", detail: "50 min", price: 30000, therapistId: "aaron", therapistLabel: "Aaron" },
-      { id: "infanto", name: "Terapia infanto juvenil", detail: "45-50 min", price: 30000, therapistIds: ["isidora", "benjamin"], therapistLabel: "Isidora / Benjam&iacute;n" },
-      { id: "fonasa", name: "Psicoterapia FONASA", detail: "50 min", price: 14420, therapistIds: ["isidora", "aaron"], therapistLabel: "Isidora / Aaron" }
+      { id: "infanto", name: "Terapia infanto juvenil", detail: "45-50 min", price: 30000, therapistIds: ["isidora", "benjamin"], therapistLabel: "Isidora / Benjam&iacute;n" }
+    ];
+
+    const coverages = {
+      fonasa: "Fonasa",
+      isapre: "Isapre",
+      particular: "Particular"
+    };
+
+    const isapres = [
+      { id: "banmedica", name: "Banm&eacute;dica" },
+      { id: "colmena", name: "Colmena" },
+      { id: "consalud", name: "Consalud" },
+      { id: "cruz-blanca", name: "Cruz Blanca" },
+      { id: "nueva-masvida", name: "Nueva Masvida" },
+      { id: "vida-tres", name: "Vida Tres" }
     ];
 
     const chileanCommunes = [
@@ -2285,6 +2482,8 @@
         step,
         source: state.source || "direct",
         service_code: state.serviceId,
+        coverage: state.coverageId || "not_selected",
+        isapre: state.isapreId || undefined,
         therapist_code: state.therapistId,
         mode: state.mode.toLowerCase(),
         week_offset: weekOffset,
@@ -2300,9 +2499,11 @@
       }
       window.gtag("event", "agendar_encuadrado", {
         currency: "CLP",
-        value: getService().price,
+        value: servicePrice(),
         source: state.source || "direct",
         service_code: state.serviceId,
+        coverage: state.coverageId,
+        isapre: state.isapreId || undefined,
         therapist_code: state.therapistId,
         mode: state.mode.toLowerCase(),
         booking_status: bookingStatus,
@@ -2316,10 +2517,28 @@
       const requestedService = (params.get("service") || "").trim().toLowerCase();
       const requestedTherapist = (params.get("therapist") || "").trim().toLowerCase();
       const requestedMode = (params.get("mode") || "").trim().toLowerCase();
+      const requestedCoverage = (params.get("coverage") || "").trim().toLowerCase();
       state.source = (params.get("source") || "").trim().toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 40);
 
-      if (services.some((service) => service.id === requestedService)) {
+      if (requestedService === "fonasa") {
+        state.coverageId = "fonasa";
+        state.serviceId = "individual";
+      } else if (services.some((service) => service.id === requestedService)) {
         state.serviceId = requestedService;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(coverages, requestedCoverage)) {
+        state.coverageId = requestedCoverage;
+      }
+
+      const sourceIsapre = isapres.find((isapre) => state.source.includes(isapre.id));
+      if (sourceIsapre) {
+        state.coverageId = "isapre";
+        state.isapreId = sourceIsapre.id;
+      } else if (state.source.includes("isapre")) {
+        state.coverageId = "isapre";
+      } else if (state.source.includes("fonasa")) {
+        state.coverageId = "fonasa";
       }
 
       if (therapists.some((therapist) => therapist.id === requestedTherapist && !therapist.closed)) {
@@ -2419,18 +2638,35 @@
       return therapists.find((therapist) => therapist.id === state.therapistId);
     }
 
+    function getCoverageLabel() {
+      if (state.coverageId === "isapre" && state.isapreId) {
+        const selectedIsapre = isapres.find((isapre) => isapre.id === state.isapreId);
+        return selectedIsapre ? `Isapre &middot; ${selectedIsapre.name}` : "Isapre";
+      }
+      return coverages[state.coverageId] || "Sin seleccionar";
+    }
+
+    function getIsapreLabel() {
+      const selectedIsapre = isapres.find((isapre) => isapre.id === state.isapreId);
+      return selectedIsapre ? textFromHtml(selectedIsapre.name) : "";
+    }
+
+    function servicePrice(service = getService()) {
+      return state.coverageId === "fonasa" ? 14420 : service.price;
+    }
+
     function serviceCombinationKey(therapistId, serviceId, mode = state.mode) {
       return `${therapistId}|${serviceId}|${mode}`;
     }
 
     function integrationServiceIdFor(therapistId, serviceId, mode = state.mode) {
-      return serviceId;
+      return state.coverageId === "fonasa" ? "fonasa" : serviceId;
     }
 
     function isIntegrationCombinationConfigured(therapistId, serviceId, mode = state.mode) {
       if (isLocalPreview
-        && serviceId === "fonasa"
-        && ["aaron", "isidora"].includes(therapistId)) {
+        && state.coverageId === "fonasa"
+        && ["aaron", "benjamin"].includes(therapistId)) {
         return true;
       }
       if (!integrationConfig || !integrationConfig.services) {
@@ -2454,6 +2690,18 @@
     function isBusinessServiceAvailableWithTherapist(service, therapistId) {
       const therapist = therapists.find((item) => item.id === therapistId);
       if (!therapist || therapist.closed) {
+        return false;
+      }
+      if (therapistId === "isidora" && state.coverageId === "particular") {
+        return false;
+      }
+      if (state.coverageId === "fonasa") {
+        if (therapistId === "aaron") {
+          return service.id === "individual" || service.id === "pareja";
+        }
+        if (therapistId === "benjamin") {
+          return service.id === "individual" || service.id === "infanto";
+        }
         return false;
       }
       if (service.therapistId && service.therapistId !== therapistId) {
@@ -2531,7 +2779,7 @@
     }
 
     function availabilityCacheKey(therapistId = state.therapistId, serviceId = state.serviceId, mode = state.mode) {
-      return `${therapistId}:${serviceId}:${mode}:${weekDays[0].id}:${weekDays[weekDays.length - 1].id}`;
+      return `${state.coverageId}:${therapistId}:${serviceId}:${mode}:${weekDays[0].id}:${weekDays[weekDays.length - 1].id}`;
     }
 
     function setAvailabilityStatus(status, syncedAt = null, therapistId = state.therapistId, mode = state.mode) {
@@ -3141,6 +3389,8 @@
         therapistId: therapist.id,
         serviceId: integrationServiceIdFor(therapist.id, service.id, state.mode),
         service: textFromHtml(service.name),
+        coverage: coverages[state.coverageId] || "",
+        isapre: getIsapreLabel(),
         mode: state.mode,
         date: state.dayId,
         hour,
@@ -3373,7 +3623,7 @@
     }
 
     function showBookingStep(step, options = {}) {
-      const nextStep = Math.min(5, Math.max(1, Number(step) || 1));
+      const nextStep = Math.min(6, Math.max(1, Number(step) || 1));
       currentBookingStep = nextStep;
       document.getElementById("bookingLayout").dataset.currentStep = String(nextStep);
       document.querySelectorAll("[data-booking-step]").forEach((element) => {
@@ -3390,7 +3640,7 @@
         }
       });
 
-      if (nextStep === 4) {
+      if (nextStep === 5) {
         renderCalendar();
       }
       refreshIcons();
@@ -3405,18 +3655,37 @@
       }
     }
 
+    function renderCoverage() {
+      document.querySelectorAll("[data-coverage]").forEach((button) => {
+        const selected = button.dataset.coverage === state.coverageId;
+        button.classList.toggle("selected", selected);
+        button.setAttribute("aria-pressed", String(selected));
+      });
+      const isapreChoice = document.getElementById("isapreChoice");
+      isapreChoice.hidden = state.coverageId !== "isapre";
+      document.getElementById("fonasaNotice").hidden = state.coverageId !== "fonasa";
+      document.getElementById("isapreChoiceGrid").innerHTML = isapres.map((isapre) => `
+        <button class="isapre-choice-button ${state.isapreId === isapre.id ? "selected" : ""}" type="button" data-isapre="${isapre.id}" aria-pressed="${state.isapreId === isapre.id}">
+          ${isapre.name}
+        </button>
+      `).join("");
+      refreshIcons();
+    }
+
     function renderServices() {
       const container = document.getElementById("serviceGrid");
       container.innerHTML = services.map((service) => {
-        const available = therapists.some((therapist) => isServiceAvailableWithTherapist(service, therapist.id));
+        const availableTherapists = therapists.filter((therapist) => isServiceAvailableWithTherapist(service, therapist.id));
+        const available = availableTherapists.length > 0;
+        const therapistLabel = availableTherapists.map((therapist) => textFromHtml(therapist.name).split(" ")[0]).join(" / ");
         const detail = available
-          ? `${service.detail}${service.therapistLabel ? ` &middot; ${service.therapistLabel}` : ""}`
+          ? `${service.detail}${therapistLabel ? ` &middot; ${therapistLabel}` : ""}`
           : "Pr&oacute;ximamente";
         return `
         <button class="service-card ${service.id === state.serviceId ? "selected" : ""} ${available ? "" : "unavailable"}" type="button" data-service="${service.id}" aria-pressed="${service.id === state.serviceId}" ${available ? "" : "disabled aria-disabled=\"true\""}>
           <strong>${service.name}</strong>
           <span>${detail}</span>
-          <b>${money.format(service.price)}</b>
+          <b>${money.format(servicePrice(service))}</b>
         </button>
       `;
       }).join("");
@@ -3430,7 +3699,12 @@
         const pendingEncuadrado = integrationConfig
           && isBusinessServiceAvailableWithTherapist(service, therapist.id)
           && !isIntegrationCombinationConfigured(therapist.id, service.id);
-        const statusText = therapist.status
+        const isidoraCoverageClosed = therapist.id === "isidora" && ["fonasa", "particular"].includes(state.coverageId);
+        const statusText = isidoraCoverageClosed
+          ? (state.coverageId === "fonasa"
+            ? "Cupos Fonasa completos &middot; disponible para Isapre"
+            : "Actualmente disponible para Isapre")
+          : therapist.status
           || (pendingEncuadrado ? (therapist.pendingStatus || "Agenda disponible pr&oacute;ximamente") : "");
         const status = statusText
           ? `<small class="therapist-card-status">${statusText}</small>`
@@ -3515,13 +3789,14 @@
       const therapist = getTherapist();
       const { day, slot } = getSlot();
       document.getElementById("summaryService").innerHTML = service.name;
+      document.getElementById("summaryCoverage").innerHTML = getCoverageLabel();
       document.getElementById("summaryTherapist").innerHTML = therapist.name;
       document.getElementById("summaryMode").textContent = state.mode;
       document.getElementById("summarySlot").innerHTML = `${day.day} ${day.date}, ${slot.label}`;
-      document.getElementById("summaryPrice").textContent = money.format(service.price);
+      document.getElementById("summaryPrice").textContent = money.format(servicePrice(service));
       document.getElementById("durationPill").textContent = `${state.durationMinutes} min`;
-      document.getElementById("pricePill").textContent = money.format(service.price);
-      document.getElementById("reimbursementPanel").hidden = service.id === "fonasa";
+      document.getElementById("pricePill").textContent = money.format(servicePrice(service));
+      document.getElementById("reimbursementPanel").hidden = state.coverageId !== "isapre";
       updateWhatsAppBookingLink(service, therapist, day, slot);
       updateAvailabilityLabel();
     }
@@ -3548,11 +3823,12 @@
         "Hola, quisiera agendar esta hora con Faro Terapéutico:",
         "",
         `Prestación: ${textFromHtml(service.name)}`,
+        `Previsión: ${textFromHtml(getCoverageLabel())}`,
         `Profesional: ${textFromHtml(therapist.name)}`,
         `Modalidad: ${state.mode}`,
         `Fecha: ${textFromHtml(day.day)} ${textFromHtml(day.date)}`,
         `Hora: ${slot.label}`,
-        `Valor: ${money.format(service.price)}`,
+        `Valor: ${money.format(servicePrice(service))}`,
         "",
         "Datos del paciente:",
         `Nombre completo: ${patient.name}`,
@@ -3592,7 +3868,7 @@
       }
 
       if (!availabilityIsReady()) {
-        showBookingStep(4);
+        showBookingStep(5);
         showToast(
           "Estamos revisando los horarios",
           "Espera a que termine la carga antes de continuar.",
@@ -3607,7 +3883,7 @@
         resetConfirmation();
         renderCalendar();
         updateSummary();
-        showBookingStep(4);
+        showBookingStep(5);
         showToast(
           "Horario no disponible",
           "La hora elegida ya no est\u00e1 disponible. Selecciona otra.",
@@ -3655,7 +3931,7 @@
         if (!isLocalPreview && typeof window.gtag === "function") {
           window.gtag("event", "generate_lead", {
             currency: "CLP",
-            value: getService().price,
+            value: servicePrice(),
             allow_google_signals: false,
             allow_ad_personalization_signals: false
           });
@@ -3694,6 +3970,33 @@
 
     function bindEvents() {
       document.addEventListener("click", (event) => {
+        const coverage = event.target.closest("[data-coverage]");
+        if (coverage) {
+          state.coverageId = coverage.dataset.coverage;
+          if (state.coverageId !== "isapre") {
+            state.isapreId = "";
+          }
+          ensureServiceTherapistCompatibility();
+          trackBookingStep("coverage_selected", { coverage: state.coverageId });
+          syncSelectedDuration();
+          ensureOpenSelection();
+          resetConfirmation();
+          renderCoverage();
+          renderServices();
+          renderTherapists();
+          renderCalendar();
+          updateSummary();
+          refreshRemoteAvailability();
+        }
+
+        const isapre = event.target.closest("[data-isapre]");
+        if (isapre) {
+          state.isapreId = isapre.dataset.isapre;
+          trackBookingStep("isapre_selected", { isapre: state.isapreId });
+          renderCoverage();
+          updateSummary();
+        }
+
         const service = event.target.closest("[data-service]");
         if (service) {
           if (service.disabled) {
@@ -3773,7 +4076,16 @@
 
         const nextStepButton = event.target.closest("[data-step-next]");
         if (nextStepButton) {
-          if (Number(nextStepButton.dataset.stepNext) === 5) {
+          const requestedStep = Number(nextStepButton.dataset.stepNext);
+          if (requestedStep === 2 && (!state.coverageId || (state.coverageId === "isapre" && !state.isapreId))) {
+            showToast(
+              "Selecciona tu previsión",
+              state.coverageId === "isapre" ? "Elige tu Isapre para continuar." : "Elige Fonasa, Isapre o Particular.",
+              "error"
+            );
+            return;
+          }
+          if (requestedStep === 6) {
             if (!availabilityIsReady()) {
               showToast(
                 "Estamos revisando los horarios",
@@ -3814,7 +4126,7 @@
           }
           if (!availabilityIsReady()) {
             event.preventDefault();
-            showBookingStep(4);
+            showBookingStep(5);
             showToast(
               "Estamos revisando los horarios",
               "Espera a que termine la carga antes de continuar.",
@@ -3827,7 +4139,7 @@
             ensureOpenSelection();
             renderCalendar();
             updateSummary();
-            showBookingStep(4);
+            showBookingStep(5);
             showToast(
               "Horario no disponible",
               "La hora elegida ya no est\u00e1 disponible. Selecciona otra.",
@@ -3856,6 +4168,7 @@
       ensureServiceTherapistCompatibility();
       syncSelectedDuration();
       ensureOpenSelection();
+      renderCoverage();
       renderServices();
       renderTherapists();
       renderCalendar();
@@ -3909,6 +4222,7 @@
       ensureServiceTherapistCompatibility();
       syncSelectedDuration();
       ensureOpenSelection();
+      renderCoverage();
       renderServices();
       renderTherapists();
       renderCalendar();
