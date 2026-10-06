@@ -2669,7 +2669,7 @@
 
     function servicePrice(service = getService()) {
       return state.coverageId === "fonasa"
-        ? (fonasaPrices[state.therapistId] || 14420)
+        ? (fonasaPrices[state.therapistId] || fonasaPrices.benjamin)
         : service.price;
     }
 
