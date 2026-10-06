@@ -2136,7 +2136,7 @@
                 <div class="isapre-choice-grid" id="isapreChoiceGrid"></div>
               </div>
               <p class="coverage-notice" id="fonasaNotice" hidden>
-                Los cupos Fonasa de Isidora est&aacute;n completos por el momento. Actualmente atiende nuevas horas con Isapre.
+                Los cupos Fonasa de Aaron e Isidora est&aacute;n completos por el momento. Actualmente atienden nuevas horas con Isapre.
               </p>
               <div class="step-actions">
                 <button class="step-button primary" type="button" data-step-next="2" id="coverageContinueButton">Continuar <i data-lucide="arrow-right"></i></button>
@@ -2272,7 +2272,7 @@
                 <div class="form-field">
                   <label for="patientAddress">Direcci&oacute;n para la boleta</label>
                   <div class="address-autocomplete" id="addressAutocomplete">
-                    <input id="patientAddress" name="patientAddress" autocomplete="street-address" placeholder="Calle y n&uacute;mero" minlength="5" maxlength="160" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addressSuggestions" aria-activedescendant="" aria-describedby="patientAddressError" spellcheck="false" title="Selecciona una dirección de las sugerencias" required>
+                    <input id="patientAddress" name="patientAddress" autocomplete="street-address" placeholder="Calle y n&uacute;mero" minlength="5" maxlength="160" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="addressSuggestions" aria-activedescendant="" aria-describedby="patientAddressError" spellcheck="false" title="Ingresa una calle y un número válidos" required>
                     <div class="address-suggestions" id="addressSuggestions" role="listbox" aria-label="Direcciones sugeridas" hidden></div>
                   </div>
                   <p class="field-error" id="patientAddressError" hidden></p>
@@ -2406,6 +2406,12 @@
       particular: "Particular"
     };
 
+    const fonasaPrices = {
+      aaron: 14420,
+      benjamin: 12250,
+      isidora: 14420
+    };
+
     const isapres = [
       { id: "banmedica", name: "Banm&eacute;dica" },
       { id: "colmena", name: "Colmena" },
@@ -2465,6 +2471,15 @@
     const communeByNormalizedName = new Map(
       chileanCommunes.map((commune) => [normalizeSearchText(commune), commune])
     );
+    const communeAliases = new Map([
+      ["est central", "Estación Central"],
+      ["estacion central santiago", "Estación Central"],
+      ["p aguirre cerda", "Pedro Aguirre Cerda"],
+      ["pedro aguirre", "Pedro Aguirre Cerda"],
+      ["santiago centro", "Santiago"],
+      ["san jose maipo", "San José de Maipo"],
+      ["padre las casas", "Padre las Casas"]
+    ]);
 
     const therapists = [
       { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", help: "Ansiedad, autoestima, v&iacute;nculos y regulaci&oacute;n emocional con enfoque DBT y TCC.", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" },
@@ -2652,7 +2667,9 @@
     }
 
     function servicePrice(service = getService()) {
-      return state.coverageId === "fonasa" ? 14420 : service.price;
+      return state.coverageId === "fonasa"
+        ? (fonasaPrices[state.therapistId] || 14420)
+        : service.price;
     }
 
     function serviceCombinationKey(therapistId, serviceId, mode = state.mode) {
@@ -2666,7 +2683,7 @@
     function isIntegrationCombinationConfigured(therapistId, serviceId, mode = state.mode) {
       if (isLocalPreview
         && state.coverageId === "fonasa"
-        && ["aaron", "benjamin"].includes(therapistId)) {
+        && therapistId === "benjamin") {
         return true;
       }
       if (!integrationConfig || !integrationConfig.services) {
@@ -2696,8 +2713,8 @@
         return false;
       }
       if (state.coverageId === "fonasa") {
-        if (therapistId === "aaron") {
-          return service.id === "individual" || service.id === "pareja";
+        if (["aaron", "isidora"].includes(therapistId)) {
+          return false;
         }
         if (therapistId === "benjamin") {
           return service.id === "individual" || service.id === "infanto";
@@ -2968,15 +2985,58 @@
     }
 
     function canonicalCommune(value) {
-      return communeByNormalizedName.get(normalizeSearchText(value)) || "";
+      const normalized = normalizeSearchText(value)
+        .replace(/\./g, "")
+        .replace(/\s+/g, " ")
+        .replace(/^(?:comuna|municipalidad)(?: de)?\s+/, "")
+        .replace(/\s*\([^)]*\)\s*$/, "")
+        .trim();
+      const candidates = [
+        normalized,
+        normalized.split(/\s*(?:,|\s-\s)\s*/)[0].trim(),
+        normalized.replace(/\s+(?:region|provincia)\b.*$/, "").trim()
+      ];
+
+      for (const candidate of candidates) {
+        const commune = communeByNormalizedName.get(candidate) || communeAliases.get(candidate);
+        if (commune) {
+          return commune;
+        }
+      }
+      return "";
+    }
+
+    function normalizeAddressText(value) {
+      return normalizeSearchText(value)
+        .replace(/\b(?:numero|nro|n[°ºo])\s*/g, " ")
+        .replace(/[.,#]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function structuredStreetAddress(value) {
+      const address = String(value || "").replace(/\s+/g, " ").trim();
+      const streetAndNumber = address
+        .split(",")[0]
+        .split(/\s+\b(?:depto|dpto|departamento|oficina|casa|block|torre)\b/i)[0]
+        .trim();
+      const match = streetAndNumber.match(
+        /^(.*?)\s+(?:(?:n(?:ro|umero|[°ºo.]?))|#)?\s*(\d+[a-z]?(?:-[a-z0-9]+)?)\s*$/i
+      );
+      if (!match || !/[A-Za-z\u00c0-\u00ff\u00d1\u00f1]/.test(match[1])) {
+        return null;
+      }
+      return {
+        route: match[1].trim(),
+        streetNumber: match[2].trim()
+      };
     }
 
     function isValidStreetAddress(value) {
       const address = String(value || "").trim();
       return address.length >= 5
         && address.length <= 160
-        && /[A-Za-z\u00c0-\u00ff\u00d1\u00f1]/.test(address)
-        && /\d/.test(address);
+        && Boolean(structuredStreetAddress(address));
     }
 
     function populateAddressOptions() {
@@ -2991,9 +3051,9 @@
     function communeFromAddressProperties(properties) {
       const candidates = [
         properties.district,
-        properties.city,
         properties.localadmin,
         properties.municipality,
+        properties.city,
         properties.county
       ];
       for (const candidate of candidates) {
@@ -3092,7 +3152,7 @@
       addressAutocompleteState.results = results;
       addressAutocompleteState.activeIndex = -1;
       if (!results.length) {
-        renderAddressSuggestionState("No encontramos una dirección exacta.");
+        renderAddressSuggestionState("No encontramos una coincidencia exacta. Puedes escribirla y elegir la comuna.");
         return;
       }
 
@@ -3147,7 +3207,7 @@
       const addressInput = document.getElementById("patientAddress");
       const communeInput = document.getElementById("patientCommune");
       addressInput.value = result.address;
-      addressInput.dataset.verifiedAddress = normalizeSearchText(result.address);
+      addressInput.dataset.verifiedAddress = normalizeAddressText(result.address);
       addressInput.dataset.route = result.route;
       addressInput.dataset.streetNumber = result.streetNumber;
       addressInput.setCustomValidity("");
@@ -3195,15 +3255,12 @@
       const communeInput = document.getElementById("patientCommune");
 
       input.addEventListener("input", (event) => {
-        const normalized = normalizeSearchText(event.target.value);
+        const normalized = normalizeAddressText(event.target.value);
         if (event.target.dataset.verifiedAddress !== normalized) {
           delete event.target.dataset.verifiedAddress;
           delete event.target.dataset.route;
           delete event.target.dataset.streetNumber;
-          if (communeInput.dataset.autofilledFromAddress === "true") {
-            communeInput.value = "";
-            delete communeInput.dataset.autofilledFromAddress;
-          }
+          delete communeInput.dataset.autofilledFromAddress;
         }
         event.target.setCustomValidity("");
         scheduleAddressSearch(event.target.value);
@@ -3250,10 +3307,7 @@
       rutInput.setCustomValidity(isValidChileanRut(rutInput.value) ? "" : "Ingresa un RUT chileno v\u00e1lido.");
       phoneInput.setCustomValidity(isValidWhatsapp(phoneInput.value) ? "" : "Ingresa un WhatsApp chileno v\u00e1lido.");
       addressInput.setCustomValidity(
-        isValidStreetAddress(addressInput.value)
-          && addressInput.dataset.verifiedAddress === normalizeSearchText(addressInput.value)
-          ? ""
-          : "Selecciona una direcci\u00f3n de las sugerencias."
+        isValidStreetAddress(addressInput.value) ? "" : "Ingresa una calle y un n\u00famero v\u00e1lidos."
       );
       const commune = canonicalCommune(communeInput.value);
       communeInput.setCustomValidity(commune ? "" : "Selecciona una comuna de la lista.");
@@ -3303,9 +3357,6 @@
       if (input.id === "patientAddress") {
         if (!value) return "Ingresa la calle y el número de tu dirección.";
         if (!isValidStreetAddress(value)) return "Incluye una calle y un número válidos.";
-        if (input.dataset.verifiedAddress !== normalizeSearchText(value)) {
-          return "Selecciona tu dirección desde las sugerencias.";
-        }
       }
       if (input.id === "patientCommune") {
         if (!value) return "Selecciona tu comuna.";
@@ -3368,15 +3419,18 @@
     }
 
     function getPatientData() {
+      const addressInput = document.getElementById("patientAddress");
+      const communeInput = document.getElementById("patientCommune");
+      const structuredAddress = structuredStreetAddress(addressInput.value) || {};
       return {
         name: document.getElementById("patientName").value.trim(),
         rut: document.getElementById("patientRut").value.trim(),
         email: document.getElementById("patientEmail").value.trim(),
         phone: document.getElementById("patientPhone").value.trim(),
-        address: document.getElementById("patientAddress").value.trim(),
-        commune: document.getElementById("patientCommune").value.trim(),
-        addressRoute: document.getElementById("patientAddress").dataset.route || "",
-        addressStreetNumber: document.getElementById("patientAddress").dataset.streetNumber || ""
+        address: addressInput.value.trim(),
+        commune: canonicalCommune(communeInput.value) || communeInput.value.trim(),
+        addressRoute: addressInput.dataset.route || structuredAddress.route || "",
+        addressStreetNumber: addressInput.dataset.streetNumber || structuredAddress.streetNumber || ""
       };
     }
 
@@ -3699,11 +3753,13 @@
         const pendingEncuadrado = integrationConfig
           && isBusinessServiceAvailableWithTherapist(service, therapist.id)
           && !isIntegrationCombinationConfigured(therapist.id, service.id);
-        const isidoraCoverageClosed = therapist.id === "isidora" && ["fonasa", "particular"].includes(state.coverageId);
-        const statusText = isidoraCoverageClosed
-          ? (state.coverageId === "fonasa"
-            ? "Cupos Fonasa completos &middot; disponible para Isapre"
-            : "Actualmente disponible para Isapre")
+        const fonasaCoverageClosed = ["aaron", "isidora"].includes(therapist.id)
+          && state.coverageId === "fonasa";
+        const isidoraParticularClosed = therapist.id === "isidora" && state.coverageId === "particular";
+        const statusText = fonasaCoverageClosed
+          ? "Cupos Fonasa completos &middot; disponible para Isapre"
+          : isidoraParticularClosed
+            ? "Actualmente disponible para Isapre"
           : therapist.status
           || (pendingEncuadrado ? (therapist.pendingStatus || "Agenda disponible pr&oacute;ximamente") : "");
         const status = statusText
