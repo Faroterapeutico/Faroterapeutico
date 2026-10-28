@@ -2136,7 +2136,7 @@
                 <div class="isapre-choice-grid" id="isapreChoiceGrid"></div>
               </div>
               <p class="coverage-notice" id="fonasaNotice" hidden>
-                Los cupos Fonasa de Aaron e Isidora est&aacute;n completos por el momento. Actualmente atienden nuevas horas con Isapre.
+                La agenda de Isidora est&aacute; cerrada temporalmente. Aaron est&aacute; disponible para nuevas horas Fonasa.
               </p>
               <div class="step-actions">
                 <button class="step-button primary" type="button" data-step-next="2" id="coverageContinueButton">Continuar <i data-lucide="arrow-right"></i></button>
@@ -2351,7 +2351,7 @@
       coverageId: "",
       isapreId: "",
       serviceId: "individual",
-      therapistId: "isidora",
+      therapistId: "aaron",
       mode: "Presencial",
       durationMinutes: 50,
       dayId: "",
@@ -2406,10 +2406,10 @@
       particular: "Particular"
     };
 
-    // Valores Fonasa vigentes por profesional: Benjamín mantiene $12.250.
+    // Valor Fonasa vigente para todos los profesionales: $14.420.
     const fonasaPrices = {
       aaron: 14420,
-      benjamin: 12250,
+      benjamin: 14420,
       isidora: 14420
     };
 
@@ -2483,7 +2483,7 @@
     ]);
 
     const therapists = [
-      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", help: "Ansiedad, autoestima, v&iacute;nculos y regulaci&oacute;n emocional con enfoque DBT y TCC.", image: "images/isidora-420.webp", photo: "isidora", pendingStatus: "Agenda disponible pr&oacute;ximamente" },
+      { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", help: "Ansiedad, autoestima, v&iacute;nculos y regulaci&oacute;n emocional con enfoque DBT y TCC.", image: "images/isidora-420.webp", photo: "isidora", closed: true, status: "Agenda cerrada temporalmente" },
       { id: "aaron", name: "Aaron Mill&aacute;n Sol&iacute;s", focus: "Psic&oacute;logo cl&iacute;nico", help: "Duelo, adicciones, v&iacute;nculos, terapia de pareja y procesos emocionales profundos.", image: "images/aaron-580.webp", photo: "aaron" },
       { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", help: "Mindfulness, autocompasi&oacute;n, aceptaci&oacute;n y herramientas cognitivo-conductuales.", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
       { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", help: "Ansiedad, estr&eacute;s, estado de &aacute;nimo, desarrollo personal y psicolog&iacute;a deportiva.", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" }
@@ -2714,8 +2714,8 @@
         return false;
       }
       if (state.coverageId === "fonasa") {
-        if (["aaron", "isidora"].includes(therapistId)) {
-          return false;
+        if (therapistId === "aaron") {
+          return service.id === "individual" || service.id === "pareja";
         }
         if (therapistId === "benjamin") {
           return service.id === "individual" || service.id === "infanto";
@@ -3754,12 +3754,8 @@
         const pendingEncuadrado = integrationConfig
           && isBusinessServiceAvailableWithTherapist(service, therapist.id)
           && !isIntegrationCombinationConfigured(therapist.id, service.id);
-        const fonasaCoverageClosed = ["aaron", "isidora"].includes(therapist.id)
-          && state.coverageId === "fonasa";
         const isidoraParticularClosed = therapist.id === "isidora" && state.coverageId === "particular";
-        const statusText = fonasaCoverageClosed
-          ? "Cupos Fonasa completos &middot; disponible para Isapre"
-          : isidoraParticularClosed
+        const statusText = isidoraParticularClosed
             ? "Actualmente disponible para Isapre"
           : therapist.status
           || (pendingEncuadrado ? (therapist.pendingStatus || "Agenda disponible pr&oacute;ximamente") : "");
