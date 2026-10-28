@@ -2363,6 +2363,7 @@
     const bookingApiUrl = "https://script.google.com/macros/s/AKfycbx854lyDwPpKkW6DpaMJPqdmItuGnv5z88__3L7ysygY7dntOVv93M38HbJux86nQSe/exec";
     const bookingTimezone = "America/Santiago";
     const bookingConfirmationStorageKey = "faro-booking-confirmation-v1";
+    const bookingAnalyticsStorageKey = "faro-booking-analytics-v1";
     const bookingConfirmationPage = "confirmacion-reserva.html";
     const sessionDurationMinutes = 50;
     const clinicAddress = "La Concepci&oacute;n 56, Providencia, Santiago, Chile";
@@ -2525,6 +2526,26 @@
         booking_status: bookingStatus,
         allow_google_signals: false,
         allow_ad_personalization_signals: false
+      });
+    }
+
+    function markBookingAnalytics(bookingStatus) {
+      try {
+        sessionStorage.setItem(
+          bookingAnalyticsStorageKey,
+          JSON.stringify({ status: bookingStatus, recordedAt: Date.now() })
+        );
+      } catch (error) {
+        // El seguimiento no debe bloquear la reserva si el almacenamiento está bloqueado.
+      }
+    }
+
+    function trackBookingWhatsAppConversion() {
+      if (isLocalPreview || typeof window.gtag !== "function") {
+        return;
+      }
+      window.gtag("event", "conversion", {
+        send_to: "AW-17584631597/xJYeCMuY2qYbEK3egMFB"
       });
     }
 
@@ -3464,6 +3485,7 @@
         therapist: textFromHtml(therapist.name),
         mode: payload.mode,
         start: result.start || `${payload.date}T${payload.hour}:00:00`,
+        value: servicePrice(),
         email: payload.patient.email,
         intakeFormUrl: result.intakeFormUrl || "",
         expiresAt: result.expiresAt || ""
@@ -3957,6 +3979,7 @@
         if (result.requiresPayment && result.paymentUrl) {
           trackBookingStep("payment_redirect");
           trackBookingConversion("reserved_payment_pending");
+          markBookingAnalytics("payment_pending");
           state.confirmed = true;
           saveBookingConfirmation(payload, result, "payment_pending");
           document.getElementById("summaryState").textContent = "Pago pendiente";
@@ -3980,15 +4003,7 @@
 
         state.confirmed = true;
         trackBookingStep("booking_confirmed");
-        trackBookingConversion("confirmed");
-        if (!isLocalPreview && typeof window.gtag === "function") {
-          window.gtag("event", "generate_lead", {
-            currency: "CLP",
-            value: servicePrice(),
-            allow_google_signals: false,
-            allow_ad_personalization_signals: false
-          });
-        }
+        markBookingAnalytics("awaiting_confirmation");
         document.getElementById("summaryState").textContent = "Reserva confirmada";
         const badge = document.getElementById("summaryBadge");
         badge.textContent = "Confirmada";
@@ -4202,6 +4217,7 @@
           }
           updateWhatsAppBookingLink();
           trackBookingStep("whatsapp_selected");
+          trackBookingWhatsAppConversion();
         }
 
       });

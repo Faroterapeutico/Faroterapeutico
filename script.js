@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     bootstrapTrackingQueue();
     window.loadFaroTracking = loadTrackingIfMissing;
     window.loadGtag = window.loadGtag || loadTrackingIfMissing;
+    // Carga el tag al terminar de preparar la página para no perder visitas breves.
+    // Los eventos siguen usando la cola de dataLayer si gtag.js aún está descargándose.
+    loadTrackingIfMissing();
     scheduleTrackingLoad();
 
     const app = {

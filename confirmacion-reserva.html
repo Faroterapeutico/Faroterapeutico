@@ -10,6 +10,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    window.loadGtag = function loadGtag() {
+      if (window._gtagLoaded) return;
+      window._gtagLoaded = true;
+      const script = document.createElement("script");
+      script.src = "https://www.googletagmanager.com/gtag/js?id=GT-5TJMG836";
+      script.async = true;
+      document.head.appendChild(script);
+      gtag("js", new Date());
+      gtag("config", "GT-5TJMG836", {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+      gtag("config", "AW-17584631597", {
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+    };
+    window.addEventListener("DOMContentLoaded", window.loadGtag, { once: true });
+  </script>
   <style>
     :root {
       --ink: #17252b;
@@ -363,6 +385,58 @@
       }
     }
 
+    function trackBookingConfirmationIfNeeded(booking, status) {
+      if (status !== "confirmed" || typeof window.gtag !== "function") {
+        return;
+      }
+
+      const analyticsKey = "faro-booking-analytics-v1";
+      let analyticsState = {};
+      try {
+        analyticsState = JSON.parse(sessionStorage.getItem(analyticsKey) || "{}");
+      } catch (error) {
+        analyticsState = {};
+      }
+
+      // La confirmación se mide aquí, tanto si fue directa como si volvió
+      // desde un pago pendiente. El estado evita duplicar al recargar.
+      if (!["awaiting_confirmation", "payment_pending"].includes(analyticsState.status)) {
+        return;
+      }
+
+      const bookingValue = Number(booking.value);
+      const source = analyticsState.status === "payment_pending"
+        ? "payment_return"
+        : "booking_confirmation";
+      window.gtag("event", "agendar_encuadrado", {
+        currency: "CLP",
+        value: Number.isFinite(bookingValue) ? bookingValue : undefined,
+        source,
+        service_code: booking.service || undefined,
+        therapist_code: booking.therapist || undefined,
+        mode: booking.mode ? booking.mode.toLowerCase() : undefined,
+        booking_status: "confirmed",
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+      window.gtag("event", "generate_lead", {
+        currency: "CLP",
+        value: Number.isFinite(bookingValue) ? bookingValue : undefined,
+        booking_status: "confirmed",
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+
+      try {
+        sessionStorage.setItem(
+          analyticsKey,
+          JSON.stringify({ status: "confirmed", recordedAt: Date.now() })
+        );
+      } catch (error) {
+        // No interrumpir la confirmación si el almacenamiento está bloqueado.
+      }
+    }
+
     function formatBookingDate(value) {
       if (!value) {
         return "";
@@ -405,6 +479,8 @@
         }
         return;
       }
+
+      trackBookingConfirmationIfNeeded(booking, status);
 
       const values = {
         service: booking.service || "",

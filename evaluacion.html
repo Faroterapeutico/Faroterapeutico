@@ -1000,11 +1000,7 @@
       gtag("config", "GT-5TJMG836");
       gtag("config", "AW-17584631597");
     };
-    window.addEventListener("load", () => {
-      const schedule = () => window.loadGtag();
-      if ("requestIdleCallback" in window) requestIdleCallback(schedule, { timeout: 2500 });
-      else setTimeout(schedule, 2500);
-    }, { once: true });
+    window.addEventListener("DOMContentLoaded", window.loadGtag, { once: true });
   </script>
 
   <script type="application/ld+json">
