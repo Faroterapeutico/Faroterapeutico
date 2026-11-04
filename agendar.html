@@ -2136,7 +2136,7 @@
                 <div class="isapre-choice-grid" id="isapreChoiceGrid"></div>
               </div>
               <p class="coverage-notice" id="fonasaNotice" hidden>
-                Isidora atiende solo con Isapre. Aaron est&aacute; disponible para nuevas horas Fonasa.
+                La agenda Fonasa de Aaron est&aacute; cerrada temporalmente. Benjam&iacute;n est&aacute; disponible para nuevas horas Fonasa.
               </p>
               <div class="step-actions">
                 <button class="step-button primary" type="button" data-step-next="2" id="coverageContinueButton">Continuar <i data-lucide="arrow-right"></i></button>
@@ -2407,11 +2407,9 @@
       particular: "Particular"
     };
 
-    // Valor Fonasa vigente para todos los profesionales: $14.420.
+    // Valor Fonasa vigente para la agenda disponible: $14.420.
     const fonasaPrices = {
-      aaron: 14420,
-      benjamin: 14420,
-      isidora: 14420
+      benjamin: 14420
     };
 
     const isapres = [
@@ -2735,9 +2733,6 @@
         return false;
       }
       if (state.coverageId === "fonasa") {
-        if (therapistId === "aaron") {
-          return service.id === "individual" || service.id === "pareja";
-        }
         if (therapistId === "benjamin") {
           return service.id === "individual" || service.id === "infanto";
         }
