@@ -22,7 +22,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 $deployableFiles = $trackedFiles | Where-Object {
-    $_ -match '\.(?:html|css|js|txt|xml|webmanifest|vcf|png|webp|svg)$' -or
+    $_ -match '\.(?:html|css|js|txt|xml|webmanifest|vcf|png|webp|jpg|jpeg|svg)$' -or
     $_ -in @("_headers", "_redirects")
 }
 
