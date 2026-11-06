@@ -2697,6 +2697,11 @@
     }
 
     function integrationServiceIdFor(therapistId, serviceId, mode = state.mode) {
+      // Benjam&iacute;n comparte su agenda de terapia individual para las sesiones de pareja.
+      // As&iacute; la opci&oacute;n queda operativa aunque Encuadrado no tenga un servicio separado.
+      if (therapistId === "benjamin" && serviceId === "pareja") {
+        return "individual";
+      }
       return state.coverageId === "fonasa" ? "fonasa" : serviceId;
     }
 
