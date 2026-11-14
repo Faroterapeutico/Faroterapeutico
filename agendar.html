@@ -2397,7 +2397,8 @@
 
     const services = [
       { id: "individual", name: "Terapia individual", detail: "45-50 min", price: 30000 },
-      { id: "pareja", name: "Terapia de pareja", detail: "50 min", price: 30000, therapistIds: ["aaron", "benjamin"], therapistLabel: "Aaron / Benjam&iacute;n" },
+      { id: "pareja", name: "Terapia de pareja", detail: "50 min", price: 30000, therapistIds: ["aaron", "benjamin", "vicente"], therapistLabel: "Aaron / Benjam&iacute;n / Vicente" },
+      { id: "familiar", name: "Terapia familiar", detail: "50 min", price: 30000, therapistIds: ["vicente"], therapistLabel: "Vicente" },
       { id: "infanto", name: "Terapia infanto juvenil", detail: "45-50 min", price: 30000, therapistIds: ["isidora", "benjamin"], therapistLabel: "Isidora / Benjam&iacute;n" }
     ];
 
@@ -2409,7 +2410,8 @@
 
     // Valor Fonasa vigente para la agenda disponible: $14.420.
     const fonasaPrices = {
-      benjamin: 14420
+      benjamin: 14420,
+      vicente: 14420
     };
 
     const isapres = [
@@ -2485,6 +2487,7 @@
       { id: "isidora", name: "Isidora Sanhueza", focus: "Psic&oacute;loga cl&iacute;nica", help: "Ansiedad, autoestima, v&iacute;nculos y regulaci&oacute;n emocional con enfoque DBT y TCC.", image: "images/isidora-420.webp", photo: "isidora", isapreOnly: true },
       { id: "aaron", name: "Aaron Mill&aacute;n Sol&iacute;s", focus: "Psic&oacute;logo cl&iacute;nico", help: "Duelo, adicciones, v&iacute;nculos, terapia de pareja y procesos emocionales profundos.", image: "images/aaron-580.webp", photo: "aaron" },
       { id: "benjamin", name: "Benjam&iacute;n Reyes", focus: "Psic&oacute;logo cl&iacute;nico", help: "Mindfulness, autocompasi&oacute;n, aceptaci&oacute;n y herramientas cognitivo-conductuales.", image: "images/Benjamin%20Reyes.webp", photo: "benjamin", serviceIds: ["individual", "pareja", "infanto"], pendingStatus: "Agenda disponible pr&oacute;ximamente" },
+      { id: "vicente", name: "Vicente Camilo Leiva Vega", focus: "Psic&oacute;logo cl&iacute;nico", help: "Terapia individual, de pareja y familiar para adultos. Atenci&oacute;n online y presencial.", image: "images/vicente-leiva.png", photo: "vicente", serviceIds: ["individual", "pareja", "familiar"], whatsapp: "56936150727", pendingStatus: "Agenda disponible pr&oacute;ximamente" },
       { id: "david", name: "David Walter Salinas", focus: "Psic&oacute;logo cl&iacute;nico", help: "Ansiedad, estr&eacute;s, estado de &aacute;nimo, desarrollo personal y psicolog&iacute;a deportiva.", image: "images/david-580.webp", photo: "david", closed: true, status: "Agenda cerrada temporalmente" }
     ];
 
@@ -2599,8 +2602,23 @@
     let weekDays = buildWeekDays(weekOffset);
 
     const hours = Array.from({ length: 10 }, (_, index) => 11 + index);
+
+    function hoursForTherapist(therapistId = state.therapistId) {
+      return therapistId === "vicente" ? [18, 19, 20] : hours;
+    }
+
+    function weekDaysForTherapist(therapistId = state.therapistId) {
+      if (therapistId !== "vicente") {
+        return weekDays;
+      }
+      return weekDays.filter((day) => {
+        const weekday = new Date(`${day.id}T12:00:00Z`).getUTCDay();
+        return weekday >= 1 && weekday <= 5;
+      });
+    }
+
     state.dayId = weekDays[0].id;
-    state.slotId = slotIdFor(state.dayId, hours[0]);
+    state.slotId = slotIdFor(state.dayId, hoursForTherapist()[0]);
 
     const money = new Intl.NumberFormat("es-CL", {
       style: "currency",
@@ -2702,6 +2720,11 @@
       if (therapistId === "benjamin" && serviceId === "pareja") {
         return "individual";
       }
+      // Vicente usa en Encuadrado los servicios de psicoterapia general para sus sesiones
+      // individuales, de pareja y familiares.
+      if (therapistId === "vicente" && (serviceId === "pareja" || serviceId === "familiar")) {
+        return state.coverageId === "fonasa" ? "fonasa" : "individual";
+      }
       return state.coverageId === "fonasa" ? "fonasa" : serviceId;
     }
 
@@ -2740,6 +2763,9 @@
       if (state.coverageId === "fonasa") {
         if (therapistId === "benjamin") {
           return service.id === "individual" || service.id === "pareja" || service.id === "infanto";
+        }
+        if (therapistId === "vicente") {
+          return service.id === "individual" || service.id === "pareja" || service.id === "familiar";
         }
         return false;
       }
@@ -2784,7 +2810,7 @@
       weekOffset = nextOffset;
       weekDays = buildWeekDays(weekOffset);
       state.dayId = weekDays[0].id;
-      state.slotId = slotIdFor(state.dayId, hours[0]);
+      state.slotId = slotIdFor(state.dayId, hoursForTherapist()[0]);
       availabilityRequestId += 1;
       resetConfirmation();
       syncWeekNavigation();
@@ -2836,7 +2862,9 @@
       const therapist = getTherapist();
       const isCurrentTherapist = availabilityStatus.therapistId === therapist.id
         && availabilityStatus.mode === state.mode;
-      let detail = "11:00 a 20:00";
+      let detail = therapist.id === "vicente"
+        ? "18:00 a 20:00 · lunes a viernes"
+        : "11:00 a 20:00";
       let statusClass = "";
 
       if (isCurrentTherapist) {
@@ -2902,8 +2930,8 @@
     }
 
     function firstOpenSlot() {
-      for (const day of weekDays) {
-        for (const hour of hours) {
+      for (const day of weekDaysForTherapist()) {
+        for (const hour of hoursForTherapist()) {
           const slotId = slotIdFor(day.id, hour);
           if (!isPastSlot(day.id, hour) && !isBooked(day.id, slotId)) {
             return { dayId: day.id, slotId };
@@ -2915,7 +2943,11 @@
 
     function ensureOpenSelection() {
       const selectedHour = getSelectedHour();
-      if (!isPastSlot(state.dayId, selectedHour)
+      const selectedDayAllowed = weekDaysForTherapist().some((day) => day.id === state.dayId);
+      const selectedHourAllowed = hoursForTherapist().includes(selectedHour);
+      if (selectedDayAllowed
+        && selectedHourAllowed
+        && !isPastSlot(state.dayId, selectedHour)
         && !isBooked(state.dayId, state.slotId)) {
         return;
       }
@@ -2927,12 +2959,14 @@
     }
 
     function getSelectedDay() {
-      return weekDays.find((day) => day.id === state.dayId) || weekDays[1];
+      const availableDays = weekDaysForTherapist();
+      return availableDays.find((day) => day.id === state.dayId) || availableDays[0];
     }
 
     function getSlot() {
       const day = getSelectedDay();
-      const hour = hours.find((item) => slotIdFor(day.id, item) === state.slotId) || 11;
+      const hour = hoursForTherapist().find((item) => slotIdFor(day.id, item) === state.slotId)
+        || hoursForTherapist()[0];
       const slot = { id: slotIdFor(day.id, hour), label: `${String(hour).padStart(2, "0")}:00` };
       return { day, slot };
     }
@@ -3805,10 +3839,12 @@
 
     function renderCalendar() {
       const container = document.getElementById("weekCalendar");
+      const calendarDays = weekDaysForTherapist();
+      const calendarHours = hoursForTherapist();
       const header = `
         <div class="week-header">
           <div class="week-corner">Hora</div>
-          ${weekDays.map((day) => `
+          ${calendarDays.map((day) => `
             <div class="week-day">
               <strong>${day.day}</strong>
               <span>${day.date}</span>
@@ -3816,10 +3852,10 @@
           `).join("")}
         </div>
       `;
-      const rows = hours.map((hour) => `
+      const rows = calendarHours.map((hour) => `
         <div class="week-row">
           <div class="time-label" data-hour="${String(hour).padStart(2, "0")}">${String(hour).padStart(2, "0")}:00</div>
-          ${weekDays.map((day) => {
+          ${calendarDays.map((day) => {
             const slotId = slotIdFor(day.id, hour);
             const selected = state.slotId === slotId && state.dayId === day.id;
             const booked = isBooked(day.id, slotId);
@@ -3915,8 +3951,9 @@
         "¿Me pueden ayudar a confirmar la reserva?"
       ].join("\n");
 
+      const whatsappNumber = therapist.whatsapp || "56945593808";
       document.getElementById("whatsappBookingButton").href =
-        `https://wa.me/56945593808?text=${encodeURIComponent(message)}`;
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     }
 
     function resetConfirmation() {
