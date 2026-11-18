@@ -2136,7 +2136,7 @@
                 <div class="isapre-choice-grid" id="isapreChoiceGrid"></div>
               </div>
               <p class="coverage-notice" id="fonasaNotice" hidden>
-                La agenda Fonasa de Aaron est&aacute; cerrada temporalmente. Benjam&iacute;n est&aacute; disponible para nuevas horas Fonasa.
+                Puedes agendar con Aaron, Benjam&iacute;n o Vicente seg&uacute;n la disponibilidad de cada agenda Fonasa.
               </p>
               <div class="step-actions">
                 <button class="step-button primary" type="button" data-step-next="2" id="coverageContinueButton">Continuar <i data-lucide="arrow-right"></i></button>
@@ -2410,6 +2410,7 @@
 
     // Valor Fonasa vigente para la agenda disponible: $14.420.
     const fonasaPrices = {
+      aaron: 14420,
       benjamin: 14420,
       vicente: 14420
     };
@@ -2761,6 +2762,9 @@
         return false;
       }
       if (state.coverageId === "fonasa") {
+        if (therapistId === "aaron") {
+          return service.id === "individual";
+        }
         if (therapistId === "benjamin") {
           return service.id === "individual" || service.id === "pareja" || service.id === "infanto";
         }
