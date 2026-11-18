@@ -155,7 +155,7 @@ Esta sección resume la configuración conocida en el código. Antes de cambiarl
 - Terapia familiar: Vicente.
 - Terapia infanto-juvenil: Isidora y Benjamín.
 - FONASA: Aaron (presencial), Benjamín y Vicente.
-- Valor FONASA configurado actualmente para Benjamín y Vicente: `$14.420`.
+- Valor FONASA configurado actualmente para Aaron, Benjamín y Vicente: `$14.420`.
 - Valor base mostrado en el frontend para servicios particulares/Isapre: `$30.000`; verificar contra Encuadrado antes de modificar o comunicarlo.
 - Vicente: lunes a viernes, entre las 18:00 y las 20:00, según la regla del backend.
 
