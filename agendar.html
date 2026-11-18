@@ -2763,7 +2763,7 @@
       }
       if (state.coverageId === "fonasa") {
         if (therapistId === "aaron") {
-          return service.id === "individual";
+          return service.id === "individual" || service.id === "pareja";
         }
         if (therapistId === "benjamin") {
           return service.id === "individual" || service.id === "pareja" || service.id === "infanto";
