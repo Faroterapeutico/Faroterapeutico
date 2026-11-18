@@ -143,7 +143,7 @@ Esta sección resume la configuración conocida en el código. Antes de cambiarl
 
 ### Terapeutas
 
-- Aaron Millán Solís: terapeuta activo; agenda FONASA presencial activa.
+- Aaron Millán Solís: terapeuta activo; agenda FONASA presencial y online activa usando el mismo servicio Encuadrado.
 - Benjamín Reyes: activo para terapia individual, pareja, infanto-juvenil y FONASA según la configuración actual.
 - Isidora Sanhueza: atención exclusivamente con Isapre en la agenda pública actual.
 - Vicente Camilo Leiva Vega: activo para terapia individual, de pareja y familiar; modalidad presencial y online.
@@ -154,7 +154,7 @@ Esta sección resume la configuración conocida en el código. Antes de cambiarl
 - Terapia de pareja: Aaron, Benjamín y Vicente.
 - Terapia familiar: Vicente.
 - Terapia infanto-juvenil: Isidora y Benjamín.
-- FONASA: Aaron (presencial), Benjamín y Vicente.
+- FONASA: Aaron (presencial y online), Benjamín y Vicente.
 - Valor FONASA configurado actualmente para Aaron, Benjamín y Vicente: `$14.420`.
 - Valor base mostrado en el frontend para servicios particulares/Isapre: `$30.000`; verificar contra Encuadrado antes de modificar o comunicarlo.
 - Vicente: lunes a viernes, entre las 18:00 y las 20:00, según la regla del backend.
